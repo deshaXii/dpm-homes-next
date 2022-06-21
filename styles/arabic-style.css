@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400&display=swap');
+
+
+
+body .rtl {
+    font-family: 'Almarai', sans-serif;
+}
+
+.rtl h1,
+.rtl h2,
+.rtl h3,
+.rtl h4,
+.rtl h5,
+.rtl h6 {
+    font-family: 'Noto Kufi Arabic', sans-serif;
+}
+
+.rtl .property-card-image .property-added-by {
+    right: auto;
+    left: 25px;
+}
+
+.rtl .propert-card-features .pcf-item .pcf-item-top svg {
+    margin-left: 0;
+    margin-right: 4px;
+}
+
+.rtl .propert-card-buttons button.btn:last-of-type {
+    margin-left: 0;
+    margin-right: 12px;
+}
+
+.rtl .property-card-info .property-card-price div {
+    margin-left: 0;
+    margin-right: 5px;
+}
+
+.rtl aside.properties-filter .filter-group h5.filter-group-title svg {
+    margin-left: 5px;
+    margin-right: 0;
+}
+
+.rtl .search-property-layout-content .propert-card-features {
+    column-gap: 15px;
+}
+
+.rtl .service-box .icon-box {
+    right: auto;
+    left: 30px;
+}
+
+.rtl .s-title-box {
+    padding-left: 0;
+    padding-right: 14px;
+}
+
+.rtl .s-title-box:before {
+    left: auto;
+    right: 0px;
+}
+
+.rtl .search-property-layout-header .splh-left span p {
+    margin-right: 0;
+    margin-left: 5px;
+}
+
+.rtl .splhr-item:first-of-type:before {
+    right: auto;
+    left: -9px;
+}
+
+.rtl .p-d-v-content .input-with-icon svg {
+    right: auto;
+    left: 15px;
+}
+
+.rtl .arrow-to-right.property-viwer-btns .btn.active:before {
+    border-right-color: #fff;
+    border-left-color: transparent;
+    right: auto;
+    left: -37px;
+}
+
+.rtl .add-property-page form .aft-item {
+    padding-right: 20px;
+}
+
+.rtl .add-property-page form .aft-item:before {
+    right: 0;
+    left: auto;
+}
