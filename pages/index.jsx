@@ -49,7 +49,11 @@ export default Home;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req }) => {
+    async ({ res }) => {
+      res.setHeader(
+        "Cache-Control",
+        "public, s-maxage=10, stale-while-revalidate=59"
+      );
       await store.dispatch(getPropertiesWithTpye("sell"));
       await store.dispatch(getAllProjects());
       const allProperties = store.getState().properties.allProperties;

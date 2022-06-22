@@ -37,7 +37,11 @@ export default SingleProperty;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req, query }) => {
+    async ({ res, query }) => {
+      res.setHeader(
+        "Cache-Control",
+        "public, s-maxage=10, stale-while-revalidate=59"
+      );
       const { id } = query;
       await store.dispatch(showProperty(id));
       return {

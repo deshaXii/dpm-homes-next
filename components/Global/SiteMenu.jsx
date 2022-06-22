@@ -20,11 +20,8 @@ const SiteMenu = () => {
           </Link>
         </li>
         <li className="navbar-menu-list-item">
-          <Link
-            href="#0"
-          >
+          <Link href="/search-sell">
             <a
-            onClick={(e) => router.push(`/search?type=sell`)}
               className={`navbar-menu-list-item-link ${
                 router.pathname === "/search" && router.query.type === "sell"
                   ? "active-link"
@@ -36,12 +33,8 @@ const SiteMenu = () => {
           </Link>
         </li>
         <li className="navbar-menu-list-item">
-          <Link
-            href="#"
-            query
-          >
+          <Link href="/search-rent" query>
             <a
-            onClick={(e) => router.push(`/search?type=rent`)}
               className={`navbar-menu-list-item-link ${
                 router.pathname === "/search" && router.query.type === "rent"
                   ? "active-link"

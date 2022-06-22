@@ -144,7 +144,11 @@ export default ClientProfile;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req, query }) => {
+    async ({ res, query }) => {
+      res.setHeader(
+        "Cache-Control",
+        "public, s-maxage=10, stale-while-revalidate=59"
+      );
       let id = query.id;
       await store.dispatch(getClientInfo(id));
       return {

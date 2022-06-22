@@ -101,14 +101,14 @@ export default Search;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req, res, query, locale }) => {
+    async ({ res, locale }) => {
       res.setHeader(
         'Cache-Control',
         'public, s-maxage=10, stale-while-revalidate=59'
       )
       console.log(res);
       await store.dispatch(getAllCountries(locale));
-      await store.dispatch(getPropertiesWithTpye(query.type));
+      await store.dispatch(getPropertiesWithTpye('rent'));
       return {
         props: {},
       };
