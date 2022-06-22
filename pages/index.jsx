@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import Default from "../layouts/default";
 import Head from "next/head";
 import HomeIntro from "../components/Home/Intro";
-import Properties from "../components/Global/Properties";
 import Services from "../components/Home/Services";
-import Projects from "../components/Home/Projects";
 import { FormattedMessage } from "react-intl";
 import { wrapper } from "../store";
 import { getPropertiesWithTpye } from "../store/slices/properties";
 import { getAllProjects } from "../store/slices/projects";
+import dynamic from "next/dynamic";
+const Properties = dynamic(() => import("../components/Global/Properties"));
+const Projects = dynamic(() => import("../components/Home/Projects"));
 
 const Home = ({ dir }) => {
   useEffect(() => {

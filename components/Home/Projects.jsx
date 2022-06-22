@@ -67,7 +67,7 @@ const Projects = () => {
                           width={600}
                           height={400}
                           alt="hyde park project image"
-                          src={`https://dpmhomes.com/${project.image}`}
+                          src={`https://admin.dpmhomes.com/${project.image}`}
                         />
                       </div>
                       <div className="project-slide-info">

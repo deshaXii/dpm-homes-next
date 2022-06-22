@@ -1,9 +1,11 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import PropertyCard from "../Global/PropertyCard";
 import SectionTitle from "../Global/SectionTitle";
 import { useSelector } from "react-redux";
 import { selectProperties } from "../../store/slices/properties";
+import dynamic from "next/dynamic";
+
+const PropertyCard = dynamic(() => import("../Global/PropertyCard"));
 
 const Properties = ({ sectionTitle, sectionClass }) => {
   const { allProperties } = useSelector(selectProperties);

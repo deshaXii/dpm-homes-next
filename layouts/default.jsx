@@ -1,12 +1,15 @@
 import React from "react";
-import AppFooter from "../components/Global/AppFooter";
-import AppNavbar from "../components/Global/AppHeader";
 import CopyRight from "../components/Global/CopyRight";
 import Cursor from "../components/Global/Cursor";
 import ScrollToTop from "../components/Global/ScrollToTop";
 import { useSelector } from "react-redux";
 import { selectUser } from "../store/slices/auth";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+const  AppNavbar = dynamic(() => import("../components/Global/AppHeader"));
+const  AppFooter = dynamic(() => import("../components/Global/AppFooter"));
+
 
 function getDirection(locale) {
   if (locale === "ar") {

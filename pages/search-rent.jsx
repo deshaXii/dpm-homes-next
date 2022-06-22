@@ -75,7 +75,7 @@ const Search = () => {
                             <PropertyCard
                               property={property}
                               featureCount={2}
-                              image={`https://dpmhomes.com/property-images/${property.images[0]}`}
+                              image={`https://admin.dpmhomes.com/property-images/${property.images[0]}`}
                               className={
                                 layout === "grid" ? "grid-view" : "list-view"
                               }

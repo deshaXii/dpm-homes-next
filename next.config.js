@@ -6,7 +6,7 @@ module.exports = {
     buildActivity: false,
   },
   images: {
-    domains: ["dpmuae.com", "dpmhomes.com"],
+    domains: ["admin.dpmhomes.com"],
   },
   eslint: {
     ignoreDuringBuilds: true,

@@ -81,7 +81,7 @@ const PropertyViewer = () => {
                     {property.data.images.map((imageLink, index) => (
                       <div className="slider__item" key={index}>
                         <img
-                          src={`https://dpmhomes.com/property-images/${imageLink}`}
+                          src={`https://admin.dpmhomes.com/property-images/${imageLink}`}
                           alt="Product image"
                         />
                       </div>
@@ -96,7 +96,7 @@ const PropertyViewer = () => {
                     {property.data.images.map((imageLink, index) => (
                       <div className="slider__item" key={index}>
                         <img
-                          src={`https://dpmhomes.com/property-images/${imageLink}`}
+                          src={`https://admin.dpmhomes.com/property-images/${imageLink}`}
                           alt="Product image"
                         />
                       </div>
