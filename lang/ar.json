@@ -69,5 +69,62 @@
   "page.contact-us.form.message": "الرسالة",
   "page.contact-us.form.send": "إرسال الرسالة",
   "section.image-upload.errors.file_size": "الملف الذي تحاول رفعه أكبر من 2 ميجا بايت",
-  "section.image-upload.errors.file_type": "يجب أن يكون الملف من نوع jpg أو png"
+  "section.image-upload.errors.file_type": "يجب أن يكون الملف من نوع jpg أو png",
+  "page.add-property-tabs-housing": "سكني",
+  "page.add-property-tabs-commercial": "تجاري",
+  "page.add-property-tabs-administrative": "اداري",
+  "page.add-property-tabs-for-sell": "للبيع",
+  "page.add-property-tabs-for-rent": "للإيجار",
+  "page.add-property-tabs-cash": "كاش",
+  "page.add-property-tabs-rent": "تقسيط",
+  "page.add-property-tabs-both": "كاش وتقسيط",
+  "page.add-property-form-title.add-details": "أضف تفاصيل عن العقار",
+  "page.add-property-form-title.payment.type": "طريقه الدفع والاستلام",
+  "page.add-property-form-title.add-images": "إضافة صور العقار",
+  "page.add-property-form-title.finishing": "اضافه حاله التشطيب",
+  "page.add-property-form-title.nearbly-location": "عرض الخدمات القريب",
+  "page.add-property-form-title.add-3d": "إضافة عرض 3D ",
+  "page.add-property-form-title.add-map": "إضافة عرض الخريطة",
+  "page.add-property-form-title.add-more-details": "إضافة تفاصيل اخري",
+  "page.add-property-form.option": "اختياري",
+  "page.add-property-form.details.property-type": "نوع الوحدة",
+  "page.add-property-form.details.country": "نوع   البلد",
+  "page.add-property-form.details.total-price": "المساحة الإجمالية",
+  "page.add-property-form.details.property-name-and-id": "رقم وإسم الوحدة",
+  "page.add-property-form.details.beds-room": "غرف النوم",
+  "page.add-property-form.details.reception-room": "غرفة الاستقبال",
+  "page.add-property-form.details.finishing": "التشطيب",
+  "page.add-property-form.details.finishing_type": "أختر نوع التشطيب",
+  "page.add-property-form.details.goverment": "المحافظة",
+  "page.add-property-form.details.address": "العنوان",
+  "page.add-property-form.details.building-area-size": "مساحة المباني",
+  "page.add-property-form.details.building-age": "تاريخ الإنشاء",
+  "page.add-property-form.details.building-stutus": "حالة الوحدية",
+  "page.add-property-form.details.bath-room": "الحمام",
+  "page.add-property-form.details.dressing": "غرفة الدريسينج",
+  "page.add-property-form.details.garden-area-size": "مساحة الحديقة",
+  "page.add-property-form.details.city": "المدينة",
+  "page.add-property-form.details.kitchen": "المطبخ",
+  "page.add-property-form.details.roof": "روف",
+  "page.add-property-form.details.private-parking": "باركينج خاص",
+  "page.add-property-form.details.private-pool": "حمام سباحة خاص",
+  "page.add-property-form.details.left": "اسانسير",
+  "page.add-property-form.details.public-garden": "حديقة عامة",
+  "page.add-property-form.details.private-garden": "حديقة خاصه",
+  "page.add-property-form.details.security": "امن",
+  "page.add-property-form.details.public_pool": "حمام سباحة عام",
+  "page.add-property-form.details.cash-total_price": "السعر كاش",
+  "page.add-property-form.details.club_fee": "رسوم النادي",
+  "page.add-property-form.details.currency": "العملة",
+  "page.add-property-form.details.receiving_date": "موعد الإستلام",
+  "page.add-property-form.details.maintenance_fee": "رسوم الصيانة",
+  "page.add-property-form.details.advance": "المقدم"
+  
 }
+
+
+
+
+
+
+

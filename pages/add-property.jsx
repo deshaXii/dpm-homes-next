@@ -23,8 +23,6 @@ const AddProperty = () => {
   const [activePaymentType, setActivePaymentType] = useState("for-sell");
   const [formView, setFormView] = useState("cash-form");
 
-
-
   return (
     <>
       <Head>
@@ -48,7 +46,7 @@ const AddProperty = () => {
                     <div className="view-btn-icon">
                       <BiHomeSmile />
                     </div>
-                    <span>housing</span>
+                    <span><FormattedMessage id="page.add-property-tabs-housing" /></span>
                   </button>
                   <button
                     onClick={() => setActiveSection("commercial-section")}
@@ -59,7 +57,7 @@ const AddProperty = () => {
                     <div className="view-btn-icon">
                       <BsShop />
                     </div>
-                    <span>commercial</span>
+                    <span><FormattedMessage id="page.add-property-tabs-commercial" /></span>
                   </button>
                   <button
                     onClick={() => setActiveSection("administrative-section")}
@@ -70,7 +68,7 @@ const AddProperty = () => {
                     <div className="view-btn-icon">
                       <HiOutlineOfficeBuilding />
                     </div>
-                    <span>administrative</span>
+                    <span><FormattedMessage id="page.add-property-tabs-administrative" /></span>
                   </button>
                 </div>
               </div>
@@ -87,7 +85,7 @@ const AddProperty = () => {
                           <button
                             onClick={() => setActivePaymentType("for-sell")}
                           >
-                            للبيع
+                            <FormattedMessage id="page.add-property-tabs-for-sell" />
                           </button>
                         </div>
                         <div
@@ -98,7 +96,7 @@ const AddProperty = () => {
                           <button
                             onClick={() => setActivePaymentType("for-rent")}
                           >
-                            للإيجار
+                            <FormattedMessage id="page.add-property-tabs-for-rent" />
                           </button>
                         </div>
                       </div>
@@ -110,7 +108,7 @@ const AddProperty = () => {
                             }`}
                           >
                             <button onClick={() => setFormView("cash-form")}>
-                              كاش
+                            <FormattedMessage id="page.add-property-tabs-cash" />
                             </button>
                           </div>
                           <div
@@ -121,7 +119,7 @@ const AddProperty = () => {
                             <button
                               onClick={() => setFormView("installments-form")}
                             >
-                              تقسيط
+                              <FormattedMessage id="page.add-property-tabs-rent" />
                             </button>
                           </div>
                           <div
@@ -130,7 +128,7 @@ const AddProperty = () => {
                             }`}
                           >
                             <button onClick={() => setFormView("both-form")}>
-                              كاش و تقسيط
+                            <FormattedMessage id="page.add-property-tabs-both" />
                             </button>
                           </div>
                         </div>
@@ -164,7 +162,7 @@ export default AddProperty;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req, res, query }) => {
+    async ({ res, locale }) => {
       res.setHeader(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
@@ -178,7 +176,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
           props: {},
         };
       }
-      const { locale } = query;
       await store.dispatch(getAllCountries(locale));
       return {
         props: {},

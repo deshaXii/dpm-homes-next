@@ -7,6 +7,7 @@ import moveWhenScroll from "../../common/moveWhenScroll";
 import { useSelector } from "react-redux";
 import { selectProperties } from "../../store/slices/properties";
 import { useRouter } from "next/router";
+import { selectUser } from "../../store/slices/auth";
 
 const PropertyMainInfo = () => {
   const { property } = useSelector(selectProperties);
@@ -31,15 +32,28 @@ const PropertyMainInfo = () => {
         <div className="row">
           <div className="col-12">
             <div className="property-main-info-inner">
-              <div>
-                <h1 className="property-main-info-name">
-                  Mountain View - Hyed Park - New cairo - lagoon veiw
-                </h1>
-                <div className="property-main-info-location">
-                  <HiLocationMarker />
-                  <Link href="#">
-                    <a>{property.data.address}</a>
+              <div className="pmii-box">
+                <img
+                  src={`https://admin.dpmhomes.com/user-images/${property.data.user_info.image}`}
+                  alt=""
+                />
+                <div>
+                  <Link href={`/clients/${property.data.user_info.id}`}>
+                    <a>
+                      <h1 className="property-main-info-name">
+                        {property.data.user_info.name}
+                        {property.data.user_info.compound_name
+                          ? "-" + property.data.user_info.compound_name
+                          : ""}
+                      </h1>
+                    </a>
                   </Link>
+                  <div className="property-main-info-location">
+                    <HiLocationMarker />
+                    <Link href="#">
+                      <a>{property.data.address}</a>
+                    </Link>
+                  </div>
                 </div>
               </div>
 
