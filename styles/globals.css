@@ -3149,4 +3149,26 @@ nav.mobile.navbar,
   background: var(--mainColor);
 }
 
+.add-property-page form .aft-item svg {
+  transform: rotate(180deg);
+  font-size: 40px;
+  color: var(--mainColor);
+}
+
+.add-property-page form .collapsed .aft-item svg {
+  transform: rotate(0);
+  color: #444;
+
+}
+
+.add-property-page form .collapsed .aft-content {
+  padding: 0;
+}
+
+.add-property-page form .aft-content {
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 10px;
+}
+
 /* End Add Property */

@@ -1,43 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiUploadCloud, FiEdit2 } from "react-icons/fi";
 import Select from "react-select";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import ImageUploading from "react-images-uploading";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { addResidentialInstallment } from "../../store/slices/properties";
+import { addResidentialCash } from "../../store/slices/properties";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import {
+  getAllGovernorates,
+  selectCountries,
+} from "../../store/slices/countries";
 
 const HosuingInstallment = () => {
-  const property_type_options = [
+  const { allCountries, allGovernorates } = useSelector(selectCountries);
+  const country_options = allCountries;
+
+  const governorate_options = allGovernorates;
+
+  const property_type_options_ar = [
+    { value: "palace", label: "قصر" },
+    { value: "villa", label: "فيلا" },
+    { value: "twin_house", label: "تون هاوس" },
+    { value: "pent_house", label: "بنت هاوس" },
+    { value: "flat", label: "منزل" },
+    { value: "studio", label: "ستوديو" },
+    { value: "chalet", label: "شاليه" },
+  ];
+
+  const property_type_options_en = [
     { value: "palace", label: "palace" },
+    { value: "villa", label: "villa" },
     { value: "twin_house", label: "twin house" },
-    { value: "Villa", label: "Villa" },
     { value: "pent_house", label: "pent house" },
     { value: "flat", label: "flat" },
     { value: "studio", label: "studio" },
     { value: "chalet", label: "chalet" },
   ];
 
-  const furniture_type_options = [
+  const furniture_type_options_ar = [
+    { value: "furnished", label: "تشطيب" },
+    { value: "unfurnished", label: "بدون تشطيب" },
+  ];
+
+  const furniture_type_options_en = [
     { value: "furnished", label: "furnished" },
     { value: "unfurnished", label: "unfurnished" },
   ];
 
-  const currency_options = [
-    { value: "USD", label: "USD" },
+  const currency_options_ar = [
+    { value: "USD", label: "دولار أمريكي" },
+    { value: "AED", label: "درهم إماراتي" },
+    { value: "EGP", label: "جنيه مصري" },
+    { value: "GBP", label: "جنيه إسترليني" },
+    { value: "QAR", label: "ريال قطري" },
+    { value: "SAR", label: "ريال سعودي" },
+    { value: "EURO", label: "يورو " },
+    { value: "KWD", label: "دينار كويتي" },
+  ];
+
+  const currency_options_en = [
+    { value: "USD", label: "Dollar" },
+    { value: "AED", label: "AED" },
     { value: "EGP", label: "EGP" },
     { value: "GBP", label: "GBP" },
     { value: "QAR", label: "QAR" },
     { value: "SAR", label: "SAR" },
     { value: "EURO", label: "EURO" },
     { value: "KWD", label: "KWD" },
-  ];
-
-  const installment_type_type_options = [
-    { value: "monthly", label: "Monthly - شهريا" },
-    { value: "quarterly", label: "Quarterly - ربع سنوي" },
-    { value: "semi-annual", label: "Semi Annual - نصف سنوي" },
-    { value: "annual", label: "Annual - سنويا" },
   ];
 
   const [firstTabVis, setFirstTabVis] = useState(false);
@@ -48,7 +81,6 @@ const HosuingInstallment = () => {
   const [sixthTabVis, setSixthTabVis] = useState(false);
   const [seventhTabVis, setSeventhTabVis] = useState(false);
   const [eighthTabVis, setEighthTabVis] = useState(false);
-  const [ninthTabVis, setNinthTabVis] = useState(false);
 
   const selectStyle = {
     control: (base, { isFocused }) => ({
@@ -68,61 +100,6 @@ const HosuingInstallment = () => {
       };
     },
   };
-
-  // property_type:flat
-  // furniture_type:furnished
-  // address:any address
-  // country:Egypt
-  // governorate:Cairo
-  // city:Al Shorouk City
-  // total_area:250
-  // building_area:100
-  // garden_area:Number - Nullable
-  // no_bed_room:2
-  // no_bath_room:2
-  // no_kitchen:1
-  // no_reception:2
-  // no_dressing:1
-  // no_roof:0
-  // compound_name:Villa C Somewhere
-  // private_garden:1
-  // private_parking:
-  // private_pool:
-  // lift:
-  // security:
-  // public_pool:
-  // public_garden:1
-  // walls:Any Walls Finishing Data Text
-  // floors:Floors finishing
-  // ceilings:celings finishing
-  // bath_rooms:
-  // kitchen:
-  // light_system:
-  // air_conditioners:
-  // internet:
-  // total_price_installment:2500000
-  // advance_payment:25%
-  // maintenance_fees:25000
-  // club_fees:3500
-  // currency:EGP
-  // receiving_date:بعد دفع 40% من الوحدة
-  // school:
-  // hospital:
-  // nursery_school:
-  // mall:
-  // pharmacy:
-  // super_market:
-  // street_view_iframe:
-  // general_details:
-  // unit_status:Ready To Recieve
-  // unit_age:
-  // pdf:
-  // view3d:
-  // youtube:
-  // location:
-  // installment:25000
-  // installment_time:5 Years
-  // installment_type:annual
 
   const [property_type, setProperty_type] = useState("");
   const [furniture_type, setFurniture_type] = useState("");
@@ -157,9 +134,6 @@ const HosuingInstallment = () => {
   const [internet, setInternet] = useState("");
   const [total_price_installment, setTotal_price_installment] = useState("");
   const [advance_payment, setAdvance_payment] = useState("");
-  const [installment, setInstallment] = useState("");
-  const [installment_time, setInstallment_time] = useState("");
-  const [installment_type, setInstallment_type] = useState("");
   const [maintenance_fees, setMaintenance_fees] = useState("");
   const [club_fees, setClub_fees] = useState("");
   const [currency, setCurrency] = useState("");
@@ -174,13 +148,17 @@ const HosuingInstallment = () => {
   const [general_details, setGeneral_details] = useState("");
   const [unit_status, setUnit_status] = useState("");
   const [unit_age, setUnit_age] = useState("");
-  const [pdf, setPdf] = useState("");
-  const [view3d, setView3d] = useState("");
-  const [youtube, setYoutube] = useState("");
-  const [location, setLocation] = useState("");
+  const [pdf, setPdf] = useState(null);
+  const [view3d, setView3d] = useState(null);
+  const [youtube, setYoutube] = useState(null);
+  const [location, setLocation] = useState(null);
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
+  const [installment, setInstallment] = useState("");
+  const [installment_time, setInstallment_time] = useState("");
+  const [installment_type, setInstallment_type] = useState("");
   const maxNumber = 12;
+  const maxFileSize = 1048576;
 
   const dispatch = useDispatch();
 
@@ -188,21 +166,45 @@ const HosuingInstallment = () => {
     const newArray = imageList.map(
       ({ data_url, ...keepAttrs }) => keepAttrs.file
     );
-    setPImages(newArray[0]);
+    setPImages(newArray);
     setImages(imageList);
   };
 
+  const router = useRouter();
+
   const handelAddProperty = (e) => {
     e.preventDefault();
-    dispatch(addResidentialInstallment(data));
+    dispatch(addResidentialCash(data)).then((res) => {
+      if (res.payload.success) {
+        toast.success(res.payload.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      } else {
+        for (let error in res.payload.errors) {
+          toast.error(res.payload.errors[error].toString(), {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        }
+      }
+    });
   };
 
   let data = {
     property_type: property_type.value,
     furniture_type: furniture_type.value,
     address,
-    country: 2,
-    governorate: 8,
+    country: country.value,
+    governorate: governorate.value,
     city,
     total_area,
     building_area,
@@ -231,9 +233,6 @@ const HosuingInstallment = () => {
     internet,
     total_price_installment,
     advance_payment,
-    installment,
-    installment_time,
-    installment_type: installment_type.value,
     maintenance_fees,
     club_fees,
     currency: currency.value,
@@ -252,8 +251,29 @@ const HosuingInstallment = () => {
     view3d,
     youtube,
     location,
-    images,
+    images: pImages,
+    installment,
+    installment_time,
+    installment_type: installment_type.value,
   };
+
+  const { locale } = router;
+
+  const [showFinishingTab, setShowFinishingTab] = useState(
+    furniture_type.value === "furnished" ? true : false
+  );
+
+  useEffect(() => {
+    setShowFinishingTab(furniture_type.value === "furnished" ? true : false);
+  }, [furniture_type]);
+
+  // Validation
+  useEffect(() => {
+    if (country) {
+      const data = { activeCountry: country.value, locale };
+      dispatch(getAllGovernorates(data));
+    }
+  }, [country]);
 
   return (
     <div className="tab-item">
@@ -265,36 +285,58 @@ const HosuingInstallment = () => {
                 className="aft-one-item aft-item"
                 onClick={() => setFirstTabVis(!firstTabVis)}
               >
-                <h3>أضف تفاصيل عن العقار</h3>
+                <h3>
+                  <FormattedMessage id="page.add-property-form-title.add-details" />
+                </h3>
+                <MdOutlineKeyboardArrowDown />
               </div>
               <div className="aft-one-content aft-content">
                 <div className="row">
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="">نوع الوحدة</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.property-type" />
+                      </label>
                       <Select
                         styles={selectStyle}
                         isShow={true}
-                        placeholder="أختر نوع الوحدة"
+                        placeholder={
+                          <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
+                        }
                         value={property_type}
                         onChange={setProperty_type}
                         name="currency"
                         id="place_type_select"
-                        options={property_type_options}
+                        options={
+                          locale === "ar"
+                            ? property_type_options_ar
+                            : property_type_options_en
+                        }
                         instanceId="place_type_select"
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">البلد</label>
-                      <input
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.country" />
+                      </label>
+                      <Select
+                        styles={selectStyle}
+                        isShow={true}
+                        placeholder={
+                          <FormattedMessage id="page.home.auth.properties.filter.location_country" />
+                        }
                         value={country}
-                        onChange={(e) => setCountry(e.target.value)}
-                        type="text"
-                        className="form-control"
+                        onChange={setCountry}
+                        name="country"
+                        id="country_type_select"
+                        options={country_options}
+                        instanceId="country_type_select"
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">المساحة الإجمالية</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.property-name-and-id" />
+                      </label>
                       <input
                         type="number"
                         value={total_area}
@@ -303,11 +345,15 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">رقم وإسم الوحدة</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.total-price" />
+                      </label>
                       <input type="text" className="form-control" />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">غرف النوم</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.beds-room" />
+                      </label>
                       <input
                         type="number"
                         value={no_bed_room}
@@ -316,7 +362,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">غرفة الاستقبال</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.reception-room" />
+                      </label>
                       <input
                         value={no_reception}
                         onChange={(e) => setNo_reception(e.target.value)}
@@ -327,29 +375,48 @@ const HosuingInstallment = () => {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="">التشطيب</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.finishing" />
+                      </label>
                       <Select
                         styles={selectStyle}
-                        placeholder="أختر نوع الوحدة"
+                        placeholder={
+                          <FormattedMessage id="page.add-property-form.details.finishing_type" />
+                        }
                         value={furniture_type}
                         onChange={setFurniture_type}
                         name="furniture"
                         id="furniture_type_select"
-                        options={furniture_type_options}
+                        options={
+                          locale === "ar"
+                            ? furniture_type_options_ar
+                            : furniture_type_options_en
+                        }
                         instanceId="furniture_type_select"
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">المحافظة</label>
-                      <input
-                        type="text"
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.goverment" />
+                      </label>
+                      <Select
+                        styles={selectStyle}
+                        isShow={true}
+                        placeholder={
+                          <FormattedMessage id="page.home.auth.properties.filter.location_governorate" />
+                        }
                         value={governorate}
-                        onChange={(e) => setGovernorate(e.target.value)}
-                        className="form-control"
+                        onChange={setGovernorate}
+                        name="governorate"
+                        id="governorate_type_select"
+                        options={governorate_options}
+                        instanceId="governorate_type_select"
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">العنوان</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.address" />
+                      </label>
                       <input
                         type="text"
                         value={address}
@@ -358,7 +425,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">مساحة المباني</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.building-area-size" />
+                      </label>
                       <input
                         type="number"
                         value={building_area}
@@ -367,7 +436,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">عمر الوحدة</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.building-age" />
+                      </label>
                       <input
                         type="text"
                         value={unit_age}
@@ -376,7 +447,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">الحمام</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.bath-room" />
+                      </label>
                       <input
                         type="number"
                         value={no_bath_room}
@@ -387,7 +460,9 @@ const HosuingInstallment = () => {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="">غرفة الدريسينج</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.dressing" />
+                      </label>
                       <input
                         type="number"
                         value={no_dressing}
@@ -396,7 +471,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">مساحة الحديقة</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.garden-area-size" />
+                      </label>
                       <input
                         type="number"
                         value={garden_area}
@@ -404,8 +481,11 @@ const HosuingInstallment = () => {
                         className="form-control"
                       />
                     </div>
+
                     <div className="form-group">
-                      <label htmlFor="">المدينة</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.city" />
+                      </label>
                       <input
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
@@ -414,7 +494,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">حالة الوحدة</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.building-stutus" />
+                      </label>
                       <input
                         value={unit_status}
                         onChange={(e) => setUnit_status(e.target.value)}
@@ -423,7 +505,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">المطبخ</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.kitchen" />
+                      </label>
                       <input
                         type="number"
                         value={no_kitchen}
@@ -432,7 +516,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">روف</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.roof" />
+                      </label>
                       <input
                         type="number"
                         value={no_roof}
@@ -445,7 +531,9 @@ const HosuingInstallment = () => {
                     <div className="form-checkboxs">
                       <div className="form-group custom-checkbox">
                         <div className="cb-item">
-                          <label htmlFor="">باركينج خاص</label>
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.private-parking" />
+                          </label>
                           <input
                             type="checkbox"
                             value={private_parking}
@@ -457,7 +545,9 @@ const HosuingInstallment = () => {
                       </div>
                       <div className="form-group custom-checkbox">
                         <div className="cb-item">
-                          <label htmlFor="">حمام سباحة خاص</label>
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.private-pool" />
+                          </label>
                           <input
                             type="checkbox"
                             value={private_pool}
@@ -467,7 +557,9 @@ const HosuingInstallment = () => {
                       </div>
                       <div className="form-group custom-checkbox">
                         <div className="cb-item">
-                          <label htmlFor="">اسانسير</label>
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.left" />
+                          </label>
                           <input
                             type="checkbox"
                             value={lift}
@@ -477,7 +569,9 @@ const HosuingInstallment = () => {
                       </div>
                       <div className="form-group custom-checkbox">
                         <div className="cb-item">
-                          <label htmlFor="">حديقة عامة</label>
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.public-garden" />
+                          </label>
                           <input
                             type="checkbox"
                             value={public_garden}
@@ -487,7 +581,9 @@ const HosuingInstallment = () => {
                       </div>
                       <div className="form-group custom-checkbox">
                         <div className="cb-item">
-                          <label htmlFor="">حديقة خاصه</label>
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.private-garden" />
+                          </label>
                           <input
                             type="checkbox"
                             value={private_garden}
@@ -499,7 +595,9 @@ const HosuingInstallment = () => {
                       </div>
                       <div className="form-group custom-checkbox">
                         <div className="cb-item">
-                          <label htmlFor="">امن</label>
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.security" />
+                          </label>
                           <input
                             type="checkbox"
                             value={security}
@@ -509,7 +607,9 @@ const HosuingInstallment = () => {
                       </div>
                       <div className="form-group custom-checkbox">
                         <div className="cb-item">
-                          <label htmlFor="">حمام سباحة عام</label>
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.public_pool" />
+                          </label>
                           <input
                             type="checkbox"
                             value={public_pool}
@@ -528,13 +628,18 @@ const HosuingInstallment = () => {
                 className="aft-two-item aft-item"
                 onClick={() => setSecondTabVis(!secondTabVis)}
               >
-                <h3>طريقه الدفع والاستلام</h3>
+                <h3>
+                  <FormattedMessage id="page.add-property-form-title.payment.type" />
+                </h3>
+                <MdOutlineKeyboardArrowDown />
               </div>
               <div className="aft-two-content aft-content">
                 <div className="row">
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="">إجمالي السعر </label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.total_price_installment" />
+                      </label>
                       <input
                         value={total_price_installment}
                         onChange={(e) =>
@@ -545,7 +650,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">رسوم النادي</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.club_fee" />
+                      </label>
                       <input
                         value={club_fees}
                         onChange={(e) => setClub_fees(e.target.value)}
@@ -554,7 +661,53 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">مدة الإقساط</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.installment" />
+                      </label>
+                      <input
+                        value={installment}
+                        onChange={(e) => setInstallment(e.target.value)}
+                        type="number"
+                        className="form-control"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.currency" />
+                      </label>
+                      <Select
+                        styles={selectStyle}
+                        isShow={true}
+                        placeholder={
+                          <FormattedMessage id="page.add-property-form.details.currency_type" />
+                        }
+                        value={currency}
+                        onChange={setCurrency}
+                        name="currency"
+                        id="currency_type_select"
+                        options={
+                          locale === "ar"
+                            ? currency_options_ar
+                            : currency_options_en
+                        }
+                        instanceId="currency_type_select"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.receiving_date" />
+                      </label>
+                      <input
+                        value={receiving_date}
+                        onChange={(e) => setReceiving_date(e.target.value)}
+                        type="text"
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor=""><FormattedMessage id="page.add-property-form.details.installment_time" /></label>
                       <input
                         value={installment_time}
                         onChange={(e) => setInstallment_time(e.target.value)}
@@ -565,46 +718,9 @@ const HosuingInstallment = () => {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="">العملة</label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder="أختر نوع العملة"
-                        value={currency}
-                        onChange={setCurrency}
-                        name="currency"
-                        id="currency_type_select"
-                        options={currency_options}
-                        instanceId="currency_type_select"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">نوع الإقساط</label>
-                      <Select
-                        styles={selectStyle}
-                        placeholder="نوع القسط"
-                        value={installment_type}
-                        onChange={setInstallment_type}
-                        name="installment_type"
-                        id="installment_type_type_select"
-                        options={installment_type_type_options}
-                        instanceId="installment_type_type_select"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">موعد الإستلام</label>
-                      <input
-                        value={receiving_date}
-                        onChange={(e) => setReceiving_date(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                   
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">رسوم الصيانة</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.maintenance_fee" />
+                      </label>
                       <input
                         type="number"
                         value={maintenance_fees}
@@ -613,7 +729,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">المقدم</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.advance" />
+                      </label>
                       <input
                         type="text"
                         value={advance_payment}
@@ -622,179 +740,11 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">مبلغ القسط</label>
-                      <input
-                        type="number"
-                        value={installment}
-                        onChange={(e) => setInstallment(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={`${thirdTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-three-item aft-item"
-                onClick={() => setThirdTabVis(!thirdTabVis)}
-              >
-                <h3>اضافه حاله التشطيب</h3>
-                <span>إختياري</span>
-              </div>
-              <div className="aft-three-content aft-content">
-                <div className="row">
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label htmlFor="">حوائط</label>
+                      <label htmlFor=""><FormattedMessage id="page.add-property-form.details.installment_type" /></label>
                       <input
                         type="text"
-                        value={walls}
-                        onChange={(e) => setWalls(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">ارضيات</label>
-                      <input
-                        type="text"
-                        value={floors}
-                        onChange={(e) => setFloors(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label htmlFor="">اسقف</label>
-                      <input
-                        type="text"
-                        value={ceilings}
-                        onChange={(e) => setCeilings(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">حمامات</label>
-                      <input
-                        type="text"
-                        value={bath_rooms}
-                        onChange={(e) => setBath_rooms(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label htmlFor="">مطبخ</label>
-                      <input
-                        type="text"
-                        value={kitchen}
-                        onChange={(e) => setKitchen(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">انترنت</label>
-                      <input
-                        type="text"
-                        value={internet}
-                        onChange={(e) => setInternet(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label htmlFor="">إنارة</label>
-                      <input
-                        type="text"
-                        value={light_system}
-                        onChange={(e) => setLight_system(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">تكييف</label>
-                      <input
-                        type="text"
-                        value={air_conditioners}
-                        onChange={(e) => setAir_conditioners(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={`${fourthTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-four-item aft-item"
-                onClick={() => setFourthTabVis(!fourthTabVis)}
-              >
-                <h3>عرض الخدمات القريب</h3>
-                <span>إختياري</span>
-              </div>
-              <div className="aft-four-content aft-content">
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">مدرسة</label>
-                      <input
-                        value={school}
-                        onChange={(e) => setSchool(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">مول</label>
-                      <input
-                        type="text"
-                        value={mall}
-                        onChange={(e) => setMall(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">مستشفي</label>
-                      <input
-                        value={hospital}
-                        onChange={(e) => setHospital(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">صيدلية</label>
-                      <input
-                        value={pharmacy}
-                        onChange={(e) => setPharmacy(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">حضانة</label>
-                      <input
-                        type="text"
-                        value={nursery_school}
-                        onChange={(e) => setNursery_school(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">سوبر ماركت</label>
-                      <input
-                        value={super_market}
-                        onChange={(e) => setSuper_market(e.target.value)}
-                        type="text"
+                        value={installment_type}
+                        onChange={(e) => setInstallment_type(e.target.value)}
                         className="form-control"
                       />
                     </div>
@@ -808,7 +758,10 @@ const HosuingInstallment = () => {
                 className="aft-four-item aft-item"
                 onClick={() => setFifthTabVis(!fifthTabVis)}
               >
-                <h3>إضافة صور العقار</h3>
+                <h3>
+                  <FormattedMessage id="page.add-property-form-title.add-images" />
+                </h3>
+                <MdOutlineKeyboardArrowDown />
               </div>
               <div className="aft-four-content aft-content">
                 <div className="image-uploader-box">
@@ -816,62 +769,331 @@ const HosuingInstallment = () => {
                     value={images}
                     onChange={onChange}
                     maxNumber={maxNumber}
+                    maxFileSize={maxFileSize}
                     dataURLKey="data_url"
                     multiple
                   >
                     {({
                       imageList,
+                      onImageRemoveAll,
+                      errors,
                       onImageUpload,
                       onImageUpdate,
                       onImageRemove,
                       dragProps,
                     }) => (
                       // write your building UI
-                      <div className="upload__image-wrapper">
-                        {images.length < 1 && (
-                          <div
-                            className="drag-box"
-                            onClick={onImageUpload}
-                            {...dragProps}
-                          >
-                            <FiUploadCloud />
-                            <span>
-                              <FormattedMessage id="section.profile.drag_and_drop" />
-                            </span>
-                            <button type="button">
-                              <FormattedMessage id="section.profile.browse_files" />
-                            </button>
-                          </div>
-                        )}
-                        <div className="upladed_images_box">
-                          {imageList.map((image, index) => (
+                      <>
+                        <div className="upload__image-wrapper">
+                          {images.length < 1 && (
                             <div
-                              key={index}
-                              className="uploadThumb image-item"
-                              id="result"
+                              className="drag-box"
+                              onClick={onImageUpload}
+                              {...dragProps}
                             >
-                              <img src={image["data_url"]} alt="" width="100" />
-
-                              <div className="image-item__btn-wrapper">
-                                <button
-                                  type="button"
-                                  onClick={() => onImageUpdate(index)}
-                                >
-                                  <FiEdit2 />
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => onImageRemove(index)}
-                                >
-                                  <MdOutlineDeleteOutline />
-                                </button>
-                              </div>
+                              <FiUploadCloud />
+                              <span>
+                                <FormattedMessage id="section.profile.drag_and_drop" />
+                              </span>
+                              <button type="button">
+                                <FormattedMessage id="section.profile.browse_files" />
+                              </button>
                             </div>
-                          ))}
+                          )}
+                          <div className="upladed_images_box">
+                            {imageList.length > 1 && (
+                              <button onClick={onImageRemoveAll}>
+                                Remove all images
+                              </button>
+                            )}
+                            {imageList.map((image, index) => (
+                              <div
+                                key={index}
+                                className="uploadThumb image-item"
+                                id="result"
+                              >
+                                <img
+                                  src={image["data_url"]}
+                                  alt=""
+                                  width="100"
+                                />
+
+                                <div className="image-item__btn-wrapper">
+                                  <button
+                                    type="button"
+                                    onClick={() => onImageUpdate(index)}
+                                  >
+                                    <FiEdit2 />
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => onImageRemove(index)}
+                                  >
+                                    <MdOutlineDeleteOutline />
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </div>
+                        {errors && (
+                          <>
+                            {errors.maxNumber &&
+                              toast.error(
+                                "Number of selected images exceed maxNumber",
+                                {
+                                  position: "top-right",
+                                  autoClose: 5000,
+                                  hideProgressBar: false,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
+                                }
+                              )}
+                            {errors.acceptType &&
+                              toast.error(
+                                "Your selected file type is not allow",
+                                {
+                                  position: "top-right",
+                                  autoClose: 5000,
+                                  hideProgressBar: false,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
+                                }
+                              )}
+                            {errors.maxFileSize &&
+                              toast.error(
+                                "Selected file size exceed maxFileSize",
+                                {
+                                  position: "top-right",
+                                  autoClose: 5000,
+                                  hideProgressBar: false,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
+                                }
+                              )}
+                          </>
+                        )}
+                      </>
                     )}
                   </ImageUploading>
+                </div>
+              </div>
+            </div>
+
+            {showFinishingTab && (
+              <div className={`${thirdTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-three-item aft-item"
+                  onClick={() => setThirdTabVis(!thirdTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.finishing" />
+                  </h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
+                </div>
+                <div className="aft-three-content aft-content">
+                  <div className="row">
+                    <div className="col-md-3">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.walls" />
+                        </label>
+                        <input
+                          type="text"
+                          value={walls}
+                          onChange={(e) => setWalls(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.floors" />
+                        </label>
+                        <input
+                          type="text"
+                          value={floors}
+                          onChange={(e) => setFloors(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-3">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.ceilings" />
+                        </label>
+                        <input
+                          type="text"
+                          value={ceilings}
+                          onChange={(e) => setCeilings(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.bath_rooms" />
+                        </label>
+                        <input
+                          type="text"
+                          value={bath_rooms}
+                          onChange={(e) => setBath_rooms(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-3">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.k-kitchen" />
+                        </label>
+                        <input
+                          type="text"
+                          value={kitchen}
+                          onChange={(e) => setKitchen(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.internet" />
+                        </label>
+                        <input
+                          type="text"
+                          value={internet}
+                          onChange={(e) => setInternet(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-3">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.light_system" />
+                        </label>
+                        <input
+                          type="text"
+                          value={light_system}
+                          onChange={(e) => setLight_system(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.air_conditioners" />
+                        </label>
+                        <input
+                          type="text"
+                          value={air_conditioners}
+                          onChange={(e) => setAir_conditioners(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            <div className={`${fourthTabVis ? "" : "collapsed"}`}>
+              <div
+                className="aft-four-item aft-item"
+                onClick={() => setFourthTabVis(!fourthTabVis)}
+              >
+                <h3>
+                  <FormattedMessage id="page.add-property-form-title.nearbly-location" />
+                </h3>
+                <div>
+                  <span>
+                    <FormattedMessage id="page.add-property-form.option" />
+                  </span>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
+              </div>
+              <div className="aft-four-content aft-content">
+                <div className="row">
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.school" />
+                      </label>
+                      <input
+                        value={school}
+                        onChange={(e) => setSchool(e.target.value)}
+                        type="text"
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.mall" />
+                      </label>
+                      <input
+                        type="text"
+                        value={mall}
+                        onChange={(e) => setMall(e.target.value)}
+                        className="form-control"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.hospital" />
+                      </label>
+                      <input
+                        value={hospital}
+                        onChange={(e) => setHospital(e.target.value)}
+                        type="text"
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.pharmacy" />
+                      </label>
+                      <input
+                        value={pharmacy}
+                        onChange={(e) => setPharmacy(e.target.value)}
+                        type="text"
+                        className="form-control"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.nursery_school" />
+                      </label>
+                      <input
+                        type="text"
+                        value={nursery_school}
+                        onChange={(e) => setNursery_school(e.target.value)}
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.super_market" />
+                      </label>
+                      <input
+                        value={super_market}
+                        onChange={(e) => setSuper_market(e.target.value)}
+                        type="text"
+                        className="form-control"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -881,8 +1103,15 @@ const HosuingInstallment = () => {
                 className="aft-four-item aft-item"
                 onClick={() => setSixthTabVis(!sixthTabVis)}
               >
-                <h3>إضافة عرض 3D </h3>
-                <span>إختياري</span>
+                <h3>
+                  <FormattedMessage id="page.add-property-form-title.add-3d" />
+                </h3>
+                <div>
+                  <span>
+                    <FormattedMessage id="page.add-property-form.option" />
+                  </span>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
               </div>
               <div className="aft-four-content aft-content">
                 <textarea
@@ -897,8 +1126,15 @@ const HosuingInstallment = () => {
                 className="aft-four-item aft-item"
                 onClick={() => setSeventhTabVis(!seventhTabVis)}
               >
-                <h3>إضافة عرض الخريطة </h3>
-                <span>إختياري</span>
+                <h3>
+                  <FormattedMessage id="page.add-property-form-title.add-map" />{" "}
+                </h3>
+                <div>
+                  <span>
+                    <FormattedMessage id="page.add-property-form.option" />
+                  </span>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
               </div>
               <div className="aft-four-content aft-content">
                 <textarea
@@ -913,8 +1149,15 @@ const HosuingInstallment = () => {
                 className="aft-four-item aft-item"
                 onClick={() => setEighthTabVis(!eighthTabVis)}
               >
-                <h3>إضافة تفاصيل اخري </h3>
-                <span>إختياري</span>
+                <h3>
+                  <FormattedMessage id="page.add-property-form-title.add-more-details" />{" "}
+                </h3>
+                <div>
+                  <span>
+                    <FormattedMessage id="page.add-property-form.option" />
+                  </span>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
               </div>
               <div className="aft-four-content aft-content">
                 <textarea

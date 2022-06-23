@@ -99,7 +99,7 @@
   "page.add-property-form.details.address": "العنوان",
   "page.add-property-form.details.building-area-size": "مساحة المباني",
   "page.add-property-form.details.building-age": "تاريخ الإنشاء",
-  "page.add-property-form.details.building-stutus": "حالة الوحدية",
+  "page.add-property-form.details.building-stutus": "حالة الوحدة",
   "page.add-property-form.details.bath-room": "الحمام",
   "page.add-property-form.details.dressing": "غرفة الدريسينج",
   "page.add-property-form.details.garden-area-size": "مساحة الحديقة",
@@ -114,14 +114,31 @@
   "page.add-property-form.details.security": "امن",
   "page.add-property-form.details.public_pool": "حمام سباحة عام",
   "page.add-property-form.details.cash-total_price": "السعر كاش",
+  "page.add-property-form.details.total_price_installment": "السعر تقسيط",
+  "page.add-property-form.details.installment": "سعر الدفعة",
+  "page.add-property-form.details.installment_type": "نوع تقسيط",
+  "page.add-property-form.details.installment_time": "مدة التقسيط",
   "page.add-property-form.details.club_fee": "رسوم النادي",
   "page.add-property-form.details.currency": "العملة",
+  "page.add-property-form.details.currency_type": "أختر نوع العملة",
   "page.add-property-form.details.receiving_date": "موعد الإستلام",
   "page.add-property-form.details.maintenance_fee": "رسوم الصيانة",
-  "page.add-property-form.details.advance": "المقدم"
-  
+  "page.add-property-form.details.advance": "المقدم",
+  "page.add-property-form.details.walls": "الحوائط",
+  "page.add-property-form.details.floors": "الأرضيات",
+  "page.add-property-form.details.ceilings": "الأسقف",
+  "page.add-property-form.details.bath_rooms": "الحمامات",
+  "page.add-property-form.details.k-kitchen": "المطبخ",
+  "page.add-property-form.details.light_system": "إنارة",
+  "page.add-property-form.details.air_conditioners": " تكييف ",
+  "page.add-property-form.details.internet": " انترنت ",
+  "page.add-property-form.details.school": " مدرسة ",
+  "page.add-property-form.details.mall": " مول ",
+  "page.add-property-form.details.hospital": " مستشفي ",
+  "page.add-property-form.details.pharmacy": " صيدلية ",
+  "page.add-property-form.details.nursery_school": " حضانة ",
+  "page.add-property-form.details.super_market": " سوبر ماركت "
 }
-
 
 
 

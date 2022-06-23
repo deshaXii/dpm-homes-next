@@ -9,6 +9,7 @@ import { addResidentialCash } from "../../store/slices/properties";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import {
   getAllGovernorates,
   selectCountries,
@@ -148,10 +149,10 @@ const HosuingCash = () => {
   const [general_details, setGeneral_details] = useState("");
   const [unit_status, setUnit_status] = useState("");
   const [unit_age, setUnit_age] = useState("");
-  const [pdf, setPdf] = useState("");
-  const [view3d, setView3d] = useState("");
-  const [youtube, setYoutube] = useState("");
-  const [location, setLocation] = useState("");
+  const [pdf, setPdf] = useState(null);
+  const [view3d, setView3d] = useState(null);
+  const [youtube, setYoutube] = useState(null);
+  const [location, setLocation] = useState(null);
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
   const maxNumber = 12;
@@ -253,6 +254,14 @@ const HosuingCash = () => {
 
   const { locale } = router;
 
+  const [showFinishingTab, setShowFinishingTab] = useState(
+    furniture_type.value === "furnished" ? true : false
+  );
+
+  useEffect(() => {
+    setShowFinishingTab(furniture_type.value === "furnished" ? true : false);
+  }, [furniture_type]);
+
   // Validation
   useEffect(() => {
     if (country) {
@@ -274,6 +283,7 @@ const HosuingCash = () => {
                 <h3>
                   <FormattedMessage id="page.add-property-form-title.add-details" />
                 </h3>
+                <MdOutlineKeyboardArrowDown />
               </div>
               <div className="aft-one-content aft-content">
                 <div className="row">
@@ -307,7 +317,9 @@ const HosuingCash = () => {
                       <Select
                         styles={selectStyle}
                         isShow={true}
-                        placeholder={<FormattedMessage id="page.home.auth.properties.filter.location_country" />}
+                        placeholder={
+                          <FormattedMessage id="page.home.auth.properties.filter.location_country" />
+                        }
                         value={country}
                         onChange={setCountry}
                         name="country"
@@ -363,7 +375,9 @@ const HosuingCash = () => {
                       </label>
                       <Select
                         styles={selectStyle}
-                        placeholder={<FormattedMessage id="page.add-property-form.details.finishing_type" />}
+                        placeholder={
+                          <FormattedMessage id="page.add-property-form.details.finishing_type" />
+                        }
                         value={furniture_type}
                         onChange={setFurniture_type}
                         name="furniture"
@@ -383,7 +397,9 @@ const HosuingCash = () => {
                       <Select
                         styles={selectStyle}
                         isShow={true}
-                        placeholder={<FormattedMessage id="page.home.auth.properties.filter.location_governorate" />}
+                        placeholder={
+                          <FormattedMessage id="page.home.auth.properties.filter.location_governorate" />
+                        }
                         value={governorate}
                         onChange={setGovernorate}
                         name="governorate"
@@ -440,7 +456,7 @@ const HosuingCash = () => {
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.bath-room" />
+                        <FormattedMessage id="page.add-property-form.details.dressing" />
                       </label>
                       <input
                         type="number"
@@ -610,12 +626,15 @@ const HosuingCash = () => {
                 <h3>
                   <FormattedMessage id="page.add-property-form-title.payment.type" />
                 </h3>
+                <MdOutlineKeyboardArrowDown />
               </div>
               <div className="aft-two-content aft-content">
                 <div className="row">
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="">السعر كاش</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.cash-total_price" />
+                      </label>
                       <input
                         value={total_price}
                         onChange={(e) => setTotal_price(e.target.value)}
@@ -624,7 +643,9 @@ const HosuingCash = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">رسوم النادي</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.club_fee" />
+                      </label>
                       <input
                         value={club_fees}
                         onChange={(e) => setClub_fees(e.target.value)}
@@ -635,11 +656,15 @@ const HosuingCash = () => {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="">العملة</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.currency" />
+                      </label>
                       <Select
                         styles={selectStyle}
                         isShow={true}
-                        placeholder="أختر نوع العملة"
+                        placeholder={
+                          <FormattedMessage id="page.add-property-form.details.currency_type" />
+                        }
                         value={currency}
                         onChange={setCurrency}
                         name="currency"
@@ -653,7 +678,9 @@ const HosuingCash = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">موعد الإستلام</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.receiving_date" />
+                      </label>
                       <input
                         value={receiving_date}
                         onChange={(e) => setReceiving_date(e.target.value)}
@@ -664,7 +691,9 @@ const HosuingCash = () => {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="">رسوم الصيانة</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.maintenance_fee" />
+                      </label>
                       <input
                         type="number"
                         value={maintenance_fees}
@@ -673,7 +702,9 @@ const HosuingCash = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">المقدم</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.advance" />
+                      </label>
                       <input
                         type="text"
                         value={advance_payment}
@@ -694,6 +725,7 @@ const HosuingCash = () => {
                 <h3>
                   <FormattedMessage id="page.add-property-form-title.add-images" />
                 </h3>
+                <MdOutlineKeyboardArrowDown />
               </div>
               <div className="aft-four-content aft-content">
                 <div className="image-uploader-box">
@@ -818,103 +850,124 @@ const HosuingCash = () => {
               </div>
             </div>
 
-            <div className={`${thirdTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-three-item aft-item"
-                onClick={() => setThirdTabVis(!thirdTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.finishing" />
-                </h3>
-                <span>
-                  <FormattedMessage id="page.add-property-form.option" />
-                </span>
-              </div>
-              <div className="aft-three-content aft-content">
-                <div className="row">
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label htmlFor="">حوائط</label>
-                      <input
-                        type="text"
-                        value={walls}
-                        onChange={(e) => setWalls(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">ارضيات</label>
-                      <input
-                        type="text"
-                        value={floors}
-                        onChange={(e) => setFloors(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
+            {showFinishingTab && (
+              <div className={`${thirdTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-three-item aft-item"
+                  onClick={() => setThirdTabVis(!thirdTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.finishing" />
+                  </h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
                   </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label htmlFor="">اسقف</label>
-                      <input
-                        type="text"
-                        value={ceilings}
-                        onChange={(e) => setCeilings(e.target.value)}
-                        className="form-control"
-                      />
+                </div>
+                <div className="aft-three-content aft-content">
+                  <div className="row">
+                    <div className="col-md-3">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.walls" />
+                        </label>
+                        <input
+                          type="text"
+                          value={walls}
+                          onChange={(e) => setWalls(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.floors" />
+                        </label>
+                        <input
+                          type="text"
+                          value={floors}
+                          onChange={(e) => setFloors(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="">حمامات</label>
-                      <input
-                        type="text"
-                        value={bath_rooms}
-                        onChange={(e) => setBath_rooms(e.target.value)}
-                        className="form-control"
-                      />
+                    <div className="col-md-3">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.ceilings" />
+                        </label>
+                        <input
+                          type="text"
+                          value={ceilings}
+                          onChange={(e) => setCeilings(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.bath_rooms" />
+                        </label>
+                        <input
+                          type="text"
+                          value={bath_rooms}
+                          onChange={(e) => setBath_rooms(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label htmlFor="">مطبخ</label>
-                      <input
-                        type="text"
-                        value={kitchen}
-                        onChange={(e) => setKitchen(e.target.value)}
-                        className="form-control"
-                      />
+                    <div className="col-md-3">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.k-kitchen" />
+                        </label>
+                        <input
+                          type="text"
+                          value={kitchen}
+                          onChange={(e) => setKitchen(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.internet" />
+                        </label>
+                        <input
+                          type="text"
+                          value={internet}
+                          onChange={(e) => setInternet(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="">انترنت</label>
-                      <input
-                        type="text"
-                        value={internet}
-                        onChange={(e) => setInternet(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form-group">
-                      <label htmlFor="">إنارة</label>
-                      <input
-                        type="text"
-                        value={light_system}
-                        onChange={(e) => setLight_system(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">تكييف</label>
-                      <input
-                        type="text"
-                        value={air_conditioners}
-                        onChange={(e) => setAir_conditioners(e.target.value)}
-                        className="form-control"
-                      />
+                    <div className="col-md-3">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.light_system" />
+                        </label>
+                        <input
+                          type="text"
+                          value={light_system}
+                          onChange={(e) => setLight_system(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.air_conditioners" />
+                        </label>
+                        <input
+                          type="text"
+                          value={air_conditioners}
+                          onChange={(e) => setAir_conditioners(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
             <div className={`${fourthTabVis ? "" : "collapsed"}`}>
               <div
@@ -924,15 +977,20 @@ const HosuingCash = () => {
                 <h3>
                   <FormattedMessage id="page.add-property-form-title.nearbly-location" />
                 </h3>
-                <span>
-                  <FormattedMessage id="page.add-property-form.option" />
-                </span>
+                <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
               </div>
               <div className="aft-four-content aft-content">
                 <div className="row">
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="">مدرسة</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.school" />
+                      </label>
                       <input
                         value={school}
                         onChange={(e) => setSchool(e.target.value)}
@@ -941,7 +999,9 @@ const HosuingCash = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">مول</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.mall" />
+                      </label>
                       <input
                         type="text"
                         value={mall}
@@ -952,7 +1012,9 @@ const HosuingCash = () => {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="">مستشفي</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.hospital" />
+                      </label>
                       <input
                         value={hospital}
                         onChange={(e) => setHospital(e.target.value)}
@@ -961,7 +1023,9 @@ const HosuingCash = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">صيدلية</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.pharmacy" />
+                      </label>
                       <input
                         value={pharmacy}
                         onChange={(e) => setPharmacy(e.target.value)}
@@ -972,7 +1036,9 @@ const HosuingCash = () => {
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
-                      <label htmlFor="">حضانة</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.nursery_school" />
+                      </label>
                       <input
                         type="text"
                         value={nursery_school}
@@ -981,7 +1047,9 @@ const HosuingCash = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="">سوبر ماركت</label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.super_market" />
+                      </label>
                       <input
                         value={super_market}
                         onChange={(e) => setSuper_market(e.target.value)}
@@ -1002,9 +1070,12 @@ const HosuingCash = () => {
                 <h3>
                   <FormattedMessage id="page.add-property-form-title.add-3d" />
                 </h3>
-                <span>
-                  <FormattedMessage id="page.add-property-form.option" />
-                </span>
+                <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
               </div>
               <div className="aft-four-content aft-content">
                 <textarea
@@ -1022,9 +1093,12 @@ const HosuingCash = () => {
                 <h3>
                   <FormattedMessage id="page.add-property-form-title.add-map" />{" "}
                 </h3>
-                <span>
-                  <FormattedMessage id="page.add-property-form.option" />
-                </span>
+                <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
               </div>
               <div className="aft-four-content aft-content">
                 <textarea
@@ -1042,9 +1116,12 @@ const HosuingCash = () => {
                 <h3>
                   <FormattedMessage id="page.add-property-form-title.add-more-details" />{" "}
                 </h3>
-                <span>
-                  <FormattedMessage id="page.add-property-form.option" />
-                </span>
+                <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
               </div>
               <div className="aft-four-content aft-content">
                 <textarea
