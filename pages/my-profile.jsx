@@ -11,6 +11,7 @@ import {
 } from "react-icons/fi";
 import { FormattedMessage } from "react-intl";
 import {
+  getUserInfo,
   getUserProperties,
   logout,
   selectUser,
@@ -106,8 +107,19 @@ const MyProfile = () => {
 
   const handleEditMyInfo = (e) => {
     e.preventDefault();
+    const token = jsCookies.getItem("userToken")
     // Show Notification
-    dispatch(updateProfile(data)).then((res) => console.log(res));
+    dispatch(updateProfile(data)).then((res) => {
+      dispatch(getUserInfo(token));
+      toast.success(res.payload.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    });
   };
 
   return (

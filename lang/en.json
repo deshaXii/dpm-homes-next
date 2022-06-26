@@ -138,5 +138,6 @@
   "page.add-property-form.details.pharmacy": " pharmacy ",
   "page.add-property-form.details.nursery_school": " nursery school ",
   "page.add-property-form.details.super_market": " super market ",
-  "global.no-property-found": "No Properties Found"
+  "global.no-property-found": "No Properties Found",
+  "global.upload-property": "Upload Property"
 }

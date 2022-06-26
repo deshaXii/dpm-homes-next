@@ -61,7 +61,7 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
           <span>{property.licence}</span>
         </div>
         <div className="property-added-by">
-          <Link href="#">
+          <Link href={`/clients/${property.user_info.id}`}>
             <a>
               {property.user_info.image ? (
                 <Image

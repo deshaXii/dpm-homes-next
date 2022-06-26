@@ -849,7 +849,6 @@ const HosuingCash = () => {
                 </div>
               </div>
             </div>
-
             {showFinishingTab && (
               <div className={`${thirdTabVis ? "" : "collapsed"}`}>
                 <div
@@ -978,11 +977,11 @@ const HosuingCash = () => {
                   <FormattedMessage id="page.add-property-form-title.nearbly-location" />
                 </h3>
                 <div>
-                    <span>
-                      <FormattedMessage id="page.add-property-form.option" />
-                    </span>
-                    <MdOutlineKeyboardArrowDown />
-                  </div>
+                  <span>
+                    <FormattedMessage id="page.add-property-form.option" />
+                  </span>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
               </div>
               <div className="aft-four-content aft-content">
                 <div className="row">
@@ -1071,11 +1070,11 @@ const HosuingCash = () => {
                   <FormattedMessage id="page.add-property-form-title.add-3d" />
                 </h3>
                 <div>
-                    <span>
-                      <FormattedMessage id="page.add-property-form.option" />
-                    </span>
-                    <MdOutlineKeyboardArrowDown />
-                  </div>
+                  <span>
+                    <FormattedMessage id="page.add-property-form.option" />
+                  </span>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
               </div>
               <div className="aft-four-content aft-content">
                 <textarea
@@ -1094,11 +1093,11 @@ const HosuingCash = () => {
                   <FormattedMessage id="page.add-property-form-title.add-map" />{" "}
                 </h3>
                 <div>
-                    <span>
-                      <FormattedMessage id="page.add-property-form.option" />
-                    </span>
-                    <MdOutlineKeyboardArrowDown />
-                  </div>
+                  <span>
+                    <FormattedMessage id="page.add-property-form.option" />
+                  </span>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
               </div>
               <div className="aft-four-content aft-content">
                 <textarea
@@ -1117,11 +1116,11 @@ const HosuingCash = () => {
                   <FormattedMessage id="page.add-property-form-title.add-more-details" />{" "}
                 </h3>
                 <div>
-                    <span>
-                      <FormattedMessage id="page.add-property-form.option" />
-                    </span>
-                    <MdOutlineKeyboardArrowDown />
-                  </div>
+                  <span>
+                    <FormattedMessage id="page.add-property-form.option" />
+                  </span>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
               </div>
               <div className="aft-four-content aft-content">
                 <textarea
@@ -1132,7 +1131,9 @@ const HosuingCash = () => {
             </div>
           </div>
           <div className="form-btn-box">
-            <button>رفع العقار</button>
+            <button>
+              <FormattedMessage id="global.upload-property" />
+            </button>
           </div>
         </form>
       </div>

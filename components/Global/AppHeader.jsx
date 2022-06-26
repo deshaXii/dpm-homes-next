@@ -64,7 +64,13 @@ const AppNavbar = ({ user }) => {
                     className="navbar-auth-user-data"
                     onClick={() => dropdownRef.current.classList.toggle("show")}
                   >
-                    <span>{user.data.name}</span>
+                    <Image
+                      src={`https://admin.dpmhomes.com/user-images/${user.data.image}`}
+                      width={40}
+                      height={40}
+                      alt={`${user.data.name} image`}
+                    />
+                    <span className="userName">{user.data.name}</span>
                     <MdArrowDropDown className="d-arrow" />
                   </div>
                   <div className="auth-dropdown popup" ref={dropdownRef}>
@@ -158,7 +164,7 @@ const AppNavbar = ({ user }) => {
                 />
                 <MdArrowDropDown className="d-arrow" />
               </div>
-              <div className="auth-dropdown popup" >
+              <div className="auth-dropdown popup">
                 <ul className="auth-dropdown-list">
                   <li className="auth-dropdown-list-item">
                     <Link href="/my-profile">
