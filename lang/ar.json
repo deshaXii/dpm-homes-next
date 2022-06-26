@@ -137,7 +137,8 @@
   "page.add-property-form.details.hospital": " مستشفي ",
   "page.add-property-form.details.pharmacy": " صيدلية ",
   "page.add-property-form.details.nursery_school": " حضانة ",
-  "page.add-property-form.details.super_market": " سوبر ماركت "
+  "page.add-property-form.details.super_market": " سوبر ماركت ",
+  "global.no-property-found": "لا توجد عقارات"
 }
 
 

@@ -694,6 +694,54 @@ button.btn.wish-btn.active svg {
   color: white;
 }
 
+.all-properties-box .btn {
+  padding: 16px 20px;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.all-properties-box .btn {
+  padding: 16px 20px;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.section-title-with-type {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-tabs {
+  background: #fff;
+  padding: 15px;
+  border-radius: 15px;
+  display: flex;
+  margin-bottom: 30px;
+  border: 2px solid var(--mainColor);
+  column-gap: 15px;
+}
+
+.section-tabs button {
+  background: transparent;
+  border: unset;
+  text-transform: capitalize;
+  transition: all .3s linear;
+  font-weight: 600;
+}
+
+.section-tabs button.active {
+  color: var(--mainColor);
+}
+
+.no-properties {
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  opacity: .6;
+  letter-spacing: 1px;
+}
+
 /* End Properies Section */
 
 

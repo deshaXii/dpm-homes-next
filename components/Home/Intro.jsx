@@ -3,17 +3,16 @@ import { BiSearch } from "react-icons/bi";
 import { FormattedMessage } from "react-intl";
 import Select from "react-select";
 import fadeWhenScroll from "../../common/fadeWhenScroll";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { selectCountries } from "../../store/slices/countries";
 
 const HomeIntro = () => {
-  const [activeType, setActiveType] = useState("Buy");
+  const { allCountries } = useSelector(selectCountries);
+  const router = useRouter();
+  const [activeType, setActiveType] = useState("Sell");
 
-  const location_options = [
-    { value: "All", label: "All Places" },
-    { value: "Cairo", label: "Cairo" },
-    { value: "Giza", label: "Giza" },
-    { value: "6 Octoper", label: "6 Octoper" },
-    { value: "Zayed", label: "Zayed" },
-  ];
+  const [location_options, setLocation_options] = useState(allCountries)
 
   const area_size_options = [
     { value: "80-100", label: "from 80 sqm to 120 sqm" },
@@ -47,6 +46,14 @@ const HomeIntro = () => {
     },
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    router.push({
+      pathname: `/search-${activeType.toLowerCase()}`,
+      query: { city: location_options.value },
+    });
+  };
+
   useEffect(() => {
     fadeWhenScroll(document.querySelectorAll(".intro-content"));
   }, []);
@@ -72,20 +79,23 @@ const HomeIntro = () => {
           </p>
         </div>
         <div className="intro-filter">
-          <form className="intro-properties-filter">
+          <form
+            className="intro-properties-filter"
+            onSubmit={(e) => handleSearch(e)}
+          >
             <div className="filter-type">
               <div
                 className={`custom-radio-box ${
-                  activeType === "Buy" ? "active" : ""
+                  activeType === "Sell" ? "active" : ""
                 }`}
               >
                 <input
                   type="radio"
                   name="filter-type"
-                  checked={activeType === "Buy" ? true : false}
+                  checked={activeType === "Sell" ? true : false}
                   onChange={(e) =>
                     e.currentTarget.checked
-                      ? setActiveType("Buy")
+                      ? setActiveType("Sell")
                       : setActiveType("Rent")
                   }
                 />
@@ -105,7 +115,7 @@ const HomeIntro = () => {
                   onChange={(e) =>
                     e.currentTarget.checked
                       ? setActiveType("Rent")
-                      : setActiveType("Buy")
+                      : setActiveType("Sell")
                   }
                 />
                 <span>
@@ -126,6 +136,7 @@ const HomeIntro = () => {
                   }
                   name="city"
                   id="city_select"
+                  onChange={setLocation_options}
                   options={location_options}
                   instanceId="city_select"
                 />
@@ -138,7 +149,9 @@ const HomeIntro = () => {
                   styles={selectStyle}
                   name="area_size"
                   id="area_size_select"
-                  placeholder={<FormattedMessage id="page.home.auth.properties.filter.select_area_size" />}
+                  placeholder={
+                    <FormattedMessage id="page.home.auth.properties.filter.select_area_size" />
+                  }
                   options={area_size_options}
                   instanceId="area_size_select"
                 />
@@ -150,7 +163,9 @@ const HomeIntro = () => {
                 <Select
                   styles={selectStyle}
                   instanceId="property_type"
-                  placeholder={<FormattedMessage id="page.home.auth.properties.filter.select_property_type" />}
+                  placeholder={
+                    <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
+                  }
                   name="type"
                   id="property_type"
                   options={property_type_options}

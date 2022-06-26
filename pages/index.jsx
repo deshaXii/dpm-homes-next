@@ -9,6 +9,7 @@ import { getPropertiesWithTpye } from "../store/slices/properties";
 import { getAllProjects } from "../store/slices/projects";
 import dynamic from "next/dynamic";
 import { parseCookies } from "../common/parseCookies";
+import { getAllCountries } from "../store/slices/countries";
 const Properties = dynamic(() => import("../components/Global/Properties"));
 const Projects = dynamic(() => import("../components/Home/Projects"));
 
@@ -33,11 +34,13 @@ const Home = ({ dir }) => {
         <HomeIntro />
 
         <Properties
+          type={"sell"}
           sectionTitle={<FormattedMessage id="global.section.title.sell" />}
-          sectionClass="for-sale"
+          sectionClass="for-sall"
         />
         <Services sectionBG="/img/services-section-bg.jpg" withOverlay />
         <Properties
+          type={"rent"}
           sectionTitle={<FormattedMessage id="global.section.title.rent" />}
           sectionClass="for-rent"
         />
@@ -56,18 +59,17 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
       );
+      await store.dispatch(getAllProjects());
+      await store.dispatch(getAllCountries());
       if (req.cookies.hasOwnProperty("userToken")) {
         const cookies = parseCookies(req);
         const token = cookies.userToken;
-        console.log("user in");
         await store.dispatch(
           getPropertiesWithTpye({ type: "all", userToken: token })
         );
-        return {
-        };
+        return {};
       } else {
         await store.dispatch(getPropertiesWithTpye({ type: "all" }));
-        await store.dispatch(getAllProjects());
         const allProperties = store.getState().properties.allProperties;
         return {
           props: { allProperties },
