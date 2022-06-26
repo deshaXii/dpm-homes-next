@@ -7,6 +7,7 @@ import countriesReducer from "./slices/countries";
 import projectsReducer from "./slices/projects";
 import filterReducer from "./slices/filter";
 import clientReducer from "./slices/client";
+import wishlistSlice from "./slices/wishlist";
 
 const makeStore = () =>
   configureStore({
@@ -18,6 +19,7 @@ const makeStore = () =>
       projects: projectsReducer,
       filter: filterReducer,
       client: clientReducer,
+      wishlist: wishlistSlice,
     },
     devTools: true,
   });

@@ -71,11 +71,9 @@ export const authSlice = createSlice({
       })
       .addCase(sendForgetPasswordCode.fulfilled, (state, action) => {
         // state.user = null;
-        console.log(action.payload);
       })
       .addCase(changeMyPassword.fulfilled, (state, action) => {
         // state.user = null;
-        console.log(action.payload);
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.user = null;

@@ -106,6 +106,7 @@ const MyProfile = () => {
 
   const handleEditMyInfo = (e) => {
     e.preventDefault();
+    // Show Notification
     dispatch(updateProfile(data)).then((res) => console.log(res));
   };
 

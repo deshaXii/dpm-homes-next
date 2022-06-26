@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import Select from "react-select";
 import { AiOutlineBorderOuter } from "react-icons/ai";
-import { MdOutlineBathtub, MdOutlineLocationOn } from "react-icons/md";
+import { MdOutlineBathtub, MdClear, MdOutlineLocationOn } from "react-icons/md";
 import { RiHotelBedLine, RiHomeSmileLine } from "react-icons/ri";
 import dynamic from "next/dynamic";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
@@ -26,17 +26,18 @@ import {
   filterByAreaSize,
   filterByPropertyType,
 } from "../store/slices/filter";
+import { selectProperties } from "../store/slices/properties";
 
 const ReactSlider = dynamic(() => import("react-slider"), { ssr: false });
 
 const area_size_options_ar = [
-  { value: "100", label: "فوق 100 متر مربع" },
-  { value: "150", label: "فوق 150 متر مربع" },
-  { value: "200", label: "فوق 200 متر مربع" },
-  { value: "250", label: "فوق 250 متر مربع" },
-  { value: "300", label: "فوق 300 متر مربع" },
-  { value: "350", label: "فوق 350 متر مربع" },
-  { value: "400", label: "فوق 400 متر مربع" },
+  { value: "100", label: "أكبر من 100 متر مربع" },
+  { value: "150", label: "أكبر من 150 متر مربع" },
+  { value: "200", label: "أكبر من 200 متر مربع" },
+  { value: "250", label: "أكبر من 250 متر مربع" },
+  { value: "300", label: "أكبر من 300 متر مربع" },
+  { value: "350", label: "أكبر من 350 متر مربع" },
+  { value: "400", label: "أكبر من 400 متر مربع" },
 ];
 
 const area_size_options_en = [
@@ -104,18 +105,17 @@ const selectStyle = {
   },
 };
 
-const PropertiesFilter = ({ allProperties }) => {
+const PropertiesFilter = () => {
   const { locale } = useRouter();
   const { allCountries, allGovernorates } = useSelector(selectCountries);
-  const { activeCountry } = useSelector(selectFilter);
+  const { allProperties } = useSelector(selectProperties);
+  const { activeCountry, filteredProperties } = useSelector(selectFilter);
   const [bedNum, setBedNum] = useState();
   const [bathNum, setBathNum] = useState();
   const [country, setCountry] = useState();
   const [propertyTypeS, setPropertyTypeS] = useState();
   const [governorate, setGovernorate] = useState();
-
   const [areaSize, setAreaSize] = useState();
-  const [pricePerMeter, setPricePerMeter] = useState([80, 400]);
   const dispatch = useDispatch();
 
   const handleReset = () => {
@@ -127,10 +127,6 @@ const PropertiesFilter = ({ allProperties }) => {
     setBathNum("");
     setAreaSize("");
     dispatch(setFilteredProperties(allProperties));
-  };
-
-  const handleChange = (value) => {
-    setCountry(value);
   };
 
   useEffect(() => {
@@ -150,63 +146,81 @@ const PropertiesFilter = ({ allProperties }) => {
     if (activeCountry) {
       const data = { activeCountry, locale };
       dispatch(getAllGovernorates(data));
-      dispatch(filterByCountry(allProperties));
+      dispatch(filterByCountry({ allProperties, type: "filter" }));
     }
   }, [activeCountry]);
 
   useEffect(() => {
     dispatch(setActiveGovernorate(governorate?.value));
     if (governorate) {
-      dispatch(filterByGovernorate(allProperties));
+      dispatch(filterByGovernorate({ allProperties, type: "filter" }));
     }
   }, [governorate]);
-
-
 
   useEffect(() => {
     dispatch(setPropertyType(propertyTypeS?.value));
     if (propertyTypeS) {
-      dispatch(filterByPropertyType(allProperties));
+      dispatch(filterByPropertyType({ allProperties, type: "filter" }));
     }
   }, [propertyTypeS]);
 
   useEffect(() => {
     dispatch(setActiveSize(areaSize?.value));
     if (areaSize) {
-      dispatch(filterByAreaSize(allProperties));
+      dispatch(filterByAreaSize({ allProperties, type: "filter" }));
     }
   }, [areaSize]);
 
   useEffect(() => {
     dispatch(setBedCount(bedNum));
     if (bedNum) {
-      dispatch(filterByBedNum(allProperties));
+      dispatch(filterByBedNum({ allProperties, type: "filter" }));
     }
   }, [bedNum]);
 
   useEffect(() => {
     dispatch(setBathCount(bathNum));
     if (bathNum) {
-      dispatch(filterByBathNum(allProperties));
+      dispatch(filterByBathNum({ allProperties, type: "filter" }));
     }
   }, [bathNum]);
+
+  const resetInput = (setInput, action) => {
+    setInput("");
+    dispatch(action);
+  };
 
   return (
     <aside className="properties-filter">
       <div className="filter-group">
-        <h5 className="filter-group-title">
-          <MdOutlineLocationOn />
-          <span>
-            <FormattedMessage id="page.home.auth.properties.filter.location_country" />
-          </span>
-        </h5>
+        <div className="fg-top">
+          <h5 className="filter-group-title">
+            <MdOutlineLocationOn />
+            <span>
+              <FormattedMessage id="page.home.auth.properties.filter.location_country" />
+            </span>
+          </h5>
+          {country && (
+            <div
+              className="reset-input-box cursor-pointer"
+              onClick={() =>
+                resetInput(
+                  setCountry,
+                  filterByCountry({ allProperties, type: "reset" })
+                )
+              }
+            >
+              <MdClear />
+            </div>
+          )}
+        </div>
         <div className="filter-group-content">
           <Select
             styles={selectStyle}
             value={country}
-            onChange={handleChange}
+            onChange={setCountry}
             placeholder={
-              <FormattedMessage id="page.home.auth.properties.filter.select_location" />
+              <FormattedMessage id="page.home.auth.properties.filter.location_country" />
             }
             name="city"
             id="city_select"
@@ -215,35 +229,67 @@ const PropertiesFilter = ({ allProperties }) => {
           />
         </div>
       </div>
-      <div className="filter-group">
-        <h5 className="filter-group-title">
-          <MdOutlineLocationOn />
-          <span>
-            <FormattedMessage id="page.home.auth.properties.filter.location_governorate" />
-          </span>
-        </h5>
-        <div className="filter-group-content">
-          <Select
-            styles={selectStyle}
-            placeholder={
-              <FormattedMessage id="page.home.auth.properties.filter.select_location" />
-            }
-            value={governorate}
-            onChange={setGovernorate}
-            name="city"
-            id="city_select"
-            options={allGovernorates}
-            instanceId="city_select"
-          />
+      {country && (
+        <div className="filter-group">
+          <div className="fg-top">
+            <h5 className="filter-group-title">
+              <MdOutlineLocationOn />
+              <span>
+                <FormattedMessage id="page.home.auth.properties.filter.location_governorate" />
+              </span>
+            </h5>
+            {governorate && (
+              <div
+                className="reset-input-box cursor-pointer"
+                onClick={() =>
+                  resetInput(
+                    setGovernorate,
+                    filterByGovernorate({ allProperties, type: "reset" })
+                  )
+                }
+              >
+                <MdClear />
+              </div>
+            )}
+          </div>
+          <div className="filter-group-content">
+            <Select
+              styles={selectStyle}
+              placeholder={
+                <FormattedMessage id="page.home.auth.properties.filter.location_governorate" />
+              }
+              value={governorate}
+              onChange={setGovernorate}
+              name="city"
+              id="city_select"
+              options={allGovernorates}
+              instanceId="city_select"
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div className="filter-group">
-        <h5 className="filter-group-title">
-          <RiHomeSmileLine />
-          <span>
-            <FormattedMessage id="page.home.auth.properties.filter.property_type" />
-          </span>
-        </h5>
+        <div className="fg-top">
+          <h5 className="filter-group-title">
+            <RiHomeSmileLine />
+            <span>
+              <FormattedMessage id="page.home.auth.properties.filter.property_type" />
+            </span>
+          </h5>
+          {propertyTypeS && (
+            <div
+              className="reset-input-box cursor-pointer"
+              onClick={() =>
+                resetInput(
+                  setPropertyTypeS,
+                  filterByPropertyType({ allProperties, type: "reset" })
+                )
+              }
+            >
+              <MdClear />
+            </div>
+          )}
+        </div>
         <div className="filter-group-content">
           <Select
             styles={selectStyle}
@@ -263,35 +309,29 @@ const PropertiesFilter = ({ allProperties }) => {
           />
         </div>
       </div>
-      {/* <div className="filter-group">
-        <h5 className="filter-group-title">
-          <RiHomeSmileLine />
-          <span>نوع الدفع</span>
-        </h5>
-        <div className="filter-group-content">
-          <Select
-            styles={selectStyle}
-            placeholder="اختر نوع الدفع"
-            value={paymentType}
-            onChange={setPaymentT}
-            name="city"
-            id="city_select"
-            options={[
-              { value: "cash", label: "Cash" },
-              { value: "installment", label: "Installment" },
-              { value: "both", label: "Both" },
-            ]}
-            instanceId="city_select"
-          />
-        </div>
-      </div> */}
+
       <div className="filter-group">
-        <h5 className="filter-group-title">
-          <AiOutlineBorderOuter />
-          <span>
-            <FormattedMessage id="page.home.auth.properties.filter.area_size" />
-          </span>
-        </h5>
+        <div className="fg-top">
+          <h5 className="filter-group-title">
+            <AiOutlineBorderOuter />
+            <span>
+              <FormattedMessage id="page.home.auth.properties.filter.area_size" />
+            </span>
+          </h5>
+          {areaSize && (
+            <div
+              className="reset-input-box cursor-pointer"
+              onClick={() =>
+                resetInput(
+                  setAreaSize,
+                  filterByAreaSize({ allProperties, type: "reset" })
+                )
+              }
+            >
+              <MdClear />
+            </div>
+          )}
+        </div>
         <div className="filter-group-content">
           <Select
             styles={selectStyle}
@@ -310,12 +350,27 @@ const PropertiesFilter = ({ allProperties }) => {
         </div>
       </div>
       <div className="filter-group">
-        <h5 className="filter-group-title">
-          <RiHotelBedLine />
-          <span>
-            <FormattedMessage id="section.property_card.bedrooms" />
-          </span>
-        </h5>
+        <div className="fg-top">
+          <h5 className="filter-group-title">
+            <RiHotelBedLine />
+            <span>
+              <FormattedMessage id="section.property_card.bedrooms" />
+            </span>
+          </h5>
+          {bedNum && (
+            <div
+              className="reset-input-box cursor-pointer"
+              onClick={() =>
+                resetInput(
+                  setBedNum,
+                  filterByBedNum({ allProperties, type: "reset" })
+                )
+              }
+            >
+              <MdClear />
+            </div>
+          )}
+        </div>
         <div className="filter-group-content d-f">
           <div className="custom-checkbox  cursor-pointer">
             <input
@@ -356,12 +411,27 @@ const PropertiesFilter = ({ allProperties }) => {
         </div>
       </div>
       <div className="filter-group">
-        <h5 className="filter-group-title">
-          <MdOutlineBathtub />
-          <span>
-            <FormattedMessage id="section.property_card.bathrooms" />
-          </span>
-        </h5>
+        <div className="fg-top">
+          <h5 className="filter-group-title">
+            <MdOutlineBathtub />
+            <span>
+              <FormattedMessage id="section.property_card.bathrooms" />
+            </span>
+          </h5>
+          {bathNum && (
+            <div
+              className="reset-input-box cursor-pointer"
+              onClick={() =>
+                resetInput(
+                  setBathNum,
+                  filterByBathNum({ allProperties, type: "reset" })
+                )
+              }
+            >
+              <MdClear />
+            </div>
+          )}
+        </div>
         <div className="filter-group-content d-f">
           <div className="custom-checkbox  cursor-pointer">
             <input

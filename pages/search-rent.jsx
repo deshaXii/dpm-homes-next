@@ -36,7 +36,7 @@ const Search = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-3">
-                <PropertiesFilter allProperties={allProperties} />
+                <PropertiesFilter />
               </div>
               <div className="col-md-9">
                 <div className="filtered-properties">
@@ -103,12 +103,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ res, locale }) => {
       res.setHeader(
-        'Cache-Control',
-        'public, s-maxage=10, stale-while-revalidate=59'
-      )
-      console.log(res);
+        "Cache-Control",
+        "public, s-maxage=10, stale-while-revalidate=59"
+      );
       await store.dispatch(getAllCountries(locale));
-      await store.dispatch(getPropertiesWithTpye('rent'));
+      await store.dispatch(getPropertiesWithTpye({ type: "rent" }));
       return {
         props: {},
       };

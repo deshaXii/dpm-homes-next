@@ -8,6 +8,7 @@ import { wrapper } from "../store";
 import { getPropertiesWithTpye } from "../store/slices/properties";
 import { getAllProjects } from "../store/slices/projects";
 import dynamic from "next/dynamic";
+import { parseCookies } from "../common/parseCookies";
 const Properties = dynamic(() => import("../components/Global/Properties"));
 const Projects = dynamic(() => import("../components/Home/Projects"));
 
@@ -50,16 +51,27 @@ export default Home;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ res }) => {
+    async ({ res, req }) => {
       res.setHeader(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
       );
-      await store.dispatch(getPropertiesWithTpye("sell"));
-      await store.dispatch(getAllProjects());
-      const allProperties = store.getState().properties.allProperties;
-      return {
-        props: { allProperties },
-      };
+      if (req.cookies.hasOwnProperty("userToken")) {
+        const cookies = parseCookies(req);
+        const token = cookies.userToken;
+        console.log("user in");
+        await store.dispatch(
+          getPropertiesWithTpye({ type: "all", userToken: token })
+        );
+        return {
+        };
+      } else {
+        await store.dispatch(getPropertiesWithTpye({ type: "all" }));
+        await store.dispatch(getAllProjects());
+        const allProperties = store.getState().properties.allProperties;
+        return {
+          props: { allProperties },
+        };
+      }
     }
 );

@@ -15,7 +15,6 @@ const SingleProperty = () => {
       document.body.style.backgroundColor = "white";
     };
   }, []);
-  console.log();
   return (
     <>
       <Head>

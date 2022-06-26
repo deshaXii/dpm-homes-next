@@ -3,23 +3,48 @@ import Link from "next/link";
 import React from "react";
 import { HiLocationMarker } from "react-icons/hi";
 import { RiHotelBedLine } from "react-icons/ri";
-import {
-  BsBookmarkHeart,
-  BsBookmarkHeartFill,
-  BsTelephone,
-} from "react-icons/bs";
+import { BsHeartFill, BsHeart, BsTelephone } from "react-icons/bs";
 import { MdOutlineBathtub } from "react-icons/md";
 import { AiOutlineBorderOuter, AiOutlineShareAlt } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { FormattedMessage } from "react-intl";
+import { useDispatch } from "react-redux";
+import { addPropertyToWishlist } from "../../store/slices/wishlist";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { getPropertiesWithTpye } from "../../store/slices/properties";
+import jsCookies from "js-cookies";
 
 const PropertyCard = ({ image, featureCount, className, property }) => {
-  const { locale } = useRouter();
+  const router = useRouter();
+  const { locale } = router;
 
   var formatter = new Intl.NumberFormat(`${locale}-eg`, {
     style: "currency",
     currency: "EGP",
   });
+
+  const dispatch = useDispatch();
+  const handleAddToWishlist = (id) => {
+    let token = jsCookies.getItem("userToken");
+    if (token) {
+      dispatch(addPropertyToWishlist(id)).then((res) => {
+        if (res.payload.success) {
+          dispatch(getPropertiesWithTpye({ type: "all", userToken: token }));
+          toast.success(res.payload.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        }
+      });
+    } else {
+      router.push("/login");
+    }
+  };
 
   return (
     <div className={`property-card ${className}`}>
@@ -132,8 +157,16 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
             <button type="button" className="btn share-btn">
               <AiOutlineShareAlt />
             </button>
-            <button type="button" className="btn wish-btn">
-              <BsBookmarkHeart />
+            <button
+              type="button"
+              className={`btn wish-btn ${property.wishlist.toLowerCase() === "yes" ? 'active' : ''}`}
+              onClick={(e) => handleAddToWishlist(property.id)}
+            >
+              {property.wishlist.toLowerCase() === "yes" ? (
+                <BsHeartFill />
+              ) : (
+                <BsHeart />
+              )}
             </button>
           </div>
         </div>

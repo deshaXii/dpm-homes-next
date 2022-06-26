@@ -690,6 +690,10 @@ section.properties-section.p80:after {
   z-index: -1;
 }
 
+button.btn.wish-btn.active svg {
+  color: white;
+}
+
 /* End Properies Section */
 
 
@@ -2362,6 +2366,45 @@ aside.properties-filter .filter-group h5.filter-group-title {
   font-weight: 600;
 }
 
+.fg-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fg-top .reset-input-box span {
+  display: none;
+}
+
+.reset-input-box {
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 24px;
+  border: 1px solid #525252;
+  height: 24px;
+  background: #6e6e6e;
+  color: #fff;
+  text-align: center;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s linear;
+}
+
+.reset-input-box svg {
+  font-size: 16px;
+  transition: all .3s linear;
+}
+
+.reset-input-box:hover svg {
+  color: var(--mainColor);
+}
+
+.reset-input-box:hover {
+  background: transparent;
+  border: 1px solid var(--mainColor);
+}
 
 .list-view .property-card-info {
   margin: 0 15px;
@@ -2942,9 +2985,12 @@ section.add-property-form-section {
 
 .add-property-page form .form-group label {
   margin-bottom: 4px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  color: #333;
+  color: #808080;
+  font-family: 'Noto Kufi Arabic', sans-serif;
+  padding-left: 15px;
+  text-transform: capitalize;
 }
 
 .add-property-page form .form-group input {
@@ -2973,7 +3019,7 @@ section.add-property-form-section {
 }
 
 .add-property-page form .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .add-property-page .form-checkboxs {
@@ -3032,7 +3078,7 @@ nav.mobile.navbar,
 
 .add-property-page form .collapsed .aft-item {
   padding-top: 10px;
-  color: #444;
+  color: #838383;
   padding-bottom: 20px;
   border-bottom: 2px solid var(--mainColorWithOpacity);
 
@@ -3157,7 +3203,7 @@ nav.mobile.navbar,
 
 .add-property-page form .collapsed .aft-item svg {
   transform: rotate(0);
-  color: #444;
+  color: rgb(131 131 131 / 79%);
 
 }
 

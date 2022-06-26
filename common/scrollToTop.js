@@ -21,9 +21,12 @@ const scrollToTop = () => {
     if (window.pageYOffset > offset) {
       progressWrap.classList.add("active-progress");
     } else {
-      document
-        .querySelector(".progress-wrap")
-        .classList.remove("active-progress");
+      if (document
+        .querySelector(".progress-wrap")) {
+          document
+            .querySelector(".progress-wrap")
+            .classList.remove("active-progress");
+        }
     }
   });
   progressWrap.addEventListener("click", function (event) {

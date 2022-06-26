@@ -47,7 +47,6 @@ export async function forgetPassword(email) {
 }
 
 export async function resetPassword(data) {
-  console.log(data);
   try {
     const res = await API.post("/reset-password", {
       email: data.email,

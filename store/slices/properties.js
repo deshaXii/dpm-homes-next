@@ -14,8 +14,8 @@ const initialState = {
 
 export const getPropertiesWithTpye = createAsyncThunk(
   "properties/getProperty",
-  async (type) => {
-    const responseData = await getProperties(type);
+  async ({ type, userToken }) => {
+    const responseData = await getProperties({ type, userToken });
     return responseData;
   }
 );
@@ -56,15 +56,9 @@ export const propertiesSlice = createSlice({
       .addCase(showProperty.fulfilled, (state, action) => {
         state.property = action.payload;
       })
-      .addCase(addResidentialCash.fulfilled, (state, action) => {
-        console.log("Cash Added");
-      })
-      .addCase(addResidentialCash.rejected, (state, action) => {
-        console.log("Cash rejected");
-      })
-      .addCase(addResidentialInstallment.fulfilled, (state, action) => {
-        console.log("Installment Added");
-      })
+      .addCase(addResidentialCash.fulfilled, (state, action) => {})
+      .addCase(addResidentialCash.rejected, (state, action) => {})
+      .addCase(addResidentialInstallment.fulfilled, (state, action) => {})
       .addCase(HYDRATE, (state, action) => {
         const nextState = {
           ...state.properties,

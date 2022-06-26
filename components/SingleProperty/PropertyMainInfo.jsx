@@ -18,7 +18,6 @@ const PropertyMainInfo = () => {
 
   const router = useRouter();
 
-  console.log(router);
   const { locale } = router;
 
   var formatter = new Intl.NumberFormat(`${locale}-eg`, {

@@ -21,7 +21,6 @@ export const filterSlice = createSlice({
     setActiveGovernorate: (state, action) => {
       state.activeGovernorate = action.payload;
     },
-
     setActiveSize: (state, action) => {
       state.activeSize = action.payload;
     },
@@ -34,47 +33,80 @@ export const filterSlice = createSlice({
     setPropertyType: (state, action) => {
       state.propertyType = action.payload;
     },
-    setPrice: (state, action) => {},
     filterByCountry: (state, action) => {
-      let allProperties = action.payload;
-      state.filteredProperties = allProperties.filter((property) => {
-        return Number(property.countryId) === Number(state.activeCountry);
-      });
-    },
-    filterByBedNum: (state, action) => {
-      let allProperties = action.payload;
-      state.filteredProperties = allProperties.filter((property) => {
-        return Number(state.bedCount) >= Number(property.no_bed_room);
-      });
-    },
-    filterByBathNum: (state, action) => {
-      let allProperties = action.payload;
-      state.filteredProperties = allProperties.filter((property) => {
-        return Number(state.bathCount) >= Number(property.no_bath_room);
-      });
+      let allProperties = action.payload.allProperties,
+        type = action.payload.type;
+      if (type === "reset") {
+        state.filteredProperties = allProperties;
+        return;
+      } else {
+        state.filteredProperties = allProperties.filter((property) => {
+          return Number(property.countryId) === Number(state.activeCountry);
+        });
+      }
     },
     filterByGovernorate: (state, action) => {
-      let allProperties = action.payload;
-      state.filteredProperties = allProperties.filter((property) => {
-        return (
-          Number(property.governorateId) === Number(state.activeGovernorate)
-        );
-      });
+      let allProperties = action.payload.allProperties,
+        type = action.payload.type;
+      if (type === "reset") {
+        state.filteredProperties = allProperties;
+        return;
+      } else {
+        state.filteredProperties = allProperties.filter((property) => {
+          return (
+            Number(property.governorateId) === Number(state.activeGovernorate)
+          );
+        });
+      }
     },
     filterByPropertyType: (state, action) => {
-      let allProperties = action.payload;
-      state.filteredProperties = allProperties.filter((property) => {
-        return (
-          property.property_type.toLowerCase() ===
-          state.propertyType.toLowerCase()
-        );
-      });
+      console.log(action.payload);
+      let allProperties = action.payload.allProperties,
+        type = action.payload.type;
+      if (type === "reset") {
+        state.filteredProperties = allProperties;
+        return;
+      } else {
+        state.filteredProperties = allProperties.filter((property) => {
+          return (
+            property.property_type.toLowerCase() ===
+            state.propertyType.toLowerCase()
+          );
+        });
+      }
     },
     filterByAreaSize: (state, action) => {
-      let allProperties = action.payload;
-      state.filteredProperties = allProperties.filter((property) => {
-        return Number(state.activeSize) >= Number(property.total_area);
-      });
+      let allProperties = action.payload.allProperties,
+        type = action.payload.type;
+      if (type === "reset") {
+        state.filteredProperties = allProperties;
+      } else {
+        state.filteredProperties = allProperties.filter((property) => {
+          return Number(state.activeSize) >= Number(property.total_area);
+        });
+      }
+    },
+    filterByBedNum: (state, action) => {
+      let allProperties = action.payload.allProperties,
+        type = action.payload.type;
+      if (type === "reset") {
+        state.filteredProperties = allProperties;
+      } else {
+        state.filteredProperties = allProperties.filter((property) => {
+          return Number(state.bedCount) >= Number(property.no_bed_room);
+        });
+      }
+    },
+    filterByBathNum: (state, action) => {
+      let allProperties = action.payload.allProperties,
+        type = action.payload.type;
+      if (type === "reset") {
+        state.filteredProperties = allProperties;
+      } else {
+        state.filteredProperties = allProperties.filter((property) => {
+          return Number(state.bathCount) >= Number(property.no_bath_room);
+        });
+      }
     },
     setFilteredProperties: (state, action) => {
       state.filteredProperties = action.payload;
@@ -85,7 +117,6 @@ export const filterSlice = createSlice({
         (state.activeSize = ""),
         (state.bedCount = ""),
         (state.bathCount = "");
-      // (state.price = "");
     },
   },
 
