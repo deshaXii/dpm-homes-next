@@ -2447,6 +2447,10 @@ aside.properties-filter .filter-group h5.filter-group-title {
   display: none;
 }
 
+.mobile-search-filter-btn {
+  display: none;
+}
+
 .reset-input-box {
   margin-bottom: 10px;
   cursor: pointer;

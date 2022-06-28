@@ -105,7 +105,7 @@ const selectStyle = {
   },
 };
 
-const PropertiesFilter = () => {
+const PropertiesFilter = ({ showFilter }) => {
   const { locale } = useRouter();
   const { allCountries, allGovernorates } = useSelector(selectCountries);
   const { allProperties } = useSelector(selectProperties);
@@ -191,7 +191,7 @@ const PropertiesFilter = () => {
   };
 
   return (
-    <aside className="properties-filter">
+    <aside className={`properties-filter ${showFilter ? "active" : ""}`}>
       <div className="filter-group">
         <div className="fg-top">
           <h5 className="filter-group-title">

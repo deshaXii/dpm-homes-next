@@ -19,6 +19,7 @@ const Search = () => {
   const { allProperties } = useSelector(selectProperties);
   const { filteredProperties } = useSelector(selectFilter);
   const [layout, setLayout] = useState("grid");
+  const [showFilter, setShowFilter] = useState(false);
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     return () => {
@@ -36,7 +37,16 @@ const Search = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-3">
-                <PropertiesFilter allProperties={allProperties} />
+                <button
+                  onClick={() => setShowFilter(!showFilter)}
+                  className={`mobile-search-filter-btn`}
+                >
+                  {!showFilter ? 'Show Filter' : 'Hide Filter'}
+                </button>
+                <PropertiesFilter
+                  allProperties={allProperties}
+                  showFilter={showFilter}
+                />
               </div>
               <div className="col-md-9">
                 <div className="filtered-properties">
@@ -49,7 +59,7 @@ const Search = () => {
                     </div>
                     <div className="splh-right">
                       <div
-                        className={`splhr-item cursor-pointer ${
+                        className={`splhr-item list-icon cursor-pointer ${
                           layout === "list" ? "active" : ""
                         }`}
                       >

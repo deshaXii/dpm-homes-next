@@ -75,11 +75,6 @@ const ContactUs = () => {
                 <div className="contact-us-form">
                   <form onSubmit={(e) => sendMessage(e)}>
                     <div className="row">
-                    {/* "page.contact-us.form.fullname": "الاسم الكامل",
-  "page.contact-us.form.email": "البريد الإلكتروني",
-  "page.contact-us.form.phone": "رقم الهاتف",
-  "page.contact-us.form.message": "الرسالة",
-  "page.contact-us.form.send": "إرسال الرسالة" */}
                       <div className="col-md-6">
                         <div className="form-group">
                           <input
@@ -87,7 +82,7 @@ const ContactUs = () => {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
-                            placeholder={`*${<FormattedMessage id="page.contact-us.form.fullname" />}`}
+                            placeholder="Full name"
                           />
                         </div>
                       </div>
