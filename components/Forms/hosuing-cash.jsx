@@ -1090,7 +1090,7 @@ const HosuingCash = () => {
                 onClick={() => setSeventhTabVis(!seventhTabVis)}
               >
                 <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-map" />{" "}
+                  <FormattedMessage id="page.add-property-form-title.add-map" />
                 </h3>
                 <div>
                   <span>
@@ -1113,7 +1113,7 @@ const HosuingCash = () => {
                 onClick={() => setEighthTabVis(!eighthTabVis)}
               >
                 <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-more-details" />{" "}
+                  <FormattedMessage id="page.add-property-form-title.add-more-details" />
                 </h3>
                 <div>
                   <span>

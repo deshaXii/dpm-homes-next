@@ -3292,4 +3292,8 @@ nav.mobile.navbar,
   border-radius: 10px;
 }
 
+.details-inner-box.collapsed:last-of-type {
+  padding: 0;
+}
+
 /* End Add Property */

@@ -64,9 +64,7 @@ const PropertyDetails = () => {
                 {property.data.unit_status && (
                   <div className="pdi-box">
                     <div className="pdi-name">unit status:</div>
-                    <div className="pdi-value">
-                      {property.data.unit_status}
-                    </div>
+                    <div className="pdi-value">{property.data.unit_status}</div>
                   </div>
                 )}
 
@@ -244,7 +242,7 @@ const PropertyDetails = () => {
               </div>
             </div>
 
-            {/* Payment */}
+            {/* Payment / Receiving */}
             <div
               className={`details-inner-box ${
                 paymentCollapsed ? "collapsed" : ""
@@ -257,170 +255,214 @@ const PropertyDetails = () => {
                 <MdOutlineArrowDropUp />
                 <h4>payment / Receiving</h4>
               </div>
+              {/* End section-inner-title */}
               <div className="property-details-inner">
                 {property.data.total_price && (
                   <div className="pdi-box">
                     <div className="pdi-name">Total price in cash:</div>
-                    <div className="pdi-value">{property.data.total_price}</div>
+                    <div className="pdi-value">
+                      {formatter.format(property.data.total_price)}
+                    </div>
                   </div>
                 )}
                 {property.data.total_price_installment && (
                   <div className="pdi-box">
                     <div className="pdi-name">Total price in installments:</div>
-                    <div className="pdi-value">{property.data.total_price_installment}</div>
+                    <div className="pdi-value">
+                      {formatter.format(property.data.total_price_installment)}
+                    </div>
                   </div>
                 )}
                 {property.data.advance_payment && (
                   <div className="pdi-box">
-                    <div className="pdi-name">Total price in installments:</div>
-                    <div className="pdi-value">{property.data.advance_payment}</div>
+                    <div className="pdi-name">advance payment:</div>
+                    <div className="pdi-value">
+                      {formatter.format(property.data.advance_payment)}
+                    </div>
                   </div>
                 )}
                 {property.data.installment && (
                   <div className="pdi-box">
-                    <div className="pdi-name">Total price in installments:</div>
-                    <div className="pdi-value">{property.data.installment}</div>
+                    <div className="pdi-name">installment price:</div>
+                    <div className="pdi-value">
+                      {formatter.format(property.data.installment)}
+                    </div>
                   </div>
                 )}
                 {property.data.maintenance_fees && (
                   <div className="pdi-box">
-                    <div className="pdi-name">Total price in installments:</div>
-                    <div className="pdi-value">{property.data.maintenance_fees}</div>
+                    <div className="pdi-name">maintenance fees:</div>
+                    <div className="pdi-value">
+                      {formatter.format(property.data.maintenance_fees)}
+                    </div>
                   </div>
                 )}
                 {property.data.currency && (
                   <div className="pdi-box">
-                    <div className="pdi-name">Total price in installments:</div>
+                    <div className="pdi-name">Currency:</div>
                     <div className="pdi-value">{property.data.currency}</div>
                   </div>
                 )}
                 {property.data.installment_time && (
                   <div className="pdi-box">
-                    <div className="pdi-name">Total price in installments:</div>
-                    <div className="pdi-value">{property.data.installment_time}</div>
+                    <div className="pdi-name">installment time:</div>
+                    <div className="pdi-value">
+                      {property.data.installment_time}
+                    </div>
                   </div>
                 )}
               </div>
             </div>
-            {/* Amenities */}
-            <div
-              className={`details-inner-box ${
-                amenitiesCollapsed ? "collapsed" : ""
-              }`}
-            >
+
+            {/* Nearby Places */}
+            {!property.data.school &&
+            !property.data.mall &&
+            !property.data.hospital &&
+            !property.data.pharmacy &&
+            !property.data.super_market &&
+            !property.data.nursery_school ? null : (
               <div
-                className="section-inner-title"
-                onClick={() => setAmenitiesCollapsed(!amenitiesCollapsed)}
+                className={`details-inner-box ${
+                  amenitiesCollapsed ? "collapsed" : ""
+                }`}
               >
-                <MdOutlineArrowDropUp />
-                <h4>Nearby services</h4>
+                <div
+                  className="section-inner-title"
+                  onClick={() => setAmenitiesCollapsed(!amenitiesCollapsed)}
+                >
+                  <MdOutlineArrowDropUp />
+                  <h4>Nearby Places</h4>
+                </div>
+                <div className="property-details-inner">
+                  {property.data.school && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">school:</div>
+                      <div className="pdi-value">{property.data.school}</div>
+                    </div>
+                  )}
+                  {property.data.mall && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">mall:</div>
+                      <div className="pdi-value">{property.data.mall}</div>
+                    </div>
+                  )}
+                  {property.data.hospital && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">hospital:</div>
+                      <div className="pdi-value">{property.data.hospital}</div>
+                    </div>
+                  )}
+                  {property.data.pharmacy && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">pharmacy:</div>
+                      <div className="pdi-value">{property.data.pharmacy}</div>
+                    </div>
+                  )}
+                  {property.data.super_market && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">super market:</div>
+                      <div className="pdi-value">
+                        {property.data.super_market}
+                      </div>
+                    </div>
+                  )}
+                  {property.data.nursery_school && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">nursery school:</div>
+                      <div className="pdi-value">
+                        {property.data.nursery_school}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="property-details-inner">
-              {property.data.school && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">school:</div>
-                    <div className="pdi-value">{property.data.school}</div>
-                  </div>
-                )}
-              {property.data.mall && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">mall:</div>
-                    <div className="pdi-value">{property.data.mall}</div>
-                  </div>
-                )}
-              {property.data.hospital && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">hospital:</div>
-                    <div className="pdi-value">{property.data.hospital}</div>
-                  </div>
-                )}
-              {property.data.pharmacy && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">pharmacy:</div>
-                    <div className="pdi-value">{property.data.pharmacy}</div>
-                  </div>
-                )}
-              {property.data.super_market && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">super market:</div>
-                    <div className="pdi-value">{property.data.super_market}</div>
-                  </div>
-                )}
-              {property.data.nursery_school && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">nursery school:</div>
-                    <div className="pdi-value">{property.data.nursery_school}</div>
-                  </div>
-                )}
-              </div>
-            </div>
+            )}
+
             {/* Finishing condition */}
-            <div
-              className={`details-inner-box ${
-                finishingCollapsed ? "collapsed" : ""
-              }`}
-            >
+            {!property.data.walls &&
+            !property.data.floors &&
+            !property.data.ceilings &&
+            !property.data.bath_rooms &&
+            !property.data.kitchen &&
+            !property.data.light_system &&
+            !property.data.air_conditioners &&
+            !property.data.internet ? null : (
               <div
-                className="section-inner-title"
-                onClick={() => setFinishingCollapsed(!finishingCollapsed)}
+                className={`details-inner-box ${
+                  finishingCollapsed ? "collapsed" : ""
+                }`}
               >
-                <MdOutlineArrowDropUp />
-                <h4>Finishing condition</h4>
+                <div
+                  className="section-inner-title"
+                  onClick={() => setFinishingCollapsed(!finishingCollapsed)}
+                >
+                  <MdOutlineArrowDropUp />
+                  <h4>Finishing condition</h4>
+                </div>
+                <div className="property-details-inner">
+                  {property.data.walls && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">walls:</div>
+                      <div className="pdi-value">{property.data.walls}</div>
+                    </div>
+                  )}
+                  {property.data.floors && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">floors:</div>
+                      <div className="pdi-value">{property.data.floors}</div>
+                    </div>
+                  )}
+                  {property.data.ceilings && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">ceilings:</div>
+                      <div className="pdi-value">{property.data.ceilings}</div>
+                    </div>
+                  )}
+                  {property.data.bath_rooms && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">bath rooms:</div>
+                      <div className="pdi-value">
+                        {property.data.bath_rooms}
+                      </div>
+                    </div>
+                  )}
+                  {property.data.kitchen && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">kitchen:</div>
+                      <div className="pdi-value">{property.data.kitchen}</div>
+                    </div>
+                  )}
+                  {property.data.light_system && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">light system:</div>
+                      <div className="pdi-value">
+                        {property.data.light_system}
+                      </div>
+                    </div>
+                  )}
+                  {property.data.air_conditioners && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">air conditioners:</div>
+                      <div className="pdi-value">
+                        {property.data.air_conditioners}
+                      </div>
+                    </div>
+                  )}
+                  {property.data.internet && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">internet:</div>
+                      <div className="pdi-value">{property.data.internet}</div>
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className="property-details-inner">
-              {property.data.walls && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">walls:</div>
-                    <div className="pdi-value">{property.data.walls}</div>
-                  </div>
-                )}
-              {property.data.floors && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">floors:</div>
-                    <div className="pdi-value">{property.data.floors}</div>
-                  </div>
-                )}
-              {property.data.ceilings && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">ceilings:</div>
-                    <div className="pdi-value">{property.data.ceilings}</div>
-                  </div>
-                )}
-              {property.data.bath_rooms && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">bath rooms:</div>
-                    <div className="pdi-value">{property.data.bath_rooms}</div>
-                  </div>
-                )}
-              {property.data.kitchen && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">kitchen:</div>
-                    <div className="pdi-value">{property.data.kitchen}</div>
-                  </div>
-                )}
-              {property.data.light_system && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">light system:</div>
-                    <div className="pdi-value">{property.data.light_system}</div>
-                  </div>
-                )}
-              {property.data.air_conditioners && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">air conditioners:</div>
-                    <div className="pdi-value">{property.data.air_conditioners}</div>
-                  </div>
-                )}
-              {property.data.internet && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">internet:</div>
-                    <div className="pdi-value">{property.data.internet}</div>
-                  </div>
-                )}
-              </div>
-            </div>
+            )}
           </div>
+          {/* End col-12 */}
         </div>
+        {/* End row */}
       </div>
+      {/* End container */}
     </section>
   );
 };

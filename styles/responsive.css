@@ -101,7 +101,7 @@
     }
 
     .slick-slider.big-slider .slick-slide .slider__item {
-        height: 205px;
+        height: 220px;
         min-height: auto;
     }
 
@@ -475,6 +475,12 @@
         height: calc(100% + 14px);
         top: -7px;
         left: -7px;
+    }
+
+    .property-view-3d iframe,
+    .property-view-location iframe,
+    .property-view-video iframe {
+        min-height: 380px;
     }
 
     .pmii-box img {
