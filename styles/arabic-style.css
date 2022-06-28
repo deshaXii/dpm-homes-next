@@ -99,3 +99,14 @@ body .rtl {
     margin-left: 0px;
     margin-right: 10px;
 }
+
+.rtl .big-slider .custom-icon.slick-next {
+    left: auto;
+}
+
+.rtl .property-viwer-btns .btn.active:before {
+    left: auto;
+    right: -17px;
+    border-right-color: transparent;
+    border-left-color: #fff;
+}
