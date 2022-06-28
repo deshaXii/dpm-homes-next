@@ -139,11 +139,6 @@
   "page.add-property-form.details.nursery_school": " حضانة ",
   "page.add-property-form.details.super_market": " سوبر ماركت ",
   "global.no-property-found": "لا توجد عقارات",
-  "global.upload-property": "رفع العقار"
+  "global.upload-property": "Upload Property",
+  "global.property-search": " إبحث عن عقار"
 }
-
-
-
-
-
-

@@ -54,13 +54,13 @@ export default Home;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ res, req }) => {
+    async ({ res, req, locale }) => {
       res.setHeader(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
       );
       await store.dispatch(getAllProjects());
-      await store.dispatch(getAllCountries());
+      await store.dispatch(getAllCountries(locale));
       if (req.cookies.hasOwnProperty("userToken")) {
         const cookies = parseCookies(req);
         const token = cookies.userToken;

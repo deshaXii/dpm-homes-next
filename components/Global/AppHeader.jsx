@@ -17,6 +17,7 @@ const AppNavbar = ({ user }) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef();
+  const mobileDropdownRef = useRef();
 
   return (
     <>
@@ -154,7 +155,7 @@ const AppNavbar = ({ user }) => {
             >
               <div
                 className="navbar-auth-user-data"
-                onClick={() => dropdownRef.current.classList.toggle("show")}
+                onClick={() => mobileDropdownRef.current.classList.toggle("show")}
               >
                 <Image
                   src={`https://admin.dpmhomes.com/user-images/${user.data.image}`}
@@ -164,7 +165,7 @@ const AppNavbar = ({ user }) => {
                 />
                 <MdArrowDropDown className="d-arrow" />
               </div>
-              <div className="auth-dropdown popup">
+              <div className="auth-dropdown popup" ref={mobileDropdownRef}>
                 <ul className="auth-dropdown-list">
                   <li className="auth-dropdown-list-item">
                     <Link href="/my-profile">

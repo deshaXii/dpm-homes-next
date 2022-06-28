@@ -7,9 +7,8 @@ import { selectUser } from "../store/slices/auth";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 
-const  AppNavbar = dynamic(() => import("../components/Global/AppHeader"));
-const  AppFooter = dynamic(() => import("../components/Global/AppFooter"));
-
+const AppNavbar = dynamic(() => import("../components/Global/AppHeader"));
+const AppFooter = dynamic(() => import("../components/Global/AppFooter"));
 
 function getDirection(locale) {
   if (locale === "ar") {

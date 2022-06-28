@@ -139,5 +139,6 @@
   "page.add-property-form.details.nursery_school": " nursery school ",
   "page.add-property-form.details.super_market": " super market ",
   "global.no-property-found": "No Properties Found",
-  "global.upload-property": "Upload Property"
+  "global.upload-property": "Upload Property",
+  "global.property-search": "Search for Property"
 }

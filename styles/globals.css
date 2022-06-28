@@ -328,6 +328,10 @@ a.add-property-btn span {
   column-gap: 5px;
 }
 
+.navbar-auth-area a.navbar-login-link span {
+  text-transform: capitalize;
+}
+
 .navbar-lang-switcher a {
   background-color: transparent;
   border: none;
@@ -538,6 +542,11 @@ header.home-header .intro-content p {
   margin-top: 40px;
   max-width: 52%;
   padding: 0;
+}
+
+.quick-search,
+.filter-close-btn {
+  display: none;
 }
 
 .intro-filter .filter-type {
