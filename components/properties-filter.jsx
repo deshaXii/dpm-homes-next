@@ -218,6 +218,7 @@ const PropertiesFilter = ({ showFilter }) => {
           <Select
             styles={selectStyle}
             value={country}
+            isSearchable={false}
             onChange={setCountry}
             placeholder={
               <FormattedMessage id="page.home.auth.properties.filter.location_country" />
@@ -255,6 +256,7 @@ const PropertiesFilter = ({ showFilter }) => {
           <div className="filter-group-content">
             <Select
               styles={selectStyle}
+              isSearchable={false}
               placeholder={
                 <FormattedMessage id="page.home.auth.properties.filter.location_governorate" />
               }

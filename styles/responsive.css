@@ -410,7 +410,8 @@
         display: block;
     }
 
-    .my-profile-page-content {
+    .my-profile-page-content,
+    .contact-us-page {
         padding: 30px 0 150px !important;
 
     }
