@@ -107,9 +107,10 @@
     .property-viwer-btns {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         flex-direction: row;
         margin-top: 10px;
+        padding: 0 10px;
     }
 
     .property-viwer-btns .btn.active:before {
@@ -118,6 +119,10 @@
         left: 50%;
         transform: translateX(-50%);
         top: -27px;
+    }
+
+    .property-viwer-btns .view-btn-icon {
+        padding: 0;
     }
 
     .property-options-buttons {
