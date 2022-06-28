@@ -203,6 +203,7 @@ const HomeIntro = () => {
                 </label>
                 <Select
                   styles={selectStyle}
+                  isSearchable={false}
                   isShow={true}
                   placeholder={
                     <FormattedMessage id="page.home.auth.properties.filter.select_location" />
@@ -222,6 +223,7 @@ const HomeIntro = () => {
                 </label>
                 <Select
                   styles={selectStyle}
+                  isSearchable={false}
                   instanceId="property_type"
                   placeholder={
                     <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
@@ -245,6 +247,7 @@ const HomeIntro = () => {
                 <Select
                   styles={selectStyle}
                   name="area_size"
+                  isSearchable={false}
                   id="area_size_select"
                   value={area_size}
                   onChange={setAreaSize}
