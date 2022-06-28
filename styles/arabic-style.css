@@ -95,3 +95,7 @@ body .rtl {
     padding-left: 0;
     padding-right: 15px;
 }
+.rtl .navbar-auth-area-inner .navbar-auth-user-data .userName {
+    margin-left: 0px;
+    margin-right: 10px;
+}

@@ -563,7 +563,7 @@
         font-size: 23px;
     }
 
-    .add-property-page .property-viwer-btns .btn.active:before {
+    .add-property-page .property-viwer-btns .btn:before {
         border-left-color: transparent;
         border-top-color: white;
         top: auto;
@@ -573,6 +573,23 @@
         right: auto;
     }
 
+    .add-property-page form .form-group label {
+        padding: 0;
+    }
+
+    .add-property-page .form-checkboxs {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .add-property-page .form-checkboxs .cb-item {
+        justify-content: space-between;
+    }
+
+    .add-property-page .property-viwer-btns .btn.active:before {
+        border-left-color: transparent;
+    }
+
     .add-property-viwer-btns .btn span {
         font-size: 12px;
     }
@@ -580,69 +597,75 @@
     .payment-type-tabs .ptt-title button {
         font-size: 16px;
     }
-    
+
     .payment-type-tabs {
         padding-bottom: 8px;
     }
-    
+
     .payment-type-tabs .ptt-title button:after {
         bottom: -12px;
     }
-    
+
     .payment-type-tabs.second-tabs {
         justify-content: space-between;
     }
-    
+
     section.add-property-form-section {
         padding: 14px;
     }
-    
+
     .add-property-page form .aft-item h3 {
         font-size: 15px;
         padding: 14px 0;
     }
-    
-    .add-property-page form .collapsed .aft-item svg {
+
+    .add-property-page form .aft-item svg {
         font-size: 20px;
     }
-    
+
     .add-property-page form .aft-item span {
         font-size: 13px;
     }
-    
-    .add-property-page form .collapsed .aft-item > div {
+
+    .add-property-page form .collapsed .aft-item>div {
         display: flex;
         align-items: center;
     }
-  
+
     .add-property-page form .form-group input {
         height: 38px;
         border-radius: 14px;
     }
-    
+
     .add-property-page form .form-group {
         margin-bottom: 10px;
     }
-    
+
     .add-property-page form .aft-content .drag-box span {
         font-size: 13px;
         line-height: 17px;
     }
-    
+
     .add-property-page form .aft-content .drag-box svg {
         font-size: 40px;
     }
-    
+
     .add-property-page form .css-1jqqwy7-control {
         height: 40px;
+        border-radius: 14px;
     }
-    
+
     .add-property-page form .css-319lph-ValueContainer {
         height: 38px;
     }
-    
+
     .add-property-page form .css-6j8wv5-Input {
         height: 38px;
+    }
+
+    .form-btn-box button {
+        padding: 6px 20px;
+        font-size: 12px;
     }
 
 }

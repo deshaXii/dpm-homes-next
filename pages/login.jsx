@@ -2,12 +2,17 @@ import React, { useEffect } from "react";
 import LoginContent from "../components/login";
 import Head from "next/head";
 import { wrapper } from "../store/index";
+import { useRouter } from "next/router";
 
 const login = () => {
+  const {locale} = useRouter();
   return (
     <>
       <Head>
-        <title>Login</title>
+       <title>
+          Luxury Aqar | 
+          {locale === "en" ? " Login" : " تسجيل الدخول"}
+        </title>
       </Head>
       <div
         className="login-page"

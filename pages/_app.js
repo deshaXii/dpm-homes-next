@@ -14,6 +14,7 @@ import "../styles/arabic-responsive.css";
 
 import ar from "../lang/ar.json";
 import en from "../lang/en.json";
+import Head from "next/head";
 
 const messages = {
   ar,
@@ -30,6 +31,12 @@ function MyApp({ Component, pageProps }) {
   }, []);
   return (
     <>
+      <Head>
+        <meta
+          name="description"
+          content={locale === "en" ? "Luxury Aqar is the largest real estate search engine in Egypt, through which you can search for properties for sale or properties for rent, including apartments and villas." : "لاكشري عقار اكبر محرك بحث في عقارات مصر يمكنك من خلاله البحث عن عقارات للبيع او عقارات للايجار من شقق وفيلات"}
+        />
+      </Head>
       <IntlProvider locale={locale} messages={messages[locale]}>
         <Component {...pageProps} />
       </IntlProvider>

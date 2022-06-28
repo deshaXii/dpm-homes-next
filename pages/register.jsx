@@ -2,12 +2,16 @@ import React from "react";
 import RegisterContent from "../components/register";
 import Head from "next/head";
 import { wrapper } from "../store/index";
+ import { useRouter } from "next/router";
 
 const Register = () => {
+  const {locale} = useRouter();
   return (
     <>
       <Head>
-        <title>Create Account</title>
+        <title>
+          Luxury Aqar | {locale === "en" ? " Create Account" : " إنشاء حساب "}
+        </title>
       </Head>
       <div
         className="login-page"

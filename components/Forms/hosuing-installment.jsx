@@ -5,7 +5,7 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import ImageUploading from "react-images-uploading";
 import { useDispatch, useSelector } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { addResidentialCash } from "../../store/slices/properties";
+import { addResidentialInstallment } from "../../store/slices/properties";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -174,7 +174,7 @@ const HosuingInstallment = () => {
 
   const handelAddProperty = (e) => {
     e.preventDefault();
-    dispatch(addResidentialCash(data)).then((res) => {
+    dispatch(addResidentialInstallment(data)).then((res) => {
       if (res.payload.success) {
         toast.success(res.payload.message, {
           position: "top-right",
@@ -707,7 +707,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor=""><FormattedMessage id="page.add-property-form.details.installment_time" /></label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.installment_time" />
+                      </label>
                       <input
                         value={installment_time}
                         onChange={(e) => setInstallment_time(e.target.value)}
@@ -740,7 +742,9 @@ const HosuingInstallment = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor=""><FormattedMessage id="page.add-property-form.details.installment_type" /></label>
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.installment_type" />
+                      </label>
                       <input
                         type="text"
                         value={installment_type}

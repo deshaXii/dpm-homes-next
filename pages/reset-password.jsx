@@ -41,7 +41,10 @@ const login = () => {
   return (
     <>
       <Head>
-        <title>reset my password</title>
+        <title>
+          Luxury Aqar |
+          {locale === "en" ? " Reset My Password" : " إسترجاع كلمة المرور"}
+        </title>
       </Head>
       <div
         className="login-page login-area login-page-content"

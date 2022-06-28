@@ -8,8 +8,11 @@ import "react-phone-input-2/lib/style.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FormattedMessage } from "react-intl";
+import { useRouter } from "next/router";
 
 const ContactUs = () => {
+  const { locale } = useRouter();
+
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     return () => {
@@ -48,7 +51,9 @@ const ContactUs = () => {
   return (
     <>
       <Head>
-        <title>Dpm Homes - Contact Us</title>
+        <title>
+          Luxury Aqar | {locale === "en" ? " Contact Us" : " تواصل معنا"}
+        </title>
       </Head>
       <Default>
         <div className="contact-us-page" style={{ padding: "60px 0 120px 0" }}>
@@ -65,7 +70,9 @@ const ContactUs = () => {
                 }}
               >
                 <div className="contact-us-page-title">
-                  <h1><FormattedMessage id="page.contact-us.title" /></h1>
+                  <h1>
+                    <FormattedMessage id="page.contact-us.title" />
+                  </h1>
                   <p>
                     Sed ut perspiciatis unde omnis iste natus error sit
                     voluptatem accusantium doloremque laudantium, totam rem

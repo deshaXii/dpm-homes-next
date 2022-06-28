@@ -44,6 +44,7 @@ import Image from "next/image";
 import PropertyCard from "../components/Global/PropertyCard";
 import { wrapper } from "../store";
 import { updateProfile } from "../store/slices/profile";
+import Head from "next/head";
 
 const MyProfile = () => {
   const user = useSelector(selectUser);
@@ -107,7 +108,7 @@ const MyProfile = () => {
 
   const handleEditMyInfo = (e) => {
     e.preventDefault();
-    const token = jsCookies.getItem("userToken")
+    const token = jsCookies.getItem("userToken");
     // Show Notification
     dispatch(updateProfile(data)).then((res) => {
       dispatch(getUserInfo(token));
@@ -123,6 +124,10 @@ const MyProfile = () => {
   };
 
   return (
+    <>
+    <Head>
+      <title>Luxury Aqar | {router.locale === 'en' ? 'Account Settings' : 'إعدادات الحساب'}</title>
+    </Head>
     <Default>
       <div
         className="my-profile-page-content"
@@ -582,42 +587,51 @@ const MyProfile = () => {
                 {activeView === "units-view" && (
                   <div className="units-view profile-viewer-area">
                     <div className="profile-viewer-header">
-                      <div
-                        className={`pvh-button ${
-                          unitsType === "sell" ? "active" : ""
-                        }`}
-                      >
-                        <button
-                          onClick={() => {
-                            setUnitsType("sell");
-                          }}
+                      {userProperties.data.filter(
+                        (property) => property.sell_rent_type === "sell"
+                      ).length ? (
+                        <div
+                          className={`pvh-button ${
+                            unitsType === "sell" ? "active" : ""
+                          }`}
                         >
-                          <div className="pvh-icon">
-                            <FcHome />
-                          </div>
-                          <span>
-                            <FormattedMessage id="global.section.title.sell" />
-                          </span>
-                        </button>
-                      </div>
-                      <div
-                        className={`pvh-button ${
-                          unitsType === "rent" ? "active" : ""
-                        }`}
-                      >
-                        <button
-                          onClick={() => {
-                            setUnitsType("rent");
-                          }}
+                          <button
+                            onClick={() => {
+                              setUnitsType("sell");
+                            }}
+                          >
+                            <div className="pvh-icon">
+                              <FcHome />
+                            </div>
+                            <span>
+                              <FormattedMessage id="global.section.title.sell" />
+                            </span>
+                          </button>
+                        </div>
+                      ) : null}
+
+                      {userProperties.data.filter(
+                        (property) => property.sell_rent_type === "rent"
+                      ).length ? (
+                        <div
+                          className={`pvh-button ${
+                            unitsType === "rent" ? "active" : ""
+                          }`}
                         >
-                          <div className="pvh-icon">
-                            <FcHome />
-                          </div>
-                          <span>
-                            <FormattedMessage id="global.section.title.rent" />
-                          </span>
-                        </button>
-                      </div>
+                          <button
+                            onClick={() => {
+                              setUnitsType("rent");
+                            }}
+                          >
+                            <div className="pvh-icon">
+                              <FcHome />
+                            </div>
+                            <span>
+                              <FormattedMessage id="global.section.title.rent" />
+                            </span>
+                          </button>
+                        </div>
+                      ) : null}
                     </div>
                     <div className="units-view-box">
                       {unitsType === "sell" && (
@@ -672,6 +686,7 @@ const MyProfile = () => {
         </div>
       </div>
     </Default>
+    </>
   );
 };
 

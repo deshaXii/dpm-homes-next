@@ -43,4 +43,16 @@
         color: #9f9f9f;
     }
 
+    .rtl  .add-property-page .property-viwer-btns {
+        justify-content: space-around;
+    }
+    
+    .rtl .add-property-page .property-viwer-btns .btn.active:before {
+        border-right-color: transparent;
+        right: auto;
+        left: 50%;
+    }
+    
+    
+
 }

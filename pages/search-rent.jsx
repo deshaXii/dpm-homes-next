@@ -13,12 +13,15 @@ import {
 } from "../store/slices/properties";
 import { useSelector } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { selectFilter, setFilteredProperties } from "../store/slices/filter";
+import { selectFilter } from "../store/slices/filter";
+import { useRouter } from "next/router";
 
 const Search = () => {
+  const {locale} = useRouter();
   const { allProperties } = useSelector(selectProperties);
   const { filteredProperties } = useSelector(selectFilter);
   const [layout, setLayout] = useState("grid");
+  const [showFilter, setShowFilter] = useState(false);
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     return () => {
@@ -29,14 +32,23 @@ const Search = () => {
   return (
     <>
       <Head>
-        <title>dpm homes - properties for sell</title>
+        <title>Luxury Aqar | {locale === 'en' ? 'Properties For Rent' : 'عقارات للإيجار'}</title>
       </Head>
       <Default>
         <div className="search-page" style={{ padding: "60px 0 120px 0" }}>
           <div className="container">
             <div className="row">
               <div className="col-md-3">
-                <PropertiesFilter />
+                <button
+                  onClick={() => setShowFilter(!showFilter)}
+                  className={`mobile-search-filter-btn`}
+                >
+                  {!showFilter ? "Show Filter" : "Hide Filter"}
+                </button>
+                <PropertiesFilter
+                  allProperties={allProperties}
+                  showFilter={showFilter}
+                />
               </div>
               <div className="col-md-9">
                 <div className="filtered-properties">
@@ -49,7 +61,7 @@ const Search = () => {
                     </div>
                     <div className="splh-right">
                       <div
-                        className={`splhr-item cursor-pointer ${
+                        className={`splhr-item list-icon cursor-pointer ${
                           layout === "list" ? "active" : ""
                         }`}
                       >
@@ -83,7 +95,7 @@ const Search = () => {
                           </div>
                         ))
                       ) : (
-                        <div>No Properties Found</div>
+                        <div><FormattedMessage id="global.no-property-found" /></div>
                       )}
                     </div>
                   </div>

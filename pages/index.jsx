@@ -24,7 +24,7 @@ const Home = ({ dir }) => {
   return (
     <>
       <Head>
-        <title>Dpm Homes - Find yours dream</title>
+        <title>Luxury Aqar - Find yours dream</title>
         <link rel="alternate" href="/" hrefLang="x-default" />e
         <link rel="alternate" href="/" hrefLang="en" />
         <link rel="alternate" href="/ar" hrefLang="ar" />

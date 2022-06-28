@@ -13,9 +13,11 @@ import {
 } from "../store/slices/properties";
 import { useSelector } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { selectFilter, setFilteredProperties } from "../store/slices/filter";
+import { selectFilter } from "../store/slices/filter";
+import { useRouter } from "next/router";
 
 const Search = () => {
+  const {locale} = useRouter();
   const { allProperties } = useSelector(selectProperties);
   const { filteredProperties } = useSelector(selectFilter);
   const [layout, setLayout] = useState("grid");
@@ -30,7 +32,7 @@ const Search = () => {
   return (
     <>
       <Head>
-        <title>dpm homes - properties for sell</title>
+        <title>Luxury Aqar | {locale === 'en' ? 'Properties For Sell' : 'عقارات للبيع'}</title>
       </Head>
       <Default>
         <div className="search-page" style={{ padding: "60px 0 120px 0" }}>
@@ -41,7 +43,7 @@ const Search = () => {
                   onClick={() => setShowFilter(!showFilter)}
                   className={`mobile-search-filter-btn`}
                 >
-                  {!showFilter ? 'Show Filter' : 'Hide Filter'}
+                  {!showFilter ? "Show Filter" : "Hide Filter"}
                 </button>
                 <PropertiesFilter
                   allProperties={allProperties}

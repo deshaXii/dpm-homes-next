@@ -32,7 +32,10 @@ const login = () => {
   return (
     <>
       <Head>
-        <title>forget my password</title>
+        <title>
+          Luxury Aqar |
+          {router.locale === "en" ? " Forget My Password" : " نسيت كلمة المرور"}
+        </title>
       </Head>
       <div
         className="login-page login-area login-page-content"
