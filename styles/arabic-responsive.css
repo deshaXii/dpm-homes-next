@@ -1,0 +1,13 @@
+@media (max-width: 768px) {
+    .rtl .mobile-menu-list .mobile-menu-list-item a.mobile-menu-link .mml-icon {
+        margin-right: 0;
+        margin-left: 10px;
+    }
+
+    .mobile-menu-list .navbar-lang-switcher a span {
+        color: #fff;
+        font-size: 18px;
+        text-transform: capitalize;
+        font-weight: 500;
+    }
+}

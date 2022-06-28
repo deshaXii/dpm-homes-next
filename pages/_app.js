@@ -10,6 +10,7 @@ import { IntlProvider } from "react-intl";
 import "../styles/globals.css";
 import "../styles/arabic-style.css";
 import "../styles/responsive.css";
+import "../styles/arabic-responsive.css";
 
 import ar from "../lang/ar.json";
 import en from "../lang/en.json";
