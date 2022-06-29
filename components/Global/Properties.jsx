@@ -52,7 +52,7 @@ const Properties = ({ sectionTitle, sectionClass, type }) => {
             )
             .slice(0, 4)
             .map((property) => (
-              <div className="col-md-3" key={property.id}>
+              <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12" key={property.id}>
                 <PropertyCard
                   featureCount="2"
                   image="/img/property_test_3.jpg"

@@ -95,6 +95,7 @@ body .rtl {
     padding-left: 0;
     padding-right: 15px;
 }
+
 .rtl .navbar-auth-area-inner .navbar-auth-user-data .userName {
     margin-left: 0px;
     margin-right: 10px;
@@ -109,4 +110,14 @@ body .rtl {
     right: -17px;
     border-right-color: transparent;
     border-left-color: #fff;
+}
+
+.rtl .service-box a svg {
+    margin-left: 0;
+    margin-right: 8px;
+    transform: rotate(180deg);
+}
+
+.rtl .arrow-to-right.property-viwer-btns .btn.active:before {
+    left: -17px;
 }

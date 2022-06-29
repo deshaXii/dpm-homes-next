@@ -38,7 +38,7 @@ const Search = () => {
         <div className="search-page" style={{ padding: "60px 0 120px 0" }}>
           <div className="container">
             <div className="row">
-              <div className="col-md-3">
+              <div className="col-xl-3 col-lg-3 col-md-4">
                 <button
                   onClick={() => setShowFilter(!showFilter)}
                   className={`mobile-search-filter-btn`}
@@ -50,7 +50,7 @@ const Search = () => {
                   showFilter={showFilter}
                 />
               </div>
-              <div className="col-md-9">
+              <div className="col-xl-9 col-lg-9 col-md-8">
                 <div className="filtered-properties">
                   <div className="search-property-layout-header">
                     <div className="splh-left">
@@ -81,7 +81,7 @@ const Search = () => {
                       {filteredProperties.length ? (
                         filteredProperties.slice(0, 9).map((property) => (
                           <div
-                            className={`col-md-${layout === "grid" ? 4 : 12}`}
+                            className={`col-lg-${layout === "grid" ? 4 : 12} col-md-${layout === "grid" ? 6 : 12}`}
                             key={property.id}
                           >
                             <PropertyCard

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, {useEffect} from "react";
 import { MdClose } from "react-icons/md";
 import { GrContact } from "react-icons/gr";
 import { RiAddLine } from "react-icons/ri";
@@ -14,6 +14,11 @@ import { MdLanguage, MdArrowDropDown } from "react-icons/md";
 const MobileMenu = ({ setIsOpen, isOpen }) => {
   const user = useSelector(selectUser);
   const { locales, locale, asPath } = useRouter();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [locale])
+
   return (
     <div className={`mobile-menu ${isOpen ? "active" : ""}`}>
       <div className="mobile-menu-header">

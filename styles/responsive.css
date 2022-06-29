@@ -3,8 +3,17 @@
         display: none;
     }
 
-    .section-title-with-type {
-        flex-direction: column;
+    .contact-info-area .c-info-box h6 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .contact-info-area .c-info-box svg {
+        font-size: 24px;
+    }
+
+    .c-info-box {
+        margin-bottom: 15px;
     }
 
     header.home-header .intro-content h1 {
@@ -261,10 +270,6 @@
     .drag-box {
         max-width: 89%;
         text-align: center;
-    }
-
-    .section-title-with-type {
-        flex-direction: column;
     }
 
     header.home-header .intro-content h1 {
@@ -669,3 +674,184 @@
     }
 
 }
+
+
+@media (min-width: 768px) and (max-width: 992px) {
+
+    .container,
+    .container-md,
+    .container-sm {
+        max-width: 800px;
+    }
+
+    .rtl .property-card-image .property-added-by {
+        left: 5px;
+        bottom: 5px;
+    }
+
+    .property-card-image .property-added-by a {
+        width: 40px;
+        height: 40px;
+    }
+
+    .property-card-image a {
+        display: flex;
+    }
+
+    .property-card-image .property-tags {
+        top: 5px;
+        right: 5px;
+    }
+
+    .property-card-image .property-lc {
+        top: 5px;
+        left: 5px;
+    }
+
+    .search-property-layout-content .property-card-image .property-lc span {
+        font-size: 10px;
+    }
+
+    .property-card-info .propert-card-status p {
+        font-size: 12px;
+    }
+
+    .search-property-layout-content .property-card-info .property-card-title a h5 {
+        font-size: 16px;
+    }
+
+    .search-property-layout-content .property-card-info .property-card-price span {
+        font-size: 13px;
+    }
+
+    .search-property-layout-content .property-card-info .property-card-location {
+        margin-top: 3px;
+        margin-bottom: 0;
+    }
+
+    .search-property-layout-content .property-card-info .property-card-location a {
+        font-size: 13px;
+    }
+
+    .propert-card-features .pcf-item .pcf-item-label p {
+        font-size: 12px;
+    }
+
+    .propert-card-features .pcf-item .pcf-item-top svg {
+        font-size: 18px;
+    }
+
+    .propert-card-features .pcf-item .pcf-item-top span {
+        font-size: 13px;
+    }
+
+    .search-property-layout-content .propert-card-buttons button.btn {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .search-property-layout-content .propert-card-buttons button.btn svg {
+        font-size: 16px;
+    }
+
+    .search-property-layout-content .propert-card-features {
+        padding: 2px 12px;
+    }
+
+    header.home-header .intro-content {
+        max-width: 78%;
+    }
+
+    .intro-filter {
+        max-width: 78%;
+    }
+
+    .projects-section .swiper-button-next,
+    .swiper-rtl .swiper-button-prev {
+        right: 20px;
+    }
+
+    .projects-section .swiper-button-prev,
+    .swiper-rtl .swiper-button-next {
+        left: 20px;
+    }
+
+    .project-slide-box {
+        padding: 10px;
+    }
+
+    .project-slide-info {
+        padding: 10px;
+        padding-top: 0;
+    }
+
+    .project-slide-image-box img {
+        border-radius: 14px;
+    }
+
+    section.p80 {
+        padding: 40px 0;
+    }
+
+    section.projects-section.p80 {
+        padding-bottom: 90px;
+    }
+
+    .s-title-box h2 {
+        font-size: 28px;
+    }
+
+    .s-title-box span {
+        font-size: 14px;
+    }
+
+
+    .section-tabs {
+        padding: 14px 25px;
+    }
+
+    .all-properties-box .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        border-radius: 16px;
+    }
+
+    .project-slide-box {
+        border-radius: 20px;
+    }
+
+
+    .contact-info-area {
+        border-radius: 20px;
+    }
+
+    .service-box {
+        border-radius: 20px;
+    }
+
+    .filter-options {
+        border-radius: 20px;
+    }
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    header.home-header .intro-content {
+        max-width: 64%;
+    }
+
+    .intro-filter {
+        max-width: 64%;
+    }
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm {
+        max-width: 98%;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {}

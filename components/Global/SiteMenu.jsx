@@ -23,7 +23,7 @@ const SiteMenu = () => {
           <Link href="/search-sell">
             <a
               className={`navbar-menu-list-item-link ${
-                router.pathname === "/search" && router.query.type === "sell"
+                router.pathname === "/search-sell" 
                   ? "active-link"
                   : ""
               }`}
@@ -36,7 +36,7 @@ const SiteMenu = () => {
           <Link href="/search-rent" query>
             <a
               className={`navbar-menu-list-item-link ${
-                router.pathname === "/search" && router.query.type === "rent"
+                router.pathname === "/search-rent"
                   ? "active-link"
                   : ""
               }`}

@@ -135,7 +135,7 @@ const MyProfile = () => {
       >
         <div className="container">
           <div className="row">
-            <div className="col-md-1 col-12">
+            <div className="col-md-2 col-12">
               <div className="property-viwer-btns arrow-to-right">
                 <button
                   onClick={() => {
@@ -187,7 +187,7 @@ const MyProfile = () => {
                 </button>
               </div>
             </div>
-            <div className="col-12 col-md-11">
+            <div className="col-12 col-md-10">
               <div className="profile-view-area">
                 {activeView === "details-view" && (
                   <div className="details-view profile-viewer-area">

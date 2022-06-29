@@ -294,6 +294,7 @@ const PropertiesFilter = ({ showFilter }) => {
         </div>
         <div className="filter-group-content">
           <Select
+          isSearchable={false}
             styles={selectStyle}
             placeholder={
               <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
@@ -337,6 +338,7 @@ const PropertiesFilter = ({ showFilter }) => {
         <div className="filter-group-content">
           <Select
             styles={selectStyle}
+            isSearchable={false}
             placeholder={
               <FormattedMessage id="page.home.auth.properties.filter.select_area_size" />
             }

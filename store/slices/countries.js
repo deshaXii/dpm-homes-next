@@ -3,6 +3,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import { getCountries, getGovernorates } from "../api/countriesAPI";
 
 const initialState = {
+  countriesCounts: [],
   allCountries: [],
   allGovernorates: [],
 };
@@ -27,7 +28,11 @@ export const countriesSlice = createSlice({
   name: "countries",
   initialState,
   reducers: {
-   
+    getCountryItemsCount: (state, action) => {
+      state.countriesCounts = action.payload.allCountries.filter((item) => {
+        return item.country_id === item.country_id;
+      });
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -46,7 +51,6 @@ export const countriesSlice = createSlice({
       });
   },
 });
-
 
 export const selectCountries = (state) => state.countries;
 

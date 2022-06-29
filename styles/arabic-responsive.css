@@ -53,6 +53,9 @@
         left: 50%;
     }
     
-    
+    .rtl .arrow-to-right.property-viwer-btns .btn.active:before {
+        left: 50%;
+        border-right-color: transparent;
+    }
 
 }
