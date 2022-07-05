@@ -5,7 +5,7 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import ImageUploading from "react-images-uploading";
 import { useDispatch, useSelector } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { addResidentialBoth } from "../../store/slices/properties";
+import { addResidentialRent } from "../../store/slices/properties";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,7 +15,7 @@ import {
   selectCountries,
 } from "../../store/slices/countries";
 
-const HosuingBoth = () => {
+const HosuingRent = () => {
   const { allCountries, allGovernorates } = useSelector(selectCountries);
   const country_options = allCountries;
 
@@ -79,7 +79,7 @@ const HosuingBoth = () => {
     { value: "semi-annual", label: "كل 6 شهور" },
     { value: "annual", label: "سنويا" },
   ];
-  
+
   const installment_type_en = [
     { value: "monthly", label: "monthly" },
     { value: "quarterly", label: "quarterly" },
@@ -148,18 +148,11 @@ const HosuingBoth = () => {
   const [air_conditioners, setAir_conditioners] = useState("");
   const [internet, setInternet] = useState("");
 
-  const [total_price, setTotal_price] = useState("");
-  const [total_price_installment, setTotal_price_installment] = useState("");
-  const [installment, setInstallment] = useState("");
-  const [installment_time, setInstallment_time] = useState("");
-  const [installment_type, setIynstallment_type] = useState("");
-
-  const [advance_payment, setAdvance_payment] = useState("");
-  const [maintenance_fees, setMaintenance_fees] = useState("");
-  const [club_fees, setClub_fees] = useState("");
+  const [rent_price, setRent_price] = useState("");
+  const [insurance, setInsurance] = useState("");
+  const [commission, setCommission] = useState("");
   const [currency, setCurrency] = useState("");
 
-  const [receiving_date, setReceiving_date] = useState("");
   const [school, setSchool] = useState("");
   const [hospital, setHospital] = useState("");
   const [nursery_school, setNursery_school] = useState("");
@@ -193,7 +186,7 @@ const HosuingBoth = () => {
 
   const handelAddProperty = (e) => {
     e.preventDefault();
-    dispatch(addResidentialBoth(data)).then((res) => {
+    dispatch(addResidentialRent(data)).then((res) => {
       if (res.payload.success) {
         toast.success(res.payload.message, {
           position: "top-right",
@@ -250,16 +243,10 @@ const HosuingBoth = () => {
     light_system,
     air_conditioners,
     internet,
-    total_price,
-    total_price_installment,
-    installment,
-    installment_time,
-    installment_type: installment_type.value,
-    advance_payment,
-    maintenance_fees,
-    club_fees,
+    rent_price,
+    insurance,
+    commission,
     currency: currency.value,
-    receiving_date,
     school,
     hospital,
     nursery_school,
@@ -658,49 +645,22 @@ const HosuingBoth = () => {
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.cash-total_price" />
+                        <FormattedMessage id="page.add-property-form.details.rent_price" />
                       </label>
                       <input
-                        value={total_price}
-                        onChange={(e) =>
-                          setTotal_price(e.target.value)
-                        }
+                        value={rent_price}
+                        onChange={(e) => setRent_price(e.target.value)}
                         type="number"
                         className="form-control"
                       />
                     </div>
                     <div className="form-group">
                       <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.total_price_installment" />
+                        <FormattedMessage id="page.add-property-form.details.commission" />
                       </label>
                       <input
-                        value={total_price_installment}
-                        onChange={(e) =>
-                          setTotal_price_installment(e.target.value)
-                        }
-                        type="number"
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.club_fee" />
-                      </label>
-                      <input
-                        value={club_fees}
-                        onChange={(e) => setClub_fees(e.target.value)}
-                        type="number"
-                        className="form-control"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.installment" />
-                      </label>
-                      <input
-                        value={installment}
-                        onChange={(e) => setInstallment(e.target.value)}
+                        value={commission}
+                        onChange={(e) => setCommission(e.target.value)}
                         type="number"
                         className="form-control"
                       />
@@ -729,73 +689,17 @@ const HosuingBoth = () => {
                         instanceId="currency_type_select"
                       />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.receiving_date" />
-                      </label>
-                      <input
-                        value={receiving_date}
-                        onChange={(e) => setReceiving_date(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.installment_time" />
-                      </label>
-                      <input
-                        value={installment_time}
-                        onChange={(e) => setInstallment_time(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.maintenance_fee" />
+                        <FormattedMessage id="page.add-property-form.details.insurance" />
                       </label>
                       <input
                         type="number"
-                        value={maintenance_fees}
-                        onChange={(e) => setMaintenance_fees(e.target.value)}
+                        value={insurance}
+                        onChange={(e) => setInsurance(e.target.value)}
                         className="form-control"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.advance" />
-                      </label>
-                      <input
-                        type="text"
-                        value={advance_payment}
-                        onChange={(e) => setAdvance_payment(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.installment_type" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder={
-                          <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
-                        }
-                        value={installment_type}
-                        onChange={setIynstallment_type}
-                        name="currency"
-                        id="installment_type_select"
-                        options={
-                          locale === "ar"
-                            ? installment_type_ar
-                            : installment_type_en
-                        }
-                        instanceId="installment_type_select"
                       />
                     </div>
                   </div>
@@ -1228,4 +1132,4 @@ const HosuingBoth = () => {
   );
 };
 
-export default HosuingBoth;
+export default HosuingRent;

@@ -82,7 +82,7 @@
   "page.add-property-form-title.payment.type": "Add Method of payment and receipt",
   "page.add-property-form-title.add-images": "Add property photos",
   "page.add-property-form-title.finishing": "Add Finishing Status",
-  "page.add-property-form-title.nearbly-location": "View services nearby",
+  "page.add-property-form-title.nearbly-location": " services nearby",
   "page.add-property-form-title.add-3d": "Add 3d View",
   "page.add-property-form-title.add-map": "Add map view",
   "page.add-property-form-title.add-more-details": "Add More details about the property",
@@ -114,6 +114,9 @@
   "page.add-property-form.details.security": "security",
   "page.add-property-form.details.public_pool": "public pool",
   "page.add-property-form.details.cash-total_price": "total cash price",
+  "page.add-property-form.details.rent_price": "rent price",
+  "page.add-property-form.details.commission": "commission price",
+  "page.add-property-form.details.insurance": "insurance price",
   "page.add-property-form.details.total_price_installment": "total installment price",
   "page.add-property-form.details.installment": "installment price",
   "page.add-property-form.details.installment_type": "installment type",
@@ -140,5 +143,7 @@
   "page.add-property-form.details.super_market": " super market ",
   "global.no-property-found": "No Properties Found",
   "global.upload-property": "Upload Property",
-  "global.property-search": "Search for Property"
+  "global.property-search": "Search for Property",
+  "page.add-property-form.details.building_name": "Building Name",
+  "page.home.auth.properties.building_name_label": " Select Building Name"
 }

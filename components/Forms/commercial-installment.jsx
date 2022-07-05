@@ -5,7 +5,7 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import ImageUploading from "react-images-uploading";
 import { useDispatch, useSelector } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import { addResidentialBoth } from "../../store/slices/properties";
+import { addCommercialInstallment } from "../../store/slices/properties";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,40 +15,30 @@ import {
   selectCountries,
 } from "../../store/slices/countries";
 
-const HosuingBoth = () => {
+const CommercialInstallment = () => {
   const { allCountries, allGovernorates } = useSelector(selectCountries);
   const country_options = allCountries;
 
   const governorate_options = allGovernorates;
 
   const property_type_options_ar = [
-    { value: "palace", label: "قصر" },
-    { value: "villa", label: "فيلا" },
-    { value: "twin_house", label: "تون هاوس" },
-    { value: "pent_house", label: "بنت هاوس" },
-    { value: "flat", label: "منزل" },
-    { value: "studio", label: "ستوديو" },
-    { value: "chalet", label: "شاليه" },
+    { value: "shop", label: "محل" },
+    { value: "factory", label: "مصنع" },
+    { value: "land", label: "قطعة ارض" },
+    { value: "warehouse", label: "مخزن" },
+    { value: "playground", label: "ملعب" },
+    { value: "pharmacy", label: "صيدلية" },
+    { value: "mall", label: "مول" },
   ];
 
   const property_type_options_en = [
-    { value: "palace", label: "palace" },
-    { value: "villa", label: "villa" },
-    { value: "twin_house", label: "twin house" },
-    { value: "pent_house", label: "pent house" },
-    { value: "flat", label: "flat" },
-    { value: "studio", label: "studio" },
-    { value: "chalet", label: "chalet" },
-  ];
-
-  const furniture_type_options_ar = [
-    { value: "furnished", label: "تشطيب" },
-    { value: "unfurnished", label: "بدون تشطيب" },
-  ];
-
-  const furniture_type_options_en = [
-    { value: "furnished", label: "furnished" },
-    { value: "unfurnished", label: "unfurnished" },
+    { value: "shop", label: "shop" },
+    { value: "factory", label: "factory" },
+    { value: "land", label: "land" },
+    { value: "warehouse", label: "warehouse" },
+    { value: "playground", label: "playground" },
+    { value: "pharmacy", label: "pharmacy" },
+    { value: "mall", label: "mall" },
   ];
 
   const currency_options_ar = [
@@ -79,12 +69,36 @@ const HosuingBoth = () => {
     { value: "semi-annual", label: "كل 6 شهور" },
     { value: "annual", label: "سنويا" },
   ];
-  
+
   const installment_type_en = [
     { value: "monthly", label: "monthly" },
     { value: "quarterly", label: "quarterly" },
     { value: "semi-annual", label: "semi-annual" },
     { value: "annual", label: "annual" },
+  ];
+
+  const buildingOptions_ar = [
+    { value: "inside_administrative_building", label: "داخل مبني إداري" },
+    { value: "inside_commercial_building", label: "داخل مبني تجاري" },
+    { value: "inside_hotel", label: "داخل فندق" },
+    { value: "in_public_street", label: "في الشارع العام" },
+    { value: "inside_compound", label: "داخل كمبوند" },
+    { value: "inside_mall", label: "داخل مول" },
+  ];
+
+  const buildingOptions_en = [
+    {
+      value: "inside_administrative_building",
+      label: "inside administrative building",
+    },
+    {
+      value: "inside_commercial_building",
+      label: "inside commercial building",
+    },
+    { value: "inside_hotel", label: "inside hotel" },
+    { value: "in_public_street", label: "in public street" },
+    { value: "inside_compound", label: "inside compound" },
+    { value: "inside_mall", label: "inside mall" },
   ];
 
   const [firstTabVis, setFirstTabVis] = useState(false);
@@ -95,7 +109,6 @@ const HosuingBoth = () => {
   const [sixthTabVis, setSixthTabVis] = useState(false);
   const [seventhTabVis, setSeventhTabVis] = useState(false);
   const [eighthTabVis, setEighthTabVis] = useState(false);
-  const [ninthTabVis, setNinthTabVis] = useState(false);
 
   const selectStyle = {
     control: (base, { isFocused }) => ({
@@ -117,7 +130,6 @@ const HosuingBoth = () => {
   };
 
   const [property_type, setProperty_type] = useState("");
-  const [furniture_type, setFurniture_type] = useState("");
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");
   const [governorate, setGovernorate] = useState("");
@@ -139,16 +151,7 @@ const HosuingBoth = () => {
   const [security, setSecurity] = useState(false);
   const [public_pool, setPublic_pool] = useState(false);
   const [public_garden, setPublic_garden] = useState("");
-  const [walls, setWalls] = useState("");
-  const [floors, setFloors] = useState("");
-  const [ceilings, setCeilings] = useState("");
-  const [bath_rooms, setBath_rooms] = useState("");
-  const [kitchen, setKitchen] = useState("");
-  const [light_system, setLight_system] = useState("");
-  const [air_conditioners, setAir_conditioners] = useState("");
-  const [internet, setInternet] = useState("");
 
-  const [total_price, setTotal_price] = useState("");
   const [total_price_installment, setTotal_price_installment] = useState("");
   const [installment, setInstallment] = useState("");
   const [installment_time, setInstallment_time] = useState("");
@@ -176,6 +179,7 @@ const HosuingBoth = () => {
   const [location, setLocation] = useState(null);
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
+  const [building_name, setBuilding_name] = useState("");
   const maxNumber = 12;
   const maxFileSize = 1048576;
 
@@ -193,7 +197,7 @@ const HosuingBoth = () => {
 
   const handelAddProperty = (e) => {
     e.preventDefault();
-    dispatch(addResidentialBoth(data)).then((res) => {
+    dispatch(addCommercialInstallment(data)).then((res) => {
       if (res.payload.success) {
         toast.success(res.payload.message, {
           position: "top-right",
@@ -220,7 +224,6 @@ const HosuingBoth = () => {
 
   let data = {
     property_type: property_type.value,
-    furniture_type: furniture_type.value,
     address,
     country: country.value,
     governorate: governorate.value,
@@ -238,19 +241,11 @@ const HosuingBoth = () => {
     private_garden,
     private_parking,
     private_pool,
+    building_name: building_name.value,
     lift,
     security,
     public_pool,
     public_garden,
-    walls,
-    floors,
-    ceilings,
-    bath_rooms,
-    kitchen,
-    light_system,
-    air_conditioners,
-    internet,
-    total_price,
     total_price_installment,
     installment,
     installment_time,
@@ -278,14 +273,6 @@ const HosuingBoth = () => {
   };
 
   const { locale } = router;
-
-  const [showFinishingTab, setShowFinishingTab] = useState(
-    furniture_type.value === "furnished" ? true : false
-  );
-
-  useEffect(() => {
-    setShowFinishingTab(furniture_type.value === "furnished" ? true : false);
-  }, [furniture_type]);
 
   // Validation
   useEffect(() => {
@@ -396,27 +383,6 @@ const HosuingBoth = () => {
                   <div className="col-md-4">
                     <div className="form-group">
                       <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.finishing" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        placeholder={
-                          <FormattedMessage id="page.add-property-form.details.finishing_type" />
-                        }
-                        value={furniture_type}
-                        onChange={setFurniture_type}
-                        name="furniture"
-                        id="furniture_type_select"
-                        options={
-                          locale === "ar"
-                            ? furniture_type_options_ar
-                            : furniture_type_options_en
-                        }
-                        instanceId="furniture_type_select"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.goverment" />
                       </label>
                       <Select
@@ -475,6 +441,28 @@ const HosuingBoth = () => {
                         value={no_bath_room}
                         className="form-control"
                         onChange={(e) => setNo_bath_room(e.target.value)}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.building_name" />
+                      </label>
+                      <Select
+                        styles={selectStyle}
+                        isShow={true}
+                        placeholder={
+                          <FormattedMessage id="page.home.auth.properties.building_name_label" />
+                        }
+                        value={building_name}
+                        onChange={setBuilding_name}
+                        name="building_name"
+                        id="building_name_type_select"
+                        options={
+                          locale === "ar"
+                            ? buildingOptions_ar
+                            : buildingOptions_en
+                        }
+                        instanceId="building_name_type_select"
                       />
                     </div>
                   </div>
@@ -656,19 +644,6 @@ const HosuingBoth = () => {
               <div className="aft-two-content aft-content">
                 <div className="row">
                   <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.cash-total_price" />
-                      </label>
-                      <input
-                        value={total_price}
-                        onChange={(e) =>
-                          setTotal_price(e.target.value)
-                        }
-                        type="number"
-                        className="form-control"
-                      />
-                    </div>
                     <div className="form-group">
                       <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.total_price_installment" />
@@ -935,126 +910,6 @@ const HosuingBoth = () => {
                 </div>
               </div>
             </div>
-
-            {showFinishingTab && (
-              <div className={`${thirdTabVis ? "" : "collapsed"}`}>
-                <div
-                  className="aft-three-item aft-item"
-                  onClick={() => setThirdTabVis(!thirdTabVis)}
-                >
-                  <h3>
-                    <FormattedMessage id="page.add-property-form-title.finishing" />
-                  </h3>
-                  <div>
-                    <span>
-                      <FormattedMessage id="page.add-property-form.option" />
-                    </span>
-                    <MdOutlineKeyboardArrowDown />
-                  </div>
-                </div>
-                <div className="aft-three-content aft-content">
-                  <div className="row">
-                    <div className="col-md-3">
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.walls" />
-                        </label>
-                        <input
-                          type="text"
-                          value={walls}
-                          onChange={(e) => setWalls(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.floors" />
-                        </label>
-                        <input
-                          type="text"
-                          value={floors}
-                          onChange={(e) => setFloors(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-3">
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.ceilings" />
-                        </label>
-                        <input
-                          type="text"
-                          value={ceilings}
-                          onChange={(e) => setCeilings(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.bath_rooms" />
-                        </label>
-                        <input
-                          type="text"
-                          value={bath_rooms}
-                          onChange={(e) => setBath_rooms(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-3">
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.k-kitchen" />
-                        </label>
-                        <input
-                          type="text"
-                          value={kitchen}
-                          onChange={(e) => setKitchen(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.internet" />
-                        </label>
-                        <input
-                          type="text"
-                          value={internet}
-                          onChange={(e) => setInternet(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-3">
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.light_system" />
-                        </label>
-                        <input
-                          type="text"
-                          value={light_system}
-                          onChange={(e) => setLight_system(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.air_conditioners" />
-                        </label>
-                        <input
-                          type="text"
-                          value={air_conditioners}
-                          onChange={(e) => setAir_conditioners(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
             <div className={`${fourthTabVis ? "" : "collapsed"}`}>
               <div
                 className="aft-four-item aft-item"
@@ -1228,4 +1083,4 @@ const HosuingBoth = () => {
   );
 };
 
-export default HosuingBoth;
+export default CommercialInstallment;

@@ -20,7 +20,7 @@ const Properties = ({ sectionTitle, sectionClass, type }) => {
             title={sectionTitle}
             subTitle={<FormattedMessage id="global.section.sub_title" />}
           />
-           {allProperties.filter(
+          {/* {allProperties.filter(
             (fProperty) => fProperty.sell_rent_type.toLowerCase() === type
           ).length && (
           <div className="section-tabs">
@@ -43,7 +43,7 @@ const Properties = ({ sectionTitle, sectionClass, type }) => {
               <FormattedMessage id="page.add-property-tabs-administrative" />
             </button>
           </div>
-          )}
+          )} */}
         </div>
         <div className="row search-property-layout-content">
           {allProperties
@@ -52,7 +52,10 @@ const Properties = ({ sectionTitle, sectionClass, type }) => {
             )
             .slice(0, 4)
             .map((property) => (
-              <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12" key={property.id}>
+              <div
+                className="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12"
+                key={property.id}
+              >
                 <PropertyCard
                   featureCount="2"
                   image="/img/property_test_3.jpg"
@@ -65,14 +68,22 @@ const Properties = ({ sectionTitle, sectionClass, type }) => {
             (fProperty) => fProperty.sell_rent_type.toLowerCase() === type
           ).length ? (
             <div className="col-12">
-              <div className="all-properties-box text-center">
-                <Link href={`/search-${type}`}>
-                  <a className="dpm-btn btn">See More</a>
-                </Link>
-              </div>
+              {allProperties.filter(
+                (fProperty) => fProperty.sell_rent_type.toLowerCase() === type
+              ).length > 4 ? (
+                <div className="all-properties-box text-center">
+                  <Link href={`/search-${type}`}>
+                    <a className="dpm-btn btn">See More</a>
+                  </Link>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           ) : (
-            <div className="no-properties"><FormattedMessage id="global.no-property-found" /></div>
+            <div className="no-properties">
+              <FormattedMessage id="global.no-property-found" />
+            </div>
           )}
         </div>
       </div>

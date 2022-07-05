@@ -32,30 +32,30 @@ const Services = ({ sectionBG, withOverlay }) => {
       icon: <BsShop />,
       link: "#",
     },
-    {
-      id: 4,
-      title: "Houses",
-      content:
-        "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
-      icon: <BsShop />,
-      link: "#",
-    },
-    {
-      id: 5,
-      title: "Houses",
-      content:
-        "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
-      icon: <BsShop />,
-      link: "#",
-    },
-    {
-      id: 6,
-      title: "Houses",
-      content:
-        "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
-      icon: <BsShop />,
-      link: "#",
-    },
+    // {
+    //   id: 4,
+    //   title: "Houses",
+    //   content:
+    //     "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
+    //   icon: <BsShop />,
+    //   link: "#",
+    // },
+    // {
+    //   id: 5,
+    //   title: "Houses",
+    //   content:
+    //     "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
+    //   icon: <BsShop />,
+    //   link: "#",
+    // },
+    // {
+    //   id: 6,
+    //   title: "Houses",
+    //   content:
+    //     "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
+    //   icon: <BsShop />,
+    //   link: "#",
+    // },
   ];
 
   return (
@@ -67,7 +67,24 @@ const Services = ({ sectionBG, withOverlay }) => {
         <SectionTitle title="services" subTitle="Properties" />
         <div className="row">
           {services.map((item, index) => (
-            <div className="col-12 col-md-4" key={item.id} style={{marginTop: index + 1 === 1 ? '0px': index + 1 === 2 ? '20px' : index + 1 === 3 ? '40px' : index + 1 === 4 ? '-40px' : index + 1 === 5 ? '-20px' : ''}}>
+            <div
+              className="col-12 col-md-4"
+              key={item.id}
+              style={{
+                marginTop:
+                  index + 1 === 1
+                    ? "0px"
+                    : index + 1 === 2
+                    ? "20px"
+                    : index + 1 === 3
+                    ? "40px"
+                    : index + 1 === 4
+                    ? "-40px"
+                    : index + 1 === 5
+                    ? "-20px"
+                    : "",
+              }}
+            >
               <div className="service-box">
                 <div className="icon-box">{item.icon}</div>
                 <h5>{item.title}</h5>

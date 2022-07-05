@@ -11,6 +11,15 @@ import HosuingInstallment from "../components/Forms/hosuing-installment";
 import HosuingBoth from "../components/Forms/hosuing-both";
 import { getAllCountries } from "../store/slices/countries";
 import { useRouter } from "next/router";
+import HosuingRent from "../components/Forms/hosuing-rent";
+import CommercialCash from "../components/Forms/commercial-cash";
+import CommercialInstallment from "../components/Forms/commercial-installment";
+import CommercialBoth from "../components/Forms/commercial-both";
+import CommercialRent from "../components/Forms/commercial-rent";
+import AdministrativeCash from "../components/Forms/administrative-cash";
+import AdministrativeInstallment from "../components/Forms/administrative-installment";
+import AdministrativeBoth from "../components/Forms/administrative-both";
+import AdministrativeRent from "../components/Forms/administrative-rent";
 
 const AddProperty = () => {
   useEffect(() => {
@@ -155,7 +164,161 @@ const AddProperty = () => {
                         </div>
                       )}
                       {activePaymentType === "for-rent" && (
-                        <div className="payment-type-tabs-content"></div>
+                        <div className="payment-type-tabs-content">
+                          <HosuingRent />
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {activeSection === "commercial-section" && (
+                    <>
+                      <div className={`payment-type-tabs`}>
+                        <div
+                          className={`ptt-title ${
+                            activePaymentType === "for-sell" ? "active" : ""
+                          }`}
+                        >
+                          <button
+                            onClick={() => setActivePaymentType("for-sell")}
+                          >
+                            <FormattedMessage id="page.add-property-tabs-for-sell" />
+                          </button>
+                        </div>
+                        <div
+                          className={`ptt-title ${
+                            activePaymentType === "for-rent" ? "active" : ""
+                          }`}
+                        >
+                          <button
+                            onClick={() => setActivePaymentType("for-rent")}
+                          >
+                            <FormattedMessage id="page.add-property-tabs-for-rent" />
+                          </button>
+                        </div>
+                      </div>
+                      {activePaymentType === "for-sell" && (
+                        <div className={`payment-type-tabs second-tabs`}>
+                          <div
+                            className={`ptt-title ${
+                              formView === "cash-form" ? "active" : ""
+                            }`}
+                          >
+                            <button onClick={() => setFormView("cash-form")}>
+                              <FormattedMessage id="page.add-property-tabs-cash" />
+                            </button>
+                          </div>
+                          <div
+                            className={`ptt-title ${
+                              formView === "installments-form" ? "active" : ""
+                            }`}
+                          >
+                            <button
+                              onClick={() => setFormView("installments-form")}
+                            >
+                              <FormattedMessage id="page.add-property-tabs-installment" />
+                            </button>
+                          </div>
+                          <div
+                            className={`ptt-title ${
+                              formView === "both-form" ? "active" : ""
+                            }`}
+                          >
+                            <button onClick={() => setFormView("both-form")}>
+                              <FormattedMessage id="page.add-property-tabs-both" />
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {activePaymentType === "for-sell" && (
+                        <div className="payment-type-tabs-content">
+                          {formView === "cash-form" && <CommercialCash />}
+                          {formView === "installments-form" && (
+                            <CommercialInstallment />
+                          )}
+                          {formView === "both-form" && <CommercialBoth />}
+                        </div>
+                      )}
+                      {activePaymentType === "for-rent" && (
+                        <div className="payment-type-tabs-content">
+                          <CommercialRent />
+                        </div>
+                      )}
+                    </>
+                  )}
+                    {activeSection === "administrative-section" && (
+                    <>
+                      <div className={`payment-type-tabs`}>
+                        <div
+                          className={`ptt-title ${
+                            activePaymentType === "for-sell" ? "active" : ""
+                          }`}
+                        >
+                          <button
+                            onClick={() => setActivePaymentType("for-sell")}
+                          >
+                            <FormattedMessage id="page.add-property-tabs-for-sell" />
+                          </button>
+                        </div>
+                        <div
+                          className={`ptt-title ${
+                            activePaymentType === "for-rent" ? "active" : ""
+                          }`}
+                        >
+                          <button
+                            onClick={() => setActivePaymentType("for-rent")}
+                          >
+                            <FormattedMessage id="page.add-property-tabs-for-rent" />
+                          </button>
+                        </div>
+                      </div>
+                      {activePaymentType === "for-sell" && (
+                        <div className={`payment-type-tabs second-tabs`}>
+                          <div
+                            className={`ptt-title ${
+                              formView === "cash-form" ? "active" : ""
+                            }`}
+                          >
+                            <button onClick={() => setFormView("cash-form")}>
+                              <FormattedMessage id="page.add-property-tabs-cash" />
+                            </button>
+                          </div>
+                          <div
+                            className={`ptt-title ${
+                              formView === "installments-form" ? "active" : ""
+                            }`}
+                          >
+                            <button
+                              onClick={() => setFormView("installments-form")}
+                            >
+                              <FormattedMessage id="page.add-property-tabs-installment" />
+                            </button>
+                          </div>
+                          <div
+                            className={`ptt-title ${
+                              formView === "both-form" ? "active" : ""
+                            }`}
+                          >
+                            <button onClick={() => setFormView("both-form")}>
+                              <FormattedMessage id="page.add-property-tabs-both" />
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {activePaymentType === "for-sell" && (
+                        <div className="payment-type-tabs-content">
+                          {formView === "cash-form" && <AdministrativeCash />}
+                          {formView === "installments-form" && (
+                            <AdministrativeInstallment />
+                          )}
+                          {formView === "both-form" && <AdministrativeBoth />}
+                        </div>
+                      )}
+                      {activePaymentType === "for-rent" && (
+                        <div className="payment-type-tabs-content">
+                          <AdministrativeRent />
+                        </div>
                       )}
                     </>
                   )}

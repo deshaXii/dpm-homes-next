@@ -45,6 +45,8 @@ import PropertyCard from "../components/Global/PropertyCard";
 import { wrapper } from "../store";
 import { updateProfile } from "../store/slices/profile";
 import Head from "next/head";
+import { getAllCountries, selectCountries } from "../store/slices/countries";
+import Select from "react-select";
 
 const MyProfile = () => {
   const user = useSelector(selectUser);
@@ -110,6 +112,7 @@ const MyProfile = () => {
     e.preventDefault();
     const token = jsCookies.getItem("userToken");
     // Show Notification
+    
     dispatch(updateProfile(data)).then((res) => {
       dispatch(getUserInfo(token));
       toast.success(res.payload.message, {
@@ -123,552 +126,587 @@ const MyProfile = () => {
     });
   };
 
+  const { allCountries } = useSelector(selectCountries);
+
+
+  const selectStyle = {
+    control: (base, { isFocused }) => ({
+      ...base,
+      border: "1px solid var(--mainColor)",
+      boxShadow: "none",
+      color: "red",
+      "&:hover": {
+        border: "1px solid var(--mainColor)",
+      },
+    }),
+    option: (styles, { isFocused, isSelected }) => {
+      return {
+        ...styles,
+        backgroundColor: isFocused ? "var(--mainColor)" : null,
+        color: "#000",
+      };
+    },
+  };
+
   return (
     <>
-    <Head>
-      <title>Luxury Aqar | {router.locale === 'en' ? 'Account Settings' : 'إعدادات الحساب'}</title>
-    </Head>
-    <Default>
-      <div
-        className="my-profile-page-content"
-        style={{ padding: "60px 0 120px 0" }}
-      >
-        <div className="container">
-          <div className="row">
-            <div className="col-md-2 col-12">
-              <div className="property-viwer-btns arrow-to-right">
-                <button
-                  onClick={() => {
-                    setActiveView("details-view");
-                  }}
-                  className={`btn details-view ${
-                    activeView === "details-view" ? "active" : ""
-                  } cursor-pointer`}
-                >
-                  <div className="view-btn-icon">
-                    <FiUser />
-                  </div>
-                  <span>
-                    <FormattedMessage id="section.profile.details" />
-                  </span>
-                </button>
-                <button
-                  onClick={() => {
-                    setActiveView("units-view");
-                  }}
-                  className={`btn units-view ${
-                    activeView === "units-view" ? "active" : ""
-                  } cursor-pointer`}
-                >
-                  <div className="view-btn-icon">
-                    <FiHome />
-                  </div>
-                  <span>
-                    <FormattedMessage id="section.profile.my_units" />
-                  </span>
-                </button>
-                <button
-                  onClick={() => {
-                    dispatch(logout(jsCookies.getItem("userToken"))).then(
-                      () => {
-                        router.push("/");
-                        toast.success("Logout Successfully");
-                      }
-                    );
-                  }}
-                  className={`btn units-view cursor-pointer`}
-                >
-                  <div className="view-btn-icon">
-                    <FiLogOut />
-                  </div>
-                  <span>
-                    <FormattedMessage id="page.home.auth.logout" />
-                  </span>
-                </button>
-              </div>
-            </div>
-            <div className="col-12 col-md-10">
-              <div className="profile-view-area">
-                {activeView === "details-view" && (
-                  <div className="details-view profile-viewer-area">
-                    <div className="profile-viewer-header">
-                      <div
-                        className={`pvh-button ${
-                          detailsActiveView === "personal-view" ? "active" : ""
-                        }`}
-                      >
-                        <button
-                          onClick={() => {
-                            setDetailsActiveView("personal-view");
-                          }}
-                        >
-                          <div className="pvh-icon">
-                            <FiUser />
-                          </div>
-                          <span>
-                            <FormattedMessage id="section.profile.personal_info" />
-                          </span>
-                        </button>
-                      </div>
-                      <div
-                        className={`pvh-button ${
-                          detailsActiveView === "picture-view" ? "active" : ""
-                        }`}
-                      >
-                        <button
-                          onClick={() => {
-                            setDetailsActiveView("picture-view");
-                          }}
-                        >
-                          <div className="pvh-icon">
-                            <FiImage />
-                          </div>
-                          <span>
-                            <FormattedMessage id="section.profile.profile_pic" />
-                          </span>
-                        </button>
-                      </div>
-                      <div
-                        className={`pvh-button ${
-                          detailsActiveView === "social-view" ? "active" : ""
-                        }`}
-                      >
-                        <button
-                          onClick={() => {
-                            setDetailsActiveView("social-view");
-                          }}
-                        >
-                          <div className="pvh-icon">
-                            <GoMegaphone />
-                          </div>
-                          <span>
-                            <FormattedMessage id="section.profile.social_media" />
-                          </span>
-                        </button>
-                      </div>
+      <Head>
+        <title>
+          Luxury Aqar |{" "}
+          {router.locale === "en" ? "Account Settings" : "إعدادات الحساب"}
+        </title>
+      </Head>
+      <Default>
+        <div
+          className="my-profile-page-content"
+          style={{ padding: "60px 0 120px 0" }}
+        >
+          <div className="container">
+            <div className="row">
+              <div className="col-md-2 col-12">
+                <div className="property-viwer-btns arrow-to-right">
+                  <button
+                    onClick={() => {
+                      setActiveView("details-view");
+                    }}
+                    className={`btn details-view ${
+                      activeView === "details-view" ? "active" : ""
+                    } cursor-pointer`}
+                  >
+                    <div className="view-btn-icon">
+                      <FiUser />
                     </div>
-                    <div className="profile-viewer-content">
-                      <form onSubmit={(e) => handleEditMyInfo(e)}>
-                        {detailsActiveView === "personal-view" && (
-                          <div className="personal-view p-d-view">
-                            <div className="p-d-v-header">
-                              <h4>
-                                <FormattedMessage id="section.profile.personal_info" />
-                              </h4>
+                    <span>
+                      <FormattedMessage id="section.profile.details" />
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setActiveView("units-view");
+                    }}
+                    className={`btn units-view ${
+                      activeView === "units-view" ? "active" : ""
+                    } cursor-pointer`}
+                  >
+                    <div className="view-btn-icon">
+                      <FiHome />
+                    </div>
+                    <span>
+                      <FormattedMessage id="section.profile.my_units" />
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      dispatch(logout(jsCookies.getItem("userToken"))).then(
+                        () => {
+                          router.push("/");
+                          toast.success("Logout Successfully");
+                        }
+                      );
+                    }}
+                    className={`btn units-view cursor-pointer`}
+                  >
+                    <div className="view-btn-icon">
+                      <FiLogOut />
+                    </div>
+                    <span>
+                      <FormattedMessage id="page.home.auth.logout" />
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div className="col-12 col-md-10">
+                <div className="profile-view-area">
+                  {activeView === "details-view" && (
+                    <div className="details-view profile-viewer-area">
+                      <div className="profile-viewer-header">
+                        <div
+                          className={`pvh-button ${
+                            detailsActiveView === "personal-view"
+                              ? "active"
+                              : ""
+                          }`}
+                        >
+                          <button
+                            onClick={() => {
+                              setDetailsActiveView("personal-view");
+                            }}
+                          >
+                            <div className="pvh-icon">
+                              <FiUser />
                             </div>
-                            <div className="p-d-v-content">
-                              <div className="row">
-                                <div className="col-md-6">
-                                  <div className="form-group">
-                                    <label htmlFor="fullName">
-                                      <FormattedMessage id="section.profile.full_name" />
-                                    </label>
-                                    <div className="input-with-icon">
-                                      <input
-                                        type="text"
-                                        value={name}
-                                        onChange={(e) =>
-                                          setName(e.target.value)
-                                        }
-                                        id="fullName"
-                                      />
-                                      <FiUser />
-                                    </div>
-                                  </div>
-                                  <div className="form-group">
-                                    <label htmlFor="password">
-                                      <FormattedMessage id="section.profile.password" />
-                                    </label>
-                                    <div className="input-with-icon">
-                                      <input type="password" id="password" />
-                                      <FiLock />
-                                    </div>
-                                  </div>
-                                  <div className="form-group">
-                                    <label htmlFor="mobile_phone">
-                                      <FormattedMessage id="section.profile.mobile_phone" />
-                                    </label>
-                                    <div className="input-with-icon">
-                                      <input
-                                        type="text"
-                                        value={phone}
-                                        onChange={(e) =>
-                                          setPhone(e.target.value)
-                                        }
-                                        id="mobile_phone"
-                                      />
-                                      <BiPhone />
-                                    </div>
-                                  </div>
-                                  <div className="form-group">
-                                    <label htmlFor="address">
-                                      <FormattedMessage id="section.profile.address" />
-                                    </label>
-                                    <div className="input-with-icon">
-                                      <input
-                                        type="text"
-                                        value={address}
-                                        onChange={(e) =>
-                                          setAddress(e.target.value)
-                                        }
-                                        id="address"
-                                      />
-                                      <MdOutlineLocationOn />
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-md-6">
-                                  <div className="form-group">
-                                    <label htmlFor="emailAddress">
-                                      <FormattedMessage id="section.profile.email_address" />
-                                    </label>
-                                    <div className="input-with-icon">
-                                      <input
-                                        type="email"
-                                        value={email}
-                                        onChange={(e) =>
-                                          setEmail(e.target.value)
-                                        }
-                                        id="emailAddress"
-                                      />
-                                      <MdOutlineEmail />
-                                    </div>
-                                  </div>
-
-                                  <div className="form-group">
-                                    <label htmlFor="whatsapp">
-                                      <FormattedMessage id="section.profile.whatsapp" />
-                                    </label>
-                                    <div className="input-with-icon">
-                                      <input
-                                        type="text"
-                                        value={whatsapp}
-                                        onChange={(e) =>
-                                          setWhatsapp(e.target.value)
-                                        }
-                                        id="whatsapp"
-                                      />
-                                      <FaWhatsapp />
-                                    </div>
-                                  </div>
-                                  <div className="form-group">
-                                    <label htmlFor="governorate">
-                                      <FormattedMessage id="section.profile.covernorate" />
-                                    </label>
-                                    <div className="input-with-icon">
-                                      <input
-                                        type="text"
-                                        value={country}
-                                        onChange={(e) =>
-                                          setCountry(e.target.value)
-                                        }
-                                        id="governorate"
-                                      />
-                                      <BiWorld />
-                                    </div>
-                                  </div>
-                                  <div className="form-group">
-                                    <label htmlFor="city">City</label>
-                                    <div className="input-with-icon">
-                                      <input
-                                        type="text"
-                                        value={city}
-                                        onChange={(e) =>
-                                          setCity(e.target.value)
-                                        }
-                                        id="city"
-                                      />
-                                      <FiLock />
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-md-12">
-                                  <div className="form-group">
-                                    <label htmlFor="bio">
-                                      <FormattedMessage id="section.profile.brief" />
-                                    </label>
-                                    <div className="input-with-icon textarea">
-                                      <textarea
-                                        value={about}
-                                        onChange={(e) =>
-                                          setAbout(e.target.value)
-                                        }
-                                        id="bio"
-                                      ></textarea>
-                                      <MdOutlineTextsms />
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
+                            <span>
+                              <FormattedMessage id="section.profile.personal_info" />
+                            </span>
+                          </button>
+                        </div>
+                        <div
+                          className={`pvh-button ${
+                            detailsActiveView === "picture-view" ? "active" : ""
+                          }`}
+                        >
+                          <button
+                            onClick={() => {
+                              setDetailsActiveView("picture-view");
+                            }}
+                          >
+                            <div className="pvh-icon">
+                              <FiImage />
                             </div>
-                          </div>
-                        )}
-                        {detailsActiveView === "picture-view" && (
-                          <div className="picture-view p-d-view">
-                            <div className="social-view p-d-view">
+                            <span>
+                              <FormattedMessage id="section.profile.profile_pic" />
+                            </span>
+                          </button>
+                        </div>
+                        <div
+                          className={`pvh-button ${
+                            detailsActiveView === "social-view" ? "active" : ""
+                          }`}
+                        >
+                          <button
+                            onClick={() => {
+                              setDetailsActiveView("social-view");
+                            }}
+                          >
+                            <div className="pvh-icon">
+                              <GoMegaphone />
+                            </div>
+                            <span>
+                              <FormattedMessage id="section.profile.social_media" />
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                      <div className="profile-viewer-content">
+                        <form onSubmit={(e) => handleEditMyInfo(e)}>
+                          {detailsActiveView === "personal-view" && (
+                            <div className="personal-view p-d-view">
                               <div className="p-d-v-header">
                                 <h4>
-                                  <FormattedMessage id="section.profile.profile_pic" />
+                                  <FormattedMessage id="section.profile.personal_info" />
                                 </h4>
                               </div>
                               <div className="p-d-v-content">
                                 <div className="row">
-                                  <div className="col-12">
-                                    <div className="d-u-image">
-                                      <Image
-                                        src={
-                                          images[0]?.data_url
-                                            ? images[0].data_url
-                                            : `https://admin.dpmhomes.com/user-images/${image}`
-                                        }
-                                        width={180}
-                                        height={180}
-                                        alt="user image"
-                                      />
+                                  <div className="col-md-6">
+                                    <div className="form-group">
+                                      <label htmlFor="fullName">
+                                        <FormattedMessage id="section.profile.full_name" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <input
+                                          type="text"
+                                          value={name}
+                                          onChange={(e) =>
+                                            setName(e.target.value)
+                                          }
+                                          id="fullName"
+                                        />
+                                        <FiUser />
+                                      </div>
+                                    </div>
+                                    <div className="form-group">
+                                      <label htmlFor="password">
+                                        <FormattedMessage id="section.profile.password" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <input type="password" id="password" />
+                                        <FiLock />
+                                      </div>
+                                    </div>
+                                    <div className="form-group">
+                                      <label htmlFor="mobile_phone">
+                                        <FormattedMessage id="section.profile.mobile_phone" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <input
+                                          type="text"
+                                          value={phone}
+                                          onChange={(e) =>
+                                            setPhone(e.target.value)
+                                          }
+                                          id="mobile_phone"
+                                        />
+                                        <BiPhone />
+                                      </div>
+                                    </div>
+                                    <div className="form-group">
+                                      <label htmlFor="address">
+                                        <FormattedMessage id="section.profile.address" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <input
+                                          type="text"
+                                          value={address}
+                                          onChange={(e) =>
+                                            setAddress(e.target.value)
+                                          }
+                                          id="address"
+                                        />
+                                        <MdOutlineLocationOn />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className="col-md-6">
+                                    <div className="form-group">
+                                      <label htmlFor="emailAddress">
+                                        <FormattedMessage id="section.profile.email_address" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <input
+                                          type="email"
+                                          value={email}
+                                          onChange={(e) =>
+                                            setEmail(e.target.value)
+                                          }
+                                          id="emailAddress"
+                                        />
+                                        <MdOutlineEmail />
+                                      </div>
                                     </div>
 
-                                    <ImageUploading
-                                      value={images}
-                                      onChange={onChange}
-                                      maxNumber={maxNumber}
-                                      dataURLKey="data_url"
-                                    >
-                                      {({
-                                        imageList,
-                                        onImageUpload,
-                                        onImageUpdate,
-                                        onImageRemove,
-                                        dragProps,
-                                      }) => (
-                                        // write your building UI
-                                        <div className="upload__image-wrapper">
-                                          {images.length < 1 && (
-                                            <div
-                                              className="drag-box"
-                                              onClick={onImageUpload}
-                                              {...dragProps}
-                                            >
-                                              <FiUploadCloud />
-                                              <span>
-                                                <FormattedMessage id="section.profile.drag_and_drop" />
-                                              </span>
-                                              <button type="button">
-                                                <FormattedMessage id="section.profile.browse_files" />
-                                              </button>
-                                            </div>
-                                          )}
-                                          <div className="upladed_images_box">
-                                            {imageList.map((image, index) => (
+                                    <div className="form-group">
+                                      <label htmlFor="whatsapp">
+                                        <FormattedMessage id="section.profile.whatsapp" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <input
+                                          type="text"
+                                          value={whatsapp}
+                                          onChange={(e) =>
+                                            setWhatsapp(e.target.value)
+                                          }
+                                          id="whatsapp"
+                                        />
+                                        <FaWhatsapp />
+                                      </div>
+                                    </div>
+                                    <div className="form-group">
+                                      <label htmlFor="governorate">
+                                        <FormattedMessage id="section.profile.covernorate" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <input
+                                          type="text"
+                                          value={country}
+                                          onChange={(e) =>
+                                            setCountry(e.target.value)
+                                          }
+                                          id="governorate"
+                                        />
+                                        <BiWorld />
+                                      </div>
+                                    </div>
+                                    <div className="form-group">
+                                      <label htmlFor="city_select">
+                                        <FormattedMessage id="page.home.auth.properties.filter.location" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <Select
+                                          styles={selectStyle}
+                                          isSearchable={false}
+                                          isShow={true}
+                                          placeholder={
+                                            <FormattedMessage id="page.home.auth.properties.filter.select_location" />
+                                          }
+                                          name="city"
+                                          id="city_select"
+                                          value={country}
+                                          onChange={setCountry}
+                                          options={allCountries}
+                                          instanceId="city_select"
+                                        />
+                                      </div>
+                                      <FiLock />
+                                    </div>
+                                  </div>
+                                  <div className="col-md-12">
+                                    <div className="form-group">
+                                      <label htmlFor="bio">
+                                        <FormattedMessage id="section.profile.brief" />
+                                      </label>
+                                      <div className="input-with-icon textarea">
+                                        <textarea
+                                          value={about}
+                                          onChange={(e) =>
+                                            setAbout(e.target.value)
+                                          }
+                                          id="bio"
+                                        ></textarea>
+                                        <MdOutlineTextsms />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                          {detailsActiveView === "picture-view" && (
+                            <div className="picture-view p-d-view">
+                              <div className="social-view p-d-view">
+                                <div className="p-d-v-header">
+                                  <h4>
+                                    <FormattedMessage id="section.profile.profile_pic" />
+                                  </h4>
+                                </div>
+                                <div className="p-d-v-content">
+                                  <div className="row">
+                                    <div className="col-12">
+                                      <div className="d-u-image">
+                                        <Image
+                                          src={
+                                            images[0]?.data_url
+                                              ? images[0].data_url
+                                              : `https://admin.dpmhomes.com/user-images/${image}`
+                                          }
+                                          width={180}
+                                          height={180}
+                                          alt="user image"
+                                        />
+                                      </div>
+
+                                      <ImageUploading
+                                        value={images}
+                                        onChange={onChange}
+                                        maxNumber={maxNumber}
+                                        dataURLKey="data_url"
+                                      >
+                                        {({
+                                          imageList,
+                                          onImageUpload,
+                                          onImageUpdate,
+                                          onImageRemove,
+                                          dragProps,
+                                        }) => (
+                                          // write your building UI
+                                          <div className="upload__image-wrapper">
+                                            {images.length < 1 && (
                                               <div
-                                                key={index}
-                                                className="uploadThumb image-item"
-                                                id="result"
+                                                className="drag-box"
+                                                onClick={onImageUpload}
+                                                {...dragProps}
                                               >
-                                                <div className="image-item__btn-wrapper">
-                                                  <button
-                                                    type="button"
-                                                    onClick={() =>
-                                                      onImageUpdate(index)
-                                                    }
-                                                  >
-                                                    <FiEdit2 />
-                                                  </button>
-                                                  <button
-                                                    type="button"
-                                                    onClick={() =>
-                                                      onImageRemove(index)
-                                                    }
-                                                  >
-                                                    <MdOutlineDeleteOutline />
-                                                  </button>
-                                                </div>
+                                                <FiUploadCloud />
+                                                <span>
+                                                  <FormattedMessage id="section.profile.drag_and_drop" />
+                                                </span>
+                                                <button type="button">
+                                                  <FormattedMessage id="section.profile.browse_files" />
+                                                </button>
                                               </div>
-                                            ))}
+                                            )}
+                                            <div className="upladed_images_box">
+                                              {imageList.map((image, index) => (
+                                                <div
+                                                  key={index}
+                                                  className="uploadThumb image-item"
+                                                  id="result"
+                                                >
+                                                  <div className="image-item__btn-wrapper">
+                                                    <button
+                                                      type="button"
+                                                      onClick={() =>
+                                                        onImageUpdate(index)
+                                                      }
+                                                    >
+                                                      <FiEdit2 />
+                                                    </button>
+                                                    <button
+                                                      type="button"
+                                                      onClick={() =>
+                                                        onImageRemove(index)
+                                                      }
+                                                    >
+                                                      <MdOutlineDeleteOutline />
+                                                    </button>
+                                                  </div>
+                                                </div>
+                                              ))}
+                                            </div>
                                           </div>
-                                        </div>
-                                      )}
-                                    </ImageUploading>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                        {detailsActiveView === "social-view" && (
-                          <div className="social-view p-d-view">
-                            <div className="p-d-v-header">
-                              <h4>
-                                <FormattedMessage id="section.profile.social_media" />
-                              </h4>
-                            </div>
-                            <div className="p-d-v-content">
-                              <div className="row">
-                                <div className="col-md-6">
-                                  <div className="form-group">
-                                    <label htmlFor="facebook">
-                                      <FormattedMessage id="section.social_media.facebook" />
-                                    </label>
-                                    <div className="input-with-icon">
-                                      <input
-                                        type="text"
-                                        value={facebook}
-                                        onChange={(e) =>
-                                          setFacebook(e.target.value)
-                                        }
-                                        id="facebook"
-                                      />
-                                      <FaFacebook />
-                                    </div>
-                                  </div>
-                                  <div className="form-group">
-                                    <label htmlFor="twitter">
-                                      <FormattedMessage id="section.social_media.twitter" />
-                                    </label>
-                                    <div className="input-with-icon">
-                                      <input
-                                        type="text"
-                                        value={twitter}
-                                        onChange={(e) =>
-                                          setTwitter(e.target.value)
-                                        }
-                                        id="twitter"
-                                      />
-                                      <FaTwitter />
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-md-6">
-                                  <div className="form-group">
-                                    <label htmlFor="google">
-                                      <FormattedMessage id="section.social_media.google" />
-                                    </label>
-                                    <div className="input-with-icon">
-                                      <input
-                                        type="text"
-                                        value={google}
-                                        onChange={(e) =>
-                                          setGoolge(e.target.value)
-                                        }
-                                        id="google"
-                                      />
-                                      <FaGoogle />
-                                    </div>
-                                  </div>
-                                  <div className="form-group">
-                                    <label htmlFor="linkedin">
-                                      <FormattedMessage id="section.social_media.linkedin" />
-                                    </label>
-                                    <div className="input-with-icon">
-                                      <input
-                                        type="text"
-                                        value={linkedin}
-                                        onChange={(e) =>
-                                          setLinkedin(e.target.value)
-                                        }
-                                        id="linkedin"
-                                      />
-                                      <FaLinkedin />
+                                        )}
+                                      </ImageUploading>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
+                          )}
+                          {detailsActiveView === "social-view" && (
+                            <div className="social-view p-d-view">
+                              <div className="p-d-v-header">
+                                <h4>
+                                  <FormattedMessage id="section.profile.social_media" />
+                                </h4>
+                              </div>
+                              <div className="p-d-v-content">
+                                <div className="row">
+                                  <div className="col-md-6">
+                                    <div className="form-group">
+                                      <label htmlFor="facebook">
+                                        <FormattedMessage id="section.social_media.facebook" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <input
+                                          type="text"
+                                          value={facebook}
+                                          onChange={(e) =>
+                                            setFacebook(e.target.value)
+                                          }
+                                          id="facebook"
+                                        />
+                                        <FaFacebook />
+                                      </div>
+                                    </div>
+                                    <div className="form-group">
+                                      <label htmlFor="twitter">
+                                        <FormattedMessage id="section.social_media.twitter" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <input
+                                          type="text"
+                                          value={twitter}
+                                          onChange={(e) =>
+                                            setTwitter(e.target.value)
+                                          }
+                                          id="twitter"
+                                        />
+                                        <FaTwitter />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className="col-md-6">
+                                    <div className="form-group">
+                                      <label htmlFor="google">
+                                        <FormattedMessage id="section.social_media.google" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <input
+                                          type="text"
+                                          value={google}
+                                          onChange={(e) =>
+                                            setGoolge(e.target.value)
+                                          }
+                                          id="google"
+                                        />
+                                        <FaGoogle />
+                                      </div>
+                                    </div>
+                                    <div className="form-group">
+                                      <label htmlFor="linkedin">
+                                        <FormattedMessage id="section.social_media.linkedin" />
+                                      </label>
+                                      <div className="input-with-icon">
+                                        <input
+                                          type="text"
+                                          value={linkedin}
+                                          onChange={(e) =>
+                                            setLinkedin(e.target.value)
+                                          }
+                                          id="linkedin"
+                                        />
+                                        <FaLinkedin />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                          <div className="pvc-submit-button">
+                            <button type="submit" className="btn">
+                              <FormattedMessage id="section.profile.save_changes" />
+                            </button>
                           </div>
-                        )}
-                        <div className="pvc-submit-button">
-                          <button type="submit" className="btn">
-                            <FormattedMessage id="section.profile.save_changes" />
-                          </button>
-                        </div>
-                      </form>
+                        </form>
+                      </div>
                     </div>
-                  </div>
-                )}
-                {activeView === "units-view" && (
-                  <div className="units-view profile-viewer-area">
-                    <div className="profile-viewer-header">
-                      {userProperties.data.filter(
-                        (property) => property.sell_rent_type === "sell"
-                      ).length ? (
-                        <div
-                          className={`pvh-button ${
-                            unitsType === "sell" ? "active" : ""
-                          }`}
-                        >
-                          <button
-                            onClick={() => {
-                              setUnitsType("sell");
-                            }}
+                  )}
+                  {activeView === "units-view" && (
+                    <div className="units-view profile-viewer-area">
+                      <div className="profile-viewer-header">
+                        {userProperties.data.filter(
+                          (property) => property.sell_rent_type === "sell"
+                        ).length ? (
+                          <div
+                            className={`pvh-button ${
+                              unitsType === "sell" ? "active" : ""
+                            }`}
                           >
-                            <div className="pvh-icon">
-                              <FcHome />
-                            </div>
-                            <span>
-                              <FormattedMessage id="global.section.title.sell" />
-                            </span>
-                          </button>
-                        </div>
-                      ) : null}
+                            <button
+                              onClick={() => {
+                                setUnitsType("sell");
+                              }}
+                            >
+                              <div className="pvh-icon">
+                                <FcHome />
+                              </div>
+                              <span>
+                                <FormattedMessage id="global.section.title.sell" />
+                              </span>
+                            </button>
+                          </div>
+                        ) : null}
 
-                      {userProperties.data.filter(
-                        (property) => property.sell_rent_type === "rent"
-                      ).length ? (
-                        <div
-                          className={`pvh-button ${
-                            unitsType === "rent" ? "active" : ""
-                          }`}
-                        >
-                          <button
-                            onClick={() => {
-                              setUnitsType("rent");
-                            }}
+                        {userProperties.data.filter(
+                          (property) => property.sell_rent_type === "rent"
+                        ).length ? (
+                          <div
+                            className={`pvh-button ${
+                              unitsType === "rent" ? "active" : ""
+                            }`}
                           >
-                            <div className="pvh-icon">
-                              <FcHome />
-                            </div>
-                            <span>
-                              <FormattedMessage id="global.section.title.rent" />
-                            </span>
-                          </button>
-                        </div>
-                      ) : null}
-                    </div>
-                    <div className="units-view-box">
-                      {unitsType === "sell" && (
-                        <div className="row search-property-layout-content">
-                          {userProperties.data
-                            .filter(
-                              (property) => property.sell_rent_type === "sell"
-                            )
-                            .map((property, index) => (
-                              <div className="col-md-3" key={property.id}>
-                                <PropertyCard
-                                  featureCount="2"
-                                  image="/img/property_test_3.jpg"
-                                  property={property}
-                                />
+                            <button
+                              onClick={() => {
+                                setUnitsType("rent");
+                              }}
+                            >
+                              <div className="pvh-icon">
+                                <FcHome />
                               </div>
-                            ))}
-                        </div>
-                      )}
-                      {unitsType === "rent" && (
-                        <div className="row search-property-layout-content">
-                          {userProperties.data
-                            .filter(
-                              (property) => property.sell_rent_type === "rent"
-                            )
-                            .map((property, index) => (
-                              <div className="col-md-3" key={property.id}>
-                                <PropertyCard
-                                  featureCount="2"
-                                  image="/img/property_test_3.jpg"
-                                  property={property}
-                                />
-                              </div>
-                            ))}
-                        </div>
-                      )}
-                      {/* {userProperties.meta.links.map((link) => (
+                              <span>
+                                <FormattedMessage id="global.section.title.rent" />
+                              </span>
+                            </button>
+                          </div>
+                        ) : null}
+                      </div>
+                      <div className="units-view-box">
+                        {unitsType === "sell" && (
+                          <div className="row search-property-layout-content">
+                            {userProperties.data
+                              .filter(
+                                (property) => property.sell_rent_type === "sell"
+                              )
+                              .map((property, index) => (
+                                <div className="col-md-3" key={property.id}>
+                                  <PropertyCard
+                                    featureCount="2"
+                                    image="/img/property_test_3.jpg"
+                                    property={property}
+                                  />
+                                </div>
+                              ))}
+                          </div>
+                        )}
+                        {unitsType === "rent" && (
+                          <div className="row search-property-layout-content">
+                            {userProperties.data
+                              .filter(
+                                (property) => property.sell_rent_type === "rent"
+                              )
+                              .map((property, index) => (
+                                <div className="col-md-3" key={property.id}>
+                                  <PropertyCard
+                                    featureCount="2"
+                                    image="/img/property_test_3.jpg"
+                                    property={property}
+                                  />
+                                </div>
+                              ))}
+                          </div>
+                        )}
+                        {/* {userProperties.meta.links.map((link) => (
                         <div className="pagination-area">
                           {link
                             .filter((item) => item.url !== null)
@@ -677,15 +715,15 @@ const MyProfile = () => {
                             ))}
                         </div>
                       ))} */}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </Default>
+      </Default>
     </>
   );
 };
@@ -694,7 +732,7 @@ export default MyProfile;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ req, res }) => {
+    async ({ req, res, locale }) => {
       res.setHeader(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
@@ -711,6 +749,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         const cookies = parseCookies(req);
         const token = cookies.userToken;
         await store.dispatch(getUserProperties(token));
+        await store.dispatch(getAllCountries(locale));
         return {
           props: {},
         };

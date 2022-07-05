@@ -849,6 +849,7 @@ const HosuingCash = () => {
                 </div>
               </div>
             </div>
+            
             {showFinishingTab && (
               <div className={`${thirdTabVis ? "" : "collapsed"}`}>
                 <div

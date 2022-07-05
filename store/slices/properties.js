@@ -5,6 +5,16 @@ import {
   addResidentialCashProperty,
   addResidentialInstallmentProperty,
   getPropertyById,
+  addResidentialBothProperty,
+  addResidentialRentProperty,
+  addCommercialCashProperty,
+  addCommercialInstallmentProperty,
+  addCommercialRentProperty,
+  addCommercialBothProperty,
+  addAdministrativeCashProperty,
+  addAdministrativeInstallmentProperty,
+  addAdministrativeBothProperty,
+  addAdministrativeRentProperty,
 } from "../api/propertiesAPI";
 
 const initialState = {
@@ -40,6 +50,86 @@ export const addResidentialInstallment = createAsyncThunk(
   "properties/add-residential-installment",
   async (data) => {
     const responseData = await addResidentialInstallmentProperty(data);
+    return responseData;
+  }
+);
+
+export const addResidentialBoth = createAsyncThunk(
+  "properties/add-residential-both",
+  async (data) => {
+    const responseData = await addResidentialBothProperty(data);
+    return responseData;
+  }
+);
+
+export const addResidentialRent = createAsyncThunk(
+  "properties/add-residential-rent",
+  async (data) => {
+    const responseData = await addResidentialRentProperty(data);
+    return responseData;
+  }
+);
+
+export const addCommercialCash = createAsyncThunk(
+  "properties/add-commercial-cash",
+  async (data) => {
+    const responseData = await addCommercialCashProperty(data);
+    return responseData;
+  }
+);
+
+export const addCommercialInstallment = createAsyncThunk(
+  "properties/add-commercial-installment",
+  async (data) => {
+    const responseData = await addCommercialInstallmentProperty(data);
+    return responseData;
+  }
+);
+
+export const addCommercialBoth = createAsyncThunk(
+  "properties/add-commercial-both",
+  async (data) => {
+    const responseData = await addCommercialBothProperty(data);
+    return responseData;
+  }
+);
+
+export const addCommercialRent = createAsyncThunk(
+  "properties/add-commercial-rent",
+  async (data) => {
+    const responseData = await addCommercialRentProperty(data);
+    return responseData;
+  }
+);
+
+export const addAdministrativeCash = createAsyncThunk(
+  "properties/add-administrative-cash",
+  async (data) => {
+    const responseData = await addAdministrativeCashProperty(data);
+    return responseData;
+  }
+);
+
+export const addAdministrativeInstallment = createAsyncThunk(
+  "properties/add-administrative-installment",
+  async (data) => {
+    const responseData = await addAdministrativeInstallmentProperty(data);
+    return responseData;
+  }
+);
+
+export const addAdministrativeBoth = createAsyncThunk(
+  "properties/add-administrative-both",
+  async (data) => {
+    const responseData = await addAdministrativeBothProperty(data);
+    return responseData;
+  }
+);
+
+export const addAdministrativeRent = createAsyncThunk(
+  "properties/add-administrative-rent",
+  async (data) => {
+    const responseData = await addAdministrativeRentProperty(data);
     return responseData;
   }
 );

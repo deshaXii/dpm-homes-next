@@ -73,11 +73,11 @@ const ContactUs = () => {
                   <h1>
                     <FormattedMessage id="page.contact-us.title" />
                   </h1>
-                  <p>
+                  {/* <p>
                     Sed ut perspiciatis unde omnis iste natus error sit
                     voluptatem accusantium doloremque laudantium, totam rem
                     aperiam
-                  </p>
+                  </p> */}
                 </div>
                 <div className="contact-us-form">
                   <form onSubmit={(e) => sendMessage(e)}>
@@ -89,7 +89,7 @@ const ContactUs = () => {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
-                            placeholder="Full name"
+                            placeholder={ locale === "en" ? 'Full Name' : "الإسم بالكامل" }
                           />
                         </div>
                       </div>
@@ -100,7 +100,7 @@ const ContactUs = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            placeholder="* Email Address"
+                            placeholder={ locale === "en" ? 'Email Address' : " البريد الإلكتروني" }
                           />
                         </div>
                       </div>
@@ -109,7 +109,7 @@ const ContactUs = () => {
                         <div className="form-group">
                           <PhoneInput
                             country={"eg"}
-                            placeholder="Enter Phone Number"
+                            placeholder={ locale === "en" ? 'Phone Number' : " رقم الهاتف" }
                             onlyCountries={[
                               "eg",
                               "ae",
@@ -128,7 +128,7 @@ const ContactUs = () => {
                       <div className="col-md-12">
                         <div className="form-group">
                           <textarea
-                            placeholder="* Message"
+                          placeholder={ locale === "en" ? 'Message' : " الرسالة" }
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             required
@@ -136,7 +136,7 @@ const ContactUs = () => {
                         </div>
                         <div className="form-submit-btn">
                           <button type="submit" className="btn">
-                            Send Message
+                            <FormattedMessage id="page.contact-us.form.send" />
                           </button>
                         </div>
                       </div>

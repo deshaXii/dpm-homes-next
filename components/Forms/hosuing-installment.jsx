@@ -73,6 +73,20 @@ const HosuingInstallment = () => {
     { value: "KWD", label: "KWD" },
   ];
 
+  const installment_type_ar = [
+    { value: "monthly", label: "شهريا" },
+    { value: "quarterly", label: "كل اربع شهور" },
+    { value: "semi-annual", label: "كل 6 شهور" },
+    { value: "annual", label: "سنويا" },
+  ];
+  
+  const installment_type_en = [
+    { value: "monthly", label: "monthly" },
+    { value: "quarterly", label: "quarterly" },
+    { value: "semi-annual", label: "semi-annual" },
+    { value: "annual", label: "annual" },
+  ];
+
   const [firstTabVis, setFirstTabVis] = useState(false);
   const [secondTabVis, setSecondTabVis] = useState(false);
   const [thirdTabVis, setThirdTabVis] = useState(false);
@@ -81,6 +95,7 @@ const HosuingInstallment = () => {
   const [sixthTabVis, setSixthTabVis] = useState(false);
   const [seventhTabVis, setSeventhTabVis] = useState(false);
   const [eighthTabVis, setEighthTabVis] = useState(false);
+  const [ninthTabVis, setNinthTabVis] = useState(false);
 
   const selectStyle = {
     control: (base, { isFocused }) => ({
@@ -132,11 +147,17 @@ const HosuingInstallment = () => {
   const [light_system, setLight_system] = useState("");
   const [air_conditioners, setAir_conditioners] = useState("");
   const [internet, setInternet] = useState("");
+
   const [total_price_installment, setTotal_price_installment] = useState("");
+  const [installment, setInstallment] = useState("");
+  const [installment_time, setInstallment_time] = useState("");
+  const [installment_type, setIynstallment_type] = useState("");
+
   const [advance_payment, setAdvance_payment] = useState("");
   const [maintenance_fees, setMaintenance_fees] = useState("");
   const [club_fees, setClub_fees] = useState("");
   const [currency, setCurrency] = useState("");
+
   const [receiving_date, setReceiving_date] = useState("");
   const [school, setSchool] = useState("");
   const [hospital, setHospital] = useState("");
@@ -154,9 +175,6 @@ const HosuingInstallment = () => {
   const [location, setLocation] = useState(null);
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
-  const [installment, setInstallment] = useState("");
-  const [installment_time, setInstallment_time] = useState("");
-  const [installment_type, setInstallment_type] = useState("");
   const maxNumber = 12;
   const maxFileSize = 1048576;
 
@@ -232,6 +250,9 @@ const HosuingInstallment = () => {
     air_conditioners,
     internet,
     total_price_installment,
+    installment,
+    installment_time,
+    installment_type: installment_type.value,
     advance_payment,
     maintenance_fees,
     club_fees,
@@ -252,9 +273,6 @@ const HosuingInstallment = () => {
     youtube,
     location,
     images: pImages,
-    installment,
-    installment_time,
-    installment_type: installment_type.value,
   };
 
   const { locale } = router;
@@ -660,6 +678,7 @@ const HosuingInstallment = () => {
                         className="form-control"
                       />
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.installment" />
@@ -730,6 +749,7 @@ const HosuingInstallment = () => {
                         className="form-control"
                       />
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.advance" />
@@ -745,11 +765,22 @@ const HosuingInstallment = () => {
                       <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.installment_type" />
                       </label>
-                      <input
-                        type="text"
+                      <Select
+                        styles={selectStyle}
+                        isShow={true}
+                        placeholder={
+                          <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
+                        }
                         value={installment_type}
-                        onChange={(e) => setInstallment_type(e.target.value)}
-                        className="form-control"
+                        onChange={setIynstallment_type}
+                        name="currency"
+                        id="installment_type_select"
+                        options={
+                          locale === "ar"
+                            ? installment_type_ar
+                            : installment_type_en
+                        }
+                        instanceId="installment_type_select"
                       />
                     </div>
                   </div>
@@ -1172,7 +1203,9 @@ const HosuingInstallment = () => {
             </div>
           </div>
           <div className="form-btn-box">
-            <button>رفع العقار</button>
+            <button>
+              <FormattedMessage id="global.upload-property" />
+            </button>
           </div>
         </form>
       </div>
