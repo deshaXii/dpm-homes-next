@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { MdClose } from "react-icons/md";
 import { GrContact } from "react-icons/gr";
 import { RiAddLine } from "react-icons/ri";
@@ -17,7 +17,7 @@ const MobileMenu = ({ setIsOpen, isOpen }) => {
 
   useEffect(() => {
     setIsOpen(false);
-  }, [locale])
+  }, [locale]);
 
   return (
     <div className={`mobile-menu ${isOpen ? "active" : ""}`}>
@@ -60,7 +60,7 @@ const MobileMenu = ({ setIsOpen, isOpen }) => {
           <Link href="/search-sell">
             <a className="mobile-menu-link">
               <div className="mml-icon">
-              <p className="asSVG">{locale === 'en' ? 'R' : 'ب'}</p>
+                <p className="asSVG">{locale === "en" ? "R" : "ب"}</p>
               </div>
               <span>
                 <FormattedMessage id="page.home.menu.sell" />
@@ -72,7 +72,7 @@ const MobileMenu = ({ setIsOpen, isOpen }) => {
           <Link href="/search-rent">
             <a className="mobile-menu-link">
               <div className="mml-icon">
-                <p className="asSVG">{locale === 'en' ? 'R' : 'إ'}</p>
+                <p className="asSVG">{locale === "en" ? "R" : "إ"}</p>
               </div>
               <span>
                 <FormattedMessage id="page.home.menu.rent" />
@@ -80,20 +80,18 @@ const MobileMenu = ({ setIsOpen, isOpen }) => {
             </a>
           </Link>
         </div>
-        {user && (
-          <div className="mobile-menu-list-item">
-            <Link href="/add-property">
-              <a className="mobile-menu-link">
-                <div className="mml-icon">
-                  <RiAddLine />
-                </div>
-                <span>
-                  <FormattedMessage id="page.home.head.advertise" />
-                </span>
-              </a>
-            </Link>
-          </div>
-        )}
+        <div className="mobile-menu-list-item">
+          <Link href="/add-property">
+            <a className="mobile-menu-link">
+              <div className="mml-icon">
+                <RiAddLine />
+              </div>
+              <span>
+                <FormattedMessage id="page.home.head.advertise" />
+              </span>
+            </a>
+          </Link>
+        </div>
         <div className="mobile-menu-list-item">
           <Link href="/contact-us">
             <a className="mobile-menu-link">
@@ -115,9 +113,13 @@ const MobileMenu = ({ setIsOpen, isOpen }) => {
                 <Link href={asPath} key={locale} locale={locale}>
                   <a className="mobile-menu-link">
                     <div className="mml-icon">
-                      <MdLanguage className="lang-icon" /> 
+                      <MdLanguage className="lang-icon" />
                     </div>
-                    <span>{locale === 'en' ? 'التحويل الي الإنجليزية' : 'Switch To Arabic'}</span>
+                    <span>
+                      {locale === "en"
+                        ? "التحويل الي الإنجليزية"
+                        : "Switch To Arabic"}
+                    </span>
                   </a>
                 </Link>
               ))}
