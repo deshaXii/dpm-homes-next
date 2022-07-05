@@ -74,6 +74,10 @@
         padding-bottom: 30px;
     }
 
+    .client-header .sbf {
+        flex-direction: column;
+    }
+
     .copyright-social-media-area ul.c-social-media-list {
         justify-content: center;
         margin-top: 6px;

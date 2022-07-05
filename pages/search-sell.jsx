@@ -11,13 +11,13 @@ import {
   getPropertiesWithTpye,
   selectProperties,
 } from "../store/slices/properties";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { selectFilter } from "../store/slices/filter";
 import { useRouter } from "next/router";
 
 const Search = () => {
-  const {locale} = useRouter();
+  const { locale } = useRouter();
   const { allProperties } = useSelector(selectProperties);
   const { filteredProperties } = useSelector(selectFilter);
   const [layout, setLayout] = useState("grid");
@@ -29,10 +29,26 @@ const Search = () => {
     };
   }, []);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    function fetchNewPosts() {
+      dispatch(getAllCountries(locale));
+      dispatch(getPropertiesWithTpye({ type: "sell" }));
+    }
+
+    if (allProperties.length === 0) {
+      fetchNewPosts();
+    }
+  }, []);
+
   return (
     <>
       <Head>
-        <title>Luxury Aqar | {locale === 'en' ? 'Properties For Sell' : 'عقارات للبيع'}</title>
+        <title>
+          Luxury Aqar |{" "}
+          {locale === "en" ? "Properties For Sell" : "عقارات للبيع"}
+        </title>
       </Head>
       <Default>
         <div className="search-page" style={{ padding: "60px 0 120px 0" }}>
@@ -81,7 +97,9 @@ const Search = () => {
                       {filteredProperties.length ? (
                         filteredProperties.slice(0, 9).map((property) => (
                           <div
-                            className={`col-xl-${layout === "grid" ? 4 : 12} col-md-${layout === "grid" ? 6 : 12}`}
+                            className={`col-xl-${
+                              layout === "grid" ? 4 : 12
+                            } col-md-${layout === "grid" ? 6 : 12}`}
                             key={property.id}
                           >
                             <PropertyCard

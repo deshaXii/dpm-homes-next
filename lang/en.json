@@ -65,6 +65,7 @@
   "page.contact-us.title": "Contact Us",
   "page.contact-us.form.fullname": " Full Name",
   "page.contact-us.form.email": "Email Address",
+  "page.home.auth.properties.filter.country": " Country",
   "page.contact-us.form.phone": "Phone Number",
   "page.contact-us.form.message": "Message",
   "page.contact-us.form.send": "Send Message",

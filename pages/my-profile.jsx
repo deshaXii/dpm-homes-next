@@ -126,7 +126,7 @@ const MyProfile = () => {
     });
   };
 
-  const { allCountries } = useSelector(selectCountries);
+  const { allCountries, allGovernorates } = useSelector(selectCountries);
 
 
   const selectStyle = {
@@ -381,25 +381,10 @@ const MyProfile = () => {
                                         <FaWhatsapp />
                                       </div>
                                     </div>
-                                    <div className="form-group">
-                                      <label htmlFor="governorate">
-                                        <FormattedMessage id="section.profile.covernorate" />
-                                      </label>
-                                      <div className="input-with-icon">
-                                        <input
-                                          type="text"
-                                          value={country}
-                                          onChange={(e) =>
-                                            setCountry(e.target.value)
-                                          }
-                                          id="governorate"
-                                        />
-                                        <BiWorld />
-                                      </div>
-                                    </div>
+                         
                                     <div className="form-group">
                                       <label htmlFor="city_select">
-                                        <FormattedMessage id="page.home.auth.properties.filter.location" />
+                                        <FormattedMessage id="page.home.auth.properties.filter.country" />
                                       </label>
                                       <div className="input-with-icon">
                                         <Select
@@ -417,7 +402,6 @@ const MyProfile = () => {
                                           instanceId="city_select"
                                         />
                                       </div>
-                                      <FiLock />
                                     </div>
                                   </div>
                                   <div className="col-md-12">

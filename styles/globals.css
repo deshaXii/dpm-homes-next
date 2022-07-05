@@ -2169,6 +2169,10 @@ section.property-details {
   color: #000;
 }
 
+div#city_select .css-1jqqwy7-control {
+  border-radius: 50px;
+}
+
 
 .pvh-button .pvh-icon svg {
   font-size: 28px;

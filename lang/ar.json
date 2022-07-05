@@ -59,6 +59,7 @@
   "section.property_card.bedrooms": "غرف نوم",
   "section.property_card.bathrooms": "حمامات",
   "section.property_card.currency.egp": "جنية",
+  "page.home.auth.properties.filter.country": "الدولة",
   "page.search.properties_found": "عقارات متاحة",
   "page.search.filter.apply": "فلتر",
   "page.search.filter.reset": "مسح",
