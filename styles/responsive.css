@@ -176,6 +176,7 @@
         top: 0;
         z-index: 9999;
         width: 100%;
+        padding-top: 10px;
         background-color: var(--darkGreen);
     }
 
@@ -241,7 +242,7 @@
         padding: 15px 12px;
     }
 
-    .mobile-menu-list .mobile-menu-list-item a.mobile-menu-link {
+    .mobile-menu-list .mobile-menu-list-item .mobile-menu-link {
         color: #fff;
         font-size: 18px;
         text-transform: capitalize;
@@ -522,8 +523,32 @@
     .property-main-info-price {
         display: none;
     }
+    .mobile-menu-list .mobile-menu-list-item .mobile-menu-link  button {
+        background: transparent;
+        border: unset;
+        color: #fff;
+        text-transform: capitalize;
+    }
+    
+    .navbar-auth-area-inner.mobile-menu-link .mml-icon {
+        margin: 0 !important;
+    }
 
-    .mobile-menu-list .mobile-menu-list-item a.mobile-menu-link .mml-icon {
+    .mobile.navbar a.mobile-menu-link {
+        border: 2px solid var(--mainColor);
+        border-radius: 6px;
+        padding: 4px;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        color: #ffff;
+        justify-content: center;
+        align-items: center;
+        font-size: 27px;
+    }
+
+    .mobile-menu-list .mobile-menu-list-item .mobile-menu-link .mml-icon {
         color: #fff;
         background: var(--mainColor);
         width: 40px;

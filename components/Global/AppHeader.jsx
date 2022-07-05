@@ -145,65 +145,16 @@ const AppNavbar = ({ user }) => {
             </a>
           </Link>
         </div>
-        <div className="navbar-auth-area">
-          {user ? (
-            <div
-              className="navbar-auth-area-inner"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              <div
-                className="navbar-auth-user-data"
-                onClick={() => mobileDropdownRef.current.classList.toggle("show")}
-              >
-                <Image
-                  src={`https://admin.dpmhomes.com/user-images/${user.data.image}`}
-                  width={40}
-                  height={40}
-                  alt={`${user.data.name} image`}
-                />
-                <MdArrowDropDown className="d-arrow" />
-              </div>
-              <div className="auth-dropdown popup" ref={mobileDropdownRef}>
-                <ul className="auth-dropdown-list">
-                  <li className="auth-dropdown-list-item">
-                    <Link href="/my-profile">
-                      <a>
-                        <FiUser />
-                        <span>
-                          <FormattedMessage id="page.home.auth.profile" />
-                        </span>
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="auth-dropdown-list-item">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        dispatch(logout(jsCookies.getItem("userToken")));
-                      }}
-                    >
-                      <FiLogOut />
-                      <span>
-                        <FormattedMessage id="page.home.auth.logout" />
-                      </span>
-                    </button>
-                  </li>
-                </ul>
-              </div>
+        <Link href="/add-property">
+          <a className="mobile-menu-link">
+            <div className="mml-icon">
+              <RiAddLine />
             </div>
-          ) : (
-            <Link href="/login">
-              <a className="navbar-login-link">
-                <RiLoginCircleLine />
-                <span>
-                  <FormattedMessage id="page.home.auth.login" />
-                </span>
-              </a>
-            </Link>
-          )}
-        </div>
+            {/* <span>
+                <FormattedMessage id="page.home.head.advertise" />
+              </span> */}
+          </a>
+        </Link>
       </nav>
       <MobileMenu setIsOpen={setIsOpen} isOpen={isOpen} />
     </>

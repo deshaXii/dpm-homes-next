@@ -1,15 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { MdClose } from "react-icons/md";
 import { GrContact } from "react-icons/gr";
-import { RiAddLine } from "react-icons/ri";
+import {  FiLogOut } from "react-icons/fi";
+import { RiAddLine, RiLoginCircleLine } from "react-icons/ri";
 import { AiOutlineHome } from "react-icons/ai";
 import { FormattedMessage } from "react-intl";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/slices/auth";
 import { useRouter } from "next/router";
-import { MdLanguage, MdArrowDropDown } from "react-icons/md";
+import { MdLanguage } from "react-icons/md";
 
 const MobileMenu = ({ setIsOpen, isOpen }) => {
   const user = useSelector(selectUser);
@@ -125,6 +126,64 @@ const MobileMenu = ({ setIsOpen, isOpen }) => {
               ))}
           </div>
         </div>
+        <div className="mobile-menu-list-item">
+          <div className="navbar-auth-area">
+            {user ? (
+              <>
+                <div className="navbar-auth-area-inner">
+                  <div className="mml-icon">
+                    <div className="navbar-auth-user-data">
+                      <Image
+                        src={`https://admin.dpmhomes.com/user-images/${user.data.image}`}
+                        width={40}
+                        height={40}
+                        alt={`${user.data.name} image`}
+                      />
+                    </div>
+                  </div>
+                  <Link href="/my-profile">
+                    <a className="mobile-menu-link">
+                      <span>
+                        <FormattedMessage id="page.home.auth.profile" />
+                      </span>
+                    </a>
+                  </Link>
+                </div>
+              </>
+            ) : (
+              <Link href="/login">
+                <a className="navbar-login-link mobile-menu-link">
+                  <div className="mml-icon">
+                    <RiLoginCircleLine />
+                  </div>
+                  <span>
+                    <FormattedMessage id="page.home.auth.login" />
+                  </span>
+                </a>
+              </Link>
+            )}
+          </div>
+        </div>
+
+        {user && (
+          <div className="mobile-menu-list-item">
+            <div className="navbar-auth-area-inner mobile-menu-link">
+              <div className="mml-icon">
+                <FiLogOut />
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  dispatch(logout(jsCookies.getItem("userToken")));
+                }}
+              >
+                <span>
+                  <FormattedMessage id="page.home.auth.logout" />
+                </span>
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

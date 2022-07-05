@@ -2276,6 +2276,14 @@ div#city_select .css-1jqqwy7-control {
   transform: unset;
 }
 
+a.navbar-login-link.mobile-menu-link {
+  justify-content: flex-start;
+}
+.mobile-menu-list .navbar-auth-area-inner {
+  display: flex;
+  column-gap: 10px;
+}
+
 .p-d-v-content textarea {
   width: 100%;
   min-height: 125px;
