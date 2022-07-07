@@ -22,7 +22,8 @@ const messages = {
 };
 
 function MyApp({ Component, pageProps }) {
-  const { locale } = useRouter();
+  const { locale, defaultLocale } = useRouter();
+  console.log(locale, defaultLocale);
   useEffect(() => {
     let progressBar = document.querySelector(".progress-wrap");
     if (progressBar) {
@@ -34,10 +35,14 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <meta
           name="description"
-          content={locale === "en" ? "Luxury Aqar is the largest real estate search engine in Egypt, through which you can search for properties for sale or properties for rent, including apartments and villas." : "لاكشري عقار اكبر محرك بحث في عقارات مصر يمكنك من خلاله البحث عن عقارات للبيع او عقارات للايجار من شقق وفيلات"}
+          content={
+            locale === "en"
+              ? "Luxury Aqar is the largest real estate search engine in Egypt, through which you can search for properties for sale or properties for rent, including apartments and villas."
+              : "لاكشري عقار اكبر محرك بحث في عقارات مصر يمكنك من خلاله البحث عن عقارات للبيع او عقارات للايجار من شقق وفيلات"
+          }
         />
       </Head>
-      <IntlProvider locale={locale} messages={messages[locale]}>
+      <IntlProvider locale={locale} messages={messages[locale]} defaultLocale={defaultLocale}>
         <Component {...pageProps} />
       </IntlProvider>
       <ToastContainer />

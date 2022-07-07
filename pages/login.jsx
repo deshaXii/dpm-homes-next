@@ -3,11 +3,12 @@ import LoginContent from "../components/login";
 import Head from "next/head";
 import { wrapper } from "../store/index";
 import { useRouter } from "next/router";
+import Default from '../layouts/default'
 
 const login = () => {
   const {locale} = useRouter();
   return (
-    <>
+    <Default>
       <Head>
        <title>
           Luxury Aqar | 
@@ -30,7 +31,7 @@ const login = () => {
           </div>
         </div>
       </div>
-    </>
+    </Default>
   );
 };
 

@@ -281,6 +281,7 @@ a.add-property-btn {
 
 .navbar-auth-area-inner .navbar-auth-user-data img {
   border-radius: 40px;
+  object-fit: cover;
 }
 
 
@@ -1849,8 +1850,7 @@ section.property-details {
 
 /* Start Login */
 .login-page {
-  height: 100vh;
-  width: 100vw;
+  height: 80vh;
   background-size: cover;
   background-position: center bottom;
   position: relative;

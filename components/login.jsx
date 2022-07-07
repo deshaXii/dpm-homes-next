@@ -42,7 +42,7 @@ const LoginContent = ({ from }) => {
       });
       return
     }
-    dispatch(login(user)).then((res) => {
+    dispatch(login({user, lang: 'ar'})).then((res) => {
       if (res.payload.success) {
         router.push("/");
         toast.success(res.payload.message, {

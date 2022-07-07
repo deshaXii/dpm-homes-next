@@ -21,13 +21,9 @@ const AdministrativeRent = () => {
 
   const governorate_options = allGovernorates;
 
-  const property_type_options_ar = [
-    { value: "offices", label: "مكاتب" },
-  ];
+  const property_type_options_ar = [{ value: "offices", label: "مكاتب" }];
 
-  const property_type_options_en = [
-    { value: "offices", label: "offices" },
-  ];
+  const property_type_options_en = [{ value: "offices", label: "offices" }];
 
   const buildingOptions_ar = [
     { value: "inside_administrative_building", label: "داخل مبني إداري" },
@@ -156,11 +152,12 @@ const AdministrativeRent = () => {
   const [unit_status, setUnit_status] = useState("");
   const [unit_age, setUnit_age] = useState("");
   const [pdf, setPdf] = useState(null);
-  const [view3d, setView3d] = useState(null);
+  const [view3d, setView3d] = useState('https://www.google.com');
   const [youtube, setYoutube] = useState(null);
   const [location, setLocation] = useState(null);
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
+  const [gardenIn, setGardenIn] = useState(false);
   const maxNumber = 12;
   const maxFileSize = 1048576;
 
@@ -238,7 +235,7 @@ const AdministrativeRent = () => {
     super_market,
     street_view_iframe,
     general_details,
-    unit_status,
+    // unit_status,
     unit_age,
     building_name: building_name.value,
     pdf,
@@ -321,17 +318,22 @@ const AdministrativeRent = () => {
                         <FormattedMessage id="page.add-property-form.details.property-name-and-id" />
                       </label>
                       <input
-                        type="number"
-                        value={total_area}
-                        onChange={(e) => setTotal_area(e.target.value)}
+                        type="text"
+                        value={compound_name}
+                        onChange={(e) => setCompound_name(e.target.value)}
                         className="form-control"
                       />
                     </div>
                     <div className="form-group">
                       <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.total-price" />
+                        <FormattedMessage id="page.add-property-form.details.total-area" />
                       </label>
-                      <input type="text" className="form-control" />
+                      <input
+                        type="text"
+                        value={total_area}
+                        onChange={(e) => setTotal_area(e.target.value)}
+                        className="form-control"
+                      />
                     </div>
                     <div className="form-group">
                       <label htmlFor="">
@@ -357,7 +359,7 @@ const AdministrativeRent = () => {
                     </div>
                   </div>
                   <div className="col-md-4">
-                  <div className="form-group">
+                    <div className="form-group">
                       <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.building_name" />
                       </label>
@@ -454,17 +456,7 @@ const AdministrativeRent = () => {
                         className="form-control"
                       />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.garden-area-size" />
-                      </label>
-                      <input
-                        type="number"
-                        value={garden_area}
-                        onChange={(e) => setGarden_area(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
+    
 
                     <div className="form-group">
                       <label htmlFor="">
@@ -477,7 +469,7 @@ const AdministrativeRent = () => {
                         className="form-control"
                       />
                     </div>
-                    <div className="form-group">
+                    {/* <div className="form-group">
                       <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.building-stutus" />
                       </label>
@@ -487,7 +479,7 @@ const AdministrativeRent = () => {
                         type="text"
                         className="form-control"
                       />
-                    </div>
+                    </div> */}
                     <div className="form-group">
                       <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.kitchen" />
@@ -510,6 +502,19 @@ const AdministrativeRent = () => {
                         className="form-control"
                       />
                     </div>
+                    {gardenIn && (
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.garden-area-size" />
+                        </label>
+                        <input
+                          type="number"
+                          value={garden_area}
+                          onChange={(e) => setGarden_area(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                    )}
                   </div>
                   <div className="col-md-12">
                     <div className="form-checkboxs">
@@ -571,9 +576,10 @@ const AdministrativeRent = () => {
                           <input
                             type="checkbox"
                             value={private_garden}
-                            onChange={(e) =>
-                              setPrivate_garden(e.target.checked)
-                            }
+                            onChange={(e) => {
+                              setPrivate_garden(e.target.checked);
+                              setGardenIn(!gardenIn);
+                            }}
                           />
                         </div>
                       </div>

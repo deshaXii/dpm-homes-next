@@ -161,9 +161,10 @@ const AdministrativeBoth = () => {
   const [unit_status, setUnit_status] = useState("");
   const [unit_age, setUnit_age] = useState("");
   const [pdf, setPdf] = useState(null);
-  const [view3d, setView3d] = useState(null);
+  const [view3d, setView3d] = useState("https://www.google.com");
   const [youtube, setYoutube] = useState(null);
   const [location, setLocation] = useState(null);
+  const [gardenIn, setGardenIn] = useState(false);
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
   const maxNumber = 12;
@@ -331,7 +332,12 @@ const AdministrativeBoth = () => {
                       <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.property-name-and-id" />
                       </label>
-                      <input type="text" className="form-control toto" />
+                      <input
+                        type="text"
+                        value={compound_name}
+                        onChange={(e) => setCompound_name(e.target.value)}
+                        className="form-control toto"
+                      />
                     </div>
                     <div className="form-group">
                       <label htmlFor="">
@@ -465,17 +471,6 @@ const AdministrativeBoth = () => {
                         className="form-control"
                       />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.garden-area-size" />
-                      </label>
-                      <input
-                        type="number"
-                        value={garden_area}
-                        onChange={(e) => setGarden_area(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
 
                     <div className="form-group">
                       <label htmlFor="">
@@ -521,6 +516,19 @@ const AdministrativeBoth = () => {
                         className="form-control"
                       />
                     </div>
+                    {gardenIn && (
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.garden-area-size" />
+                        </label>
+                        <input
+                          type="number"
+                          value={garden_area}
+                          onChange={(e) => setGarden_area(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                    )}
                   </div>
                   <div className="col-md-12">
                     <div className="form-checkboxs">
@@ -582,9 +590,10 @@ const AdministrativeBoth = () => {
                           <input
                             type="checkbox"
                             value={private_garden}
-                            onChange={(e) =>
-                              setPrivate_garden(e.target.checked)
-                            }
+                            onChange={(e) => {
+                              setPrivate_garden(e.target.checked);
+                              setGardenIn(!gardenIn);
+                            }}
                           />
                         </div>
                       </div>

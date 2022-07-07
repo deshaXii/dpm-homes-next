@@ -1,9 +1,9 @@
 import API from "../api";
 import jsCookies from "js-cookies";
 
-export async function authLogin(user) {
+export async function authLogin({user, lang}) {
   try {
-    const res = await API.post("/login", {
+    const res = await API.post(`/login?lang=${lang}`, {
       email: user.email,
       password: user.password,
     });
@@ -16,9 +16,9 @@ export async function authLogin(user) {
   }
 }
 
-export async function createAccount(user) {
+export async function createAccount({ user, lang }) {
   try {
-    const res = await API.post("/register", {
+    const res = await API.post(`/register?lang=${lang}`, {
       name: user.name,
       email: user.email,
       phone: user.phone,
