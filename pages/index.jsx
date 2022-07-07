@@ -32,7 +32,6 @@ const Home = ({ dir }) => {
 
       <Default>
         <HomeIntro />
-
         <Properties
           type={"sell"}
           sectionTitle={<FormattedMessage id="global.section.title.sell" />}
@@ -70,9 +69,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
         return {};
       } else {
         await store.dispatch(getPropertiesWithTpye({ type: "all" }));
-        const allProperties = store.getState().properties.allProperties;
         return {
-          props: { allProperties },
+          props: {},
         };
       }
     }

@@ -54,12 +54,12 @@ const RegisterContent = ({ from }) => {
     email,
     phone,
     account_status,
-    account_type,
+    type: account_type,
     password,
   };
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
-    dispatch(register(user)).then((res) => {
+    dispatch(register({ user, lang: "ar" })).then((res) => {
       if (res.payload.success) {
         toast.success(res.payload.message, {
           position: "top-right",
@@ -71,14 +71,18 @@ const RegisterContent = ({ from }) => {
         });
         router.push("/");
       } else {
-        toast.error(res.payload.message, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
+        for (let error in res.payload.messages) {
+          if (typeof res.payload.messages[error] === "object") {
+            toast.error(res.payload.messages[error].toString(), {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
+          }
+        }
       }
     });
   };

@@ -21,13 +21,9 @@ const AdministrativeBoth = () => {
 
   const governorate_options = allGovernorates;
 
-  const property_type_options_ar = [
-    { value: "offices", label: "مكاتب" },
-  ];
+  const property_type_options_ar = [{ value: "offices", label: "مكاتب" }];
 
-  const property_type_options_en = [
-    { value: "offices", label: "offices" },
-  ];
+  const property_type_options_en = [{ value: "offices", label: "offices" }];
 
   const currency_options_ar = [
     { value: "USD", label: "دولار أمريكي" },
@@ -57,14 +53,13 @@ const AdministrativeBoth = () => {
     { value: "semi-annual", label: "كل 6 شهور" },
     { value: "annual", label: "سنويا" },
   ];
-  
+
   const installment_type_en = [
     { value: "monthly", label: "monthly" },
     { value: "quarterly", label: "quarterly" },
     { value: "semi-annual", label: "semi-annual" },
     { value: "annual", label: "annual" },
   ];
-
 
   const buildingOptions_ar = [
     { value: "inside_administrative_building", label: "داخل مبني إداري" },
@@ -266,7 +261,6 @@ const AdministrativeBoth = () => {
 
   const { locale } = router;
 
-
   // Validation
   useEffect(() => {
     if (country) {
@@ -337,18 +331,18 @@ const AdministrativeBoth = () => {
                       <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.property-name-and-id" />
                       </label>
-                      <input
-                        type="number"
-                        value={total_area}
-                        onChange={(e) => setTotal_area(e.target.value)}
-                        className="form-control"
-                      />
+                      <input type="text" className="form-control toto" />
                     </div>
                     <div className="form-group">
                       <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.total-price" />
+                        <FormattedMessage id="page.add-property-form.details.total-area" />
                       </label>
-                      <input type="text" className="form-control" />
+                      <input
+                        type="text"
+                        value={total_area}
+                        className="form-control"
+                        onChange={(e) => setTotal_area(e.target.value)}
+                      />
                     </div>
                     <div className="form-group">
                       <label htmlFor="">
@@ -374,7 +368,7 @@ const AdministrativeBoth = () => {
                     </div>
                   </div>
                   <div className="col-md-4">
-                  <div className="form-group">
+                    <div className="form-group">
                       <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.building_name" />
                       </label>
@@ -643,9 +637,7 @@ const AdministrativeBoth = () => {
                       </label>
                       <input
                         value={total_price}
-                        onChange={(e) =>
-                          setTotal_price(e.target.value)
-                        }
+                        onChange={(e) => setTotal_price(e.target.value)}
                         type="number"
                         className="form-control"
                       />

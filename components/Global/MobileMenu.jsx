@@ -7,15 +7,16 @@ import {  FiLogOut } from "react-icons/fi";
 import { RiAddLine, RiLoginCircleLine } from "react-icons/ri";
 import { AiOutlineHome } from "react-icons/ai";
 import { FormattedMessage } from "react-intl";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../store/slices/auth";
+import { useSelector, useDispatch } from "react-redux";
+import { logout, selectUser } from "../../store/slices/auth";
 import { useRouter } from "next/router";
 import { MdLanguage } from "react-icons/md";
+import jsCookies from "js-cookies";
 
 const MobileMenu = ({ setIsOpen, isOpen }) => {
   const user = useSelector(selectUser);
   const { locales, locale, asPath } = useRouter();
-
+  const dispatch = useDispatch();
   useEffect(() => {
     setIsOpen(false);
   }, [locale]);

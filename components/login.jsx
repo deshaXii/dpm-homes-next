@@ -20,6 +20,28 @@ const LoginContent = ({ from }) => {
   };
   const handleLoginSubmit = (e) => {
     e.preventDefault();
+    if (!email) {
+      toast.error("Please enter your email", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return
+    }
+    if (!password) {
+      toast.error("Please enter your password", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      return
+    }
     dispatch(login(user)).then((res) => {
       if (res.payload.success) {
         router.push("/");
@@ -32,7 +54,7 @@ const LoginContent = ({ from }) => {
           draggable: true,
         });
       } else {
-        toast.error(res.payload.message, {
+        toast.error(res.payload.response.data.message, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -60,7 +82,6 @@ const LoginContent = ({ from }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
-            autoComplete="false"
           />
         </div>
         <div className="form-group with-show-password-icon">
@@ -72,7 +93,6 @@ const LoginContent = ({ from }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            autoComplete="false"
           />
           <div className="show-password-icon">
             {showPassword ? (

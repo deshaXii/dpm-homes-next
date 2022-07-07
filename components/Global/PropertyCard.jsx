@@ -51,7 +51,7 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
       <div className="property-card-image">
         <Link href={`/property/${property.id}`}>
           <a>
-            <Image width={400} height={300} src={image} />
+            <Image width={400} height={300} src={`https://admin.dpmhomes.com/property-images/${property.images[0]}`} />
           </a>
         </Link>
         <div className="property-tags">

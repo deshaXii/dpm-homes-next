@@ -15,18 +15,29 @@ const login = () => {
   const handleForgetPassword = (e) => {
     e.preventDefault();
     dispatch(sendForgetPasswordCode(email)).then((res) => {
-      toast(res.payload, {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-      router.push({
-        pathname: "/reset-password",
-        query: { email },
-      });
+      if (res.payload.success) {
+        toast.success(res.payload.message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        router.push({
+          pathname: "/reset-password",
+          query: { email },
+        });
+      } else {
+        toast.error(res.payload.message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
     });
   };
   return (
@@ -58,7 +69,6 @@ const login = () => {
                           required
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="ُEnter your email address"
-                          autoComplete={true}
                         />
                       </div>
                       <div className="form-submit-button">

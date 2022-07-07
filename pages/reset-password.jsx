@@ -43,7 +43,7 @@ const login = () => {
       <Head>
         <title>
           Luxury Aqar |
-          {locale === "en" ? " Reset My Password" : " إسترجاع كلمة المرور"}
+          {router.locale === "en" ? " Reset My Password" : " إسترجاع كلمة المرور"}
         </title>
       </Head>
       <div
@@ -63,11 +63,11 @@ const login = () => {
                         </div>
                         <input
                           type="text"
+                          name="code"
                           value={code}
                           required
                           onChange={(e) => setCode(e.target.value)}
                           placeholder="ُEnter virification code"
-                          autoComplete={false}
                         />
                       </div>
                       <div className="form-group with-show-password-icon">
@@ -79,7 +79,6 @@ const login = () => {
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           placeholder="Password"
-                          autoComplete="false"
                         />
                       </div>
                       <div className="form-group with-show-password-icon">
@@ -91,7 +90,6 @@ const login = () => {
                           value={confirmPassword}
                           onChange={(e) => setConfirmPassword(e.target.value)}
                           placeholder="Confirm Password"
-                          autoComplete="false"
                         />
                         <div className="show-password-icon">
                           {showPassword ? (
