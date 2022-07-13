@@ -152,9 +152,9 @@ const AdministrativeRent = () => {
   const [unit_status, setUnit_status] = useState("");
   const [unit_age, setUnit_age] = useState("");
   const [pdf, setPdf] = useState(null);
-  const [view3d, setView3d] = useState('https://www.google.com');
+  const [view3d, setView3d] = useState("https://www.google.com");
   const [youtube, setYoutube] = useState(null);
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState("https://www.google.com");
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
   const [gardenIn, setGardenIn] = useState(false);
@@ -235,7 +235,7 @@ const AdministrativeRent = () => {
     super_market,
     street_view_iframe,
     general_details,
-    // unit_status,
+    unit_status,
     unit_age,
     building_name: building_name.value,
     pdf,
@@ -324,36 +324,15 @@ const AdministrativeRent = () => {
                         className="form-control"
                       />
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.total-area" />
+                        <FormattedMessage id="page.add-property-form.details.building-stutus" />
                       </label>
                       <input
+                        value={unit_status}
+                        onChange={(e) => setUnit_status(e.target.value)}
                         type="text"
-                        value={total_area}
-                        onChange={(e) => setTotal_area(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.beds-room" />
-                      </label>
-                      <input
-                        type="number"
-                        value={no_bed_room}
-                        onChange={(e) => setNo_bed_room(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.reception-room" />
-                      </label>
-                      <input
-                        value={no_reception}
-                        onChange={(e) => setNo_reception(e.target.value)}
-                        type="number"
                         className="form-control"
                       />
                     </div>
@@ -399,6 +378,7 @@ const AdministrativeRent = () => {
                         instanceId="governorate_type_select"
                       />
                     </div>
+
                     <div className="form-group">
                       <label htmlFor="">
                         <FormattedMessage id="page.add-property-form.details.address" />
@@ -407,6 +387,30 @@ const AdministrativeRent = () => {
                         type="text"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
+                        className="form-control"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.total-area" />
+                      </label>
+                      <input
+                        type="text"
+                        value={total_area}
+                        onChange={(e) => setTotal_area(e.target.value)}
+                        className="form-control"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="">
+                        <FormattedMessage id="page.add-property-form.details.city" />
+                      </label>
+                      <input
+                        value={city}
+                        onChange={(e) => setCity(e.target.value)}
+                        type="text"
                         className="form-control"
                       />
                     </div>
@@ -421,100 +425,6 @@ const AdministrativeRent = () => {
                         className="form-control"
                       />
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.building-age" />
-                      </label>
-                      <input
-                        type="text"
-                        value={unit_age}
-                        onChange={(e) => setUnit_age(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.bath-room" />
-                      </label>
-                      <input
-                        type="number"
-                        value={no_bath_room}
-                        className="form-control"
-                        onChange={(e) => setNo_bath_room(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.dressing" />
-                      </label>
-                      <input
-                        type="number"
-                        value={no_dressing}
-                        onChange={(e) => setNo_dressing(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-    
-
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.city" />
-                      </label>
-                      <input
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                    {/* <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.building-stutus" />
-                      </label>
-                      <input
-                        value={unit_status}
-                        onChange={(e) => setUnit_status(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div> */}
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.kitchen" />
-                      </label>
-                      <input
-                        type="number"
-                        value={no_kitchen}
-                        onChange={(e) => setNo_kitchen(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.roof" />
-                      </label>
-                      <input
-                        type="number"
-                        value={no_roof}
-                        onChange={(e) => setNo_roof(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    {gardenIn && (
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.garden-area-size" />
-                        </label>
-                        <input
-                          type="number"
-                          value={garden_area}
-                          onChange={(e) => setGarden_area(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
-                    )}
                   </div>
                   <div className="col-md-12">
                     <div className="form-checkboxs">
@@ -532,18 +442,7 @@ const AdministrativeRent = () => {
                           />
                         </div>
                       </div>
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.private-pool" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={private_pool}
-                            onChange={(e) => setPrivate_pool(e.target.checked)}
-                          />
-                        </div>
-                      </div>
+                     
                       <div className="form-group custom-checkbox">
                         <div className="cb-item">
                           <label htmlFor="">
@@ -556,33 +455,7 @@ const AdministrativeRent = () => {
                           />
                         </div>
                       </div>
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.public-garden" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={public_garden}
-                            onChange={(e) => setPublic_garden(e.target.checked)}
-                          />
-                        </div>
-                      </div>
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.private-garden" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={private_garden}
-                            onChange={(e) => {
-                              setPrivate_garden(e.target.checked);
-                              setGardenIn(!gardenIn);
-                            }}
-                          />
-                        </div>
-                      </div>
+                     
                       <div className="form-group custom-checkbox">
                         <div className="cb-item">
                           <label htmlFor="">
@@ -595,18 +468,7 @@ const AdministrativeRent = () => {
                           />
                         </div>
                       </div>
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.public_pool" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={public_pool}
-                            onChange={(e) => setPublic_pool(e.target.checked)}
-                          />
-                        </div>
-                      </div>
+                  
                     </div>
                   </div>
                 </div>
@@ -823,98 +685,6 @@ const AdministrativeRent = () => {
               </div>
             </div>
 
-            <div className={`${fourthTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-four-item aft-item"
-                onClick={() => setFourthTabVis(!fourthTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.nearbly-location" />
-                </h3>
-                <div>
-                  <span>
-                    <FormattedMessage id="page.add-property-form.option" />
-                  </span>
-                  <MdOutlineKeyboardArrowDown />
-                </div>
-              </div>
-              <div className="aft-four-content aft-content">
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.school" />
-                      </label>
-                      <input
-                        value={school}
-                        onChange={(e) => setSchool(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.mall" />
-                      </label>
-                      <input
-                        type="text"
-                        value={mall}
-                        onChange={(e) => setMall(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.hospital" />
-                      </label>
-                      <input
-                        value={hospital}
-                        onChange={(e) => setHospital(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.pharmacy" />
-                      </label>
-                      <input
-                        value={pharmacy}
-                        onChange={(e) => setPharmacy(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.nursery_school" />
-                      </label>
-                      <input
-                        type="text"
-                        value={nursery_school}
-                        onChange={(e) => setNursery_school(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.super_market" />
-                      </label>
-                      <input
-                        value={super_market}
-                        onChange={(e) => setSuper_market(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div className={`${sixthTabVis ? "" : "collapsed"}`}>
               <div

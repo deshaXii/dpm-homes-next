@@ -152,7 +152,7 @@ const HosuingCash = () => {
   const [pdf, setPdf] = useState(null);
   const [view3d, setView3d] = useState("https://www.google.com");
   const [youtube, setYoutube] = useState(null);
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState('https://www.google.com');
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
   const [gardenIn, setGardenIn] = useState(false);
