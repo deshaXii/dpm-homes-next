@@ -87,12 +87,18 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
           </Link>
         </div>
         <div className="property-card-price">
-          <span>
-            {formatter.format(property.total_price)}
-            <div>
-              {/* <FormattedMessage id="section.property_card.currency.egp" /> */}
-            </div>
-          </span>
+          {
+            property.total_price ? (  <span>
+              {formatter.format(property.total_price)}
+          
+            </span>) : (
+                <span>
+                {formatter.format(property.total_price_installment)}
+            
+              </span>
+            )
+          }
+        
         </div>
         <div className="property-card-title">
           <Link href="#">
