@@ -14,10 +14,10 @@ import PrevArrow from "../Global/PrevArrow";
 import NextArrow from "../Global/NextArrow";
 import { useSelector } from "react-redux";
 import { selectProperties } from "../../store/slices/properties";
+import { FormattedMessage } from "react-intl";
 
 const PropertyViewer = () => {
-
-  const {property} = useSelector(selectProperties);
+  const { property } = useSelector(selectProperties);
 
   const slider1Settings = {
     arrows: true,
@@ -66,7 +66,10 @@ const PropertyViewer = () => {
   return (
     <section className="property-viewer p50">
       <div className="container">
-        <SectionTitle title="Property" subTitle="show" />
+        <SectionTitle
+          title={<FormattedMessage id="page.property.view-Property" />}
+          subTitle={<FormattedMessage id="page.property.view-show" />}
+        />
         <div className="row">
           <div className="col-md-11">
             <div className="property-view-area">
@@ -158,7 +161,9 @@ const PropertyViewer = () => {
                 <div className="view-btn-icon">
                   <BsImages />
                 </div>
-                <span>Images</span>
+                <span>
+                  <FormattedMessage id="page.property.view-images" />
+                </span>
               </button>
               <button
                 onClick={() => {
@@ -171,7 +176,9 @@ const PropertyViewer = () => {
                 <div className="view-btn-icon">
                   <AiOutlineVideoCamera />
                 </div>
-                <span>Video</span>
+                <span>
+                  <FormattedMessage id="page.property.view-Video" />
+                </span>
               </button>
               <button
                 onClick={() => {
@@ -184,7 +191,9 @@ const PropertyViewer = () => {
                 <div className="view-btn-icon">
                   <VscFilePdf />
                 </div>
-                <span>PDF</span>
+                <span>
+                  <FormattedMessage id="page.property.view-PDF" />
+                </span>
               </button>
               <button
                 onClick={() => {
@@ -197,7 +206,9 @@ const PropertyViewer = () => {
                 <div className="view-btn-icon">
                   <MdOutlineViewInAr />
                 </div>
-                <span>3d</span>
+                <span>
+                  <FormattedMessage id="page.property.view-3d" />
+                </span>
               </button>
               <button
                 onClick={() => {
@@ -210,7 +221,9 @@ const PropertyViewer = () => {
                 <div className="view-btn-icon">
                   <HiOutlineLocationMarker />
                 </div>
-                <span>Location</span>
+                <span>
+                  <FormattedMessage id="page.property.view-Location" />
+                </span>
               </button>
             </div>
             <div className="property-options-buttons">

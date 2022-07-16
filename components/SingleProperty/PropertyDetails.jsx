@@ -4,6 +4,7 @@ import { BsCheck } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { selectProperties } from "../../store/slices/properties";
 import { useRouter } from "next/router";
+import { FormattedMessage } from "react-intl";
 
 const PropertyDetails = () => {
   const [detailsCollapsed, setDetailsCollapsed] = useState(false);
@@ -33,19 +34,27 @@ const PropertyDetails = () => {
                 onClick={() => setDetailsCollapsed(!detailsCollapsed)}
               >
                 <MdOutlineArrowDropUp />
-                <h4>Property Details</h4>
+                <h4>
+                  {" "}
+                  <FormattedMessage id="page.property.details.title" />{" "}
+                </h4>
               </div>
               <div className="property-details-inner">
                 {property.data.licence && (
                   <div className="pdi-box">
-                    <div className="pdi-name">licence:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.licence" />:
+                    </div>
                     <div className="pdi-value">{property.data.licence}</div>
                   </div>
                 )}
 
                 {property.data.property_type && (
                   <div className="pdi-box">
-                    <div className="pdi-name">property type:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.property_type" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {property.data.property_type}
                     </div>
@@ -54,7 +63,10 @@ const PropertyDetails = () => {
 
                 {property.data.furniture_type && (
                   <div className="pdi-box">
-                    <div className="pdi-name">furniture type:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.furniture_type" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {property.data.furniture_type}
                     </div>
@@ -63,14 +75,20 @@ const PropertyDetails = () => {
 
                 {property.data.unit_status && (
                   <div className="pdi-box">
-                    <div className="pdi-name">unit status:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.unit_status" />
+                      :
+                    </div>
                     <div className="pdi-value">{property.data.unit_status}</div>
                   </div>
                 )}
 
                 {property.data.payment_type && (
                   <div className="pdi-box">
-                    <div className="pdi-name">payment type:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.payment_type" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {property.data.payment_type}
                     </div>
@@ -79,31 +97,43 @@ const PropertyDetails = () => {
                 {(property.data.payment_type && property.data.payment_type) !==
                   "cash" && (
                   <div className="pdi-box">
-                    <div className="pdi-name">rent type:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.rent_type" />:
+                    </div>
                     <div className="pdi-value">{property.data.rent_type}</div>
                   </div>
                 )}
                 {property.data.country && (
                   <div className="pdi-box">
-                    <div className="pdi-name">country:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.country" />:
+                    </div>
                     <div className="pdi-value">{property.data.country}</div>
                   </div>
                 )}
                 {property.data.governorate && (
                   <div className="pdi-box">
-                    <div className="pdi-name">governorate:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.governorate" />
+                      :
+                    </div>
                     <div className="pdi-value">{property.data.governorate}</div>
                   </div>
                 )}
                 {property.data.city && (
                   <div className="pdi-box">
-                    <div className="pdi-name">city:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.city" />:
+                    </div>
                     <div className="pdi-value">{property.data.city}</div>
                   </div>
                 )}
                 {property.data.total_area && (
                   <div className="pdi-box">
-                    <div className="pdi-name">total area:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.total_area" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {property.data.total_area} M
                     </div>
@@ -111,63 +141,84 @@ const PropertyDetails = () => {
                 )}
                 {property.data.building_area && (
                   <div className="pdi-box">
-                    <div className="pdi-name">building area:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.building_area" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {property.data.building_area} M
                     </div>
                   </div>
                 )}
-                {property.data.garden_area && (
+                {property.data.garden_area && property.data.garden_area !== '0' && (
                   <div className="pdi-box">
-                    <div className="pdi-name">garden area:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.garden_area" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {property.data.garden_area} M
                     </div>
                   </div>
                 )}
-                {property.data.no_bed_room && (
+                {property.data.no_bed_room && property.data.no_bed_room !== '0' && (
                   <div className="pdi-box">
-                    <div className="pdi-name">bed room:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.bed_room" />:
+                    </div>
                     <div className="pdi-value">{property.data.no_bed_room}</div>
                   </div>
                 )}
-                {property.data.no_bath_room && (
+                {property.data.no_bath_room && property.data.no_bath_room !== '0' && (
                   <div className="pdi-box">
-                    <div className="pdi-name">bath room:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.bath_room" />:
+                    </div>
                     <div className="pdi-value">
                       {property.data.no_bath_room}
                     </div>
                   </div>
                 )}
-                {property.data.no_kitchen && (
+                {property.data.no_kitchen && property.data.no_kitchen !== '0' && (
                   <div className="pdi-box">
-                    <div className="pdi-name">kitchen:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.kitchen" />:
+                    </div>
                     <div className="pdi-value">{property.data.no_kitchen}</div>
                   </div>
                 )}
-                {property.data.no_reception && (
+                {property.data.no_reception && property.data.no_reception !== '0' && (
                   <div className="pdi-box">
-                    <div className="pdi-name">reception:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.reception" />:
+                    </div>
                     <div className="pdi-value">
                       {property.data.no_reception}
                     </div>
                   </div>
                 )}
-                {property.data.no_dressing && (
+                {property.data.no_dressing &&  property.data.no_dressing !== '0' && (
                   <div className="pdi-box">
-                    <div className="pdi-name">dressing:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.dressing" />:
+                    </div>
                     <div className="pdi-value">{property.data.no_dressing}</div>
                   </div>
                 )}
-                {property.data.no_roof && (
+                {property.data.no_roof &&  property.data.no_roof !== '0' && (
                   <div className="pdi-box">
-                    <div className="pdi-name">roof:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.roof" />:
+                    </div>
                     <div className="pdi-value">{property.data.no_roof}</div>
                   </div>
                 )}
                 {property.data.compound_name && (
                   <div className="pdi-box">
-                    <div className="pdi-name">compound name:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.compound_name" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {property.data.compound_name}
                     </div>
@@ -175,7 +226,10 @@ const PropertyDetails = () => {
                 )}
                 {property.data.receiving_date && (
                   <div className="pdi-box">
-                    <div className="pdi-name">receiving date:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.receiving_date" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {property.data.receiving_date}
                     </div>
@@ -188,7 +242,9 @@ const PropertyDetails = () => {
                     <div className="pdi-icon">
                       <BsCheck />
                     </div>
-                    <div className="pdi-value">private garden</div>
+                    <div className="pdi-value">
+                      <FormattedMessage id="page.property.details.private_garden" />
+                    </div>
                   </div>
                 )}
                 {property.data.private_parking && (
@@ -196,7 +252,9 @@ const PropertyDetails = () => {
                     <div className="pdi-icon">
                       <BsCheck />
                     </div>
-                    <div className="pdi-value">private parking</div>
+                    <div className="pdi-value">
+                      <FormattedMessage id="page.property.details.private_parking" />
+                    </div>
                   </div>
                 )}
                 {property.data.private_pool && (
@@ -204,7 +262,9 @@ const PropertyDetails = () => {
                     <div className="pdi-icon">
                       <BsCheck />
                     </div>
-                    <div className="pdi-value">private pool</div>
+                    <div className="pdi-value">
+                      <FormattedMessage id="page.property.details.private_pool" />
+                    </div>
                   </div>
                 )}
                 {property.data.security && (
@@ -212,7 +272,10 @@ const PropertyDetails = () => {
                     <div className="pdi-icon">
                       <BsCheck />
                     </div>
-                    <div className="pdi-value">security</div>
+                    <div className="pdi-value">
+                      {" "}
+                      <FormattedMessage id="page.property.details.security" />
+                    </div>
                   </div>
                 )}
                 {property.data.public_pool && (
@@ -220,7 +283,10 @@ const PropertyDetails = () => {
                     <div className="pdi-icon">
                       <BsCheck />
                     </div>
-                    <div className="pdi-value">public pool</div>
+                    <div className="pdi-value">
+                      {" "}
+                      <FormattedMessage id="page.property.details.public_pool" />
+                    </div>
                   </div>
                 )}
                 {property.data.public_garden && (
@@ -228,7 +294,10 @@ const PropertyDetails = () => {
                     <div className="pdi-icon">
                       <BsCheck />
                     </div>
-                    <div className="pdi-value">public garden</div>
+                    <div className="pdi-value">
+                      {" "}
+                      <FormattedMessage id="page.property.details.public_garden" />
+                    </div>
                   </div>
                 )}
                 {property.data.lift && (
@@ -236,7 +305,10 @@ const PropertyDetails = () => {
                     <div className="pdi-icon">
                       <BsCheck />
                     </div>
-                    <div className="pdi-value">Elevator</div>
+                    <div className="pdi-value">
+                      {" "}
+                      <FormattedMessage id="page.property.details.Elevator" />
+                    </div>
                   </div>
                 )}
               </div>
@@ -253,13 +325,18 @@ const PropertyDetails = () => {
                 onClick={() => setPaymentCollapsed(!paymentCollapsed)}
               >
                 <MdOutlineArrowDropUp />
-                <h4>payment / Receiving</h4>
+                <h4>
+                  <FormattedMessage id="page.property.details.payment-Receiving.title" />
+                </h4>
               </div>
               {/* End section-inner-title */}
               <div className="property-details-inner">
                 {property.data.total_price && (
                   <div className="pdi-box">
-                    <div className="pdi-name">Total price in cash:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.Total_price_in_cash" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {formatter.format(property.data.total_price)}
                     </div>
@@ -267,7 +344,10 @@ const PropertyDetails = () => {
                 )}
                 {property.data.total_price_installment && (
                   <div className="pdi-box">
-                    <div className="pdi-name">Total price in installments:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.Total_price_in_installments" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {formatter.format(property.data.total_price_installment)}
                     </div>
@@ -275,7 +355,10 @@ const PropertyDetails = () => {
                 )}
                 {property.data.advance_payment && (
                   <div className="pdi-box">
-                    <div className="pdi-name">advance payment:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.advance_payment" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {formatter.format(property.data.advance_payment)}
                     </div>
@@ -283,7 +366,10 @@ const PropertyDetails = () => {
                 )}
                 {property.data.installment && (
                   <div className="pdi-box">
-                    <div className="pdi-name">installment price:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.installment_price" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {formatter.format(property.data.installment)}
                     </div>
@@ -291,7 +377,10 @@ const PropertyDetails = () => {
                 )}
                 {property.data.maintenance_fees && (
                   <div className="pdi-box">
-                    <div className="pdi-name">maintenance fees:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.maintenance_fees" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {formatter.format(property.data.maintenance_fees)}
                     </div>
@@ -299,13 +388,18 @@ const PropertyDetails = () => {
                 )}
                 {property.data.currency && (
                   <div className="pdi-box">
-                    <div className="pdi-name">Currency:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.Currency" />:
+                    </div>
                     <div className="pdi-value">{property.data.currency}</div>
                   </div>
                 )}
                 {property.data.installment_time && (
                   <div className="pdi-box">
-                    <div className="pdi-name">installment time:</div>
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.installment_time" />
+                      :
+                    </div>
                     <div className="pdi-value">
                       {property.data.installment_time}
                     </div>
@@ -331,36 +425,51 @@ const PropertyDetails = () => {
                   onClick={() => setAmenitiesCollapsed(!amenitiesCollapsed)}
                 >
                   <MdOutlineArrowDropUp />
-                  <h4>Nearby Places</h4>
+                  <h4>
+                    <FormattedMessage id="page.property.details.Nearby_Places" />
+                  </h4>
                 </div>
                 <div className="property-details-inner">
                   {property.data.school && (
                     <div className="pdi-box">
-                      <div className="pdi-name">school:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.school" />:
+                      </div>
                       <div className="pdi-value">{property.data.school}</div>
                     </div>
                   )}
                   {property.data.mall && (
                     <div className="pdi-box">
-                      <div className="pdi-name">mall:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.mall" />:
+                      </div>
                       <div className="pdi-value">{property.data.mall}</div>
                     </div>
                   )}
                   {property.data.hospital && (
                     <div className="pdi-box">
-                      <div className="pdi-name">hospital:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.hospital" />
+                        :
+                      </div>
                       <div className="pdi-value">{property.data.hospital}</div>
                     </div>
                   )}
                   {property.data.pharmacy && (
                     <div className="pdi-box">
-                      <div className="pdi-name">pharmacy:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.pharmacy" />
+                        :
+                      </div>
                       <div className="pdi-value">{property.data.pharmacy}</div>
                     </div>
                   )}
                   {property.data.super_market && (
                     <div className="pdi-box">
-                      <div className="pdi-name">super market:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.super_market" />{" "}
+                        :
+                      </div>
                       <div className="pdi-value">
                         {property.data.super_market}
                       </div>
@@ -368,7 +477,10 @@ const PropertyDetails = () => {
                   )}
                   {property.data.nursery_school && (
                     <div className="pdi-box">
-                      <div className="pdi-name">nursery school:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.nursery_school" />
+                        :
+                      </div>
                       <div className="pdi-value">
                         {property.data.nursery_school}
                       </div>
@@ -397,30 +509,40 @@ const PropertyDetails = () => {
                   onClick={() => setFinishingCollapsed(!finishingCollapsed)}
                 >
                   <MdOutlineArrowDropUp />
-                  <h4>Finishing condition</h4>
+                  <h4>
+                    <FormattedMessage id="page.property.details.Finishing_condition" />
+                  </h4>
                 </div>
                 <div className="property-details-inner">
                   {property.data.walls && (
                     <div className="pdi-box">
-                      <div className="pdi-name">walls:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.walls" />:
+                      </div>
                       <div className="pdi-value">{property.data.walls}</div>
                     </div>
                   )}
                   {property.data.floors && (
                     <div className="pdi-box">
-                      <div className="pdi-name">floors:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.floors" />:
+                      </div>
                       <div className="pdi-value">{property.data.floors}</div>
                     </div>
                   )}
                   {property.data.ceilings && (
                     <div className="pdi-box">
-                      <div className="pdi-name">ceilings:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.ceilings" />:
+                      </div>
                       <div className="pdi-value">{property.data.ceilings}</div>
                     </div>
                   )}
                   {property.data.bath_rooms && (
                     <div className="pdi-box">
-                      <div className="pdi-name">bath rooms:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.bath_rooms" />:
+                      </div>
                       <div className="pdi-value">
                         {property.data.bath_rooms}
                       </div>
@@ -428,13 +550,17 @@ const PropertyDetails = () => {
                   )}
                   {property.data.kitchen && (
                     <div className="pdi-box">
-                      <div className="pdi-name">kitchen:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.kitchen" />:
+                      </div>
                       <div className="pdi-value">{property.data.kitchen}</div>
                     </div>
                   )}
                   {property.data.light_system && (
                     <div className="pdi-box">
-                      <div className="pdi-name">light system:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.light_system" />:
+                      </div>
                       <div className="pdi-value">
                         {property.data.light_system}
                       </div>
@@ -442,7 +568,9 @@ const PropertyDetails = () => {
                   )}
                   {property.data.air_conditioners && (
                     <div className="pdi-box">
-                      <div className="pdi-name">air conditioners:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.air_conditioners" />:
+                      </div>
                       <div className="pdi-value">
                         {property.data.air_conditioners}
                       </div>
@@ -450,7 +578,9 @@ const PropertyDetails = () => {
                   )}
                   {property.data.internet && (
                     <div className="pdi-box">
-                      <div className="pdi-name">internet:</div>
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.internet" />:
+                      </div>
                       <div className="pdi-value">{property.data.internet}</div>
                     </div>
                   )}

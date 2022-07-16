@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import { selectUser } from "../../store/slices/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FormattedMessage } from "react-intl";
 
 const PropertyMainInfo = () => {
   const { property } = useSelector(selectProperties);
@@ -105,7 +106,11 @@ const PropertyMainInfo = () => {
 
                 <div className="property-main-info-buttons">
                   <div className="property-main-info-price">
-                    <span>{formatter.format(property.data.total_price)}</span>
+                    {property.data.total_price ? (
+                      <span>{formatter.format(property.data.total_price)}</span>
+                    ) : (
+                      <span>{formatter.format(property.data.total_price_installment)}</span>
+                    )}
                   </div>
                   <Link
                     href={`https://api.whatsapp.com/send/?phone=%${property.data.user_info.whatsapp}&text=اأريد الإستفسار حول هذا العقار: https://dpmhomes.com${router.asPath}`}
@@ -124,7 +129,10 @@ const PropertyMainInfo = () => {
                     type="button"
                     onClick={() => setShowDropdown((b) => !b)}
                   >
-                    <span>Appointment Booking</span>
+                    <span>
+                      {" "}
+                      <FormattedMessage id="page.property.view-Appointment_Booking" />{" "}
+                    </span>
                   </button>
                 </div>
               </div>

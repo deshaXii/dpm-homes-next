@@ -118,8 +118,12 @@
     }
 
     .slick-slider.big-slider .slick-slide .slider__item {
-        height: 220px;
+        height: 310px;
         min-height: auto;
+    }
+
+    .slick-slider.big-slider .slick-slide .slider__item img {
+        object-fit: cover;
     }
 
     .property-viwer-btns .btn {
