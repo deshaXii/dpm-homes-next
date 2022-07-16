@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { HiLocationMarker } from "react-icons/hi";
+import { BiArea } from "react-icons/bi";
 import { RiHotelBedLine } from "react-icons/ri";
 import { BsHeartFill, BsHeart, BsTelephone } from "react-icons/bs";
 import { MdOutlineBathtub } from "react-icons/md";
@@ -51,14 +52,38 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
       <div className="property-card-image">
         <Link href={`/property/${property.id}`}>
           <a>
-            <Image width={400} height={300} src={`https://admin.dpmhomes.com/property-images/${property.images[0]}`} />
+            <Image
+              width={400}
+              height={300}
+              src={`https://admin.dpmhomes.com/property-images/${property.images[0]}`}
+            />
           </a>
         </Link>
         <div className="property-tags">
-          <span className="t-rent">For {property.sell_rent_type}</span>
+          <span className="t-rent">
+            {property.sell_rent_type === "rent" ? (
+              <FormattedMessage id="global.section.title.rent" />
+            ) : (
+              <FormattedMessage id="global.section.title.sell" />
+            )}
+          </span>
         </div>
         <div className="property-lc">
-          <span>{property.licence}</span>
+          {property.licence === "housing" && (
+            <span>
+              <FormattedMessage id="page.add-property-tabs-housing" />{" "}
+            </span>
+          )}
+          {property.licence === "commercial" && (
+            <span>
+              <FormattedMessage id="page.add-property-tabs-commercial" />{" "}
+            </span>
+          )}
+          {property.licence === "administrative" && (
+            <span>
+              <FormattedMessage id="page.add-property-tabs-administrative" />{" "}
+            </span>
+          )}
         </div>
         <div className="property-added-by">
           <Link href={`/clients/${property.user_info.id}`}>
@@ -87,18 +112,13 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
           </Link>
         </div>
         <div className="property-card-price">
-          {
-            property.total_price ? (  <span>
-              {formatter.format(property.total_price)}
-          
-            </span>) : (
-                <span>
-                {formatter.format(property.total_price_installment)}
-            
-              </span>
-            )
-          }
-        
+          {property.total_price ? (
+            <span>{formatter.format(property.total_price)}</span>
+          ) : property.total_price_installment ? (
+            <span>{formatter.format(property.total_price_installment)}</span>
+          ) : (
+            <span>{formatter.format(property.rent_price)}</span>
+          )}
         </div>
         <div className="property-card-title">
           <Link href="#">
@@ -119,7 +139,7 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
         </div>
         <div className="property-card-bottom">
           <div className="propert-card-features">
-            {property.licence === "housing" && (
+            {property.licence === "housing" ? (
               <>
                 <div className="pcf-item">
                   <div className="pcf-item-top">
@@ -140,6 +160,22 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
                   <div className="pcf-item-label">
                     <p>
                       <FormattedMessage id="section.property_card.bathrooms" />
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="pcf-item">
+                  <div className="pcf-item-top">
+                    <span>
+                      {property.building_area} {locale == "en" ? "M" : "متر"}
+                    </span>
+                    <BiArea />
+                  </div>
+                  <div className="pcf-item-label">
+                    <p>
+                      <FormattedMessage id="page.property.details.building_area" />
                     </p>
                   </div>
                 </div>
@@ -165,7 +201,9 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
             </button>
             <button
               type="button"
-              className={`btn wish-btn ${property.wishlist.toLowerCase() === "yes" ? 'active' : ''}`}
+              className={`btn wish-btn ${
+                property.wishlist.toLowerCase() === "yes" ? "active" : ""
+              }`}
               onClick={(e) => handleAddToWishlist(property.id)}
             >
               {property.wishlist.toLowerCase() === "yes" ? (
