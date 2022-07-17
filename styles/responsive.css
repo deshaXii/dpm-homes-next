@@ -3,6 +3,31 @@
         display: none;
     }
 
+    .app-copyright-area .copyright-text {
+        text-align: center;
+        margin-bottom: 3px;
+    }
+
+    .footer-menu {
+        text-align: center;
+    }
+
+    section.projects-section.p80 {
+        padding-bottom: 160px;
+    }
+
+    .footer-app-info {
+        margin-bottom: 4px;
+    }
+
+    .contact-info-area {
+        margin-bottom: 30px;
+    }
+
+    section.p80 {
+        padding: 60px 0;
+    }
+
     .contact-info-area .c-info-box h6 {
         font-size: 18px;
         margin-bottom: 5px;
@@ -906,6 +931,4 @@
 
 }
 
-@media (min-width: 1199px) and (max-width: 1399px) {
-    
-}
+@media (min-width: 1199px) and (max-width: 1399px) {}

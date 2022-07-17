@@ -137,10 +137,10 @@ const AppNavbar = ({ user }) => {
           <Link href="/">
             <a className="brand-logo">
               <Image
-                width={80}
+                width={65}
                 height={65}
                 alt="DPMHOMES LOGO"
-                src="/img/logo.png"
+                src="/img/logo2.png"
               />
             </a>
           </Link>

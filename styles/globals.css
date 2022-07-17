@@ -3352,7 +3352,7 @@ nav.mobile.navbar,
 }
 
 
-.overlay {
+.overlay:not(section) {
   position: fixed;
   top: 0;
   left: 0;
