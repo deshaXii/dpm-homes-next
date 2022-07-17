@@ -58,10 +58,14 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        state.user = action.payload;
+        if (action.payload.success) {
+          state.user = action.payload;
+        } else {
+          state.user = null;
+        }
       })
       .addCase(login.rejected, (state, action) => {
-        console.log(action.payload);
+        state.user = null;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload;

@@ -112,7 +112,7 @@ const MyProfile = () => {
     e.preventDefault();
     const token = jsCookies.getItem("userToken");
     // Show Notification
-    
+
     dispatch(updateProfile(data)).then((res) => {
       dispatch(getUserInfo(token));
       toast.success(res.payload.message, {
@@ -127,7 +127,6 @@ const MyProfile = () => {
   };
 
   const { allCountries, allGovernorates } = useSelector(selectCountries);
-
 
   const selectStyle = {
     control: (base, { isFocused }) => ({
@@ -381,7 +380,7 @@ const MyProfile = () => {
                                         <FaWhatsapp />
                                       </div>
                                     </div>
-                         
+
                                     <div className="form-group">
                                       <label htmlFor="city_select">
                                         <FormattedMessage id="page.home.auth.properties.filter.country" />

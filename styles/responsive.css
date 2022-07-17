@@ -3,6 +3,14 @@
         display: none;
     }
 
+    .search-property-layout-content .property-card-image .property-tags .t-rent {
+        font-size: 10px;
+    }
+
+    .search-property-layout-content .property-card-image .property-lc span {
+        font-size: 12px;
+    }
+
     .app-copyright-area .copyright-text {
         text-align: center;
         margin-bottom: 3px;

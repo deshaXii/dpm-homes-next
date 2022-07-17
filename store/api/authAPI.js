@@ -1,7 +1,7 @@
 import API from "../api";
 import jsCookies from "js-cookies";
 
-export async function authLogin({user, lang}) {
+export async function authLogin({ user, lang }) {
   try {
     const res = await API.post(`/login?lang=${lang}`, {
       email: user.email,
@@ -12,7 +12,7 @@ export async function authLogin({user, lang}) {
     }
     return await res.data;
   } catch (err) {
-    return err;
+    return await err.response.data;
   }
 }
 

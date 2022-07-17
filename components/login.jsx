@@ -45,6 +45,7 @@ const LoginContent = ({ from }) => {
       return;
     }
     dispatch(login({ user, lang: "ar" })).then((res) => {
+      console.log(res.payload);
       if (res.payload.success) {
         router.push("/");
         toast.success(res.payload.message, {
@@ -56,7 +57,7 @@ const LoginContent = ({ from }) => {
           draggable: true,
         });
       } else {
-        toast.error(res.payload.response.data.message, {
+        toast.error(res.payload.message, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,

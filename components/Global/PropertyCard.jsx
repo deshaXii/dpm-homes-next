@@ -46,11 +46,15 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
       router.push("/login");
     }
   };
-
+  
   return (
     <div className={`property-card ${className}`}>
       <div className="property-card-image">
-        <Link href={`/property/${property.id}`}>
+        <Link
+          href={
+            property.status === "Pending" ? "#" : `/property/${property.id}`
+          }
+        >
           <a>
             <Image
               width={400}
@@ -59,6 +63,13 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
             />
           </a>
         </Link>
+
+        {property.status === "Pending" && (
+          <div className="property-status">
+            <span>Under Review</span>
+          </div>
+        )}
+
         <div className="property-tags">
           <span className="t-rent">
             {property.sell_rent_type === "rent" ? (
@@ -90,7 +101,7 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
             <a>
               {property.user_info.image ? (
                 <Image
-                  src="/img/logo.png"
+                src={`https://admin.dpmhomes.com/user-images/${property.user_info.image}`}
                   alt="property added by DPMHOMES"
                   width={42}
                   height={42}
@@ -121,7 +132,11 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
           )}
         </div>
         <div className="property-card-title">
-          <Link href="#">
+          <Link
+            href={
+              property.status === "Pending" ? "#" : `/property/${property.id}`
+            }
+          >
             <a>
               <h5>
                 {property.compound_name

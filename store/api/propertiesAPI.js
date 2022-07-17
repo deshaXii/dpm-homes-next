@@ -32,7 +32,7 @@ export async function addResidentialCashProperty(data) {
   try {
     let token = jsCookies.getItem("userToken");
     const res = await API.post(
-      `/add-residential-cash`,
+      `/add-residential-cash?lang=ar`,
       { ...data, "images[]": data.images },
       {
         headers: {

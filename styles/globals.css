@@ -191,7 +191,7 @@ nav.app-navbar {
   padding: 12px 0;
   position: sticky;
   top: 0;
-  z-index: 9999999999;
+  z-index: 9999;
   background-color: var(--darkGreen);
   border-bottom: 1px solid rgb(12 44 56 / 52%);
 }
@@ -876,6 +876,8 @@ section.services-section:after {
 .property-card-image .property-added-by img {
   border: none !important;
   padding: 4px !important;
+  border-radius: 50px !important;
+  object-fit: cover;
 }
 
 .property-card-image .property-added-by a .user_f_letter {
@@ -2279,6 +2281,7 @@ div#city_select .css-1jqqwy7-control {
 a.navbar-login-link.mobile-menu-link {
   justify-content: flex-start;
 }
+
 .mobile-menu-list .navbar-auth-area-inner {
   display: flex;
   column-gap: 10px;
@@ -2570,13 +2573,7 @@ aside.properties-filter .filter-group {
   column-gap: 10px;
 }
 
-.search-property-layout-content .property-card-image .property-tags .t-rent {
-  font-size: 10px;
-}
 
-.search-property-layout-content .property-card-image .property-lc span {
-  font-size: 12px;
-}
 
 
 aside.properties-filter .filter-group .custom-checkbox {
@@ -3444,4 +3441,39 @@ nav.mobile.navbar,
   padding: 5px 30px;
   color: #fff;
   border-radius: 5px;
+}
+
+.loading-wrap {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 40%;
+  background: #fff;
+  min-height: 24%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 2px solid #eee;
+}
+
+.loading-icon {
+  margin-bottom: 10px;
+}
+
+.loading-txt span {
+  font-size: 20px;
+  color: #767676;
+}
+
+.property-status {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  background: #fff;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 13px;
 }
