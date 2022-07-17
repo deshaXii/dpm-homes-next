@@ -15,8 +15,8 @@ const AppFooter = () => {
               <Link href="#">
                 <a>
                   <Image
-                    src="/img/logo.png"
-                    width={120}
+                    src="/img/logo2.png"
+                    width={100}
                     height={100}
                     alt="Dpmhomes logo"
                   />

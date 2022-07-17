@@ -46,6 +46,10 @@ function MyApp({ Component, pageProps }) {
               : "لاكشري عقار اكبر محرك بحث في عقارات مصر يمكنك من خلاله البحث عن عقارات للبيع او عقارات للايجار من شقق وفيلات"
           }
         />
+        <meta
+          name="facebook-domain-verification"
+          content="jj0ja1p8vmgbdfeba6781qnpi92m46"
+        />
       </Head>
       <IntlProvider
         locale={locale}
