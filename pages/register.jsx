@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import RegisterContent from "../components/register";
 import Head from "next/head";
 import { wrapper } from "../store/index";
@@ -6,6 +6,12 @@ import { wrapper } from "../store/index";
 import Default from "../layouts/default";
 
 const Register = () => {
+  useEffect(() => {
+    document.body.style.backgroundColor = "#011f2a";
+    return () => {
+      document.body.style.backgroundColor = "white";
+    };
+  }, []);
   const {locale} = useRouter();
   return (
     <Default>
