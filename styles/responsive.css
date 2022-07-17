@@ -11,6 +11,10 @@
         font-size: 12px;
     }
 
+    .loading-wrap {
+        min-width: 89%;
+    }
+
     .app-copyright-area .copyright-text {
         text-align: center;
         margin-bottom: 3px;

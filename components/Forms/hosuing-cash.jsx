@@ -1188,7 +1188,7 @@ const HosuingCash = () => {
           </div>
         </div>
       )}
-      {showSuccess && (
+      {!showSuccess && (
         <div className="overlay">
           <div className="loading-wrap">
             <div className="loading-icon">
