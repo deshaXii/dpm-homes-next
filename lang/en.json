@@ -205,7 +205,15 @@
   "page.property.view-Location": "Location",
   "page.property.view-show": "Show",
   "page.property.view-Appointment_Booking": "Appointment Booking",
-  "page.property.view-Property": "Property"
+  "page.property.view-Property": "Property",
+  "auth.signIn": "sign in",
+  "auth.login": "Login",
+  "auth.forget": "Forget Password",
+  "auth.account": "Create Account",
+  "auth.haveAccount": "Already have a account ?",
+  "notification.title": "Show your property to millions of visitors every month",
+  "notification.add": "Add Property" 
+
 
 
 }

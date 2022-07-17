@@ -3385,3 +3385,62 @@ nav.mobile.navbar,
 }
 
 /* End Appointment Booking */
+
+.notification-wrap {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: calc(100% - 20px);
+  background: #fff;
+  border-radius: 4px;
+}
+
+.notification-content {
+  padding: 12px;
+  position: relative;
+}
+
+.notification-text {
+  padding-right: 50px;
+}
+
+.notification-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.notification-close button {
+  background: none;
+  border: none;
+  background: #333;
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+}
+
+.notification-text p {
+  margin: 0;
+}
+
+.notification-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.notification-links a.noti-blue-btn {
+  background: #e89d2d;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.notification-links a.noti-gray-btn {
+  background: #011f2a;
+  padding: 5px 30px;
+  color: #fff;
+  border-radius: 5px;
+}

@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import scrollToTop from "../common/scrollToTop";
 import { wrapper } from "../store/index";
 import { ToastContainer } from "react-toastify";
 import { parseCookies } from "../common/parseCookies";
+import { AiOutlineClose } from "react-icons/ai";
 import { getUserInfo } from "../store/slices/auth";
 import { useRouter } from "next/router";
-import { IntlProvider } from "react-intl";
+import { FormattedMessage, IntlProvider } from "react-intl";
 import "../styles/globals.css";
 import "../styles/arabic-style.css";
 import "../styles/responsive.css";
@@ -15,6 +16,7 @@ import "../styles/arabic-responsive.css";
 import ar from "../lang/ar.json";
 import en from "../lang/en.json";
 import Head from "next/head";
+import Link from "next/link";
 
 const messages = {
   ar,
@@ -30,6 +32,9 @@ function MyApp({ Component, pageProps }) {
       scrollToTop();
     }
   }, []);
+
+  const [showNotification, setShowNotification] = useState(true);
+
   return (
     <>
       <Head>
@@ -42,8 +47,40 @@ function MyApp({ Component, pageProps }) {
           }
         />
       </Head>
-      <IntlProvider locale={locale} messages={messages[locale]} defaultLocale={defaultLocale}>
+      <IntlProvider
+        locale={locale}
+        messages={messages[locale]}
+        defaultLocale={defaultLocale}
+      >
         <Component {...pageProps} />
+        {showNotification && (
+          <div className="notification-wrap">
+            <div className="notification-content">
+              <div className="notification-text">
+                <p>
+                  <FormattedMessage id="notification.title" />
+                </p>
+              </div>
+              <div className="notification-close">
+                <button onClick={() => setShowNotification(false)}>
+                  <AiOutlineClose />
+                </button>
+              </div>
+              <div className="notification-links">
+                <Link href="/add-property">
+                  <a className="noti-blue-btn">
+                    <FormattedMessage id="notification.add" />
+                  </a>
+                </Link>
+                <Link href="/register">
+                  <a className="noti-gray-btn">
+                    <FormattedMessage id="auth.account" />
+                  </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </IntlProvider>
       <ToastContainer />
     </>

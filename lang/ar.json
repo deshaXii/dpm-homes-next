@@ -205,5 +205,12 @@
   "page.property.view-Location": "الخريطه",
   "page.property.view-show": "عرض",
   "page.property.view-Appointment_Booking": "حجز موعد",
-  "page.property.view-Property": "العقار"
+  "page.property.view-Property": "العقار",
+  "auth.signIn": "تسجيل الدخول",
+  "auth.login": "تسجيل الدخول",
+  "auth.forget": " نسيت كلمة المرور",
+  "auth.account": " حساب جديد",
+  "auth.haveAccount": " هل لديك حساب  ?",
+  "notification.title": "اعرض عقارك لملايين من زوار الموقع شهريا",
+  "notification.add": "إضافة وحدة" 
 }

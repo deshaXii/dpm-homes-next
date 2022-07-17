@@ -11,8 +11,16 @@ import { useRouter } from "next/router";
 import Select from "react-select";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { FormattedMessage } from "react-intl";
 
-const account_status_options = [
+const account_status_options_ar = [
+  { value: "owner", label: "مالك" },
+  { value: "marketer", label: "مسوق" },
+  { value: "developer", label: "مطور" },
+  { value: "marketing_companies", label: "شركة تسويق" },
+];
+
+const account_status_options_en = [
   { value: "owner", label: "Owner" },
   { value: "marketer", label: "Marketer" },
   { value: "developer", label: "Developer" },
@@ -40,12 +48,16 @@ const selectStyle = {
 
 const RegisterContent = ({ from }) => {
   const router = useRouter();
+  const { locale } = router;
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [account_type, setAccountType] = useState("personal");
   const [account_status, setAccount_status] = useState("");
+
+  useEffect(() => {
+    setAccount_status("");
+  }, [locale]);
 
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
@@ -54,7 +66,7 @@ const RegisterContent = ({ from }) => {
     email,
     phone,
     account_status,
-    type: account_type,
+    // type: account_type,
     password,
   };
   const handleRegisterSubmit = (e) => {
@@ -102,7 +114,7 @@ const RegisterContent = ({ from }) => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Name"
+            placeholder={`${locale === "en" ? "Name" : "الاسم"}`}
             autoComplete="false"
           />
         </div>
@@ -114,7 +126,7 @@ const RegisterContent = ({ from }) => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
+            placeholder={`${locale === "en" ? "Email" : " البريد الالكتروني"}`}
             autoComplete="false"
           />
         </div>
@@ -127,7 +139,7 @@ const RegisterContent = ({ from }) => {
             type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+            placeholder={`${locale === "en" ? "Password" : "كلمة المرور"}`}
             autoComplete="false"
           />
           <div className="show-password-icon">
@@ -144,7 +156,7 @@ const RegisterContent = ({ from }) => {
           </div>
           <PhoneInput
             country={"eg"}
-            placeholder="Enter Phone Number"
+            placeholder={`${locale === "en" ? "Phone Number" : " رقم الهاتف"}`}
             onlyCountries={["eg", "ae", "sa", "kw", "bh", "om", "qa", "jo"]}
             value={phone}
             onChange={(value) => setPhone(value)}
@@ -156,12 +168,16 @@ const RegisterContent = ({ from }) => {
             name="area_size"
             id="account_status"
             onChange={(value) => setAccount_status(value.value)}
-            placeholder="Select your account type"
-            options={account_status_options}
+            placeholder={`${locale === "en" ? "account type" : " نوع الحساب"}`}
+            options={
+              locale === "en"
+                ? account_status_options_en
+                : account_status_options_ar
+            }
             instanceId="account_status"
           />
         </div>
-        <div className="form-group custom-radios">
+        {/* <div className="form-group custom-radios">
           <div className="custom-radio-box">
             <input
               type="radio"
@@ -194,18 +210,26 @@ const RegisterContent = ({ from }) => {
               <span>Company</span>
             </div>
           </div>
-        </div>
+        </div> */}
+
         <div className="form-submit-button">
           <button type="submit" className="btn">
-            Create Account
+            <FormattedMessage id="auth.account" />
           </button>
         </div>
         <div className="login-form-options">
           <div className="form-option">
-            <span>Already have a account ?</span>
+            <span>
+              {" "}
+              <FormattedMessage id="auth.haveAccount" />{" "}
+            </span>
           </div>
           <div className="form-option">
-            <Link href="/login">Login</Link>
+            <Link href="/login">
+              <a>
+                <FormattedMessage id="auth.login" />
+              </a>
+            </Link>
           </div>
         </div>
       </form>

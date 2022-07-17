@@ -23,7 +23,7 @@ export async function createAccount({ user, lang }) {
       email: user.email,
       phone: user.phone,
       password: user.password,
-      type: user.type,
+      // type: user.type,
       account_status: user.account_status,
     });
     if (res.data.success) {

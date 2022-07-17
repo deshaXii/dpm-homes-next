@@ -121,3 +121,73 @@ body .rtl {
 .rtl .arrow-to-right.property-viwer-btns .btn.active:before {
     left: -17px;
 }
+
+.rtl .register .css-qc6sy-singleValue,
+.rtl .register .css-14el2xx-placeholder {
+    text-align: right;
+}
+
+.rtl .login-area.login-page-content .form-group .input-icon {
+    left: auto;
+    right: 10px;
+}
+
+.rtl .login-area.login-page-content .form-group input {
+    padding-left: 0;
+    padding-right: 55px;
+}
+
+.rtl .react-tel-input .special-label {
+    left: auto;
+    right: 46px;
+}
+
+.rtl .register .react-tel-input .flag-dropdown {
+    left: auto;
+    right: 10px;
+}
+
+.rtl .react-tel-input .selected-flag {
+    padding-left: 0;
+    padding-right: 8px;
+}
+
+.rtl .react-tel-input .selected-flag .arrow {
+    left: auto;
+    right: 20px;
+}
+
+.rtl .register .react-tel-input .country-list .country {
+    text-align: right;
+}
+
+.rtl .react-tel-input .country-list .flag {
+    margin-right: 0;
+    margin-left: 7px;
+}
+
+.rtl .login-area.login-page-content .react-tel-input .form-control {
+    unicode-bidi: plaintext;
+    font-family: 'Almarai', sans-serif;
+    padding-left: 20px;
+    text-align: right;
+}
+
+.rtl .login-area.login-page-content .form-group .show-password-icon {
+    right: auto;
+    left: 15px;
+}
+
+.rtl .notification-text {
+    padding-right: 0;
+    padding-left: 50px;
+}
+
+.rtl .notification-close {
+    right: auto;
+    left: 10px;
+}
+
+.rtl .notification-text p {
+    text-align: right;
+}
