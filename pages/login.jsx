@@ -3,16 +3,21 @@ import LoginContent from "../components/login";
 import Head from "next/head";
 import { wrapper } from "../store/index";
 import { useRouter } from "next/router";
-import Default from '../layouts/default'
+import Default from "../layouts/default";
 
 const login = () => {
-  const {locale} = useRouter();
+  const { locale } = useRouter();
+  useEffect(() => {
+    document.body.style.backgroundColor = "#011f2a";
+    return () => {
+      document.body.style.backgroundColor = "white";
+    };
+  }, []);
   return (
     <Default>
       <Head>
-       <title>
-          Luxury Aqar | 
-          {locale === "en" ? " Login" : " تسجيل الدخول"}
+        <title>
+          Luxury Aqar |{locale === "en" ? " Login" : " تسجيل الدخول"}
         </title>
       </Head>
       <div
