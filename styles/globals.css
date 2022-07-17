@@ -3390,9 +3390,10 @@ nav.mobile.navbar,
   position: fixed;
   bottom: 10px;
   left: 10px;
-  width: calc(100% - 20px);
+  width: 390px;
   background: #fff;
   border-radius: 4px;
+  z-index: 999;
 }
 
 .notification-content {

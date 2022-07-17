@@ -20,6 +20,10 @@
         margin-bottom: 4px;
     }
 
+    .notification-wrap {
+        width: calc(100% - 20px);
+    }
+
     .contact-info-area {
         margin-bottom: 30px;
     }
@@ -193,21 +197,23 @@
     }
 
     .mobile.navbar .menu-icon svg {
-        font-size: 28px;
+        font-size: 24px;
         color: #fff;
         cursor: pointer;
     }
 
+    a.brand-logo {
+        display: flex;
+    }
+
     nav.mobile.navbar {
-        padding: 0 15px;
+        padding: 4px 15px;
         position: sticky;
         border-bottom: 1px solid #0a2c38;
-        padding-bottom: 8px;
         display: flex;
         top: 0;
         z-index: 9999;
         width: 100%;
-        padding-top: 10px;
         background-color: var(--darkGreen);
     }
 
@@ -583,13 +589,13 @@
         border-radius: 6px;
         padding: 4px;
         display: flex;
-        width: 40px;
-        height: 40px;
-        line-height: 40px;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
         color: #ffff;
         justify-content: center;
         align-items: center;
-        font-size: 27px;
+        font-size: 24px;
     }
 
     .mobile-menu-list .mobile-menu-list-item .mobile-menu-link .mml-icon {
