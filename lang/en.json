@@ -212,8 +212,8 @@
   "auth.account": "Create Account",
   "auth.haveAccount": "Already have a account ?",
   "notification.title": "Show your property to millions of visitors every month",
-  "notification.add": "Add Property" 
-
-
-
+  "notification.add": "Add Property",
+  "rate.title": "How much do you rate the site?",
+  "rate.send": "send",
+  "rate.stitle": "Did you face any problems? Do you want to add a feature that does not exist yet?"
 }

@@ -96,7 +96,7 @@ function MyApp({ Component, pageProps }) {
           </div>
           <div className="feedback-content">
             <div className="feedback-header">
-              <span>1 {`->`} Please Select How much you love the design</span>
+              <span>1 - <FormattedMessage id="rate.title" /></span>
             </div>
             <div className="feedback-rate">
               <div className="feedback">
@@ -403,11 +403,11 @@ function MyApp({ Component, pageProps }) {
               </div>
             </div>
             <div className="feedback-text">
-            <span>2 {`->`} هل واجهت اي مشكلة غريبة ؟ أو تريد إضافة ميزة ليست موجودة </span>
-              <textarea placeholder="اكتب هنا.."></textarea>
+            <span>2 - <FormattedMessage id="rate.stitle" /> </span>
+              <textarea placeholder="...."></textarea>
             </div>
             <div className="feedback-links">
-              <button className="btn">Send</button>
+              <button className="btn"><FormattedMessage id="rate.send" /> </button>
             </div>
           </div>
         </div>

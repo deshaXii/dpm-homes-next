@@ -212,5 +212,8 @@
   "auth.account": " حساب جديد",
   "auth.haveAccount": " هل لديك حساب  ?",
   "notification.title": "اعرض عقارك لملايين من زوار الموقع شهريا",
-  "notification.add": "إضافة وحدة" 
+  "notification.add": "إضافة وحدة",
+  "rate.send": "إرسال",
+  "rate.title": "كم تقيم الموقع؟",
+  "rate.stitle": "هل واجهت أي مشاكل؟ هل تريد إضافة ميزة غير موجودة بعد؟"
 }

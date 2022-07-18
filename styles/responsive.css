@@ -27,7 +27,7 @@
     }
 
     .hide .feedback-content {
-        width: calc(100% - 40px);
+        width: calc(100% - 54px);
     }
 
     .open .fixed-button {
@@ -50,6 +50,11 @@
     .footer-menu {
         text-align: center;
     }
+
+    .fixed-button {
+        margin: 110px 0 0 -36px;
+    }
+
 
     section.projects-section.p80 {
         padding-bottom: 160px;

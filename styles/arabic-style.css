@@ -196,3 +196,19 @@ body .rtl {
     left: auto;
     right: 10px;
 }
+
+html[lang="ar"] .feedback-text span {
+    text-align: right;
+}
+
+html[lang="ar"] .feedback-header {
+    text-align: right;
+}
+
+html[lang="ar"] .feedback-text textarea {
+    text-align: right;
+}
+
+html[lang="ar"] .feedback-links {
+    text-align: right;
+}
