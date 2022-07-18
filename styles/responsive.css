@@ -9,10 +9,12 @@
 
     .feedback-wrap.hide {
         right: -351px;
+       
     }
 
     .feedback-content {
         width: calc(100% - 30px);
+        min-width: auto;
         margin-left: auto;
     }
 
