@@ -51,6 +51,10 @@ function MyApp({ Component, pageProps }) {
           name="facebook-domain-verification"
           content="jj0ja1p8vmgbdfeba6781qnpi92m46"
         />
+        <meta
+          name="google-site-verification"
+          content="NBG0d3Vu3lHnoN_-ubKegWHSONu0p-Cxj98F__vThbo"
+        />
       </Head>
       <IntlProvider
         locale={locale}
@@ -96,7 +100,9 @@ function MyApp({ Component, pageProps }) {
           </div>
           <div className="feedback-content">
             <div className="feedback-header">
-              <span>1 - <FormattedMessage id="rate.title" /></span>
+              <span>
+                1 - <FormattedMessage id="rate.title" />
+              </span>
             </div>
             <div className="feedback-rate">
               <div className="feedback">
@@ -403,11 +409,15 @@ function MyApp({ Component, pageProps }) {
               </div>
             </div>
             <div className="feedback-text">
-            <span>2 - <FormattedMessage id="rate.stitle" /> </span>
+              <span>
+                2 - <FormattedMessage id="rate.stitle" />{" "}
+              </span>
               <textarea placeholder="...."></textarea>
             </div>
             <div className="feedback-links">
-              <button className="btn"><FormattedMessage id="rate.send" /> </button>
+              <button className="btn">
+                <FormattedMessage id="rate.send" />{" "}
+              </button>
             </div>
           </div>
         </div>
