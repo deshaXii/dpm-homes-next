@@ -10,9 +10,10 @@
     .feedback-wrap.open {
         transform: translateY(-37%);
     }
+
     .feedback-wrap.hide {
         right: -351px;
-       
+
     }
 
     .feedback-content {
@@ -23,6 +24,14 @@
 
     .search-property-layout-content .property-card-image .property-tags .t-rent {
         font-size: 10px;
+    }
+
+    .hide .feedback-content {
+        width: calc(100% - 40px);
+    }
+
+    .open .fixed-button {
+        margin-left: -48px;
     }
 
     .search-property-layout-content .property-card-image .property-lc span {
