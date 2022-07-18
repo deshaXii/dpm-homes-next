@@ -7,6 +7,9 @@
         margin: 110px 0 0 -59px;
     }
 
+    .feedback-wrap.open {
+        transform: translateY(-37%);
+    }
     .feedback-wrap.hide {
         right: -351px;
        
