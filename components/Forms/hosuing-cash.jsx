@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FiUploadCloud, FiEdit2 } from "react-icons/fi";
 import Select from "react-select";
 import { MdOutlineDeleteOutline } from "react-icons/md";
+import { AiOutlineInfo } from "react-icons/ai";
 import ImageUploading from "react-images-uploading";
 import { useDispatch, useSelector } from "react-redux";
 import { FormattedMessage } from "react-intl";
@@ -83,6 +84,7 @@ const HosuingCash = () => {
   const [seventhTabVis, setSeventhTabVis] = useState(false);
   const [eighthTabVis, setEighthTabVis] = useState(false);
   const [ninthTabVis, setNinthTabVis] = useState(false);
+  const [tenTabVis, setTenTabVis] = useState(false);
 
   const selectStyle = {
     control: (base, { isFocused }) => ({
@@ -1145,6 +1147,72 @@ const HosuingCash = () => {
                   className="aft-four-item aft-item"
                   onClick={() => setEighthTabVis(!eighthTabVis)}
                 >
+                  <h3>رفع فيديو</h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
+                </div>
+                <div className="aft-four-content aft-content">
+                  <textarea
+                    value={youtube}
+                    onChange={(e) => setYoutube(e.target.value)}
+                  ></textarea>
+                </div>
+              </div>
+
+              <div className={`${eighthTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setEighthTabVis(!eighthTabVis)}
+                >
+                  <h3>رفع فيديو</h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
+                </div>
+                <div className="aft-four-content aft-content">
+                  <div className="note-box" title="ازاي ترفع فيديو؟">
+                    <AiOutlineInfo />
+                  </div>
+                  <textarea
+                    value={youtube}
+                    onChange={(e) => setYoutube(e.target.value)}
+                  ></textarea>
+                </div>
+              </div>
+
+              <div className={`${ninthTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setNinthTabVis(!ninthTabVis)}
+                >
+                  <h3>مخطط الوحدة</h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
+                </div>
+                <div className="aft-four-content aft-content">
+                  <textarea
+                    value={pdf}
+                    onChange={(e) => setPdf(e.target.value)}
+                  ></textarea>
+                </div>
+              </div>
+
+              <div className={`${tenTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setTenTabVis(!tenTabVis)}
+                >
                   <h3>
                     <FormattedMessage id="page.add-property-form-title.add-more-details" />
                   </h3>
@@ -1188,7 +1256,7 @@ const HosuingCash = () => {
           </div>
         </div>
       )}
-      {!showSuccess && (
+      {showSuccess && (
         <div className="overlay">
           <div className="loading-wrap">
             <div className="loading-icon">

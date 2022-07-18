@@ -3,6 +3,19 @@
         display: none;
     }
 
+    .fixed-button {
+        margin: 110px 0 0 -59px;
+    }
+
+    .feedback-wrap.hide {
+        right: -351px;
+    }
+
+    .feedback-content {
+        width: calc(100% - 30px);
+        margin-left: auto;
+    }
+
     .search-property-layout-content .property-card-image .property-tags .t-rent {
         font-size: 10px;
     }
