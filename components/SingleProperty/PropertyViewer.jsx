@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SectionTitle from "../../components/Global/SectionTitle";
-import { BsImages } from "react-icons/bs";
+import { BsHeartFill, BsHeart, BsImages } from "react-icons/bs";
 import { VscFilePdf } from "react-icons/vsc";
 import { MdOutlineViewInAr } from "react-icons/md";
 import { HiOutlineLocationMarker } from "react-icons/hi";
@@ -9,15 +9,48 @@ import Slider from "react-slick";
 import { FiShare2, FiHeart } from "react-icons/fi";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { RWebShare } from "react-web-share";
 
 import PrevArrow from "../Global/PrevArrow";
 import NextArrow from "../Global/NextArrow";
-import { useSelector } from "react-redux";
-import { selectProperties } from "../../store/slices/properties";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getPropertiesWithTpye,
+  selectProperties,
+} from "../../store/slices/properties";
 import { FormattedMessage } from "react-intl";
-
+import jsCookies from "js-cookies";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { addPropertyToWishlist } from "../../store/slices/wishlist";
+import ModalVideo from "react-modal-video";
+import "react-modal-video/css/modal-video.css";
 const PropertyViewer = () => {
+  const [isOpen, setOpen] = useState(false);
+
   const { property } = useSelector(selectProperties);
+  const dispatch = useDispatch();
+
+  const handleAddToWishlist = (id) => {
+    let token = jsCookies.getItem("userToken");
+    if (token) {
+      dispatch(addPropertyToWishlist(id)).then((res) => {
+        if (res.payload.success) {
+          dispatch(getPropertiesWithTpye({ type: "all", userToken: token }));
+          toast.success(res.payload.message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        }
+      });
+    } else {
+      router.push("/login");
+    }
+  };
 
   const slider1Settings = {
     arrows: true,
@@ -64,180 +97,214 @@ const PropertyViewer = () => {
 
   const [activeView, setActiveView] = useState("images-view");
   return (
-    <section className="property-viewer p50">
-      <div className="container">
-        <SectionTitle
-          title={<FormattedMessage id="page.property.view-Property" />}
-          subTitle={<FormattedMessage id="page.property.view-show" />}
+    <>
+      {typeof window !== "undefined" && (
+        <ModalVideo
+          channel="youtube"
+          autoplay={true}
+          isOpen={isOpen}
+          videoId="nhDbIRiXcBY"
+          onClose={() => setOpen(false)}
         />
-        <div className="row">
-          <div className="col-md-11">
-            <div className="property-view-area">
-              {activeView === "images-view" && (
-                <div className="property-view-box property-view-images">
-                  <Slider
-                    className="big-slider"
-                    asNavFor={nav2}
-                    ref={(c) => setNav1(c)}
-                    {...slider1Settings}
-                  >
-                    {property.data.images.map((imageLink, index) => (
-                      <div className="slider__item" key={index}>
-                        <img
-                          src={`https://admin.dpmhomes.com/property-images/${imageLink}`}
-                          alt="Product image"
-                        />
-                      </div>
-                    ))}
-                  </Slider>
-                  <Slider
-                    className="small-slider"
-                    asNavFor={nav1}
-                    ref={(c) => setNav2(c)}
-                    {...slider2Settings}
-                  >
-                    {property.data.images.map((imageLink, index) => (
-                      <div className="slider__item" key={index}>
-                        <img
-                          src={`https://admin.dpmhomes.com/property-images/${imageLink}`}
-                          alt="Product image"
-                        />
-                      </div>
-                    ))}
-                  </Slider>
-                </div>
-              )}
-              {activeView === "video-view" && (
-                <div className="property-view-box property-view-video">
-                  <iframe
-                    src="https://www.youtube.com/embed/FoCG-WNsZio"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              )}
-              {activeView === "pdf-view" && (
-                <div className="property-view-box property-view-pdf">
-                  <div className="pdf-as-images">
-                    <img src="/img/pdf-1.jpg" alt="pdf" />
-                    <img src="/img/pdf-2.jpg" alt="pdf" />
-                    <img src="/img/pdf-3.jpg" alt="pdf" />
+      )}
+      <section className="property-viewer p50">
+        <div className="container">
+          <SectionTitle
+            title={<FormattedMessage id="page.property.view-Property" />}
+            subTitle={<FormattedMessage id="page.property.view-show" />}
+          />
+          <div className="row">
+            <div className="col-md-11">
+              <div className="property-view-area">
+                {activeView === "images-view" && (
+                  <div className="property-view-box property-view-images">
+                    <Slider
+                      className="big-slider"
+                      asNavFor={nav2}
+                      ref={(c) => setNav1(c)}
+                      {...slider1Settings}
+                    >
+                      {property.data.images.map((imageLink, index) => (
+                        <div className="slider__item" key={index}>
+                          <img
+                            src={`https://admin.dpmhomes.com/property-images/${imageLink}`}
+                            alt="Product image"
+                          />
+                        </div>
+                      ))}
+                    </Slider>
+                    <Slider
+                      className="small-slider"
+                      asNavFor={nav1}
+                      ref={(c) => setNav2(c)}
+                      {...slider2Settings}
+                    >
+                      {property.data.images.map((imageLink, index) => (
+                        <div className="slider__item" key={index}>
+                          <img
+                            src={`https://admin.dpmhomes.com/property-images/${imageLink}`}
+                            alt="Product image"
+                          />
+                        </div>
+                      ))}
+                    </Slider>
                   </div>
-                </div>
-              )}
-              {activeView === "3d-view" && (
-                <div className="property-view-box property-view-3d">
-                  <iframe
-                    src="https://my.matterport.com/show/?m=r98fDQY81RM"
-                    frameBorder="0"
-                    allowFullScreen
-                    allow="xr-spatial-tracking"
-                  ></iframe>
-                </div>
-              )}
-              {activeView === "location-view" && (
-                <div className="property-view-box property-view-location">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d9934.52282952562!2d-0.1408000000000129!3d51.501644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1641494337400!5m2!1sar!2seg"
-                    allowFullScreen
-                    loading="lazy"
-                  ></iframe>
-                </div>
-              )}
+                )}
+                {activeView === "video-view" && (
+                  <div className="property-view-box property-view-video">
+                    <iframe
+                      src="https://www.youtube.com/embed/FoCG-WNsZio"
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                )}
+                {activeView === "pdf-view" && (
+                  <div className="property-view-box property-view-pdf">
+                    <div className="pdf-as-images">
+                      <img src="/img/pdf-1.jpg" alt="pdf" />
+                      <img src="/img/pdf-2.jpg" alt="pdf" />
+                      <img src="/img/pdf-3.jpg" alt="pdf" />
+                    </div>
+                  </div>
+                )}
+                {activeView === "3d-view" && (
+                  <div className="property-view-box property-view-3d">
+                    <iframe
+                      src="https://my.matterport.com/show/?m=r98fDQY81RM"
+                      frameBorder="0"
+                      allowFullScreen
+                      allow="xr-spatial-tracking"
+                    ></iframe>
+                  </div>
+                )}
+                {activeView === "location-view" && (
+                  <div className="property-view-box property-view-location">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d9934.52282952562!2d-0.1408000000000129!3d51.501644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1641494337400!5m2!1sar!2seg"
+                      allowFullScreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-          <div className="col-md-1">
-            <div className="property-viwer-btns">
-              <button
-                onClick={() => {
-                  setActiveView("images-view");
-                }}
-                className={`btn images-view ${
-                  activeView === "images-view" ? "active" : ""
-                } cursor-pointer`}
-              >
-                <div className="view-btn-icon">
-                  <BsImages />
-                </div>
-                <span>
-                  <FormattedMessage id="page.property.view-images" />
-                </span>
-              </button>
-              <button
-                onClick={() => {
-                  setActiveView("video-view");
-                }}
-                className={`btn video-view ${
-                  activeView === "video-view" ? "active" : ""
-                } cursor-pointer`}
-              >
-                <div className="view-btn-icon">
-                  <AiOutlineVideoCamera />
-                </div>
-                <span>
-                  <FormattedMessage id="page.property.view-Video" />
-                </span>
-              </button>
-              <button
-                onClick={() => {
-                  setActiveView("pdf-view");
-                }}
-                className={`btn pdf-view ${
-                  activeView === "pdf-view" ? "active" : ""
-                } cursor-pointer`}
-              >
-                <div className="view-btn-icon">
-                  <VscFilePdf />
-                </div>
-                <span>
-                  <FormattedMessage id="page.property.view-PDF" />
-                </span>
-              </button>
-              <button
-                onClick={() => {
-                  setActiveView("3d-view");
-                }}
-                className={`btn 3d-view ${
-                  activeView === "3d-view" ? "active" : ""
-                } cursor-pointer`}
-              >
-                <div className="view-btn-icon">
-                  <MdOutlineViewInAr />
-                </div>
-                <span>
-                  <FormattedMessage id="page.property.view-3d" />
-                </span>
-              </button>
-              <button
-                onClick={() => {
-                  setActiveView("location-view");
-                }}
-                className={`btn location-view ${
-                  activeView === "location-view" ? "active" : ""
-                } cursor-pointer`}
-              >
-                <div className="view-btn-icon">
-                  <HiOutlineLocationMarker />
-                </div>
-                <span>
-                  <FormattedMessage id="page.property.view-Location" />
-                </span>
-              </button>
-            </div>
-            <div className="property-options-buttons">
-              <button className="btn cursor-pointer share-icon">
-                <FiShare2 />
-              </button>
-              <button className="btn cursor-pointer wishlist-icon">
-                <FiHeart />
-              </button>
+            <div className="col-md-1">
+              <div className="property-viwer-btns">
+                <button
+                  onClick={() => {
+                    setActiveView("images-view");
+                  }}
+                  className={`btn images-view ${
+                    activeView === "images-view" ? "active" : ""
+                  } cursor-pointer`}
+                >
+                  <div className="view-btn-icon">
+                    <BsImages />
+                  </div>
+                  <span>
+                    <FormattedMessage id="page.property.view-images" />
+                  </span>
+                </button>
+                <button
+                  onClick={() => {
+                    // setActiveView("video-view");
+                    setOpen(true);
+                  }}
+                  className={`btn video-view ${
+                    activeView === "video-view" ? "active" : ""
+                  } cursor-pointer`}
+                >
+                  <div className="view-btn-icon">
+                    <AiOutlineVideoCamera />
+                  </div>
+                  <span>
+                    <FormattedMessage id="page.property.view-Video" />
+                  </span>
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveView("pdf-view");
+                  }}
+                  className={`btn pdf-view ${
+                    activeView === "pdf-view" ? "active" : ""
+                  } cursor-pointer`}
+                >
+                  <div className="view-btn-icon">
+                    <VscFilePdf />
+                  </div>
+                  <span>
+                    <FormattedMessage id="page.property.view-PDF" />
+                  </span>
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveView("3d-view");
+                  }}
+                  className={`btn 3d-view ${
+                    activeView === "3d-view" ? "active" : ""
+                  } cursor-pointer`}
+                >
+                  <div className="view-btn-icon">
+                    <MdOutlineViewInAr />
+                  </div>
+                  <span>
+                    <FormattedMessage id="page.property.view-3d" />
+                  </span>
+                </button>
+                <button
+                  onClick={() => {
+                    setActiveView("location-view");
+                  }}
+                  className={`btn location-view ${
+                    activeView === "location-view" ? "active" : ""
+                  } cursor-pointer`}
+                >
+                  <div className="view-btn-icon">
+                    <HiOutlineLocationMarker />
+                  </div>
+                  <span>
+                    <FormattedMessage id="page.property.view-Location" />
+                  </span>
+                </button>
+              </div>
+
+              <div className="property-options-buttons">
+                <RWebShare
+                  data={{
+                    text: "luxury aqar property ",
+                    url: "https://luxuryaqar.com/",
+                    title: "luxuryaqar",
+                  }}
+                  onClick={() => console.log("shared successfully!")}
+                >
+                  <button className="btn cursor-pointer share-icon">
+                    <FiShare2 />
+                  </button>
+                </RWebShare>
+                <button
+                  type="button"
+                  className={`btn cursor-pointer wish-btn wishlist-icon ${
+                    property.data.wishlist.toLowerCase() === "yes"
+                      ? "active"
+                      : ""
+                  }`}
+                  onClick={(e) => handleAddToWishlist(property.data.id)}
+                >
+                  {property.data.wishlist.toLowerCase() === "yes" ? (
+                    <BsHeartFill />
+                  ) : (
+                    <BsHeart />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

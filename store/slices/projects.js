@@ -1,13 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-import { getProjects } from "../api/projectsAPI";
+import { getProjects, getProject } from "../api/projectsAPI";
 
 const initialState = {
   allProjects: [],
+  project: {},
 };
 
 export const getAllProjects = createAsyncThunk("projects/getProjects", async () => {
   const responseData = await getProjects();
+  return responseData;
+});
+
+export const getCurrentProject = createAsyncThunk("projects/getProject", async (id) => {
+  const responseData = await getProject(id);
   return responseData;
 });
 
@@ -19,6 +25,9 @@ export const projectsSlice = createSlice({
     builder
       .addCase(getAllProjects.fulfilled, (state, action) => {
         state.allProjects = action.payload.data;
+      })
+      .addCase(getCurrentProject.fulfilled, (state, action) => {
+        state.project = action.payload.data;
       })
       .addCase(HYDRATE, (state, action) => {
         const nextState = {

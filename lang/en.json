@@ -215,5 +215,6 @@
   "notification.add": "Add Property",
   "rate.title": "How much do you rate the site?",
   "rate.send": "send",
-  "rate.stitle": "Did you face any problems? Do you want to add a feature that does not exist yet?"
+  "rate.stitle": "Did you face any problems? Do you want to add a feature that does not exist yet?",
+  "feat-in-beta": "This feature not available right now"
 }

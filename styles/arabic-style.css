@@ -212,3 +212,11 @@ html[lang="ar"] .feedback-text textarea {
 html[lang="ar"] .feedback-links {
     text-align: right;
 }
+
+.rtl li.navbar-menu-list-item.disabled span {
+    width: 200px;
+}
+
+.rtl span.for-beta {
+    width: 200px;
+}

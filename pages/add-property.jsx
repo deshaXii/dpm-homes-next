@@ -38,8 +38,7 @@ const AddProperty = () => {
     <>
       <Head>
         <title>
-          Luxury Aqar |
-          {locale === "en" ? " Add Your Property" : " إضافة عقار "}
+          Luxury Aqar |{locale === "en" ? " Add Your Property" : " إضافة عقار "}
         </title>
       </Head>
       <Default>
@@ -109,15 +108,19 @@ const AddProperty = () => {
                           </button>
                         </div>
                         <div
-                          className={`ptt-title ${
+                          className={`ptt-title disabled ${
                             activePaymentType === "for-rent" ? "active" : ""
                           }`}
                         >
-                          <button
-                            onClick={() => setActivePaymentType("for-rent")}
-                          >
+                          {/* setActivePaymentType("for-rent") */}
+                          <button onClick={() => {}} className="disabled">
                             <FormattedMessage id="page.add-property-tabs-for-rent" />
                           </button>
+
+                          {/* only in beta */}
+                          <span className="for-beta">
+                            <FormattedMessage id="feat-in-beta" />
+                          </span>
                         </div>
                       </div>
                       {activePaymentType === "for-sell" && (
@@ -174,7 +177,7 @@ const AddProperty = () => {
                     <>
                       <div className={`payment-type-tabs`}>
                         <div
-                          className={`ptt-title ${
+                          className={`ptt-title  ${
                             activePaymentType === "for-sell" ? "active" : ""
                           }`}
                         >
@@ -185,15 +188,21 @@ const AddProperty = () => {
                           </button>
                         </div>
                         <div
-                          className={`ptt-title ${
+                          className={`ptt-title disabled ${
                             activePaymentType === "for-rent" ? "active" : ""
                           }`}
                         >
                           <button
-                            onClick={() => setActivePaymentType("for-rent")}
+                            className="disabled"
+                            // setActivePaymentType("for-rent")
+                            onClick={() => {}}
                           >
                             <FormattedMessage id="page.add-property-tabs-for-rent" />
                           </button>
+                          {/* only in beta */}
+                          <span className="for-beta">
+                            <FormattedMessage id="feat-in-beta" />
+                          </span>
                         </div>
                       </div>
                       {activePaymentType === "for-sell" && (
@@ -246,7 +255,7 @@ const AddProperty = () => {
                       )}
                     </>
                   )}
-                    {activeSection === "administrative-section" && (
+                  {activeSection === "administrative-section" && (
                     <>
                       <div className={`payment-type-tabs`}>
                         <div
@@ -261,15 +270,21 @@ const AddProperty = () => {
                           </button>
                         </div>
                         <div
-                          className={`ptt-title ${
+                          className={`ptt-title disabled ${
                             activePaymentType === "for-rent" ? "active" : ""
                           }`}
                         >
                           <button
-                            onClick={() => setActivePaymentType("for-rent")}
+                            className="disabled"
+                            // setActivePaymentType("for-rent")
+                            onClick={() => {}}
                           >
                             <FormattedMessage id="page.add-property-tabs-for-rent" />
                           </button>
+                          {/* only in beta */}
+                          <span className="for-beta">
+                            <FormattedMessage id="feat-in-beta" />
+                          </span>
                         </div>
                       </div>
                       {activePaymentType === "for-sell" && (

@@ -38,11 +38,11 @@ const Home = ({ dir }) => {
           sectionClass="for-sall"
         />
         <Services sectionBG="/img/services-section-bg.jpg" withOverlay />
-        <Properties
+        {/* <Properties
           type={"rent"}
           sectionTitle={<FormattedMessage id="global.section.title.rent" />}
           sectionClass="for-rent"
-        />
+        /> */}
         <Projects />
       </Default>
     </>
@@ -58,7 +58,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
       );
-      await store.dispatch(getAllProjects());
+      // await store.dispatch(getAllProjects());
       await store.dispatch(getAllCountries(locale));
       if (req.cookies.hasOwnProperty("userToken")) {
         const cookies = parseCookies(req);

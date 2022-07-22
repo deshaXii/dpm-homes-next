@@ -10,6 +10,8 @@ import { AiOutlineBorderOuter, AiOutlineShareAlt } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { FormattedMessage } from "react-intl";
 import { useDispatch } from "react-redux";
+import { RWebShare } from "react-web-share";
+
 import { addPropertyToWishlist } from "../../store/slices/wishlist";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -46,7 +48,7 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
       router.push("/login");
     }
   };
-  
+
   return (
     <div className={`property-card ${className}`}>
       <div className="property-card-image">
@@ -101,7 +103,7 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
             <a>
               {property.user_info.image ? (
                 <Image
-                src={`https://admin.dpmhomes.com/user-images/${property.user_info.image}`}
+                  src={`https://admin.dpmhomes.com/user-images/${property.user_info.image}`}
                   alt="property added by DPMHOMES"
                   width={42}
                   height={42}
@@ -211,9 +213,19 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
           </div>
 
           <div className="propert-card-buttons">
-            <button type="button" className="btn share-btn">
-              <AiOutlineShareAlt />
-            </button>
+            <RWebShare
+              data={{
+                text: "Like humans, flamingos make friends for life",
+                url: "https://on.natgeo.com/2zHaNup",
+                title: "Flamingos",
+              }}
+              onClick={() => console.log("shared successfully!")}
+            >
+              <button type="button" className="btn share-btn">
+                <AiOutlineShareAlt />
+              </button>
+            </RWebShare>
+
             <button
               type="button"
               className={`btn wish-btn ${
