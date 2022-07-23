@@ -14,6 +14,7 @@ import {
   getAllGovernorates,
   selectCountries,
 } from "../../store/slices/countries";
+import Image from "next/image";
 
 const CommercialInstallment = () => {
   const { allCountries, allGovernorates } = useSelector(selectCountries);
@@ -196,11 +197,24 @@ const CommercialInstallment = () => {
   };
 
   const router = useRouter();
+  const [showLoading, setShowLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    if (showSuccess) {
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
+    }
+  }, [showLoading]);
 
   const handelAddProperty = (e) => {
     e.preventDefault();
+    setShowLoading(true);
     dispatch(addCommercialInstallment(data)).then((res) => {
       if (res.payload.success) {
+        setShowLoading(false);
+        setShowSuccess(true);
         toast.success(res.payload.message, {
           position: "top-right",
           autoClose: 5000,
@@ -211,6 +225,7 @@ const CommercialInstallment = () => {
         });
       } else {
         for (let error in res.payload.errors) {
+          setShowLoading(false);
           toast.error(res.payload.errors[error].toString(), {
             position: "top-right",
             autoClose: 5000,
@@ -285,6 +300,7 @@ const CommercialInstallment = () => {
   }, [country]);
 
   return (
+    <>
     <div className="tab-item">
       <div className="">
         <form onSubmit={(e) => handelAddProperty(e)}>
@@ -874,6 +890,41 @@ const CommercialInstallment = () => {
         </form>
       </div>
     </div>
+    {showLoading && (
+      <div className="overlay">
+        <div className="loading-wrap">
+          <div className="loading-icon">
+            <Image
+              src="/img/uploading-gif.gif"
+              width="64"
+              height="64"
+              alt="uploading-image"
+            />
+          </div>
+          <div className="loading-txt">
+            <span>جاري الأن رفع العقار برجاء الإنتظار</span>
+          </div>
+        </div>
+      </div>
+    )}
+    {showSuccess && (
+      <div className="overlay">
+        <div className="loading-wrap">
+          <div className="loading-icon">
+            <Image
+              src="/img/success-gif.gif"
+              width="64"
+              height="64"
+              alt="uploading-image"
+            />
+          </div>
+          <div className="loading-txt">
+            <span>تم رفع الوحدة بنجاح تتم الأن عملية المراجعة</span>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 };
 

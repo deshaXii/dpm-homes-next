@@ -374,23 +374,135 @@ const HosuingCash = () => {
                         <label htmlFor="">
                           <FormattedMessage id="page.add-property-form.details.beds-room" />
                         </label>
-                        <input
-                          type="number"
-                          value={no_bed_room}
-                          onChange={(e) => setNo_bed_room(e.target.value)}
-                          className="form-control"
-                        />
+                        <div className="numbers-group">
+                          <div
+                            className={`num-box ${
+                              no_bed_room === 1 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bed_room(1) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>1</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bed_room === 2 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bed_room(2) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>2</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bed_room === 3 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bed_room(3) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>3</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bed_room === 4 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bed_room(4) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>4</span>
+                          </div>
+                        </div>
                       </div>
                       <div className="form-group">
                         <label htmlFor="">
                           <FormattedMessage id="page.add-property-form.details.reception-room" />
                         </label>
-                        <input
-                          value={no_reception}
-                          onChange={(e) => setNo_reception(e.target.value)}
-                          type="number"
-                          className="form-control"
-                        />
+                        <div className="numbers-group">
+                          <div
+                            className={`num-box ${
+                              no_reception === 1 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_reception(1) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>1</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_reception === 2 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_reception(2) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>2</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_reception === 3 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_reception(3) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>3</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_reception === 4 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_reception(4) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>4</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="col-md-4">
@@ -457,39 +569,143 @@ const HosuingCash = () => {
                       </div>
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.building-age" />
+                          <FormattedMessage id="page.add-property-form.details.kitchen" />
                         </label>
-                        <input
-                          type="text"
-                          value={unit_age}
-                          onChange={(e) => setUnit_age(e.target.value)}
-                          className="form-control"
-                        />
+
+                        <div className="numbers-group">
+                          <div
+                            className={`num-box ${
+                              no_kitchen === 1 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_kitchen(1) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>1</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_kitchen === 2 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_kitchen(2) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>2</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_kitchen === 3 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_kitchen(3) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>3</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_kitchen === 4 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_kitchen(4) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>4</span>
+                          </div>
+                        </div>
                       </div>
                       <div className="form-group">
                         <label htmlFor="">
                           <FormattedMessage id="page.add-property-form.details.bath-room" />
                         </label>
-                        <input
-                          type="number"
-                          value={no_bath_room}
-                          className="form-control"
-                          onChange={(e) => setNo_bath_room(e.target.value)}
-                        />
+
+                        <div className="numbers-group">
+                          <div
+                            className={`num-box ${
+                              no_bath_room === 1 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bath_room(1) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>1</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bath_room === 2 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bath_room(2) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>2</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bath_room === 3 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bath_room(3) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>3</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bath_room === 4 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bath_room(4) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>4</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     <div className="col-md-4">
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.dressing" />
-                        </label>
-                        <input
-                          type="number"
-                          value={no_dressing}
-                          onChange={(e) => setNo_dressing(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
+                  
 
                       <div className="form-group">
                         <label htmlFor="">
@@ -515,15 +731,17 @@ const HosuingCash = () => {
                       </div>
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.kitchen" />
+                          <FormattedMessage id="page.add-property-form.details.building-age" />
                         </label>
                         <input
-                          type="number"
-                          value={no_kitchen}
-                          onChange={(e) => setNo_kitchen(e.target.value)}
+                          type="text"
+                          value={unit_age}
+                          onChange={(e) => setUnit_age(e.target.value)}
                           className="form-control"
                         />
                       </div>
+                     
+
                       <div className="form-group">
                         <label htmlFor="">
                           <FormattedMessage id="page.add-property-form.details.roof" />
@@ -534,6 +752,74 @@ const HosuingCash = () => {
                           onChange={(e) => setNo_roof(e.target.value)}
                           className="form-control"
                         />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.dressing" />
+                        </label>
+
+                        <div className="numbers-group">
+                          <div
+                            className={`num-box ${
+                              no_dressing === 1 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_dressing(1) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>1</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_dressing === 2 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_dressing(2) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>2</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_dressing === 3 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_dressing(3) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>3</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_dressing === 4 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_dressing(4) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>4</span>
+                          </div>
+                        </div>
                       </div>
                       {gardenIn && (
                         <div className="form-group">

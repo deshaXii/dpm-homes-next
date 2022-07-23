@@ -3787,3 +3787,36 @@ input.video-input {
   transition: all .3s linear;
   padding: 0 14px;
 }
+
+
+.numbers-group input {
+  opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.num-box {
+  position: relative;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #333;
+    text-align: center;
+    line-height: 38px;
+    border-radius: 10px;
+}
+
+.numbers-group {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.num-box.active {
+  background: var(--mainColor);
+  color: #fff;
+}

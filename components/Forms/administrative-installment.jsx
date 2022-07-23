@@ -14,6 +14,7 @@ import {
   getAllGovernorates,
   selectCountries,
 } from "../../store/slices/countries";
+import Image from "next/image";
 
 const AdministrativeInstallment = () => {
   const { allCountries, allGovernorates } = useSelector(selectCountries);
@@ -159,9 +160,9 @@ const AdministrativeInstallment = () => {
   const [unit_status, setUnit_status] = useState("");
   const [unit_age, setUnit_age] = useState("");
   const [pdf, setPdf] = useState(null);
-  const [view3d, setView3d] = useState('https://www.google.com');
+  const [view3d, setView3d] = useState("https://www.google.com");
   const [youtube, setYoutube] = useState(null);
-  const [location, setLocation] = useState('https://www.google.com');
+  const [location, setLocation] = useState("https://www.google.com");
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
   const [building_name, setBuilding_name] = useState("");
@@ -180,11 +181,24 @@ const AdministrativeInstallment = () => {
   };
 
   const router = useRouter();
+  const [showLoading, setShowLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    if (showSuccess) {
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
+    }
+  }, [showLoading]);
 
   const handelAddProperty = (e) => {
     e.preventDefault();
+    setShowLoading(true);
     dispatch(addAdministrativeInstallment(data)).then((res) => {
       if (res.payload.success) {
+        setShowLoading(false);
+        setShowSuccess(true);
         toast.success(res.payload.message, {
           position: "top-right",
           autoClose: 5000,
@@ -195,6 +209,7 @@ const AdministrativeInstallment = () => {
         });
       } else {
         for (let error in res.payload.errors) {
+          setShowLoading(false);
           toast.error(res.payload.errors[error].toString(), {
             position: "top-right",
             autoClose: 5000,
@@ -269,582 +284,617 @@ const AdministrativeInstallment = () => {
   }, [country]);
 
   return (
-    <div className="tab-item">
-      <div className="">
-        <form onSubmit={(e) => handelAddProperty(e)}>
-          <div className="add-form-tabs">
-          <div className={`${firstTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-one-item aft-item"
-                onClick={() => setFirstTabVis(!firstTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-details" />
-                </h3>
-                <MdOutlineKeyboardArrowDown />
-              </div>
-              <div className="aft-one-content aft-content">
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.property-type" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder={
-                          <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
-                        }
-                        value={property_type}
-                        onChange={setProperty_type}
-                        name="currency"
-                        id="place_type_select"
-                        options={
-                          locale === "ar"
-                            ? property_type_options_ar
-                            : property_type_options_en
-                        }
-                        instanceId="place_type_select"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.country" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder={
-                          <FormattedMessage id="page.home.auth.properties.filter.location_country" />
-                        }
-                        value={country}
-                        onChange={setCountry}
-                        name="country"
-                        id="country_type_select"
-                        options={country_options}
-                        instanceId="country_type_select"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.property-name-and-id" />
-                      </label>
-                      <input
-                        type="text"
-                        value={compound_name}
-                        onChange={(e) => setCompound_name(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.building-stutus" />
-                      </label>
-                      <input
-                        value={unit_status}
-                        onChange={(e) => setUnit_status(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.building_name" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder={
-                          <FormattedMessage id="page.home.auth.properties.building_name_label" />
-                        }
-                        value={building_name}
-                        onChange={setBuilding_name}
-                        name="building_name"
-                        id="building_name_type_select"
-                        options={
-                          locale === "ar"
-                            ? buildingOptions_ar
-                            : buildingOptions_en
-                        }
-                        instanceId="building_name_type_select"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.goverment" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder={
-                          <FormattedMessage id="page.home.auth.properties.filter.location_governorate" />
-                        }
-                        value={governorate}
-                        onChange={setGovernorate}
-                        name="governorate"
-                        id="governorate_type_select"
-                        options={governorate_options}
-                        instanceId="governorate_type_select"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.address" />
-                      </label>
-                      <input
-                        type="text"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.total-area" />
-                      </label>
-                      <input
-                        type="text"
-                        value={total_area}
-                        onChange={(e) => setTotal_area(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.city" />
-                      </label>
-                      <input
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.building-area-size" />
-                      </label>
-                      <input
-                        type="number"
-                        value={building_area}
-                        onChange={(e) => setBuilding_area(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-12">
-                    <div className="form-checkboxs">
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.private-parking" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={private_parking}
-                            onChange={(e) =>
-                              setPrivate_parking(e.target.checked)
-                            }
-                          />
-                        </div>
-                      </div>
-                     
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.left" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={lift}
-                            onChange={(e) => setLift(e.target.checked)}
-                          />
-                        </div>
-                      </div>
-                     
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.security" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={security}
-                            onChange={(e) => setSecurity(e.target.checked)}
-                          />
-                        </div>
-                      </div>
-                  
-                    </div>
-                  </div>
+    <>
+      <div className="tab-item">
+        <div className="">
+          <form onSubmit={(e) => handelAddProperty(e)}>
+            <div className="add-form-tabs">
+              <div className={`${firstTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-one-item aft-item"
+                  onClick={() => setFirstTabVis(!firstTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.add-details" />
+                  </h3>
+                  <MdOutlineKeyboardArrowDown />
                 </div>
-              </div>
-            </div>
+                <div className="aft-one-content aft-content">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.property-type" />
+                        </label>
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
+                          }
+                          value={property_type}
+                          onChange={setProperty_type}
+                          name="currency"
+                          id="place_type_select"
+                          options={
+                            locale === "ar"
+                              ? property_type_options_ar
+                              : property_type_options_en
+                          }
+                          instanceId="place_type_select"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.country" />
+                        </label>
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.home.auth.properties.filter.location_country" />
+                          }
+                          value={country}
+                          onChange={setCountry}
+                          name="country"
+                          id="country_type_select"
+                          options={country_options}
+                          instanceId="country_type_select"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.property-name-and-id" />
+                        </label>
+                        <input
+                          type="text"
+                          value={compound_name}
+                          onChange={(e) => setCompound_name(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
 
-            <div className={`${secondTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-two-item aft-item"
-                onClick={() => setSecondTabVis(!secondTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.payment.type" />
-                </h3>
-                <MdOutlineKeyboardArrowDown />
-              </div>
-              <div className="aft-two-content aft-content">
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.total_price_installment" />
-                      </label>
-                      <input
-                        value={total_price_installment}
-                        onChange={(e) =>
-                          setTotal_price_installment(e.target.value)
-                        }
-                        type="number"
-                        className="form-control"
-                      />
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.building-stutus" />
+                        </label>
+                        <input
+                          value={unit_status}
+                          onChange={(e) => setUnit_status(e.target.value)}
+                          type="text"
+                          className="form-control"
+                        />
+                      </div>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.club_fee" />
-                      </label>
-                      <input
-                        value={club_fees}
-                        onChange={(e) => setClub_fees(e.target.value)}
-                        type="number"
-                        className="form-control"
-                      />
-                    </div>
+                    <div className="col-md-4">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.building_name" />
+                        </label>
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.home.auth.properties.building_name_label" />
+                          }
+                          value={building_name}
+                          onChange={setBuilding_name}
+                          name="building_name"
+                          id="building_name_type_select"
+                          options={
+                            locale === "ar"
+                              ? buildingOptions_ar
+                              : buildingOptions_en
+                          }
+                          instanceId="building_name_type_select"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.goverment" />
+                        </label>
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.home.auth.properties.filter.location_governorate" />
+                          }
+                          value={governorate}
+                          onChange={setGovernorate}
+                          name="governorate"
+                          id="governorate_type_select"
+                          options={governorate_options}
+                          instanceId="governorate_type_select"
+                        />
+                      </div>
 
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.installment" />
-                      </label>
-                      <input
-                        value={installment}
-                        onChange={(e) => setInstallment(e.target.value)}
-                        type="number"
-                        className="form-control"
-                      />
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.address" />
+                        </label>
+                        <input
+                          type="text"
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.currency" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder={
-                          <FormattedMessage id="page.add-property-form.details.currency_type" />
-                        }
-                        value={currency}
-                        onChange={setCurrency}
-                        name="currency"
-                        id="currency_type_select"
-                        options={
-                          locale === "ar"
-                            ? currency_options_ar
-                            : currency_options_en
-                        }
-                        instanceId="currency_type_select"
-                      />
+                    <div className="col-md-4">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.total-area" />
+                        </label>
+                        <input
+                          type="text"
+                          value={total_area}
+                          onChange={(e) => setTotal_area(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.city" />
+                        </label>
+                        <input
+                          value={city}
+                          onChange={(e) => setCity(e.target.value)}
+                          type="text"
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.building-area-size" />
+                        </label>
+                        <input
+                          type="number"
+                          value={building_area}
+                          onChange={(e) => setBuilding_area(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.receiving_date" />
-                      </label>
-                      <input
-                        value={receiving_date}
-                        onChange={(e) => setReceiving_date(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.installment_time" />
-                      </label>
-                      <input
-                        value={installment_time}
-                        onChange={(e) => setInstallment_time(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.maintenance_fee" />
-                      </label>
-                      <input
-                        type="number"
-                        value={maintenance_fees}
-                        onChange={(e) => setMaintenance_fees(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.advance" />
-                      </label>
-                      <input
-                        type="text"
-                        value={advance_payment}
-                        onChange={(e) => setAdvance_payment(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.installment_type" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder={
-                          <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
-                        }
-                        value={installment_type}
-                        onChange={setIynstallment_type}
-                        name="currency"
-                        id="installment_type_select"
-                        options={
-                          locale === "ar"
-                            ? installment_type_ar
-                            : installment_type_en
-                        }
-                        instanceId="installment_type_select"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={`${fifthTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-four-item aft-item"
-                onClick={() => setFifthTabVis(!fifthTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-images" />
-                </h3>
-                <MdOutlineKeyboardArrowDown />
-              </div>
-              <div className="aft-four-content aft-content">
-                <div className="image-uploader-box">
-                  <ImageUploading
-                    value={images}
-                    onChange={onChange}
-                    maxNumber={maxNumber}
-                    maxFileSize={maxFileSize}
-                    dataURLKey="data_url"
-                    multiple
-                  >
-                    {({
-                      imageList,
-                      onImageRemoveAll,
-                      errors,
-                      onImageUpload,
-                      onImageUpdate,
-                      onImageRemove,
-                      dragProps,
-                    }) => (
-                      // write your building UI
-                      <>
-                        <div className="upload__image-wrapper">
-                          {images.length < 1 && (
-                            <div
-                              className="drag-box"
-                              onClick={onImageUpload}
-                              {...dragProps}
-                            >
-                              <FiUploadCloud />
-                              <span>
-                                <FormattedMessage id="section.profile.drag_and_drop" />
-                              </span>
-                              <button type="button">
-                                <FormattedMessage id="section.profile.browse_files" />
-                              </button>
-                            </div>
-                          )}
-                          <div className="upladed_images_box">
-                            {imageList.length > 1 && (
-                              <button onClick={onImageRemoveAll}>
-                                Remove all images
-                              </button>
-                            )}
-                            {imageList.map((image, index) => (
-                              <div
-                                key={index}
-                                className="uploadThumb image-item"
-                                id="result"
-                              >
-                                <img
-                                  src={image["data_url"]}
-                                  alt=""
-                                  width="100"
-                                />
-
-                                <div className="image-item__btn-wrapper">
-                                  <button
-                                    type="button"
-                                    onClick={() => onImageUpdate(index)}
-                                  >
-                                    <FiEdit2 />
-                                  </button>
-                                  <button
-                                    type="button"
-                                    onClick={() => onImageRemove(index)}
-                                  >
-                                    <MdOutlineDeleteOutline />
-                                  </button>
-                                </div>
-                              </div>
-                            ))}
+                    <div className="col-md-12">
+                      <div className="form-checkboxs">
+                        <div className="form-group custom-checkbox">
+                          <div className="cb-item">
+                            <label htmlFor="">
+                              <FormattedMessage id="page.add-property-form.details.private-parking" />
+                            </label>
+                            <input
+                              type="checkbox"
+                              value={private_parking}
+                              onChange={(e) =>
+                                setPrivate_parking(e.target.checked)
+                              }
+                            />
                           </div>
                         </div>
-                        {errors && (
-                          <>
-                            {errors.maxNumber &&
-                              toast.error(
-                                "Number of selected images exceed maxNumber",
-                                {
-                                  position: "top-right",
-                                  autoClose: 5000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                }
-                              )}
-                            {errors.acceptType &&
-                              toast.error(
-                                "Your selected file type is not allow",
-                                {
-                                  position: "top-right",
-                                  autoClose: 5000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                }
-                              )}
-                            {errors.maxFileSize &&
-                              toast.error(
-                                "Selected file size exceed maxFileSize",
-                                {
-                                  position: "top-right",
-                                  autoClose: 5000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                }
-                              )}
-                          </>
-                        )}
-                      </>
-                    )}
-                  </ImageUploading>
-                </div>
-              </div>
-            </div>
-       
-            <div className={`${sixthTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-four-item aft-item"
-                onClick={() => setSixthTabVis(!sixthTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-3d" />
-                </h3>
-                <div>
-                  <span>
-                    <FormattedMessage id="page.add-property-form.option" />
-                  </span>
-                  <MdOutlineKeyboardArrowDown />
-                </div>
-              </div>
-              <div className="aft-four-content aft-content">
-                <textarea
-                  value={view3d}
-                  onChange={(e) => setView3d(e.target.value)}
-                ></textarea>
-              </div>
-            </div>
 
-            <div className={`${seventhTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-four-item aft-item"
-                onClick={() => setSeventhTabVis(!seventhTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-map" />
-                </h3>
-                <div>
-                  <span>
-                    <FormattedMessage id="page.add-property-form.option" />
-                  </span>
-                  <MdOutlineKeyboardArrowDown />
-                </div>
-              </div>
-              <div className="aft-four-content aft-content">
-                <textarea
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                ></textarea>
-              </div>
-            </div>
+                        <div className="form-group custom-checkbox">
+                          <div className="cb-item">
+                            <label htmlFor="">
+                              <FormattedMessage id="page.add-property-form.details.left" />
+                            </label>
+                            <input
+                              type="checkbox"
+                              value={lift}
+                              onChange={(e) => setLift(e.target.checked)}
+                            />
+                          </div>
+                        </div>
 
-            <div className={`${eighthTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-four-item aft-item"
-                onClick={() => setEighthTabVis(!eighthTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-more-details" />
-                </h3>
-                <div>
-                  <span>
-                    <FormattedMessage id="page.add-property-form.option" />
-                  </span>
-                  <MdOutlineKeyboardArrowDown />
+                        <div className="form-group custom-checkbox">
+                          <div className="cb-item">
+                            <label htmlFor="">
+                              <FormattedMessage id="page.add-property-form.details.security" />
+                            </label>
+                            <input
+                              type="checkbox"
+                              value={security}
+                              onChange={(e) => setSecurity(e.target.checked)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="aft-four-content aft-content">
-                <textarea
-                  value={general_details}
-                  onChange={(e) => setGeneral_details(e.target.value)}
-                ></textarea>
+
+              <div className={`${secondTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-two-item aft-item"
+                  onClick={() => setSecondTabVis(!secondTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.payment.type" />
+                  </h3>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
+                <div className="aft-two-content aft-content">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.total_price_installment" />
+                        </label>
+                        <input
+                          value={total_price_installment}
+                          onChange={(e) =>
+                            setTotal_price_installment(e.target.value)
+                          }
+                          type="number"
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.club_fee" />
+                        </label>
+                        <input
+                          value={club_fees}
+                          onChange={(e) => setClub_fees(e.target.value)}
+                          type="number"
+                          className="form-control"
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.installment" />
+                        </label>
+                        <input
+                          value={installment}
+                          onChange={(e) => setInstallment(e.target.value)}
+                          type="number"
+                          className="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.currency" />
+                        </label>
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.add-property-form.details.currency_type" />
+                          }
+                          value={currency}
+                          onChange={setCurrency}
+                          name="currency"
+                          id="currency_type_select"
+                          options={
+                            locale === "ar"
+                              ? currency_options_ar
+                              : currency_options_en
+                          }
+                          instanceId="currency_type_select"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.receiving_date" />
+                        </label>
+                        <input
+                          value={receiving_date}
+                          onChange={(e) => setReceiving_date(e.target.value)}
+                          type="text"
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.installment_time" />
+                        </label>
+                        <input
+                          value={installment_time}
+                          onChange={(e) => setInstallment_time(e.target.value)}
+                          type="text"
+                          className="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.maintenance_fee" />
+                        </label>
+                        <input
+                          type="number"
+                          value={maintenance_fees}
+                          onChange={(e) => setMaintenance_fees(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.advance" />
+                        </label>
+                        <input
+                          type="text"
+                          value={advance_payment}
+                          onChange={(e) => setAdvance_payment(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.installment_type" />
+                        </label>
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
+                          }
+                          value={installment_type}
+                          onChange={setIynstallment_type}
+                          name="currency"
+                          id="installment_type_select"
+                          options={
+                            locale === "ar"
+                              ? installment_type_ar
+                              : installment_type_en
+                          }
+                          instanceId="installment_type_select"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`${fifthTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setFifthTabVis(!fifthTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.add-images" />
+                  </h3>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
+                <div className="aft-four-content aft-content">
+                  <div className="image-uploader-box">
+                    <ImageUploading
+                      value={images}
+                      onChange={onChange}
+                      maxNumber={maxNumber}
+                      maxFileSize={maxFileSize}
+                      dataURLKey="data_url"
+                      multiple
+                    >
+                      {({
+                        imageList,
+                        onImageRemoveAll,
+                        errors,
+                        onImageUpload,
+                        onImageUpdate,
+                        onImageRemove,
+                        dragProps,
+                      }) => (
+                        // write your building UI
+                        <>
+                          <div className="upload__image-wrapper">
+                            {images.length < 1 && (
+                              <div
+                                className="drag-box"
+                                onClick={onImageUpload}
+                                {...dragProps}
+                              >
+                                <FiUploadCloud />
+                                <span>
+                                  <FormattedMessage id="section.profile.drag_and_drop" />
+                                </span>
+                                <button type="button">
+                                  <FormattedMessage id="section.profile.browse_files" />
+                                </button>
+                              </div>
+                            )}
+                            <div className="upladed_images_box">
+                              {imageList.length > 1 && (
+                                <button onClick={onImageRemoveAll}>
+                                  Remove all images
+                                </button>
+                              )}
+                              {imageList.map((image, index) => (
+                                <div
+                                  key={index}
+                                  className="uploadThumb image-item"
+                                  id="result"
+                                >
+                                  <img
+                                    src={image["data_url"]}
+                                    alt=""
+                                    width="100"
+                                  />
+
+                                  <div className="image-item__btn-wrapper">
+                                    <button
+                                      type="button"
+                                      onClick={() => onImageUpdate(index)}
+                                    >
+                                      <FiEdit2 />
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={() => onImageRemove(index)}
+                                    >
+                                      <MdOutlineDeleteOutline />
+                                    </button>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          {errors && (
+                            <>
+                              {errors.maxNumber &&
+                                toast.error(
+                                  "Number of selected images exceed maxNumber",
+                                  {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                  }
+                                )}
+                              {errors.acceptType &&
+                                toast.error(
+                                  "Your selected file type is not allow",
+                                  {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                  }
+                                )}
+                              {errors.maxFileSize &&
+                                toast.error(
+                                  "Selected file size exceed maxFileSize",
+                                  {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                  }
+                                )}
+                            </>
+                          )}
+                        </>
+                      )}
+                    </ImageUploading>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`${sixthTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setSixthTabVis(!sixthTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.add-3d" />
+                  </h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
+                </div>
+                <div className="aft-four-content aft-content">
+                  <textarea
+                    value={view3d}
+                    onChange={(e) => setView3d(e.target.value)}
+                  ></textarea>
+                </div>
+              </div>
+
+              <div className={`${seventhTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setSeventhTabVis(!seventhTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.add-map" />
+                  </h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
+                </div>
+                <div className="aft-four-content aft-content">
+                  <textarea
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                  ></textarea>
+                </div>
+              </div>
+
+              <div className={`${eighthTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setEighthTabVis(!eighthTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.add-more-details" />
+                  </h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
+                </div>
+                <div className="aft-four-content aft-content">
+                  <textarea
+                    value={general_details}
+                    onChange={(e) => setGeneral_details(e.target.value)}
+                  ></textarea>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="form-btn-box">
-            <button>
-              <FormattedMessage id="global.upload-property" />
-            </button>
-          </div>
-        </form>
+            <div className="form-btn-box">
+              <button>
+                <FormattedMessage id="global.upload-property" />
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+      {showLoading && (
+        <div className="overlay">
+          <div className="loading-wrap">
+            <div className="loading-icon">
+              <Image
+                src="/img/uploading-gif.gif"
+                width="64"
+                height="64"
+                alt="uploading-image"
+              />
+            </div>
+            <div className="loading-txt">
+              <span>جاري الأن رفع العقار برجاء الإنتظار</span>
+            </div>
+          </div>
+        </div>
+      )}
+      {showSuccess && (
+        <div className="overlay">
+          <div className="loading-wrap">
+            <div className="loading-icon">
+              <Image
+                src="/img/success-gif.gif"
+                width="64"
+                height="64"
+                alt="uploading-image"
+              />
+            </div>
+            <div className="loading-txt">
+              <span>تم رفع الوحدة بنجاح تتم الأن عملية المراجعة</span>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

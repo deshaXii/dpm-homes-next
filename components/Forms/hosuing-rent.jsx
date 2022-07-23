@@ -14,6 +14,7 @@ import {
   getAllGovernorates,
   selectCountries,
 } from "../../store/slices/countries";
+import Image from "next/image";
 
 const HosuingRent = () => {
   const { allCountries, allGovernorates } = useSelector(selectCountries);
@@ -184,11 +185,24 @@ const HosuingRent = () => {
   };
 
   const router = useRouter();
+  const [showLoading, setShowLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    if (showSuccess) {
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
+    }
+  }, [showLoading]);
 
   const handelAddProperty = (e) => {
     e.preventDefault();
+    setShowLoading(true);
     dispatch(addResidentialRent(data)).then((res) => {
       if (res.payload.success) {
+        setShowLoading(false);
+        setShowSuccess(true);
         toast.success(res.payload.message, {
           position: "top-right",
           autoClose: 5000,
@@ -199,6 +213,7 @@ const HosuingRent = () => {
         });
       } else {
         for (let error in res.payload.errors) {
+          setShowLoading(false);
           toast.error(res.payload.errors[error].toString(), {
             position: "top-right",
             autoClose: 5000,
@@ -284,360 +299,651 @@ const HosuingRent = () => {
   }, [country]);
 
   return (
+    <>
     <div className="tab-item">
       <div className="">
         <form onSubmit={(e) => handelAddProperty(e)}>
           <div className="add-form-tabs">
-            <div className={`${firstTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-one-item aft-item"
-                onClick={() => setFirstTabVis(!firstTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-details" />
-                </h3>
-                <MdOutlineKeyboardArrowDown />
-              </div>
-              <div className="aft-one-content aft-content">
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.property-type" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder={
-                          <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
-                        }
-                        value={property_type}
-                        onChange={setProperty_type}
-                        name="currency"
-                        id="place_type_select"
-                        options={
-                          locale === "ar"
-                            ? property_type_options_ar
-                            : property_type_options_en
-                        }
-                        instanceId="place_type_select"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.country" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder={
-                          <FormattedMessage id="page.home.auth.properties.filter.location_country" />
-                        }
-                        value={country}
-                        onChange={setCountry}
-                        name="country"
-                        id="country_type_select"
-                        options={country_options}
-                        instanceId="country_type_select"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.property-name-and-id" />
-                      </label>
-                      <input
-                        type="text"
-                        value={compound_name}
-                        className="form-control"
-                        onChange={(e) => setCompound_name(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.total-area" />
-                      </label>
-                      <input
-                        type="text"
-                        value={total_area}
-                        onChange={(e) => setTotal_area(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.beds-room" />
-                      </label>
-                      <input
-                        type="number"
-                        value={no_bed_room}
-                        onChange={(e) => setNo_bed_room(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.reception-room" />
-                      </label>
-                      <input
-                        value={no_reception}
-                        onChange={(e) => setNo_reception(e.target.value)}
-                        type="number"
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.finishing" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        placeholder={
-                          <FormattedMessage id="page.add-property-form.details.finishing_type" />
-                        }
-                        value={furniture_type}
-                        onChange={setFurniture_type}
-                        name="furniture"
-                        id="furniture_type_select"
-                        options={
-                          locale === "ar"
-                            ? furniture_type_options_ar
-                            : furniture_type_options_en
-                        }
-                        instanceId="furniture_type_select"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.goverment" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder={
-                          <FormattedMessage id="page.home.auth.properties.filter.location_governorate" />
-                        }
-                        value={governorate}
-                        onChange={setGovernorate}
-                        name="governorate"
-                        id="governorate_type_select"
-                        options={governorate_options}
-                        instanceId="governorate_type_select"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.address" />
-                      </label>
-                      <input
-                        type="text"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.building-area-size" />
-                      </label>
-                      <input
-                        type="number"
-                        value={building_area}
-                        onChange={(e) => setBuilding_area(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.building-age" />
-                      </label>
-                      <input
-                        type="text"
-                        value={unit_age}
-                        onChange={(e) => setUnit_age(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.bath-room" />
-                      </label>
-                      <input
-                        type="number"
-                        value={no_bath_room}
-                        className="form-control"
-                        onChange={(e) => setNo_bath_room(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.dressing" />
-                      </label>
-                      <input
-                        type="number"
-                        value={no_dressing}
-                        onChange={(e) => setNo_dressing(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.city" />
-                      </label>
-                      <input
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                    {/* <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.building-stutus" />
-                      </label>
-                      <input
-                        value={unit_status}
-                        onChange={(e) => setUnit_status(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div> */}
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.kitchen" />
-                      </label>
-                      <input
-                        type="number"
-                        value={no_kitchen}
-                        onChange={(e) => setNo_kitchen(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.roof" />
-                      </label>
-                      <input
-                        type="number"
-                        value={no_roof}
-                        onChange={(e) => setNo_roof(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    {gardenIn && (
+          <div className={`${firstTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-one-item aft-item"
+                  onClick={() => setFirstTabVis(!firstTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.add-details" />
+                  </h3>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
+                <div className="aft-one-content aft-content">
+                  <div className="row">
+                    <div className="col-md-4">
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.garden-area-size" />
+                          <FormattedMessage id="page.add-property-form.details.property-type" />
+                        </label>
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
+                          }
+                          value={property_type}
+                          onChange={setProperty_type}
+                          name="currency"
+                          id="place_type_select"
+                          options={
+                            locale === "ar"
+                              ? property_type_options_ar
+                              : property_type_options_en
+                          }
+                          instanceId="place_type_select"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.country" />
+                        </label>
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.home.auth.properties.filter.location_country" />
+                          }
+                          value={country}
+                          onChange={setCountry}
+                          name="country"
+                          id="country_type_select"
+                          options={country_options}
+                          instanceId="country_type_select"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.property-name-and-id" />
                         </label>
                         <input
-                          type="number"
-                          value={garden_area}
-                          onChange={(e) => setGarden_area(e.target.value)}
+                          type="text"
+                          value={compound_name}
+                          onChange={(e) => setCompound_name(e.target.value)}
                           className="form-control"
                         />
                       </div>
-                    )}
-                  </div>
-                  <div className="col-md-12">
-                    <div className="form-checkboxs">
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.private-parking" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={private_parking}
-                            onChange={(e) =>
-                              setPrivate_parking(e.target.checked)
-                            }
-                          />
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.total-area" />
+                        </label>
+                        <input
+                          type="text"
+                          value={total_area}
+                          onChange={(e) => setTotal_area(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.beds-room" />
+                        </label>
+                        <div className="numbers-group">
+                          <div
+                            className={`num-box ${
+                              no_bed_room === 1 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bed_room(1) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>1</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bed_room === 2 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bed_room(2) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>2</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bed_room === 3 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bed_room(3) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>3</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bed_room === 4 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bed_room(4) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>4</span>
+                          </div>
                         </div>
                       </div>
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.private-pool" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={private_pool}
-                            onChange={(e) => setPrivate_pool(e.target.checked)}
-                          />
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.reception-room" />
+                        </label>
+                        <div className="numbers-group">
+                          <div
+                            className={`num-box ${
+                              no_reception === 1 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_reception(1) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>1</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_reception === 2 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_reception(2) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>2</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_reception === 3 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_reception(3) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>3</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_reception === 4 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_reception(4) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>4</span>
+                          </div>
                         </div>
                       </div>
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.left" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={lift}
-                            onChange={(e) => setLift(e.target.checked)}
-                          />
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.finishing" />
+                        </label>
+                        <Select
+                          styles={selectStyle}
+                          placeholder={
+                            <FormattedMessage id="page.add-property-form.details.finishing_type" />
+                          }
+                          value={furniture_type}
+                          onChange={setFurniture_type}
+                          name="furniture"
+                          id="furniture_type_select"
+                          options={
+                            locale === "ar"
+                              ? furniture_type_options_ar
+                              : furniture_type_options_en
+                          }
+                          instanceId="furniture_type_select"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.goverment" />
+                        </label>
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.home.auth.properties.filter.location_governorate" />
+                          }
+                          value={governorate}
+                          onChange={setGovernorate}
+                          name="governorate"
+                          id="governorate_type_select"
+                          options={governorate_options}
+                          instanceId="governorate_type_select"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.address" />
+                        </label>
+                        <input
+                          type="text"
+                          value={address}
+                          onChange={(e) => setAddress(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.building-area-size" />
+                        </label>
+                        <input
+                          type="number"
+                          value={building_area}
+                          onChange={(e) => setBuilding_area(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.kitchen" />
+                        </label>
+
+                        <div className="numbers-group">
+                          <div
+                            className={`num-box ${
+                              no_kitchen === 1 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_kitchen(1) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>1</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_kitchen === 2 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_kitchen(2) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>2</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_kitchen === 3 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_kitchen(3) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>3</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_kitchen === 4 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_kitchen(4) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>4</span>
+                          </div>
                         </div>
                       </div>
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.public-garden" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={public_garden}
-                            onChange={(e) => setPublic_garden(e.target.checked)}
-                          />
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.bath-room" />
+                        </label>
+
+                        <div className="numbers-group">
+                          <div
+                            className={`num-box ${
+                              no_bath_room === 1 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bath_room(1) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>1</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bath_room === 2 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bath_room(2) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>2</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bath_room === 3 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bath_room(3) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>3</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_bath_room === 4 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_bath_room(4) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>4</span>
+                          </div>
                         </div>
                       </div>
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.private-garden" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={private_garden}
-                            onChange={(e) => {
-                              setPrivate_garden(e.target.checked);
-                              setGardenIn(!gardenIn);
-                            }}
-                          />
+                    </div>
+                    <div className="col-md-4">
+                  
+
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.city" />
+                        </label>
+                        <input
+                          value={city}
+                          onChange={(e) => setCity(e.target.value)}
+                          type="text"
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.building-stutus" />
+                        </label>
+                        <input
+                          value={unit_status}
+                          onChange={(e) => setUnit_status(e.target.value)}
+                          type="text"
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.building-age" />
+                        </label>
+                        <input
+                          type="text"
+                          value={unit_age}
+                          onChange={(e) => setUnit_age(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                     
+
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.roof" />
+                        </label>
+                        <input
+                          type="number"
+                          value={no_roof}
+                          onChange={(e) => setNo_roof(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.dressing" />
+                        </label>
+
+                        <div className="numbers-group">
+                          <div
+                            className={`num-box ${
+                              no_dressing === 1 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_dressing(1) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>1</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_dressing === 2 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_dressing(2) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>2</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_dressing === 3 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_dressing(3) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>3</span>
+                          </div>
+                          <div
+                            className={`num-box ${
+                              no_dressing === 4 ? "active" : ""
+                            }`}
+                          >
+                            <input
+                              type="radio"
+                              name="beds"
+                              onChange={(e) =>
+                                e.target.checked ? setNo_dressing(4) : ""
+                              }
+                              className="form-control"
+                            />
+                            <span>4</span>
+                          </div>
                         </div>
                       </div>
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
+                      {gardenIn && (
+                        <div className="form-group">
                           <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.security" />
+                            <FormattedMessage id="page.add-property-form.details.garden-area-size" />
                           </label>
                           <input
-                            type="checkbox"
-                            value={security}
-                            onChange={(e) => setSecurity(e.target.checked)}
+                            type="number"
+                            value={garden_area}
+                            onChange={(e) => setGarden_area(e.target.value)}
+                            className="form-control"
                           />
                         </div>
-                      </div>
-                      <div className="form-group custom-checkbox">
-                        <div className="cb-item">
-                          <label htmlFor="">
-                            <FormattedMessage id="page.add-property-form.details.public_pool" />
-                          </label>
-                          <input
-                            type="checkbox"
-                            value={public_pool}
-                            onChange={(e) => setPublic_pool(e.target.checked)}
-                          />
+                      )}
+                    </div>
+                    <div className="col-md-12">
+                      <div className="form-checkboxs">
+                        <div className="form-group custom-checkbox">
+                          <div className="cb-item">
+                            <label htmlFor="">
+                              <FormattedMessage id="page.add-property-form.details.private-parking" />
+                            </label>
+                            <input
+                              type="checkbox"
+                              value={private_parking}
+                              onChange={(e) =>
+                                setPrivate_parking(e.target.checked)
+                              }
+                            />
+                          </div>
+                        </div>
+                        <div className="form-group custom-checkbox">
+                          <div className="cb-item">
+                            <label htmlFor="">
+                              <FormattedMessage id="page.add-property-form.details.private-pool" />
+                            </label>
+                            <input
+                              type="checkbox"
+                              value={private_pool}
+                              onChange={(e) =>
+                                setPrivate_pool(e.target.checked)
+                              }
+                            />
+                          </div>
+                        </div>
+                        <div className="form-group custom-checkbox">
+                          <div className="cb-item">
+                            <label htmlFor="">
+                              <FormattedMessage id="page.add-property-form.details.left" />
+                            </label>
+                            <input
+                              type="checkbox"
+                              value={lift}
+                              onChange={(e) => setLift(e.target.checked)}
+                            />
+                          </div>
+                        </div>
+                        <div className="form-group custom-checkbox">
+                          <div className="cb-item">
+                            <label htmlFor="">
+                              <FormattedMessage id="page.add-property-form.details.public-garden" />
+                            </label>
+                            <input
+                              type="checkbox"
+                              value={public_garden}
+                              onChange={(e) =>
+                                setPublic_garden(e.target.checked)
+                              }
+                            />
+                          </div>
+                        </div>
+                        <div className="form-group custom-checkbox">
+                          <div className="cb-item">
+                            <label htmlFor="">
+                              <FormattedMessage id="page.add-property-form.details.private-garden" />
+                            </label>
+                            <input
+                              type="checkbox"
+                              value={private_garden}
+                              onChange={(e) => {
+                                setPrivate_garden(e.target.checked);
+                                setGardenIn(!gardenIn);
+                              }}
+                            />
+                          </div>
+                        </div>
+                        <div className="form-group custom-checkbox">
+                          <div className="cb-item">
+                            <label htmlFor="">
+                              <FormattedMessage id="page.add-property-form.details.security" />
+                            </label>
+                            <input
+                              type="checkbox"
+                              value={security}
+                              onChange={(e) => setSecurity(e.target.checked)}
+                            />
+                          </div>
+                        </div>
+                        <div className="form-group custom-checkbox">
+                          <div className="cb-item">
+                            <label htmlFor="">
+                              <FormattedMessage id="page.add-property-form.details.public_pool" />
+                            </label>
+                            <input
+                              type="checkbox"
+                              value={public_pool}
+                              onChange={(e) => setPublic_pool(e.target.checked)}
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
             <div className={`${secondTabVis ? "" : "collapsed"}`}>
               <div
@@ -1138,6 +1444,41 @@ const HosuingRent = () => {
         </form>
       </div>
     </div>
+    {showLoading && (
+      <div className="overlay">
+        <div className="loading-wrap">
+          <div className="loading-icon">
+            <Image
+              src="/img/uploading-gif.gif"
+              width="64"
+              height="64"
+              alt="uploading-image"
+            />
+          </div>
+          <div className="loading-txt">
+            <span>جاري الأن رفع العقار برجاء الإنتظار</span>
+          </div>
+        </div>
+      </div>
+    )}
+    {showSuccess && (
+      <div className="overlay">
+        <div className="loading-wrap">
+          <div className="loading-icon">
+            <Image
+              src="/img/success-gif.gif"
+              width="64"
+              height="64"
+              alt="uploading-image"
+            />
+          </div>
+          <div className="loading-txt">
+            <span>تم رفع الوحدة بنجاح تتم الأن عملية المراجعة</span>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 };
 
