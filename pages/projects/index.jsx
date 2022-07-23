@@ -1,23 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Default from "../../layouts/default";
 import { useSelector } from "react-redux";
 import { getAllProjects, selectProjects } from "../../store/slices/projects";
 import Image from "next/image";
 import { wrapper } from "../../store";
 import Link from "next/link";
+import SectionTitle from "../../components/Global/SectionTitle";
+import Head from "next/head";
 
 const Projects = () => {
+  useEffect(() => {
+    document.body.style.backgroundColor = "#011f2a";
+    return () => {
+      document.body.style.backgroundColor = "white";
+    };
+  }, []);
   const { allProjects } = useSelector(selectProjects);
   return (
+    <>
+    <Head>
+      <title>Luxury Aqar - Projects</title>
+    </Head>
     <Default>
       <div className="projects-page" style={{ padding: "60px 0 120px 0" }}>
         <div className="container">
           <div className="row">
+            <SectionTitle title="Projects" subTitle="Our" />
             {allProjects.map((project) => (
-              <div className="col-md-4" key={project.id}>
+              <div className="col-md-3" key={project.id}>
                 <div className="project-slide-box">
                   <div className="project-slide-image-box">
-                    <Link href={`/projects/${project.id}`}>
+                    <Link
+                      href={{
+                        pathname: `/projects/${project.id}`,
+                        query: {
+                          name: project.name,
+                          description: project.description,
+                          image: project.image,
+                        },
+                      }}
+                    >
                       <a>
                         <Image
                           width={600}
@@ -29,12 +51,21 @@ const Projects = () => {
                     </Link>
                   </div>
                   <div className="project-slide-info">
-                    <h5>{project.name}</h5>
-                    <p>
-                      Houses Real estate professional must be cognizant of
-                      copyright issues when it comes too listing content most
-                      notably in connec with listing photographs.
-                    </p>
+                    <Link
+                      href={{
+                        pathname: `/projects/${project.id}`,
+                        query: {
+                          name: project.name,
+                          description: project.description,
+                          image: project.image,
+                        },
+                      }}
+                    >
+                      <a>
+                        <h5>{project.name}</h5>
+                      </a>
+                    </Link>
+                    <p>{project.description}</p>
                   </div>
                 </div>
               </div>
@@ -43,6 +74,7 @@ const Projects = () => {
         </div>
       </div>
     </Default>
+    </>
   );
 };
 
@@ -55,7 +87,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
       );
-      await store.dispatch(getAllProjects());
+      await store.dispatch(getAllProjects(locale));
       return {
         props: {},
       };

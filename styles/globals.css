@@ -3820,3 +3820,42 @@ input.video-input {
   background: var(--mainColor);
   color: #fff;
 }
+
+.projects-page .project-slide-box {
+  background: #fff;
+  padding: 14px;
+}
+
+.projects-page .project-slide-box .project-slide-info h5 {
+  color: var(--darkGreen);
+}
+
+.projects-page .project-slide-box .project-slide-info  p {
+  color: var(--darkGreenWithOpacity);
+  opacity: 0.7;
+}
+
+.project-header {
+  height: 560px;
+  background-size: cover;
+  background-position: 100% 74%;
+  margin-bottom: 30px;
+  border-radius: 24px;
+  border: 1px solid var(--mainColorWithOpacity);
+  position: relative;
+}
+
+.project-content h1 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.project-content p {
+  opacity: 0.7;
+  color: #ccc;
+  font-size: 15px;
+}
+
+.project-content {
+  margin: 20px 0;
+}

@@ -1,8 +1,8 @@
 import API from "../api";
 
-export async function getProjects() {
+export async function getProjects(lang) {
   try {
-    const res = await API.get("/get-projects");
+    const res = await API.get("/get-projects?lang=" + lang);
     return await res.data;
   } catch (err) {
     return err;

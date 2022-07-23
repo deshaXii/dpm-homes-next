@@ -22,6 +22,10 @@
         margin-left: auto;
     }
 
+    .project-header {
+        height: 170px;
+    }
+
     .search-property-layout-content .property-card-image .property-tags .t-rent {
         font-size: 10px;
     }
@@ -516,6 +520,8 @@
     .my-profile-page-content,
     .contact-us-page,
     .search-page,
+    .project-page,
+    .projects-page,
     .add-property-page {
         padding: 30px 0 150px !important;
 

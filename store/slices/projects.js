@@ -7,8 +7,8 @@ const initialState = {
   project: {},
 };
 
-export const getAllProjects = createAsyncThunk("projects/getProjects", async () => {
-  const responseData = await getProjects();
+export const getAllProjects = createAsyncThunk("projects/getProjects", async (lang) => {
+  const responseData = await getProjects(lang);
   return responseData;
 });
 
