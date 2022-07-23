@@ -216,5 +216,7 @@
   "rate.title": "How much do you rate the site?",
   "rate.send": "send",
   "rate.stitle": "Did you face any problems? Do you want to add a feature that does not exist yet?",
-  "feat-in-beta": "This feature not available right now"
+  "feat-in-beta": "This feature not available right now",
+  "section.profile.wishlist": "my wishlist",
+  "upload.video": "Upload Video"
 }

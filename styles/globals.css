@@ -3249,6 +3249,7 @@ nav.mobile.navbar,
   font-weight: 500;
   resize: unset;
   box-shadow: unset;
+  padding: 14px;
   font-size: 15px;
 }
 
@@ -3480,8 +3481,9 @@ nav.mobile.navbar,
 
 .note-box {
   position: absolute;
-  top: 25px;
-  left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 25px;
   width: 40px;
   height: 40px;
   background: #c3c3c3;
@@ -3769,6 +3771,19 @@ span.for-beta {
   cursor: not-allowed;
 }
 
-.ptt-title.disabled:hover span.for-beta{
+.ptt-title.disabled:hover span.for-beta {
   opacity: 1;
-} 
+}
+
+input.video-input {
+  border-radius: 60px;
+  height: 50px;
+  border: 1px solid var(--mainColor);
+  background: #eaeaea;
+  outline: none;
+  font-weight: 500;
+  box-shadow: unset;
+  font-size: 15px;
+  transition: all .3s linear;
+  padding: 0 14px;
+}

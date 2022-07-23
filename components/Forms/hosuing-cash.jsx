@@ -1141,34 +1141,14 @@ const HosuingCash = () => {
                   ></textarea>
                 </div>
               </div>
-
               <div className={`${eighthTabVis ? "" : "collapsed"}`}>
                 <div
                   className="aft-four-item aft-item"
                   onClick={() => setEighthTabVis(!eighthTabVis)}
                 >
-                  <h3>رفع فيديو</h3>
-                  <div>
-                    <span>
-                      <FormattedMessage id="page.add-property-form.option" />
-                    </span>
-                    <MdOutlineKeyboardArrowDown />
-                  </div>
-                </div>
-                <div className="aft-four-content aft-content">
-                  <textarea
-                    value={youtube}
-                    onChange={(e) => setYoutube(e.target.value)}
-                  ></textarea>
-                </div>
-              </div>
-
-              <div className={`${eighthTabVis ? "" : "collapsed"}`}>
-                <div
-                  className="aft-four-item aft-item"
-                  onClick={() => setEighthTabVis(!eighthTabVis)}
-                >
-                  <h3>رفع فيديو</h3>
+                  <h3>
+                    <FormattedMessage id="upload.video" />
+                  </h3>
                   <div>
                     <span>
                       <FormattedMessage id="page.add-property-form.option" />
@@ -1180,14 +1160,17 @@ const HosuingCash = () => {
                   <div className="note-box" title="ازاي ترفع فيديو؟">
                     <AiOutlineInfo />
                   </div>
-                  <textarea
+                  <input
+                    className="video-input"
+                    type="text"
+                    placeholder="ادخل الرمز الخاص بالفيديو"
                     value={youtube}
                     onChange={(e) => setYoutube(e.target.value)}
-                  ></textarea>
+                  />
                 </div>
               </div>
 
-              <div className={`${ninthTabVis ? "" : "collapsed"}`}>
+              {/* <div className={`${ninthTabVis ? "" : "collapsed"}`}>
                 <div
                   className="aft-four-item aft-item"
                   onClick={() => setNinthTabVis(!ninthTabVis)}
@@ -1206,7 +1189,7 @@ const HosuingCash = () => {
                     onChange={(e) => setPdf(e.target.value)}
                   ></textarea>
                 </div>
-              </div>
+              </div> */}
 
               <div className={`${tenTabVis ? "" : "collapsed"}`}>
                 <div

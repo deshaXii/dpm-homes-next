@@ -13,3 +13,16 @@ export async function updateWishlist(id) {
     return err;
   }
 }
+
+export async function getAllWishlist(token) {
+  try {
+    const res = await API.get(`/my-wishlist`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return await res.data;
+  } catch (err) {
+    return err;
+  }
+}

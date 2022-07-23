@@ -38,6 +38,7 @@ import {
   MdOutlineLocationOn,
   MdOutlineTextsms,
   MdOutlineDeleteOutline,
+  MdFavorite,
 } from "react-icons/md";
 import ImageUploading from "react-images-uploading";
 import Image from "next/image";
@@ -47,10 +48,12 @@ import { updateProfile } from "../store/slices/profile";
 import Head from "next/head";
 import { getAllCountries, selectCountries } from "../store/slices/countries";
 import Select from "react-select";
+import { getWishlist, selectWishlist } from "../store/slices/wishlist";
 
 const MyProfile = () => {
   const user = useSelector(selectUser);
   const userProperties = useSelector(selectUserProperties);
+  const { wishlist } = useSelector(selectWishlist);
   const [activeView, setActiveView] = useState("details-view");
   const [unitsType, setUnitsType] = useState("sell");
   const [detailsActiveView, setDetailsActiveView] = useState("personal-view");
@@ -192,6 +195,21 @@ const MyProfile = () => {
                     </div>
                     <span>
                       <FormattedMessage id="section.profile.my_units" />
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setActiveView("wishlist-view");
+                    }}
+                    className={`btn wishlist-view ${
+                      activeView === "wishlist-view" ? "active" : ""
+                    } cursor-pointer`}
+                  >
+                    <div className="view-btn-icon">
+                      <MdFavorite />
+                    </div>
+                    <span>
+                      <FormattedMessage id="section.profile.wishlist" />
                     </span>
                   </button>
                   <button
@@ -607,7 +625,7 @@ const MyProfile = () => {
                   )}
                   {activeView === "units-view" && (
                     <div className="units-view profile-viewer-area">
-                      <div className="profile-viewer-header">
+                      {/* <div className="profile-viewer-header">
                         {userProperties.data.filter(
                           (property) => property.sell_rent_type === "sell"
                         ).length ? (
@@ -653,7 +671,7 @@ const MyProfile = () => {
                             </button>
                           </div>
                         ) : null}
-                      </div>
+                      </div> */}
                       <div className="units-view-box">
                         {unitsType === "sell" && (
                           <div className="row search-property-layout-content">
@@ -701,6 +719,23 @@ const MyProfile = () => {
                       </div>
                     </div>
                   )}
+                  {activeView === "wishlist-view" && (
+                    <div className="wishlist-view profile-viewer-area">
+                      <div className="units-view-box">
+                        <div className="row search-property-layout-content">
+                          {wishlist.map((property, index) => (
+                            <div className="col-md-3" key={property.id}>
+                              <PropertyCard
+                                featureCount="2"
+                                image="/img/property_test_3.jpg"
+                                property={property}
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -732,6 +767,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         const cookies = parseCookies(req);
         const token = cookies.userToken;
         await store.dispatch(getUserProperties(token));
+        await store.dispatch(getWishlist(token));
         await store.dispatch(getAllCountries(locale));
         return {
           props: {},
