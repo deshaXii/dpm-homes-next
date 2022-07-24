@@ -3,12 +3,16 @@ import Link from "next/link";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import ContactInfo from "./ContactInfo";
+import { useSelector } from "react-redux";
+import { selectSettings } from "../../store/slices/settings";
+
 
 const AppFooter = () => {
+  const {settingsData} = useSelector(selectSettings);
   return (
     <footer>
       <div className="container">
-        <ContactInfo />
+        <ContactInfo settingsData={settingsData} />
         <div className="row">
           <div className="col-md-2">
             <div className="footer-app-info">
@@ -45,19 +49,27 @@ const AppFooter = () => {
                   </Link>
                 </li>
                 <li className="footer-menu-item">
-                  <Link href="/">
+                  <Link href="/projects">
+                    <a className="footer-menu-link">
+                      <FormattedMessage id="page.home.menu.projects" />
+                    </a>
+                  </Link>
+                </li>
+                <li className="footer-menu-item">
+                  <Link href="/search-sell">
                     <a className="footer-menu-link">
                       <FormattedMessage id="page.home.menu.sell" />
                     </a>
                   </Link>
                 </li>
-                <li className="footer-menu-item">
+               
+                {/* <li className="footer-menu-item">
                   <Link href="/">
                     <a className="footer-menu-link">
                       <FormattedMessage id="page.home.menu.rent" />
                     </a>
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -75,7 +87,7 @@ const AppFooter = () => {
                   </Link>
                 </li>
                 <li className="footer-menu-item">
-                  <Link href="/">
+                  <Link href="/contact-us">
                     <a className="footer-menu-link">
                       <FormattedMessage id="section.footer.contact_link" />
                     </a>

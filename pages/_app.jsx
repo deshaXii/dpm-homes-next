@@ -21,6 +21,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { sendFeedback } from "../store/slices/feedback";
 import "react-toastify/dist/ReactToastify.css";
+import { getSettingsData } from "../store/slices/settings";
 
 const messages = {
   ar,
@@ -482,6 +483,7 @@ function MyApp({ Component, pageProps, user }) {
 MyApp.getInitialProps = wrapper.getInitialPageProps(
   (store) =>
     async ({ ctx }) => {
+      await store.dispatch(getSettingsData(ctx.locale));
       if (ctx.req) {
         if (ctx.req.cookies.hasOwnProperty("userToken")) {
           const cookies = parseCookies(ctx.req);

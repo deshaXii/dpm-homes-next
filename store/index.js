@@ -9,6 +9,7 @@ import filterReducer from "./slices/filter";
 import clientReducer from "./slices/client";
 import wishlistSlice from "./slices/wishlist";
 import feedbackSlice from "./slices/feedback";
+import settingsSlice from "./slices/settings";
 
 const makeStore = () =>
   configureStore({
@@ -22,6 +23,7 @@ const makeStore = () =>
       client: clientReducer,
       wishlist: wishlistSlice,
       feedback: feedbackSlice,
+      settings: settingsSlice,
     },
     devTools: true,
   });
