@@ -220,3 +220,8 @@ html[lang="ar"] .feedback-links {
 .rtl span.for-beta {
     width: 200px;
 }
+
+.rtl .note-box {
+    right: auto;
+    left: 25px;
+}

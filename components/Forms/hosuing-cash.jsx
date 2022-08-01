@@ -153,9 +153,9 @@ const HosuingCash = () => {
   const [unit_status, setUnit_status] = useState("");
   const [unit_age, setUnit_age] = useState("");
   const [pdf, setPdf] = useState(null);
-  const [view3d, setView3d] = useState("https://www.google.com");
+  const [view3d, setView3d] = useState("");
   const [youtube, setYoutube] = useState(null);
-  const [location, setLocation] = useState("https://www.google.com");
+  const [location, setLocation] = useState("");
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
   const [gardenIn, setGardenIn] = useState(false);
@@ -1450,7 +1450,7 @@ const HosuingCash = () => {
                   <input
                     className="video-input"
                     type="text"
-                    placeholder="ادخل الرمز الخاص بالفيديو"
+                    placeholder={locale === 'ar' ? 'ادخل الرمز الخاص بالفيديو' : 'Enter the video code'}
                     value={youtube}
                     onChange={(e) => setYoutube(e.target.value)}
                   />

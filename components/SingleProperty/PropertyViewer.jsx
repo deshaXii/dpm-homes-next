@@ -96,6 +96,7 @@ const PropertyViewer = () => {
   const [nav2, setNav2] = useState();
 
   const [activeView, setActiveView] = useState("images-view");
+  console.log(property.data.youtube);
   return (
     <>
       {typeof window !== "undefined" && (
@@ -103,7 +104,7 @@ const PropertyViewer = () => {
           channel="youtube"
           autoplay={true}
           isOpen={isOpen}
-          videoId="nhDbIRiXcBY"
+          videoId={property.data.youtube}
           onClose={() => setOpen(false)}
         />
       )}
@@ -150,17 +151,7 @@ const PropertyViewer = () => {
                     </Slider>
                   </div>
                 )}
-                {activeView === "video-view" && (
-                  <div className="property-view-box property-view-video">
-                    <iframe
-                      src="https://www.youtube.com/embed/FoCG-WNsZio"
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                )}
+
                 {activeView === "pdf-view" && (
                   <div className="property-view-box property-view-pdf">
                     <div className="pdf-as-images">
@@ -183,7 +174,7 @@ const PropertyViewer = () => {
                 {activeView === "location-view" && (
                   <div className="property-view-box property-view-location">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d9934.52282952562!2d-0.1408000000000129!3d51.501644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1641494337400!5m2!1sar!2seg"
+                      src="/maps/embed?pb=!1m14!1m12!1m3!1d9934.52282952562!2d-0.1408000000000129!3d51.501644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1641494337400!5m2!1sar!2seg"
                       allowFullScreen
                       loading="lazy"
                     ></iframe>
@@ -208,67 +199,75 @@ const PropertyViewer = () => {
                     <FormattedMessage id="page.property.view-images" />
                   </span>
                 </button>
-                <button
-                  onClick={() => {
-                    // setActiveView("video-view");
-                    setOpen(true);
-                  }}
-                  className={`btn video-view ${
-                    activeView === "video-view" ? "active" : ""
-                  } cursor-pointer`}
-                >
-                  <div className="view-btn-icon">
-                    <AiOutlineVideoCamera />
-                  </div>
-                  <span>
-                    <FormattedMessage id="page.property.view-Video" />
-                  </span>
-                </button>
-                <button
-                  onClick={() => {
-                    setActiveView("pdf-view");
-                  }}
-                  className={`btn pdf-view ${
-                    activeView === "pdf-view" ? "active" : ""
-                  } cursor-pointer`}
-                >
-                  <div className="view-btn-icon">
-                    <VscFilePdf />
-                  </div>
-                  <span>
-                    <FormattedMessage id="page.property.view-PDF" />
-                  </span>
-                </button>
-                <button
-                  onClick={() => {
-                    setActiveView("3d-view");
-                  }}
-                  className={`btn 3d-view ${
-                    activeView === "3d-view" ? "active" : ""
-                  } cursor-pointer`}
-                >
-                  <div className="view-btn-icon">
-                    <MdOutlineViewInAr />
-                  </div>
-                  <span>
-                    <FormattedMessage id="page.property.view-3d" />
-                  </span>
-                </button>
-                <button
-                  onClick={() => {
-                    setActiveView("location-view");
-                  }}
-                  className={`btn location-view ${
-                    activeView === "location-view" ? "active" : ""
-                  } cursor-pointer`}
-                >
-                  <div className="view-btn-icon">
-                    <HiOutlineLocationMarker />
-                  </div>
-                  <span>
-                    <FormattedMessage id="page.property.view-Location" />
-                  </span>
-                </button>
+                {property.data.youtube && (
+                  <button
+                    onClick={() => {
+                      // setActiveView("video-view");
+                      setOpen(true);
+                    }}
+                    className={`btn video-view ${
+                      activeView === "video-view" ? "active" : ""
+                    } cursor-pointer`}
+                  >
+                    <div className="view-btn-icon">
+                      <AiOutlineVideoCamera />
+                    </div>
+                    <span>
+                      <FormattedMessage id="page.property.view-Video" />
+                    </span>
+                  </button>
+                )}
+                {property.data.pdf && (
+                  <button
+                    onClick={() => {
+                      setActiveView("pdf-view");
+                    }}
+                    className={`btn pdf-view ${
+                      activeView === "pdf-view" ? "active" : ""
+                    } cursor-pointer`}
+                  >
+                    <div className="view-btn-icon">
+                      <VscFilePdf />
+                    </div>
+                    <span>
+                      <FormattedMessage id="page.property.view-PDF" />
+                    </span>
+                  </button>
+                )}
+                {property.data.view3d && (
+                  <button
+                    onClick={() => {
+                      setActiveView("3d-view");
+                    }}
+                    className={`btn 3d-view ${
+                      activeView === "3d-view" ? "active" : ""
+                    } cursor-pointer`}
+                  >
+                    <div className="view-btn-icon">
+                      <MdOutlineViewInAr />
+                    </div>
+                    <span>
+                      <FormattedMessage id="page.property.view-3d" />
+                    </span>
+                  </button>
+                )}
+                {property.data.location && (
+                  <button
+                    onClick={() => {
+                      setActiveView("location-view");
+                    }}
+                    className={`btn location-view ${
+                      activeView === "location-view" ? "active" : ""
+                    } cursor-pointer`}
+                  >
+                    <div className="view-btn-icon">
+                      <HiOutlineLocationMarker />
+                    </div>
+                    <span>
+                      <FormattedMessage id="page.property.view-Location" />
+                    </span>
+                  </button>
+                )}
               </div>
 
               <div className="property-options-buttons">

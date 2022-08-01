@@ -97,6 +97,7 @@ const HosuingRent = () => {
   const [seventhTabVis, setSeventhTabVis] = useState(false);
   const [eighthTabVis, setEighthTabVis] = useState(false);
   const [ninthTabVis, setNinthTabVis] = useState(false);
+  const [tenTabVis, setTenTabVis] = useState(false);
 
   const selectStyle = {
     control: (base, { isFocused }) => ({
@@ -165,9 +166,9 @@ const HosuingRent = () => {
   const [unit_status, setUnit_status] = useState("");
   const [unit_age, setUnit_age] = useState("");
   const [pdf, setPdf] = useState(null);
-  const [view3d, setView3d] = useState("https://www.google.com");
+  const [view3d, setView3d] = useState("");
   const [youtube, setYoutube] = useState(null);
-  const [location, setLocation] = useState('https://www.google.com');
+  const [location, setLocation] = useState('');
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
   const [gardenIn, setGardenIn] = useState(false);

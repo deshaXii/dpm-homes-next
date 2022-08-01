@@ -15,6 +15,7 @@ import {
   selectCountries,
 } from "../../store/slices/countries";
 import Image from "next/image";
+import { AiOutlineInfo } from "react-icons/ai";
 
 const CommercialRent = () => {
   const { allCountries, allGovernorates } = useSelector(selectCountries);
@@ -111,6 +112,7 @@ const CommercialRent = () => {
   const [seventhTabVis, setSeventhTabVis] = useState(false);
   const [eighthTabVis, setEighthTabVis] = useState(false);
   const [ninthTabVis, setNinthTabVis] = useState(false);
+  const [tenTabVis, setTenTabVis] = useState(false);
 
   const selectStyle = {
     control: (base, { isFocused }) => ({
@@ -169,9 +171,9 @@ const CommercialRent = () => {
   const [unit_status, setUnit_status] = useState("");
   const [unit_age, setUnit_age] = useState("");
   const [pdf, setPdf] = useState();
-  const [view3d, setView3d] = useState("https://www.google.com");
+  const [view3d, setView3d] = useState("");
   const [youtube, setYoutube] = useState(null);
-  const [location, setLocation] = useState("https://www.google.com");
+  const [location, setLocation] = useState("");
   const [gardenIn, setGardenIn] = useState(false);
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
@@ -770,7 +772,38 @@ const CommercialRent = () => {
                   ></textarea>
                 </div>
               </div>
-
+              <div className={`${tenTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setTenTabVis(!tenTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="upload.video" />
+                  </h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
+                </div>
+                <div className="aft-four-content aft-content">
+                  <div className="note-box" title="ازاي ترفع فيديو؟">
+                    <AiOutlineInfo />
+                  </div>
+                  <input
+                    className="video-input"
+                    type="text"
+                    placeholder={
+                      locale === "ar"
+                        ? "ادخل الرمز الخاص بالفيديو"
+                        : "Enter the video code"
+                    }
+                    value={youtube}
+                    onChange={(e) => setYoutube(e.target.value)}
+                  />
+                </div>
+              </div>
               <div className={`${eighthTabVis ? "" : "collapsed"}`}>
                 <div
                   className="aft-four-item aft-item"
@@ -814,7 +847,9 @@ const CommercialRent = () => {
               />
             </div>
             <div className="loading-txt">
-              <span><FormattedMessage id="property.loading.message" /></span>
+              <span>
+                <FormattedMessage id="property.loading.message" />
+              </span>
             </div>
           </div>
         </div>
@@ -831,7 +866,9 @@ const CommercialRent = () => {
               />
             </div>
             <div className="loading-txt">
-              <span><FormattedMessage id="property.uploaded.message" /></span>
+              <span>
+                <FormattedMessage id="property.uploaded.message" />
+              </span>
             </div>
           </div>
         </div>
