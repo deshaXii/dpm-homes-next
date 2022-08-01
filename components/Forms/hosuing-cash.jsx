@@ -1405,7 +1405,7 @@ const HosuingCash = () => {
                   ></textarea>
                 </div>
               </div>
-
+{/* 
               <div className={`${seventhTabVis ? "" : "collapsed"}`}>
                 <div
                   className="aft-four-item aft-item"
@@ -1455,7 +1455,7 @@ const HosuingCash = () => {
                     onChange={(e) => setYoutube(e.target.value)}
                   />
                 </div>
-              </div>
+              </div> */}
 
               {/* <div className={`${ninthTabVis ? "" : "collapsed"}`}>
                 <div

@@ -60,7 +60,6 @@ export const filterSlice = createSlice({
       }
     },
     filterByPropertyType: (state, action) => {
-      console.log(action.payload);
       let allProperties = action.payload.allProperties,
         type = action.payload.type;
       if (type === "reset") {

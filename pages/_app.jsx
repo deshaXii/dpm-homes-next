@@ -132,35 +132,35 @@ function MyApp({ Component, pageProps, user }) {
                       name="rating"
                       id="rating-5"
                     />
-                    <label for="rating-5"></label>
+                    <label htmlFor="rating-5"></label>
                     <input
                       type="radio"
                       name="rating"
                       id="rating-4"
                       onChange={(e) => setScore(e.target.checked ? 4 : null)}
                     />
-                    <label for="rating-4"></label>
+                    <label htmlFor="rating-4"></label>
                     <input
                       type="radio"
                       name="rating"
                       id="rating-3"
                       onChange={(e) => setScore(e.target.checked ? 3 : null)}
                     />
-                    <label for="rating-3"></label>
+                    <label htmlFor="rating-3"></label>
                     <input
                       type="radio"
                       name="rating"
                       id="rating-2"
                       onChange={(e) => setScore(e.target.checked ? 2 : null)}
                     />
-                    <label for="rating-2"></label>
+                    <label htmlFor="rating-2"></label>
                     <input
                       type="radio"
                       name="rating"
                       id="rating-1"
                       onChange={(e) => setScore(e.target.checked ? 1 : null)}
                     />
-                    <label for="rating-1"></label>
+                    <label htmlFor="rating-1"></label>
                     <div className="emoji-wrapper">
                       <div className="emoji">
                         <svg

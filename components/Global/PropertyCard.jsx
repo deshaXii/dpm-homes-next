@@ -215,8 +215,8 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
           <div className="propert-card-buttons">
             <RWebShare
               data={{
-                text: "Like humans, flamingos make friends for life",
-                url: "https://on.natgeo.com/2zHaNup",
+                text: "Like humans, luxury aqar make friends for life",
+                url: "https://luxuryaqar.com/",
                 title: "Flamingos",
               }}
               onClick={() => console.log("shared successfully!")}

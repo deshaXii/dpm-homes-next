@@ -9,9 +9,9 @@ export async function getProjects(lang) {
   }
 }
 
-export async function getProject(id) {
+export async function getProject({id, lang}) {
   try {
-    const res = await API.get(`/get-project-properties?id=${id}`);
+    const res = await API.get(`/get-project-properties?id=${id}&lang=${lang}`);
     return await res.data;
   } catch (err) {
     return err;

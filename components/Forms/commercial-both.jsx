@@ -846,7 +846,7 @@ const CommercialBoth = () => {
                 </div>
               </div>
 
-              <div className={`${seventhTabVis ? "" : "collapsed"}`}>
+              {/* <div className={`${seventhTabVis ? "" : "collapsed"}`}>
                 <div
                   className="aft-four-item aft-item"
                   onClick={() => setSeventhTabVis(!seventhTabVis)}
@@ -895,7 +895,7 @@ const CommercialBoth = () => {
                     onChange={(e) => setYoutube(e.target.value)}
                   />
                 </div>
-              </div>
+              </div> */}
               <div className={`${eighthTabVis ? "" : "collapsed"}`}>
                 <div
                   className="aft-four-item aft-item"

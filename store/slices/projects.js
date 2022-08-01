@@ -12,8 +12,8 @@ export const getAllProjects = createAsyncThunk("projects/getProjects", async (la
   return responseData;
 });
 
-export const getCurrentProject = createAsyncThunk("projects/getProject", async (id) => {
-  const responseData = await getProject(id);
+export const getCurrentProject = createAsyncThunk("projects/getProject", async ({id, lang}) => {
+  const responseData = await getProject({id, lang});
   return responseData;
 });
 

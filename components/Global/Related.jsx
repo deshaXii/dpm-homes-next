@@ -7,7 +7,6 @@ import Link from "next/link";
 const PropertyCard = dynamic(() => import("../Global/PropertyCard"));
 
 const Related = ({ properties, sectionTitle, sectionClass, type }) => {
-    console.log(properties);
   return (
     <section className={`properties-section ${sectionClass} p80`}>
       {sectionClass === "for-rent" ? <span className="s-layer1"></span> : ""}

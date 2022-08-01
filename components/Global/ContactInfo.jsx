@@ -28,7 +28,7 @@ const ContactInfo = ({ settingsData }) => {
               <FormattedMessage id="section.contact.location_title" />
             </h6>
             {settingsData.address.map((item, index) => (
-              <Link href={settingsData.location[index]}>
+              <Link href={settingsData.location[index]} key={index}>
                 <a>{item}</a>
               </Link>
             ))}

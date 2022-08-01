@@ -1474,7 +1474,7 @@ const HosuingInstallment = () => {
                 </div>
               </div>
 
-              <div className={`${seventhTabVis ? "" : "collapsed"}`}>
+              {/* <div className={`${seventhTabVis ? "" : "collapsed"}`}>
                 <div
                   className="aft-four-item aft-item"
                   onClick={() => setSeventhTabVis(!seventhTabVis)}
@@ -1523,7 +1523,7 @@ const HosuingInstallment = () => {
                     onChange={(e) => setYoutube(e.target.value)}
                   />
                 </div>
-              </div>
+              </div> */}
               <div className={`${eighthTabVis ? "" : "collapsed"}`}>
                 <div
                   className="aft-four-item aft-item"

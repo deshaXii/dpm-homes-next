@@ -1390,7 +1390,7 @@ const HosuingRent = () => {
                 ></textarea>
               </div>
             </div>
-
+{/* 
             <div className={`${seventhTabVis ? "" : "collapsed"}`}>
               <div
                 className="aft-four-item aft-item"
@@ -1412,7 +1412,7 @@ const HosuingRent = () => {
                   onChange={(e) => setLocation(e.target.value)}
                 ></textarea>
               </div>
-            </div>
+            </div> */}
 
             <div className={`${eighthTabVis ? "" : "collapsed"}`}>
               <div

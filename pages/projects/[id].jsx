@@ -25,7 +25,7 @@ const Project = () => {
   return (
     <>
       <Head>
-        <title>{query.name}</title>
+        <title>{project.project_info.name}</title>
       </Head>
       <Default>
         <div className="project-page" style={{ padding: "60px 0 120px 0" }}>
@@ -36,19 +36,22 @@ const Project = () => {
                 <div
                   className="project-header"
                   style={{
-                    backgroundImage: `url(https://admin.dpmhomes.com/${query.image})`,
+                    backgroundImage: `url(https://admin.dpmhomes.com/${project.project_info.image})`,
                   }}
                 ></div>
                 <div className="project-content">
-                  <h1>{query.name}</h1>
-                  <p> {query.description} </p>
+                  <h1>{project.project_info.name}</h1>
+                  <p> {project.project_info.description} </p>
                 </div>
-                <SectionTitle title="properties" subTitle={query.name} />
+                <SectionTitle
+                  title="properties"
+                  subTitle={project.project_info.name}
+                />
                 <div className="search-property-layout-content">
                   <div className="row">
-                    {project.data.length ? (
-                      project.data.map((property) => (
-                        <div className={`col-lg-4 col-md-6`} key={property.id}>
+                    {project.properties.length ? (
+                      project.properties.map((property) => (
+                        <div className={`col-lg-3 col-md-6`} key={property.id}>
                           <PropertyCard
                             property={property}
                             featureCount={2}
@@ -77,13 +80,15 @@ export default Project;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ res, req, query }) => {
+    async ({ res, req, query, locale }) => {
       res.setHeader(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
       );
       console.log(query);
-      await store.dispatch(getCurrentProject(Number(query.id)));
+      await store.dispatch(
+        getCurrentProject({ id: Number(query.id), lang: locale })
+      );
       return {
         props: {},
       };
