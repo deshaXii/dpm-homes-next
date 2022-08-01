@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import SectionTitle from "../Global/SectionTitle";
 import { useSelector } from "react-redux";
 import { selectProjects } from "../../store/slices/projects";
+import Link from "next/link";
 SwiperCore.use([Navigation, Pagination]);
 
 const Projects = () => {
@@ -63,15 +64,41 @@ const Projects = () => {
                   <SwiperSlide className="swiper-slide" key={project.id}>
                     <div className="project-slide-box">
                       <div className="project-slide-image-box">
-                        <Image
-                          width={600}
-                          height={400}
-                          alt="hyde park project image"
-                          src={`https://admin.dpmhomes.com/${project.image}`}
-                        />
+                        <Link
+                          href={{
+                            pathname: `/projects/${project.id}`,
+                            query: {
+                              name: project.name,
+                              description: project.description,
+                              image: project.image,
+                            },
+                          }}
+                        >
+                          <a>
+                            <Image
+                              width={600}
+                              height={400}
+                              alt="hyde park project image"
+                              src={`https://admin.dpmhomes.com/${project.image}`}
+                            />
+                          </a>
+                        </Link>
                       </div>
                       <div className="project-slide-info">
-                        <h5>{project.name}</h5>
+                        <Link
+                          href={{
+                            pathname: `/projects/${project.id}`,
+                            query: {
+                              name: project.name,
+                              description: project.description,
+                              image: project.image,
+                            },
+                          }}
+                        >
+                          <a>
+                            <h5>{project.name}</h5>
+                          </a>
+                        </Link>
                         <p>
                           Houses Real estate professional must be cognizant of
                           copyright issues when it comes too listing content
