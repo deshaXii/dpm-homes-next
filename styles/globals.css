@@ -3716,7 +3716,7 @@ li.navbar-menu-list-item.disabled span {
   width: 350px;
   background: #fff;
   display: block;
-  bottom: -50px;
+  top: 45px;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 10px;
