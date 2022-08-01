@@ -2,9 +2,9 @@ import Link from "next/link";
 import React from "react";
 import {
   FaFacebookF,
-  FaInstagram,
+  FaYoutube,
   FaWhatsapp,
-  FaTwitter,
+  FaSnapchatGhost,
 } from "react-icons/fa";
 import { FormattedMessage } from "react-intl";
 import { useSelector } from "react-redux";
@@ -35,15 +35,15 @@ const CopyRight = () => {
               <ul className="c-social-media-list">
                 <li className="c-social-media-list-item">
                   <Link href="https://www.facebook.com/luxuryaqar">
-                    <a className="c-social-media-list-link" target="_blank">
+                    <a target="_blank" className="c-social-media-list-link" target="_blank">
                       <FaFacebookF />
                     </a>
                   </Link>
                 </li>
                 <li className="c-social-media-list-item">
-                  <Link href="#">
-                    <a className="c-social-media-list-link">
-                      <FaInstagram />
+                  <Link href="https://www.youtube.com/channel/UCWQf9gzbIp99r_oSXVuHVsg">
+                    <a target="_blank" className="c-social-media-list-link">
+                      <FaYoutube />
                     </a>
                   </Link>
                 </li>
@@ -51,15 +51,15 @@ const CopyRight = () => {
                   <Link
                     href={`https://api.whatsapp.com/send/?phone=${settingsData.phone[0]}`}
                   >
-                    <a className="c-social-media-list-link">
+                    <a target="_blank" className="c-social-media-list-link">
                       <FaWhatsapp />
                     </a>
                   </Link>
                 </li>
                 <li className="c-social-media-list-item">
-                  <Link href="#">
-                    <a className="c-social-media-list-link">
-                      <FaTwitter />
+                  <Link href="https://www.snapchat.com/add/luxuryaqar">
+                    <a target="_blank" className="c-social-media-list-link">
+                      <FaSnapchatGhost />
                     </a>
                   </Link>
                 </li>
