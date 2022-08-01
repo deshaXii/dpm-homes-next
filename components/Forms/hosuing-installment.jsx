@@ -294,6 +294,13 @@ const HosuingInstallment = () => {
     images: pImages,
   };
 
+  
+  
+  useEffect(() => {
+    setAdvance_payment(advance_payment.replace("%", "") + "%");
+  }, [advance_payment]);
+
+
   const { locale } = router;
 
   const [showFinishingTab, setShowFinishingTab] = useState(

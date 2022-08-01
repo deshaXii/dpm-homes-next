@@ -132,6 +132,13 @@ const CommercialBoth = () => {
     },
   };
 
+  
+  
+  useEffect(() => {
+    setAdvance_payment(advance_payment.replace("%", "") + "%");
+  }, [advance_payment]);
+
+
   const [property_type, setProperty_type] = useState("");
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");

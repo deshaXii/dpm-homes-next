@@ -183,6 +183,10 @@ const AdministrativeBoth = () => {
     setImages(imageList);
   };
 
+  useEffect(() => {
+    setAdvance_payment(advance_payment.replace('%', '') + '%')
+  }, [advance_payment])
+
   const router = useRouter();
   const [showLoading, setShowLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);

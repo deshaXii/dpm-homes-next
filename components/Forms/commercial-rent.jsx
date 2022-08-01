@@ -202,6 +202,11 @@ const CommercialRent = () => {
     }
   }, [showLoading]);
 
+  
+  useEffect(() => {
+    setAdvance_payment(advance_payment.replace("%", "") + "%");
+  }, [advance_payment]);
+
   const handelAddProperty = (e) => {
     e.preventDefault();
     setShowLoading(true);

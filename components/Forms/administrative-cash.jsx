@@ -171,6 +171,10 @@ const AdministrativeCash = () => {
       }, 2000);
     }
   }, [showLoading]);
+  
+  useEffect(() => {
+    setAdvance_payment(advance_payment.replace("%", "") + "%");
+  }, [advance_payment]);
 
   const handelAddProperty = (e) => {
     e.preventDefault();
@@ -829,7 +833,9 @@ const AdministrativeCash = () => {
               />
             </div>
             <div className="loading-txt">
-              <span><FormattedMessage id="property.loading.message" /></span>
+              <span>
+                <FormattedMessage id="property.loading.message" />
+              </span>
             </div>
           </div>
         </div>
@@ -846,7 +852,9 @@ const AdministrativeCash = () => {
               />
             </div>
             <div className="loading-txt">
-              <span><FormattedMessage id="property.uploaded.message" /></span>
+              <span>
+                <FormattedMessage id="property.uploaded.message" />
+              </span>
             </div>
           </div>
         </div>

@@ -38,6 +38,11 @@ const AdministrativeInstallment = () => {
     { value: "EURO", label: "يورو " },
     { value: "KWD", label: "دينار كويتي" },
   ];
+  
+  useEffect(() => {
+    setAdvance_payment(advance_payment.replace("%", "") + "%");
+  }, [advance_payment]);
+
 
   const currency_options_en = [
     { value: "USD", label: "Dollar" },

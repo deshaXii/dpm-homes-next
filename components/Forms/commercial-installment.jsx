@@ -293,6 +293,11 @@ const CommercialInstallment = () => {
 
   const { locale } = router;
 
+  
+  useEffect(() => {
+    setAdvance_payment(advance_payment.replace("%", "") + "%");
+  }, [advance_payment]);
+
   // Validation
   useEffect(() => {
     if (country) {

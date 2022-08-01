@@ -236,6 +236,13 @@ const HosuingBoth = () => {
     });
   };
 
+
+  
+  useEffect(() => {
+    setAdvance_payment(advance_payment.replace("%", "") + "%");
+  }, [advance_payment]);
+
+
   let data = {
     property_type: property_type.value,
     furniture_type: furniture_type.value,
