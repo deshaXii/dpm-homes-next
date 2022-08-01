@@ -219,5 +219,8 @@
   "rate.stitle": "هل واجهت أي مشاكل؟ هل تريد إضافة ميزة غير موجودة بعد؟",
   "feat-in-beta": "هذة الخدمة ليست متاحة حاليا",
   "section.profile.wishlist": "العقارات المفضلة",
-  "upload.video": "رفع فيديو"
+  "upload.video": "رفع فيديو",
+  "property.uploaded.message": "تم رفع الوحدة بنجاح تتم الأن عملية المراجعة", 
+  "property.loading.message": "جاري الأن رفع العقار برجاء الإنتظار",
+  "section.related": " مشابهة"
 }

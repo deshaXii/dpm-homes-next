@@ -621,6 +621,7 @@ const AdministrativeInstallment = () => {
                           value={advance_payment}
                           onChange={(e) => setAdvance_payment(e.target.value)}
                           className="form-control"
+                          placeholder="10%"
                         />
                       </div>
                       <div className="form-group">
@@ -872,7 +873,7 @@ const AdministrativeInstallment = () => {
               />
             </div>
             <div className="loading-txt">
-              <span>جاري الأن رفع العقار برجاء الإنتظار</span>
+              <span><FormattedMessage id="property.loading.message" /></span>
             </div>
           </div>
         </div>
@@ -889,7 +890,7 @@ const AdministrativeInstallment = () => {
               />
             </div>
             <div className="loading-txt">
-              <span>تم رفع الوحدة بنجاح تتم الأن عملية المراجعة</span>
+              <span><FormattedMessage id="property.uploaded.message" /></span>
             </div>
           </div>
         </div>

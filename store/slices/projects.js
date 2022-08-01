@@ -27,7 +27,7 @@ export const projectsSlice = createSlice({
         state.allProjects = action.payload.data;
       })
       .addCase(getCurrentProject.fulfilled, (state, action) => {
-        state.project = action.payload.data;
+        state.project = action.payload;
       })
       .addCase(HYDRATE, (state, action) => {
         const nextState = {

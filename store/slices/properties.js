@@ -15,11 +15,13 @@ import {
   addAdministrativeInstallmentProperty,
   addAdministrativeBothProperty,
   addAdministrativeRentProperty,
+  getRelatedProperty
 } from "../api/propertiesAPI";
 
 const initialState = {
   allProperties: [],
   property: {},
+  related: []
 };
 
 export const getPropertiesWithTpye = createAsyncThunk(
@@ -34,6 +36,14 @@ export const showProperty = createAsyncThunk(
   "properties/showProperty",
   async (id) => {
     const responseData = await getPropertyById(id);
+    return responseData;
+  }
+);
+
+export const showRelatedProperty = createAsyncThunk(
+  "properties/showRelatedProperty",
+  async ({id, lang}) => {
+    const responseData = await getRelatedProperty({id, lang});
     return responseData;
   }
 );
@@ -145,6 +155,9 @@ export const propertiesSlice = createSlice({
       })
       .addCase(showProperty.fulfilled, (state, action) => {
         state.property = action.payload;
+      })
+      .addCase(showRelatedProperty.fulfilled, (state, action) => {
+        state.related = action.payload;
       })
       .addCase(addResidentialCash.fulfilled, (state, action) => {})
       .addCase(addResidentialCash.rejected, (state, action) => {})

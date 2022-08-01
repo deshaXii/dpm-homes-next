@@ -21,6 +21,7 @@ const Project = () => {
       document.body.style.backgroundColor = "white";
     };
   }, []);
+  console.log(project);
   return (
     <>
       <Head>
@@ -45,8 +46,8 @@ const Project = () => {
                 <SectionTitle title="properties" subTitle={query.name} />
                 <div className="search-property-layout-content">
                   <div className="row">
-                    {project.length ? (
-                      project.slice(0, 9).map((property) => (
+                    {project.data.length ? (
+                      project.data.map((property) => (
                         <div className={`col-lg-4 col-md-6`} key={property.id}>
                           <PropertyCard
                             property={property}
@@ -81,7 +82,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
       );
-      await store.dispatch(getCurrentProject(12));
+      console.log(query);
+      await store.dispatch(getCurrentProject(Number(query.id)));
       return {
         props: {},
       };

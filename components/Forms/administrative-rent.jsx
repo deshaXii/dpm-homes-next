@@ -789,7 +789,7 @@ const AdministrativeRent = () => {
               />
             </div>
             <div className="loading-txt">
-              <span>جاري الأن رفع العقار برجاء الإنتظار</span>
+              <span><FormattedMessage id="property.loading.message" /></span>
             </div>
           </div>
         </div>
@@ -806,7 +806,7 @@ const AdministrativeRent = () => {
               />
             </div>
             <div className="loading-txt">
-              <span>تم رفع الوحدة بنجاح تتم الأن عملية المراجعة</span>
+              <span><FormattedMessage id="property.uploaded.message" /></span>
             </div>
           </div>
         </div>

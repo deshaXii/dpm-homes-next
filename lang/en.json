@@ -220,5 +220,8 @@
   "rate.stitle": "Did you face any problems? Do you want to add a feature that does not exist yet?",
   "feat-in-beta": "This feature not available right now",
   "section.profile.wishlist": "my wishlist",
-  "upload.video": "Upload Video"
+  "upload.video": "Upload Video",
+  "property.uploaded.message": "The unit has been uploaded successfully.",
+  "property.loading.message": "The property is being uploaded now, please wait",
+  "section.related": " Related "
 }

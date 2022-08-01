@@ -6,7 +6,14 @@ import PropertyViewer from "../../components/SingleProperty/PropertyViewer";
 import PropertyDetails from "../../components/SingleProperty/PropertyDetails";
 import Properties from "../../components/Global/Properties";
 import { wrapper } from "../../store";
-import { showProperty } from "../../store/slices/properties";
+import {
+  selectProperties,
+  showProperty,
+  showRelatedProperty,
+} from "../../store/slices/properties";
+import { FormattedMessage } from "react-intl";
+import { useSelector } from "react-redux";
+import Related from "../../components/Global/Related";
 
 const SingleProperty = () => {
   useEffect(() => {
@@ -15,6 +22,9 @@ const SingleProperty = () => {
       document.body.style.backgroundColor = "white";
     };
   }, []);
+
+  const { related } = useSelector(selectProperties);
+
   return (
     <>
       <Head>
@@ -25,7 +35,11 @@ const SingleProperty = () => {
           <PropertyMainInfo />
           <PropertyViewer />
           <PropertyDetails />
-          <Properties sectionTitle="For Sale" sectionClass="for-sale" />
+          <Related
+            properties={[related]}
+            sectionTitle={<FormattedMessage id="section.related" />}
+            sectionClass="for-sale"
+          />
         </div>
       </Default>
     </>
@@ -36,13 +50,14 @@ export default SingleProperty;
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
-    async ({ res, query }) => {
+    async ({ res, query, locale }) => {
       res.setHeader(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
       );
       const { id } = query;
       await store.dispatch(showProperty(id));
+      await store.dispatch(showRelatedProperty({ id, lang: locale }));
       return {
         props: {},
       };
