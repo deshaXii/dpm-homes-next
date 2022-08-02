@@ -155,29 +155,27 @@ const PropertyViewer = () => {
                 {activeView === "pdf-view" && (
                   <div className="property-view-box property-view-pdf">
                     <div className="pdf-as-images">
-                      <img src="/img/pdf-1.jpg" alt="pdf" />
-                      <img src="/img/pdf-2.jpg" alt="pdf" />
-                      <img src="/img/pdf-3.jpg" alt="pdf" />
+                      <img
+                        src={`https://admin.dpmhomes.com/pdf-images/${property.data.pdf}`}
+                        alt="pdf"
+                      />
                     </div>
                   </div>
                 )}
                 {activeView === "3d-view" && (
                   <div className="property-view-box property-view-3d">
-                    <iframe
-                      src="https://my.matterport.com/show/?m=r98fDQY81RM"
-                      frameBorder="0"
-                      allowFullScreen
-                      allow="xr-spatial-tracking"
-                    ></iframe>
+                    <div
+                      dangerouslySetInnerHTML={{ __html: property.data.view3d }}
+                    />
                   </div>
                 )}
                 {activeView === "location-view" && (
                   <div className="property-view-box property-view-location">
-                    <iframe
-                      src="/maps/embed?pb=!1m14!1m12!1m3!1d9934.52282952562!2d-0.1408000000000129!3d51.501644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sar!2seg!4v1641494337400!5m2!1sar!2seg"
-                      allowFullScreen
-                      loading="lazy"
-                    ></iframe>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: property.data.location,
+                      }}
+                    />
                   </div>
                 )}
               </div>

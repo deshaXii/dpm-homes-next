@@ -99,6 +99,7 @@ const HosuingInstallment = () => {
   const [eighthTabVis, setEighthTabVis] = useState(false);
   const [ninthTabVis, setNinthTabVis] = useState(false);
   const [tenTabVis, setTenTabVis] = useState(false);
+  const [elevenTabVis, setElevenTabVis] = useState(false);
 
   const selectStyle = {
     control: (base, { isFocused }) => ({
@@ -172,11 +173,12 @@ const HosuingInstallment = () => {
   const [general_details, setGeneral_details] = useState("");
   const [unit_status, setUnit_status] = useState("");
   const [unit_age, setUnit_age] = useState("");
-  const [pdf, setPdf] = useState(null);
+  const [pdf, setPdf] = useState([]);
   const [view3d, setView3d] = useState("");
-  const [youtube, setYoutube] = useState(null);
+  const [youtube, setYoutube] = useState("");
   const [location, setLocation] = useState("");
   const [images, setImages] = useState([]);
+  const [pdfImage, setPdfImage] = useState([]);
   const [pImages, setPImages] = useState([]);
   const maxNumber = 12;
   const [gardenIn, setGardenIn] = useState(false);
@@ -191,6 +193,20 @@ const HosuingInstallment = () => {
     );
     setPImages(newArray);
     setImages(imageList);
+  };
+
+  const pdfOnChange = (imageList, addUpdateIndex) => {
+    const newArray = imageList.map(
+      ({ data_url, ...keepAttrs }) => keepAttrs.file
+    );
+
+    if (!imageList.length) {
+      setPdfImage(newArray);
+      setPdf([]);
+    } else {
+      setPdfImage(imageList[0].file);
+      setPdf(imageList);
+    }
   };
 
   const router = useRouter();
@@ -287,19 +303,16 @@ const HosuingInstallment = () => {
     general_details,
     unit_status,
     unit_age,
-    pdf,
+    pdf: pdfImage,
     view3d,
     youtube,
     location,
     images: pImages,
   };
 
-  
-  
   useEffect(() => {
     setAdvance_payment(advance_payment.replace("%", "") + "%");
   }, [advance_payment]);
-
 
   const { locale } = router;
 
@@ -1457,84 +1470,10 @@ const HosuingInstallment = () => {
                   </div>
                 </div>
               </div>
-
-              <div className={`${sixthTabVis ? "" : "collapsed"}`}>
-                <div
-                  className="aft-four-item aft-item"
-                  onClick={() => setSixthTabVis(!sixthTabVis)}
-                >
-                  <h3>
-                    <FormattedMessage id="page.add-property-form-title.add-3d" />
-                  </h3>
-                  <div>
-                    <span>
-                      <FormattedMessage id="page.add-property-form.option" />
-                    </span>
-                    <MdOutlineKeyboardArrowDown />
-                  </div>
-                </div>
-                <div className="aft-four-content aft-content">
-                  <textarea
-                    value={view3d}
-                    onChange={(e) => setView3d(e.target.value)}
-                  ></textarea>
-                </div>
-              </div>
-
-              {/* <div className={`${seventhTabVis ? "" : "collapsed"}`}>
-                <div
-                  className="aft-four-item aft-item"
-                  onClick={() => setSeventhTabVis(!seventhTabVis)}
-                >
-                  <h3>
-                    <FormattedMessage id="page.add-property-form-title.add-map" />
-                  </h3>
-                  <div>
-                    <span>
-                      <FormattedMessage id="page.add-property-form.option" />
-                    </span>
-                    <MdOutlineKeyboardArrowDown />
-                  </div>
-                </div>
-                <div className="aft-four-content aft-content">
-                  <textarea
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                  ></textarea>
-                </div>
-              </div>
               <div className={`${tenTabVis ? "" : "collapsed"}`}>
                 <div
                   className="aft-four-item aft-item"
                   onClick={() => setTenTabVis(!tenTabVis)}
-                >
-                  <h3>
-                    <FormattedMessage id="upload.video" />
-                  </h3>
-                  <div>
-                    <span>
-                      <FormattedMessage id="page.add-property-form.option" />
-                    </span>
-                    <MdOutlineKeyboardArrowDown />
-                  </div>
-                </div>
-                <div className="aft-four-content aft-content">
-                  <div className="note-box" title="ازاي ترفع فيديو؟">
-                    <AiOutlineInfo />
-                  </div>
-                  <input
-                    className="video-input"
-                    type="text"
-                    placeholder={locale === 'ar' ? 'ادخل الرمز الخاص بالفيديو' : 'Enter the video code'}
-                    value={youtube}
-                    onChange={(e) => setYoutube(e.target.value)}
-                  />
-                </div>
-              </div> */}
-              <div className={`${eighthTabVis ? "" : "collapsed"}`}>
-                <div
-                  className="aft-four-item aft-item"
-                  onClick={() => setEighthTabVis(!eighthTabVis)}
                 >
                   <h3>
                     <FormattedMessage id="page.add-property-form-title.add-more-details" />
@@ -1551,6 +1490,226 @@ const HosuingInstallment = () => {
                     value={general_details}
                     onChange={(e) => setGeneral_details(e.target.value)}
                   ></textarea>
+                </div>
+              </div>
+              <div className={`${elevenTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setElevenTabVis(!elevenTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.add-more-view-way" />
+                  </h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
+                </div>
+                <div className="aft-four-content aft-content">
+                  <div className={`${sixthTabVis ? "" : "collapsed"}`}>
+                    <div
+                      className="aft-four-item aft-item"
+                      onClick={() => setSixthTabVis(!sixthTabVis)}
+                    >
+                      <h3>
+                        <FormattedMessage id="page.add-property-form-title.add-3d" />
+                      </h3>
+                      <div>
+                        <span>
+                          <FormattedMessage id="page.add-property-form.option" />
+                        </span>
+                        <MdOutlineKeyboardArrowDown />
+                      </div>
+                    </div>
+                    <div className="aft-four-content aft-content">
+                      <textarea
+                        value={view3d}
+                        onChange={(e) => setView3d(e.target.value)}
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className={`${seventhTabVis ? "" : "collapsed"}`}>
+                    <div
+                      className="aft-four-item aft-item"
+                      onClick={() => setSeventhTabVis(!seventhTabVis)}
+                    >
+                      <h3>
+                        <FormattedMessage id="page.add-property-form-title.add-map" />
+                      </h3>
+                      <div>
+                        <span>
+                          <FormattedMessage id="page.add-property-form.option" />
+                        </span>
+                        <MdOutlineKeyboardArrowDown />
+                      </div>
+                    </div>
+                    <div className="aft-four-content aft-content">
+                      <textarea
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className={`${eighthTabVis ? "" : "collapsed"}`}>
+                    <div
+                      className="aft-four-item aft-item"
+                      onClick={() => setEighthTabVis(!eighthTabVis)}
+                    >
+                      <h3>
+                        <FormattedMessage id="upload.video" />
+                      </h3>
+                      <div>
+                        <span>
+                          <FormattedMessage id="page.add-property-form.option" />
+                        </span>
+                        <MdOutlineKeyboardArrowDown />
+                      </div>
+                    </div>
+                    <div className="aft-four-content aft-content">
+                      <div className="note-box" title="ازاي ترفع فيديو؟">
+                        <AiOutlineInfo />
+                      </div>
+                      <input
+                        className="video-input"
+                        type="text"
+                        placeholder={
+                          locale === "ar"
+                            ? "ادخل الرمز الخاص بالفيديو"
+                            : "Enter the video code"
+                        }
+                        value={youtube}
+                        onChange={(e) => setYoutube(e.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className={`${ninthTabVis ? "" : "collapsed"}`}>
+                    <div
+                      className="aft-four-item aft-item"
+                      onClick={() => setNinthTabVis(!ninthTabVis)}
+                    >
+                      <h3>
+                        <FormattedMessage id="upload.pdf" />
+                      </h3>
+                      <div>
+                        <span>
+                          <FormattedMessage id="page.add-property-form.option" />
+                        </span>
+                        <MdOutlineKeyboardArrowDown />
+                      </div>
+                    </div>
+                    <div className="aft-four-content aft-content">
+                      <ImageUploading
+                        id="pdf"
+                        value={pdf}
+                        onChange={pdfOnChange}
+                        maxNumber={1}
+                        maxFileSize={maxFileSize}
+                        dataURLKey="data_url_2"
+                      >
+                        {({
+                          imageList,
+                          onImageRemoveAll,
+                          errors,
+                          onImageUpload,
+                          onImageUpdate,
+                          onImageRemove,
+                          dragProps,
+                        }) => (
+                          // write your building UI
+                          <>
+                            <div className="upload__image-wrapper">
+                              {pdf.length < 1 && (
+                                <div
+                                  className="drag-box"
+                                  onClick={onImageUpload}
+                                  {...dragProps}
+                                >
+                                  <FiUploadCloud />
+                                  <span>
+                                    <FormattedMessage id="section.profile.drag_and_drop" />
+                                  </span>
+                                  <button type="button">
+                                    <FormattedMessage id="section.profile.browse_files" />
+                                  </button>
+                                </div>
+                              )}
+                              <div className="upladed_images_box">
+                                {imageList.length > 1 && (
+                                  <button onClick={onImageRemoveAll}>
+                                    Remove all images
+                                  </button>
+                                )}
+                                {imageList.map((image, index) => (
+                                  <div
+                                    key={index}
+                                    className="uploadThumb image-item"
+                                    id="result"
+                                  >
+                                    <img
+                                      src={image["data_url_2"]}
+                                      alt=""
+                                      width="100"
+                                    />
+
+                                    <div className="image-item__btn-wrapper">
+                                      <button
+                                        type="button"
+                                        onClick={() => onImageUpdate(index)}
+                                      >
+                                        <FiEdit2 />
+                                      </button>
+                                      <button
+                                        type="button"
+                                        onClick={() => onImageRemove(index)}
+                                      >
+                                        <MdOutlineDeleteOutline />
+                                      </button>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            {errors && (
+                              <>
+                                {errors.maxNumber &&
+                                  toast.error(
+                                    locale === "ar"
+                                      ? "الحد الاقصى للصورة 1 ميجا"
+                                      : "Please select image less than 1Mb",
+                                    {
+                                      position: "top-right",
+                                      autoClose: 5000,
+                                      hideProgressBar: false,
+                                      closeOnClick: true,
+                                      pauseOnHover: true,
+                                      draggable: true,
+                                      progress: undefined,
+                                    }
+                                  )}
+                                {errors.acceptType &&
+                                  toast.error(
+                                    locale === "ar"
+                                      ? "صيغة الصورة غير صحيحة"
+                                      : "Invalid image format",
+                                    {
+                                      position: "top-right",
+                                      autoClose: 5000,
+                                      hideProgressBar: false,
+                                      closeOnClick: true,
+                                      pauseOnHover: true,
+                                      draggable: true,
+                                      progress: undefined,
+                                    }
+                                  )}
+                              </>
+                            )}
+                          </>
+                        )}
+                      </ImageUploading>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1574,7 +1733,9 @@ const HosuingInstallment = () => {
               />
             </div>
             <div className="loading-txt">
-              <span><FormattedMessage id="property.loading.message" /></span>
+              <span>
+                <FormattedMessage id="property.loading.message" />
+              </span>
             </div>
           </div>
         </div>
@@ -1591,7 +1752,9 @@ const HosuingInstallment = () => {
               />
             </div>
             <div className="loading-txt">
-              <span><FormattedMessage id="property.uploaded.message" /></span>
+              <span>
+                <FormattedMessage id="property.uploaded.message" />
+              </span>
             </div>
           </div>
         </div>

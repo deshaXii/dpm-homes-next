@@ -95,9 +95,10 @@ const HosuingRent = () => {
   const [fifthTabVis, setFifthTabVis] = useState(false);
   const [sixthTabVis, setSixthTabVis] = useState(false);
   const [seventhTabVis, setSeventhTabVis] = useState(false);
+  const [tenTabVis, setTenTabVis] = useState(false);
   const [eighthTabVis, setEighthTabVis] = useState(false);
   const [ninthTabVis, setNinthTabVis] = useState(false);
-  const [tenTabVis, setTenTabVis] = useState(false);
+  const [elevenTabVis, setElevenTabVis] = useState(false);
 
   const selectStyle = {
     control: (base, { isFocused }) => ({
@@ -165,10 +166,11 @@ const HosuingRent = () => {
   const [general_details, setGeneral_details] = useState("");
   const [unit_status, setUnit_status] = useState("");
   const [unit_age, setUnit_age] = useState("");
-  const [pdf, setPdf] = useState(null);
+  const [pdf, setPdf] = useState([]);
   const [view3d, setView3d] = useState("");
-  const [youtube, setYoutube] = useState(null);
-  const [location, setLocation] = useState('');
+  const [youtube, setYoutube] = useState("");
+  const [location, setLocation] = useState("");
+  const [pdfImage, setPdfImage] = useState([]);
   const [images, setImages] = useState([]);
   const [pImages, setPImages] = useState([]);
   const [gardenIn, setGardenIn] = useState(false);
@@ -183,6 +185,20 @@ const HosuingRent = () => {
     );
     setPImages(newArray);
     setImages(imageList);
+  };
+
+  const pdfOnChange = (imageList, addUpdateIndex) => {
+    const newArray = imageList.map(
+      ({ data_url, ...keepAttrs }) => keepAttrs.file
+    );
+
+    if (!imageList.length) {
+      setPdfImage(newArray);
+      setPdf([]);
+    } else {
+      setPdfImage(imageList[0].file);
+      setPdf(imageList);
+    }
   };
 
   const router = useRouter();
@@ -274,19 +290,16 @@ const HosuingRent = () => {
     general_details,
     // unit_status,
     unit_age,
-    pdf,
+    pdf: pdfImage,
     view3d,
     youtube,
     location,
     images: pImages,
   };
 
-
-  
   useEffect(() => {
     setAdvance_payment(advance_payment.replace("%", "") + "%");
   }, [advance_payment]);
-
 
   const { locale } = router;
 
@@ -308,11 +321,11 @@ const HosuingRent = () => {
 
   return (
     <>
-    <div className="tab-item">
-      <div className="">
-        <form onSubmit={(e) => handelAddProperty(e)}>
-          <div className="add-form-tabs">
-          <div className={`${firstTabVis ? "" : "collapsed"}`}>
+      <div className="tab-item">
+        <div className="">
+          <form onSubmit={(e) => handelAddProperty(e)}>
+            <div className="add-form-tabs">
+              <div className={`${firstTabVis ? "" : "collapsed"}`}>
                 <div
                   className="aft-one-item aft-item"
                   onClick={() => setFirstTabVis(!firstTabVis)}
@@ -722,8 +735,6 @@ const HosuingRent = () => {
                       </div>
                     </div>
                     <div className="col-md-4">
-                  
-
                       <div className="form-group">
                         <label htmlFor="">
                           <FormattedMessage id="page.add-property-form.details.city" />
@@ -757,7 +768,6 @@ const HosuingRent = () => {
                           className="form-control"
                         />
                       </div>
-                     
 
                       <div className="form-group">
                         <label htmlFor="">
@@ -953,224 +963,344 @@ const HosuingRent = () => {
                 </div>
               </div>
 
-            <div className={`${secondTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-two-item aft-item"
-                onClick={() => setSecondTabVis(!secondTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.payment.type" />
-                </h3>
-                <MdOutlineKeyboardArrowDown />
-              </div>
-              <div className="aft-two-content aft-content">
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.rent_price" />
-                      </label>
-                      <input
-                        value={rent_price}
-                        onChange={(e) => setRent_price(e.target.value)}
-                        type="number"
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.commission" />
-                      </label>
-                      <input
-                        value={commission}
-                        onChange={(e) => setCommission(e.target.value)}
-                        type="number"
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.currency" />
-                      </label>
-                      <Select
-                        styles={selectStyle}
-                        isShow={true}
-                        placeholder={
-                          <FormattedMessage id="page.add-property-form.details.currency_type" />
-                        }
-                        value={currency}
-                        onChange={setCurrency}
-                        name="currency"
-                        id="currency_type_select"
-                        options={
-                          locale === "ar"
-                            ? currency_options_ar
-                            : currency_options_en
-                        }
-                        instanceId="currency_type_select"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.insurance" />
-                      </label>
-                      <input
-                        type="number"
-                        value={insurance}
-                        onChange={(e) => setInsurance(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={`${fifthTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-four-item aft-item"
-                onClick={() => setFifthTabVis(!fifthTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-images" />
-                </h3>
-                <MdOutlineKeyboardArrowDown />
-              </div>
-              <div className="aft-four-content aft-content">
-                <div className="image-uploader-box">
-                  <ImageUploading
-                    value={images}
-                    onChange={onChange}
-                    maxNumber={maxNumber}
-                    maxFileSize={maxFileSize}
-                    dataURLKey="data_url"
-                    multiple
-                  >
-                    {({
-                      imageList,
-                      onImageRemoveAll,
-                      errors,
-                      onImageUpload,
-                      onImageUpdate,
-                      onImageRemove,
-                      dragProps,
-                    }) => (
-                      // write your building UI
-                      <>
-                        <div className="upload__image-wrapper">
-                          {images.length < 1 && (
-                            <div
-                              className="drag-box"
-                              onClick={onImageUpload}
-                              {...dragProps}
-                            >
-                              <FiUploadCloud />
-                              <span>
-                                <FormattedMessage id="section.profile.drag_and_drop" />
-                              </span>
-                              <button type="button">
-                                <FormattedMessage id="section.profile.browse_files" />
-                              </button>
-                            </div>
-                          )}
-                          <div className="upladed_images_box">
-                            {imageList.length > 1 && (
-                              <button onClick={onImageRemoveAll}>
-                                Remove all images
-                              </button>
-                            )}
-                            {imageList.map((image, index) => (
-                              <div
-                                key={index}
-                                className="uploadThumb image-item"
-                                id="result"
-                              >
-                                <img
-                                  src={image["data_url"]}
-                                  alt=""
-                                  width="100"
-                                />
-
-                                <div className="image-item__btn-wrapper">
-                                  <button
-                                    type="button"
-                                    onClick={() => onImageUpdate(index)}
-                                  >
-                                    <FiEdit2 />
-                                  </button>
-                                  <button
-                                    type="button"
-                                    onClick={() => onImageRemove(index)}
-                                  >
-                                    <MdOutlineDeleteOutline />
-                                  </button>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        {errors && (
-                          <>
-                            {errors.maxNumber &&
-                              toast.error(
-                                "Number of selected images exceed maxNumber",
-                                {
-                                  position: "top-right",
-                                  autoClose: 5000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                }
-                              )}
-                            {errors.acceptType &&
-                              toast.error(
-                                "Your selected file type is not allow",
-                                {
-                                  position: "top-right",
-                                  autoClose: 5000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                }
-                              )}
-                            {errors.maxFileSize &&
-                              toast.error(
-                                "Selected file size exceed maxFileSize",
-                                {
-                                  position: "top-right",
-                                  autoClose: 5000,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                }
-                              )}
-                          </>
-                        )}
-                      </>
-                    )}
-                  </ImageUploading>
-                </div>
-              </div>
-            </div>
-
-            {showFinishingTab && (
-              <div className={`${thirdTabVis ? "" : "collapsed"}`}>
+              <div className={`${secondTabVis ? "" : "collapsed"}`}>
                 <div
-                  className="aft-three-item aft-item"
-                  onClick={() => setThirdTabVis(!thirdTabVis)}
+                  className="aft-two-item aft-item"
+                  onClick={() => setSecondTabVis(!secondTabVis)}
                 >
                   <h3>
-                    <FormattedMessage id="page.add-property-form-title.finishing" />
+                    <FormattedMessage id="page.add-property-form-title.payment.type" />
+                  </h3>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
+                <div className="aft-two-content aft-content">
+                  <div className="row">
+                    <div className="col-md-4">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.rent_price" />
+                        </label>
+                        <input
+                          value={rent_price}
+                          onChange={(e) => setRent_price(e.target.value)}
+                          type="number"
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.commission" />
+                        </label>
+                        <input
+                          value={commission}
+                          onChange={(e) => setCommission(e.target.value)}
+                          type="number"
+                          className="form-control"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.currency" />
+                        </label>
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.add-property-form.details.currency_type" />
+                          }
+                          value={currency}
+                          onChange={setCurrency}
+                          name="currency"
+                          id="currency_type_select"
+                          options={
+                            locale === "ar"
+                              ? currency_options_ar
+                              : currency_options_en
+                          }
+                          instanceId="currency_type_select"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-4">
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.insurance" />
+                        </label>
+                        <input
+                          type="number"
+                          value={insurance}
+                          onChange={(e) => setInsurance(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`${fifthTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setFifthTabVis(!fifthTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.add-images" />
+                  </h3>
+                  <MdOutlineKeyboardArrowDown />
+                </div>
+                <div className="aft-four-content aft-content">
+                  <div className="image-uploader-box">
+                    <ImageUploading
+                      value={images}
+                      onChange={onChange}
+                      maxNumber={maxNumber}
+                      maxFileSize={maxFileSize}
+                      dataURLKey="data_url"
+                      multiple
+                    >
+                      {({
+                        imageList,
+                        onImageRemoveAll,
+                        errors,
+                        onImageUpload,
+                        onImageUpdate,
+                        onImageRemove,
+                        dragProps,
+                      }) => (
+                        // write your building UI
+                        <>
+                          <div className="upload__image-wrapper">
+                            {images.length < 1 && (
+                              <div
+                                className="drag-box"
+                                onClick={onImageUpload}
+                                {...dragProps}
+                              >
+                                <FiUploadCloud />
+                                <span>
+                                  <FormattedMessage id="section.profile.drag_and_drop" />
+                                </span>
+                                <button type="button">
+                                  <FormattedMessage id="section.profile.browse_files" />
+                                </button>
+                              </div>
+                            )}
+                            <div className="upladed_images_box">
+                              {imageList.length > 1 && (
+                                <button onClick={onImageRemoveAll}>
+                                  Remove all images
+                                </button>
+                              )}
+                              {imageList.map((image, index) => (
+                                <div
+                                  key={index}
+                                  className="uploadThumb image-item"
+                                  id="result"
+                                >
+                                  <img
+                                    src={image["data_url"]}
+                                    alt=""
+                                    width="100"
+                                  />
+
+                                  <div className="image-item__btn-wrapper">
+                                    <button
+                                      type="button"
+                                      onClick={() => onImageUpdate(index)}
+                                    >
+                                      <FiEdit2 />
+                                    </button>
+                                    <button
+                                      type="button"
+                                      onClick={() => onImageRemove(index)}
+                                    >
+                                      <MdOutlineDeleteOutline />
+                                    </button>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                          {errors && (
+                            <>
+                              {errors.maxNumber &&
+                                toast.error(
+                                  "Number of selected images exceed maxNumber",
+                                  {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                  }
+                                )}
+                              {errors.acceptType &&
+                                toast.error(
+                                  "Your selected file type is not allow",
+                                  {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                  }
+                                )}
+                              {errors.maxFileSize &&
+                                toast.error(
+                                  "Selected file size exceed maxFileSize",
+                                  {
+                                    position: "top-right",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                  }
+                                )}
+                            </>
+                          )}
+                        </>
+                      )}
+                    </ImageUploading>
+                  </div>
+                </div>
+              </div>
+
+              {showFinishingTab && (
+                <div className={`${thirdTabVis ? "" : "collapsed"}`}>
+                  <div
+                    className="aft-three-item aft-item"
+                    onClick={() => setThirdTabVis(!thirdTabVis)}
+                  >
+                    <h3>
+                      <FormattedMessage id="page.add-property-form-title.finishing" />
+                    </h3>
+                    <div>
+                      <span>
+                        <FormattedMessage id="page.add-property-form.option" />
+                      </span>
+                      <MdOutlineKeyboardArrowDown />
+                    </div>
+                  </div>
+                  <div className="aft-three-content aft-content">
+                    <div className="row">
+                      <div className="col-md-3">
+                        <div className="form-group">
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.walls" />
+                          </label>
+                          <input
+                            type="text"
+                            value={walls}
+                            onChange={(e) => setWalls(e.target.value)}
+                            className="form-control"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.floors" />
+                          </label>
+                          <input
+                            type="text"
+                            value={floors}
+                            onChange={(e) => setFloors(e.target.value)}
+                            className="form-control"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-3">
+                        <div className="form-group">
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.ceilings" />
+                          </label>
+                          <input
+                            type="text"
+                            value={ceilings}
+                            onChange={(e) => setCeilings(e.target.value)}
+                            className="form-control"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.bath_rooms" />
+                          </label>
+                          <input
+                            type="text"
+                            value={bath_rooms}
+                            onChange={(e) => setBath_rooms(e.target.value)}
+                            className="form-control"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-3">
+                        <div className="form-group">
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.k-kitchen" />
+                          </label>
+                          <input
+                            type="text"
+                            value={kitchen}
+                            onChange={(e) => setKitchen(e.target.value)}
+                            className="form-control"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.internet" />
+                          </label>
+                          <input
+                            type="text"
+                            value={internet}
+                            onChange={(e) => setInternet(e.target.value)}
+                            className="form-control"
+                          />
+                        </div>
+                      </div>
+                      <div className="col-md-3">
+                        <div className="form-group">
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.light_system" />
+                          </label>
+                          <input
+                            type="text"
+                            value={light_system}
+                            onChange={(e) => setLight_system(e.target.value)}
+                            className="form-control"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.air_conditioners" />
+                          </label>
+                          <input
+                            type="text"
+                            value={air_conditioners}
+                            onChange={(e) =>
+                              setAir_conditioners(e.target.value)
+                            }
+                            className="form-control"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className={`${fourthTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setFourthTabVis(!fourthTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.nearbly-location" />
                   </h3>
                   <div>
                     <span>
@@ -1179,100 +1309,76 @@ const HosuingRent = () => {
                     <MdOutlineKeyboardArrowDown />
                   </div>
                 </div>
-                <div className="aft-three-content aft-content">
+                <div className="aft-four-content aft-content">
                   <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-md-4">
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.walls" />
+                          <FormattedMessage id="page.add-property-form.details.school" />
                         </label>
                         <input
+                          value={school}
+                          onChange={(e) => setSchool(e.target.value)}
                           type="text"
-                          value={walls}
-                          onChange={(e) => setWalls(e.target.value)}
                           className="form-control"
                         />
                       </div>
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.floors" />
+                          <FormattedMessage id="page.add-property-form.details.mall" />
                         </label>
                         <input
                           type="text"
-                          value={floors}
-                          onChange={(e) => setFloors(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-3">
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.ceilings" />
-                        </label>
-                        <input
-                          type="text"
-                          value={ceilings}
-                          onChange={(e) => setCeilings(e.target.value)}
-                          className="form-control"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.bath_rooms" />
-                        </label>
-                        <input
-                          type="text"
-                          value={bath_rooms}
-                          onChange={(e) => setBath_rooms(e.target.value)}
+                          value={mall}
+                          onChange={(e) => setMall(e.target.value)}
                           className="form-control"
                         />
                       </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-4">
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.k-kitchen" />
+                          <FormattedMessage id="page.add-property-form.details.hospital" />
                         </label>
                         <input
+                          value={hospital}
+                          onChange={(e) => setHospital(e.target.value)}
                           type="text"
-                          value={kitchen}
-                          onChange={(e) => setKitchen(e.target.value)}
                           className="form-control"
                         />
                       </div>
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.internet" />
+                          <FormattedMessage id="page.add-property-form.details.pharmacy" />
                         </label>
                         <input
+                          value={pharmacy}
+                          onChange={(e) => setPharmacy(e.target.value)}
                           type="text"
-                          value={internet}
-                          onChange={(e) => setInternet(e.target.value)}
                           className="form-control"
                         />
                       </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-4">
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.light_system" />
+                          <FormattedMessage id="page.add-property-form.details.nursery_school" />
                         </label>
                         <input
                           type="text"
-                          value={light_system}
-                          onChange={(e) => setLight_system(e.target.value)}
+                          value={nursery_school}
+                          onChange={(e) => setNursery_school(e.target.value)}
                           className="form-control"
                         />
                       </div>
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.air_conditioners" />
+                          <FormattedMessage id="page.add-property-form.details.super_market" />
                         </label>
                         <input
+                          value={super_market}
+                          onChange={(e) => setSuper_market(e.target.value)}
                           type="text"
-                          value={air_conditioners}
-                          onChange={(e) => setAir_conditioners(e.target.value)}
                           className="form-control"
                         />
                       </div>
@@ -1280,212 +1386,296 @@ const HosuingRent = () => {
                   </div>
                 </div>
               </div>
-            )}
 
-            <div className={`${fourthTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-four-item aft-item"
-                onClick={() => setFourthTabVis(!fourthTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.nearbly-location" />
-                </h3>
-                <div>
-                  <span>
-                    <FormattedMessage id="page.add-property-form.option" />
-                  </span>
-                  <MdOutlineKeyboardArrowDown />
+              <div className={`${tenTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setTenTabVis(!tenTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.add-more-details" />
+                  </h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
+                </div>
+                <div className="aft-four-content aft-content">
+                  <textarea
+                    value={general_details}
+                    onChange={(e) => setGeneral_details(e.target.value)}
+                  ></textarea>
                 </div>
               </div>
-              <div className="aft-four-content aft-content">
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.school" />
-                      </label>
-                      <input
-                        value={school}
-                        onChange={(e) => setSchool(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
+              <div className={`${elevenTabVis ? "" : "collapsed"}`}>
+                <div
+                  className="aft-four-item aft-item"
+                  onClick={() => setElevenTabVis(!elevenTabVis)}
+                >
+                  <h3>
+                    <FormattedMessage id="page.add-property-form-title.add-more-view-way" />
+                  </h3>
+                  <div>
+                    <span>
+                      <FormattedMessage id="page.add-property-form.option" />
+                    </span>
+                    <MdOutlineKeyboardArrowDown />
+                  </div>
+                </div>
+                <div className="aft-four-content aft-content">
+                  <div className={`${sixthTabVis ? "" : "collapsed"}`}>
+                    <div
+                      className="aft-four-item aft-item"
+                      onClick={() => setSixthTabVis(!sixthTabVis)}
+                    >
+                      <h3>
+                        <FormattedMessage id="page.add-property-form-title.add-3d" />
+                      </h3>
+                      <div>
+                        <span>
+                          <FormattedMessage id="page.add-property-form.option" />
+                        </span>
+                        <MdOutlineKeyboardArrowDown />
+                      </div>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.mall" />
-                      </label>
+                    <div className="aft-four-content aft-content">
+                      <textarea
+                        value={view3d}
+                        onChange={(e) => setView3d(e.target.value)}
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className={`${seventhTabVis ? "" : "collapsed"}`}>
+                    <div
+                      className="aft-four-item aft-item"
+                      onClick={() => setSeventhTabVis(!seventhTabVis)}
+                    >
+                      <h3>
+                        <FormattedMessage id="page.add-property-form-title.add-map" />
+                      </h3>
+                      <div>
+                        <span>
+                          <FormattedMessage id="page.add-property-form.option" />
+                        </span>
+                        <MdOutlineKeyboardArrowDown />
+                      </div>
+                    </div>
+                    <div className="aft-four-content aft-content">
+                      <textarea
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className={`${eighthTabVis ? "" : "collapsed"}`}>
+                    <div
+                      className="aft-four-item aft-item"
+                      onClick={() => setEighthTabVis(!eighthTabVis)}
+                    >
+                      <h3>
+                        <FormattedMessage id="upload.video" />
+                      </h3>
+                      <div>
+                        <span>
+                          <FormattedMessage id="page.add-property-form.option" />
+                        </span>
+                        <MdOutlineKeyboardArrowDown />
+                      </div>
+                    </div>
+                    <div className="aft-four-content aft-content">
+                      <div className="note-box" title="ازاي ترفع فيديو؟">
+                        <AiOutlineInfo />
+                      </div>
                       <input
+                        className="video-input"
                         type="text"
-                        value={mall}
-                        onChange={(e) => setMall(e.target.value)}
-                        className="form-control"
+                        placeholder={
+                          locale === "ar"
+                            ? "ادخل الرمز الخاص بالفيديو"
+                            : "Enter the video code"
+                        }
+                        value={youtube}
+                        onChange={(e) => setYoutube(e.target.value)}
                       />
                     </div>
                   </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.hospital" />
-                      </label>
-                      <input
-                        value={hospital}
-                        onChange={(e) => setHospital(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
+                  <div className={`${ninthTabVis ? "" : "collapsed"}`}>
+                    <div
+                      className="aft-four-item aft-item"
+                      onClick={() => setNinthTabVis(!ninthTabVis)}
+                    >
+                      <h3>
+                        <FormattedMessage id="upload.pdf" />
+                      </h3>
+                      <div>
+                        <span>
+                          <FormattedMessage id="page.add-property-form.option" />
+                        </span>
+                        <MdOutlineKeyboardArrowDown />
+                      </div>
                     </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.pharmacy" />
-                      </label>
-                      <input
-                        value={pharmacy}
-                        onChange={(e) => setPharmacy(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.nursery_school" />
-                      </label>
-                      <input
-                        type="text"
-                        value={nursery_school}
-                        onChange={(e) => setNursery_school(e.target.value)}
-                        className="form-control"
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">
-                        <FormattedMessage id="page.add-property-form.details.super_market" />
-                      </label>
-                      <input
-                        value={super_market}
-                        onChange={(e) => setSuper_market(e.target.value)}
-                        type="text"
-                        className="form-control"
-                      />
+                    <div className="aft-four-content aft-content">
+                      <ImageUploading
+                        id="pdf"
+                        value={pdf}
+                        onChange={pdfOnChange}
+                        maxNumber={1}
+                        maxFileSize={maxFileSize}
+                        dataURLKey="data_url_2"
+                      >
+                        {({
+                          imageList,
+                          onImageRemoveAll,
+                          errors,
+                          onImageUpload,
+                          onImageUpdate,
+                          onImageRemove,
+                          dragProps,
+                        }) => (
+                          // write your building UI
+                          <>
+                            <div className="upload__image-wrapper">
+                              {pdf.length < 1 && (
+                                <div
+                                  className="drag-box"
+                                  onClick={onImageUpload}
+                                  {...dragProps}
+                                >
+                                  <FiUploadCloud />
+                                  <span>
+                                    <FormattedMessage id="section.profile.drag_and_drop" />
+                                  </span>
+                                  <button type="button">
+                                    <FormattedMessage id="section.profile.browse_files" />
+                                  </button>
+                                </div>
+                              )}
+                              <div className="upladed_images_box">
+                                {imageList.length > 1 && (
+                                  <button onClick={onImageRemoveAll}>
+                                    Remove all images
+                                  </button>
+                                )}
+                                {imageList.map((image, index) => (
+                                  <div
+                                    key={index}
+                                    className="uploadThumb image-item"
+                                    id="result"
+                                  >
+                                    <img
+                                      src={image["data_url_2"]}
+                                      alt=""
+                                      width="100"
+                                    />
+
+                                    <div className="image-item__btn-wrapper">
+                                      <button
+                                        type="button"
+                                        onClick={() => onImageUpdate(index)}
+                                      >
+                                        <FiEdit2 />
+                                      </button>
+                                      <button
+                                        type="button"
+                                        onClick={() => onImageRemove(index)}
+                                      >
+                                        <MdOutlineDeleteOutline />
+                                      </button>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            {errors && (
+                              <>
+                                {errors.maxNumber &&
+                                  toast.error(
+                                    locale === "ar"
+                                      ? "الحد الاقصى للصورة 1 ميجا"
+                                      : "Please select image less than 1Mb",
+                                    {
+                                      position: "top-right",
+                                      autoClose: 5000,
+                                      hideProgressBar: false,
+                                      closeOnClick: true,
+                                      pauseOnHover: true,
+                                      draggable: true,
+                                      progress: undefined,
+                                    }
+                                  )}
+                                {errors.acceptType &&
+                                  toast.error(
+                                    locale === "ar"
+                                      ? "صيغة الصورة غير صحيحة"
+                                      : "Invalid image format",
+                                    {
+                                      position: "top-right",
+                                      autoClose: 5000,
+                                      hideProgressBar: false,
+                                      closeOnClick: true,
+                                      pauseOnHover: true,
+                                      draggable: true,
+                                      progress: undefined,
+                                    }
+                                  )}
+                              </>
+                            )}
+                          </>
+                        )}
+                      </ImageUploading>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div className={`${sixthTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-four-item aft-item"
-                onClick={() => setSixthTabVis(!sixthTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-3d" />
-                </h3>
-                <div>
-                  <span>
-                    <FormattedMessage id="page.add-property-form.option" />
-                  </span>
-                  <MdOutlineKeyboardArrowDown />
-                </div>
-              </div>
-              <div className="aft-four-content aft-content">
-                <textarea
-                  value={view3d}
-                  onChange={(e) => setView3d(e.target.value)}
-                ></textarea>
-              </div>
+            <div className="form-btn-box">
+              <button>
+                <FormattedMessage id="global.upload-property" />
+              </button>
             </div>
-{/* 
-            <div className={`${seventhTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-four-item aft-item"
-                onClick={() => setSeventhTabVis(!seventhTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-map" />
-                </h3>
-                <div>
-                  <span>
-                    <FormattedMessage id="page.add-property-form.option" />
-                  </span>
-                  <MdOutlineKeyboardArrowDown />
-                </div>
-              </div>
-              <div className="aft-four-content aft-content">
-                <textarea
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                ></textarea>
-              </div>
-            </div> */}
-
-            <div className={`${eighthTabVis ? "" : "collapsed"}`}>
-              <div
-                className="aft-four-item aft-item"
-                onClick={() => setEighthTabVis(!eighthTabVis)}
-              >
-                <h3>
-                  <FormattedMessage id="page.add-property-form-title.add-more-details" />
-                </h3>
-                <div>
-                  <span>
-                    <FormattedMessage id="page.add-property-form.option" />
-                  </span>
-                  <MdOutlineKeyboardArrowDown />
-                </div>
-              </div>
-              <div className="aft-four-content aft-content">
-                <textarea
-                  value={general_details}
-                  onChange={(e) => setGeneral_details(e.target.value)}
-                ></textarea>
-              </div>
-            </div>
-          </div>
-          <div className="form-btn-box">
-            <button>
-              <FormattedMessage id="global.upload-property" />
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-    {showLoading && (
-      <div className="overlay">
-        <div className="loading-wrap">
-          <div className="loading-icon">
-            <Image
-              src="/img/uploading-gif.gif"
-              width="64"
-              height="64"
-              alt="uploading-image"
-            />
-          </div>
-          <div className="loading-txt">
-            <span><FormattedMessage id="property.loading.message" /></span>
-          </div>
+          </form>
         </div>
       </div>
-    )}
-    {showSuccess && (
-      <div className="overlay">
-        <div className="loading-wrap">
-          <div className="loading-icon">
-            <Image
-              src="/img/success-gif.gif"
-              width="64"
-              height="64"
-              alt="uploading-image"
-            />
-          </div>
-          <div className="loading-txt">
-            <span><FormattedMessage id="property.uploaded.message" /></span>
+      {showLoading && (
+        <div className="overlay">
+          <div className="loading-wrap">
+            <div className="loading-icon">
+              <Image
+                src="/img/uploading-gif.gif"
+                width="64"
+                height="64"
+                alt="uploading-image"
+              />
+            </div>
+            <div className="loading-txt">
+              <span>
+                <FormattedMessage id="property.loading.message" />
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    )}
+      )}
+      {showSuccess && (
+        <div className="overlay">
+          <div className="loading-wrap">
+            <div className="loading-icon">
+              <Image
+                src="/img/success-gif.gif"
+                width="64"
+                height="64"
+                alt="uploading-image"
+              />
+            </div>
+            <div className="loading-txt">
+              <span>
+                <FormattedMessage id="property.uploaded.message" />
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

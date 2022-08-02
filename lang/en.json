@@ -221,7 +221,9 @@
   "feat-in-beta": "This feature not available right now",
   "section.profile.wishlist": "my wishlist",
   "upload.video": "Upload Video",
+  "upload.pdf": "Upload property diagram image",
   "property.uploaded.message": "The unit has been uploaded successfully.",
   "property.loading.message": "The property is being uploaded now, please wait",
-  "section.related": " Related "
+  "section.related": " Related ",
+  "page.add-property-form-title.add-more-view-way": " Other ways to display the unit"
 }
