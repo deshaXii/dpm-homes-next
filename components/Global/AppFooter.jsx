@@ -63,13 +63,13 @@ const AppFooter = () => {
                   </Link>
                 </li>
                
-                {/* <li className="footer-menu-item">
-                  <Link href="/">
+                <li className="footer-menu-item">
+                  <Link href="/search-rent">
                     <a className="footer-menu-link">
                       <FormattedMessage id="page.home.menu.rent" />
                     </a>
                   </Link>
-                </li> */}
+                </li>
               </ul>
             </div>
           </div>

@@ -38,11 +38,11 @@ const Home = ({ dir }) => {
           sectionClass="for-sall"
         />
         <Services sectionBG="/img/services-section-bg.jpg" withOverlay />
-        {/* <Properties
+        <Properties
           type={"rent"}
           sectionTitle={<FormattedMessage id="global.section.title.rent" />}
           sectionClass="for-rent"
-        /> */}
+        />
         <Projects />
       </Default>
     </>

@@ -15,6 +15,7 @@ import {
   selectCountries,
 } from "../../store/slices/countries";
 import Image from "next/image";
+import { AiOutlineInfo } from "react-icons/ai";
 
 const HosuingRent = () => {
   const { allCountries, allGovernorates } = useSelector(selectCountries);
@@ -297,9 +298,9 @@ const HosuingRent = () => {
     images: pImages,
   };
 
-  useEffect(() => {
-    setAdvance_payment(advance_payment.replace("%", "") + "%");
-  }, [advance_payment]);
+  // useEffect(() => {
+  //   setAdvance_payment(advance_payment.replace("%", "") + "%");
+  // }, [advance_payment]);
 
   const { locale } = router;
 

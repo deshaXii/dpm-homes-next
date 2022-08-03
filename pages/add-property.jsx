@@ -112,15 +112,15 @@ const AddProperty = () => {
                             activePaymentType === "for-rent" ? "active" : ""
                           }`}
                         >
-                          {/* setActivePaymentType("for-rent") */}
-                          <button onClick={() => {}} className="disabled">
+                          {/*  */}
+                          <button onClick={() => {setActivePaymentType("for-rent")}} className="disabled">
                             <FormattedMessage id="page.add-property-tabs-for-rent" />
                           </button>
 
                           {/* only in beta */}
-                          <span className="for-beta">
+                          {/* <span className="for-beta">
                             <FormattedMessage id="feat-in-beta" />
-                          </span>
+                          </span> */}
                         </div>
                       </div>
                       {activePaymentType === "for-sell" && (
@@ -194,15 +194,15 @@ const AddProperty = () => {
                         >
                           <button
                             className="disabled"
-                            // setActivePaymentType("for-rent")
-                            onClick={() => {}}
+                            // 
+                            onClick={() => {setActivePaymentType("for-rent")}}
                           >
                             <FormattedMessage id="page.add-property-tabs-for-rent" />
                           </button>
                           {/* only in beta */}
-                          <span className="for-beta">
+                          {/* <span className="for-beta">
                             <FormattedMessage id="feat-in-beta" />
-                          </span>
+                          </span> */}
                         </div>
                       </div>
                       {activePaymentType === "for-sell" && (
@@ -276,15 +276,15 @@ const AddProperty = () => {
                         >
                           <button
                             className="disabled"
-                            // setActivePaymentType("for-rent")
-                            onClick={() => {}}
+                            // 
+                            onClick={() => {setActivePaymentType("for-rent")}}
                           >
                             <FormattedMessage id="page.add-property-tabs-for-rent" />
                           </button>
                           {/* only in beta */}
-                          <span className="for-beta">
+                          {/* <span className="for-beta">
                             <FormattedMessage id="feat-in-beta" />
-                          </span>
+                          </span> */}
                         </div>
                       </div>
                       {activePaymentType === "for-sell" && (
