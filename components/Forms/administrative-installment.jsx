@@ -541,17 +541,40 @@ const AdministrativeInstallment = () => {
                     <div className="col-md-4">
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.total_price_installment" />
+                          <FormattedMessage id="page.add-property-form.details.installment_type" />
                         </label>
-                        <input
-                          value={total_price_installment}
-                          onChange={(e) =>
-                            setTotal_price_installment(e.target.value)
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
                           }
-                          type="number"
-                          className="form-control"
+                          value={installment_type}
+                          onChange={setIynstallment_type}
+                          name="currency"
+                          id="installment_type_select"
+                          options={
+                            locale === "ar"
+                              ? installment_type_ar
+                              : installment_type_en
+                          }
+                          instanceId="installment_type_select"
                         />
                       </div>
+                      {installment_type && (
+                        <div className="form-group">
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.installment" />
+                          </label>
+                          <input
+                            value={installment}
+                            onChange={(e) => setInstallment(e.target.value)}
+                            type="number"
+                            className="form-control"
+                          />
+                        </div>
+                      )}
+
                       <div className="form-group">
                         <label htmlFor="">
                           <FormattedMessage id="page.add-property-form.details.club_fee" />
@@ -559,18 +582,6 @@ const AdministrativeInstallment = () => {
                         <input
                           value={club_fees}
                           onChange={(e) => setClub_fees(e.target.value)}
-                          type="number"
-                          className="form-control"
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.installment" />
-                        </label>
-                        <input
-                          value={installment}
-                          onChange={(e) => setInstallment(e.target.value)}
                           type="number"
                           className="form-control"
                         />
@@ -625,6 +636,19 @@ const AdministrativeInstallment = () => {
                     <div className="col-md-4">
                       <div className="form-group">
                         <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.total_price_installment" />
+                        </label>
+                        <input
+                          value={total_price_installment}
+                          onChange={(e) =>
+                            setTotal_price_installment(e.target.value)
+                          }
+                          type="number"
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
                           <FormattedMessage id="page.add-property-form.details.maintenance_fee" />
                         </label>
                         <input
@@ -645,28 +669,6 @@ const AdministrativeInstallment = () => {
                           onChange={(e) => setAdvance_payment(e.target.value)}
                           className="form-control"
                           placeholder="10%"
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.installment_type" />
-                        </label>
-                        <Select
-                          styles={selectStyle}
-                          isShow={true}
-                          placeholder={
-                            <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
-                          }
-                          value={installment_type}
-                          onChange={setIynstallment_type}
-                          name="currency"
-                          id="installment_type_select"
-                          options={
-                            locale === "ar"
-                              ? installment_type_ar
-                              : installment_type_en
-                          }
-                          instanceId="installment_type_select"
                         />
                       </div>
                     </div>

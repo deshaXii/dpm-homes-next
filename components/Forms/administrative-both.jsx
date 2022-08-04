@@ -575,18 +575,19 @@ const AdministrativeBoth = () => {
                           className="form-control"
                         />
                       </div>
-
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.installment" />
-                        </label>
-                        <input
-                          value={installment}
-                          onChange={(e) => setInstallment(e.target.value)}
-                          type="number"
-                          className="form-control"
-                        />
-                      </div>
+                      {installment_type && (
+                        <div className="form-group">
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.installment" />
+                          </label>
+                          <input
+                            value={installment}
+                            onChange={(e) => setInstallment(e.target.value)}
+                            type="number"
+                            className="form-control"
+                          />
+                        </div>
+                      )}
                     </div>
                     <div className="col-md-4">
                       <div className="form-group">

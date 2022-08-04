@@ -579,27 +579,39 @@ const CommercialInstallment = () => {
                       </div>
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.club_fee" />
+                          <FormattedMessage id="page.add-property-form.details.installment_type" />
                         </label>
-                        <input
-                          value={club_fees}
-                          onChange={(e) => setClub_fees(e.target.value)}
-                          type="number"
-                          className="form-control"
+                        <Select
+                          styles={selectStyle}
+                          isShow={true}
+                          placeholder={
+                            <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
+                          }
+                          value={installment_type}
+                          onChange={setIynstallment_type}
+                          name="currency"
+                          id="installment_type_select"
+                          options={
+                            locale === "ar"
+                              ? installment_type_ar
+                              : installment_type_en
+                          }
+                          instanceId="installment_type_select"
                         />
                       </div>
-
-                      <div className="form-group">
-                        <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.installment" />
-                        </label>
-                        <input
-                          value={installment}
-                          onChange={(e) => setInstallment(e.target.value)}
-                          type="number"
-                          className="form-control"
-                        />
-                      </div>
+                      {installment_type && (
+                        <div className="form-group">
+                          <label htmlFor="">
+                            <FormattedMessage id="page.add-property-form.details.installment" />
+                          </label>
+                          <input
+                            value={installment}
+                            onChange={(e) => setInstallment(e.target.value)}
+                            type="number"
+                            className="form-control"
+                          />
+                        </div>
+                      )}
                     </div>
                     <div className="col-md-4">
                       <div className="form-group">
@@ -672,26 +684,16 @@ const CommercialInstallment = () => {
                           placeholder="10%"
                         />
                       </div>
+
                       <div className="form-group">
                         <label htmlFor="">
-                          <FormattedMessage id="page.add-property-form.details.installment_type" />
+                          <FormattedMessage id="page.add-property-form.details.club_fee" />
                         </label>
-                        <Select
-                          styles={selectStyle}
-                          isShow={true}
-                          placeholder={
-                            <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
-                          }
-                          value={installment_type}
-                          onChange={setIynstallment_type}
-                          name="currency"
-                          id="installment_type_select"
-                          options={
-                            locale === "ar"
-                              ? installment_type_ar
-                              : installment_type_en
-                          }
-                          instanceId="installment_type_select"
+                        <input
+                          value={club_fees}
+                          onChange={(e) => setClub_fees(e.target.value)}
+                          type="number"
+                          className="form-control"
                         />
                       </div>
                     </div>
