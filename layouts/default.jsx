@@ -35,7 +35,7 @@ const Default = ({ children }) => {
       <AppFooter />
       <CopyRight />
       <ScrollToTop />
-      <Cursor />
+      {/* <Cursor /> */}
     </div>
   );
 };
