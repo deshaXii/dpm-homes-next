@@ -213,7 +213,7 @@ const AdministrativeBoth = () => {
         router.push("/");
       }, 2000);
     }
-  }, [showLoading]);
+  }, [showSuccess]);
 
   const handelAddProperty = (e) => {
     e.preventDefault();
