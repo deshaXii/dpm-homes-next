@@ -8,6 +8,7 @@ import { AiOutlineClose, AiOutlineComment } from "react-icons/ai";
 import { getUserInfo } from "../store/slices/auth";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+import Script from "next/script";
 
 import { FormattedMessage, IntlProvider } from "react-intl";
 import "../styles/globals.css";
@@ -59,10 +60,25 @@ function MyApp({ Component, pageProps, user }) {
           name="facebook-domain-verification"
           content="jj0ja1p8vmgbdfeba6781qnpi92m46"
         />
-        {/* <meta
+        <meta
           name="google-site-verification"
           content="NBG0d3Vu3lHnoN_-ubKegWHSONu0p-Cxj98F__vThbo"
-        /> */}
+        />
+        <script>
+          {`(function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
+{a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
+a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
+r.src=n;var u=t.getElementsByTagName(s)[0];
+u.parentNode.insertBefore(r,u);})(window,document,
+'https://sc-static.net/scevent.min.js');
+
+snaptr('init', '58e4d400-2499-468c-8a33-7606696e60d2', {
+'user_email': '_INSERT_USER_EMAIL_'
+});
+
+snaptr('track', 'PAGE_VIEW');
+`}
+        </script>
       </Head>
       <IntlProvider
         locale={locale}
@@ -476,6 +492,7 @@ function MyApp({ Component, pageProps, user }) {
         </div>
       </IntlProvider>
       <ToastContainer />
+      <Script></Script>
     </>
   );
 }
