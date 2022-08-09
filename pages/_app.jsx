@@ -59,10 +59,10 @@ function MyApp({ Component, pageProps, user }) {
           name="facebook-domain-verification"
           content="jj0ja1p8vmgbdfeba6781qnpi92m46"
         />
-        <meta
+        {/* <meta
           name="google-site-verification"
           content="NBG0d3Vu3lHnoN_-ubKegWHSONu0p-Cxj98F__vThbo"
-        />
+        /> */}
       </Head>
       <IntlProvider
         locale={locale}
