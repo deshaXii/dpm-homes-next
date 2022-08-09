@@ -44,7 +44,6 @@ function MyApp({ Component, pageProps, user }) {
 
   const [score, setScore] = useState(0);
   const [review, setReview] = useState("");
-
   return (
     <>
       <Head>
@@ -65,7 +64,7 @@ function MyApp({ Component, pageProps, user }) {
           content="NBG0d3Vu3lHnoN_-ubKegWHSONu0p-Cxj98F__vThbo"
         />
         <script
-        id="ss"
+          id="ss"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
@@ -77,7 +76,8 @@ function MyApp({ Component, pageProps, user }) {
       'https://sc-static.net/scevent.min.js');
       
       snaptr('init', '58e4d400-2499-468c-8a33-7606696e60d2', {
-      'user_email': '_INSERT_USER_EMAIL_'
+      'user_email': ${user ? '"' + user.data.email + '"' : "null"},
+      'user_phone_number': ${user ? '"' + user.data.phone + '"' : "null"},
       });
       
       snaptr('track', 'PAGE_VIEW');
