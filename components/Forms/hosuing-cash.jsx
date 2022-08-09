@@ -198,7 +198,7 @@ const HosuingCash = () => {
         router.push("/");
       }, 2000);
     }
-  }, [showLoading]);
+  }, [showSuccess]);
 
   useEffect(() => {
     setAdvance_payment(advance_payment.replace("%", "") + "%");
