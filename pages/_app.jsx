@@ -64,21 +64,26 @@ function MyApp({ Component, pageProps, user }) {
           name="google-site-verification"
           content="NBG0d3Vu3lHnoN_-ubKegWHSONu0p-Cxj98F__vThbo"
         />
-        <script>
-          {`(function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
-{a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
-a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
-r.src=n;var u=t.getElementsByTagName(s)[0];
-u.parentNode.insertBefore(r,u);})(window,document,
-'https://sc-static.net/scevent.min.js');
-
-snaptr('init', '58e4d400-2499-468c-8a33-7606696e60d2', {
-'user_email': '_INSERT_USER_EMAIL_'
-});
-
-snaptr('track', 'PAGE_VIEW');
-`}
-        </script>
+        <script
+        id="ss"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+    (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
+      {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
+      a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
+      r.src=n;var u=t.getElementsByTagName(s)[0];
+      u.parentNode.insertBefore(r,u);})(window,document,
+      'https://sc-static.net/scevent.min.js');
+      
+      snaptr('init', '58e4d400-2499-468c-8a33-7606696e60d2', {
+      'user_email': '_INSERT_USER_EMAIL_'
+      });
+      
+      snaptr('track', 'PAGE_VIEW');
+  `,
+          }}
+        />
       </Head>
       <IntlProvider
         locale={locale}
@@ -492,7 +497,6 @@ snaptr('track', 'PAGE_VIEW');
         </div>
       </IntlProvider>
       <ToastContainer />
-      <Script></Script>
     </>
   );
 }
