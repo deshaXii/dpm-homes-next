@@ -76,8 +76,8 @@ function MyApp({ Component, pageProps, user }) {
       'https://sc-static.net/scevent.min.js');
       
       snaptr('init', '58e4d400-2499-468c-8a33-7606696e60d2', {
-      'user_email': ${user ? '"' + user.data.email + '"' : "null"},
-      'user_phone_number': ${user ? '"' + user.data.phone + '"' : "null"},
+      'user_email': ${user ? '"' + user?.data?.email + '"' : "null"},
+      'user_phone_number': ${user ? '"' + user?.data?.phone + '"' : "null"},
       });
       
       snaptr('track', 'PAGE_VIEW');
