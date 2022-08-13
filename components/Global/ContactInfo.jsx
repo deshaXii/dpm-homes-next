@@ -9,7 +9,7 @@ const ContactInfo = ({ settingsData }) => {
     <div className="contact-info-area">
       <div className="row">
         <div className="col-md-4">
-          <div className="c-info-box">
+          <div className="c-info-box phones">
             <FiPhoneCall />
             <h6>
               <FormattedMessage id="section.contact.phone_title" />

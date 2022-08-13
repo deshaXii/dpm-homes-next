@@ -225,3 +225,7 @@ html[lang="ar"] .feedback-links {
     right: auto;
     left: 25px;
 }
+
+.rtl .c-info-box.phones a {
+    direction: ltr;
+}

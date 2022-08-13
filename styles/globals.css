@@ -3613,7 +3613,7 @@ nav.mobile.navbar,
   max-width: 360px;
   background-color: #fff;
   width: 100%;
-  padding: 30px;
+  padding: 15px 0px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -3673,7 +3673,7 @@ nav.mobile.navbar,
 
 .feedback-text textarea {
   width: 100%;
-  height: 100px;
+  height: 70px;
   padding: 10px;
   border: 1px solid #d5d5d5;
   border-radius: 10px;
