@@ -3868,3 +3868,66 @@ input.video-input {
   line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
+.error-page {
+  background-size: cover;
+  height: 100vh;
+}
+
+.error-page-content {
+  position: relative;
+}
+
+.error-page .container {
+  display: table;
+  height: 100%;
+}
+
+.error-page .container .row {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.error-page-content h1 {
+  color: #fff;
+  font-size: 90px;
+  font-weight: bold;
+}
+
+.error-page-content p {
+  color: #ccc;
+  font-size: 20px;
+  margin: 20px 0;
+  margin-bottom: 40px;
+}
+
+.error-page-content .btn {
+  color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+.error-page-content .btn:first-letter {
+  text-transform: capitalize;
+}
+
+.error-page-content .btn:first-of-type {
+  margin-right: 15px;
+}
+
+.error-page-content .btn.unq {
+  border-color: var(--mainColor);
+  color: var(--mainColor);
+}
+
+.error-page-content .btn.unq:hover {
+  background: var(--mainColor);
+  color: #fff;
+}
+
+.error-page-content .btn:hover {
+  background: #fff;
+  color: var(--mainColor);
+}

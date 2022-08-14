@@ -152,7 +152,7 @@
   "page.property.details.title": "Property Details",
   "page.property.details.licence": "licence",
   "page.property.details.property_type": "property type",
-  "page.property.details.furniture_type": "furniture type",
+  "page.property.details.furniture_type": "furniture",
   "page.property.details.unit_status": "unit status",
   "page.property.details.payment_type": "payment type",
   "page.property.details.rent_type": "rent type",
@@ -225,5 +225,6 @@
   "property.uploaded.message": "The unit has been uploaded successfully.",
   "property.loading.message": "The property is being uploaded now, please wait",
   "section.related": " Related ",
-  "page.add-property-form-title.add-more-view-way": " Other ways to display the unit"
+  "page.add-property-form-title.add-more-view-way": " Other ways to display the unit",
+  "page.property.page-not-found": "We can’t seem to find a page you are looking for."
 }

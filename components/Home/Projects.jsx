@@ -100,9 +100,7 @@ const Projects = () => {
                           </a>
                         </Link>
                         <p>
-                          Houses Real estate professional must be cognizant of
-                          copyright issues when it comes too listing content
-                          most notably in connec with listing photographs.
+                         {project.description}
                         </p>
                       </div>
                     </div>

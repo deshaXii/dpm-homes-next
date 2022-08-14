@@ -5,8 +5,11 @@ import { MdOutlineApartment } from "react-icons/md";
 import { BsShop } from "react-icons/bs";
 import { GrLinkNext } from "react-icons/gr";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Services = ({ sectionBG, withOverlay }) => {
+  const router = useRouter();
+  const { locale } = router;
   const services = [
     {
       id: 1,
@@ -64,7 +67,10 @@ const Services = ({ sectionBG, withOverlay }) => {
       style={{ backgroundImage: `url(${sectionBG})` }}
     >
       <div className="container">
-        <SectionTitle title="services" subTitle="Properties" />
+        <SectionTitle
+          title={locale === "ar" ? "خدماتنا" : "services"}
+          subTitle={locale === "ar" ? "ما هي" : "our"}
+        />
         <div className="row">
           {services.map((item, index) => (
             <div

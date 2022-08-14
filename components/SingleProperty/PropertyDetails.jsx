@@ -45,7 +45,23 @@ const PropertyDetails = () => {
                     <div className="pdi-name">
                       <FormattedMessage id="page.property.details.licence" />:
                     </div>
-                    <div className="pdi-value">{property.data.licence}</div>
+                    <div className="pdi-value">
+                      {property.data.licence == "housing"
+                        ? locale == "en"
+                          ? "Housing"
+                          : "سكني"
+                        : ""}
+                      {property.data.licence == "commercial"
+                        ? locale == "en"
+                          ? "Commercial"
+                          : "تجاري"
+                        : ""}
+                      {property.data.licence == "administrative"
+                        ? locale == "en"
+                          ? "Administrative"
+                          : "إداري"
+                        : ""}
+                    </div>
                   </div>
                 )}
 
@@ -68,7 +84,17 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-                      {property.data.furniture_type}
+                      {property.data.furniture_type == "furnished"
+                        ? locale == "en"
+                          ? "Yes"
+                          : "متوفر"
+                        : ""}
+
+                      {property.data.furniture_type == "unfurnished"
+                        ? locale == "en"
+                          ? "NO"
+                          : " غير متوفر"
+                        : ""}
                     </div>
                   </div>
                 )}
@@ -90,19 +116,15 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-                      {property.data.payment_type}
+                      {property.data.payment_type == "both"
+                        ? locale == "en"
+                          ? "Cash & Installment"
+                          : " كاش أو نقسيط"
+                        : ""}
                     </div>
                   </div>
                 )}
-                {(property.data.payment_type && property.data.payment_type) !==
-                  "cash" && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">
-                      <FormattedMessage id="page.property.details.rent_type" />:
-                    </div>
-                    <div className="pdi-value">{property.data.rent_type}</div>
-                  </div>
-                )}
+
                 {property.data.country && (
                   <div className="pdi-box">
                     <div className="pdi-name">
@@ -250,7 +272,7 @@ const PropertyDetails = () => {
                 )}
               </div>
               <div className="amenities-area property-details-inner">
-                {property.data.private_garden && (
+                {Number(property.data.private_garden) && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -260,7 +282,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {property.data.private_parking && (
+                {Number(property.data.private_parking) && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -270,7 +292,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {property.data.private_pool && (
+                {Number(property.data.private_pool) && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -280,7 +302,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {property.data.security && (
+                {Number(property.data.security) && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -291,7 +313,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {property.data.public_pool && (
+                {Number(property.data.public_pool) && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -302,7 +324,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {property.data.public_garden && (
+                {Number(property.data.public_garden) && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -313,7 +335,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {property.data.lift && (
+                {Number(property.data.lift) && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -420,7 +442,8 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-                      {property.data.installment_time}
+                      {property.data.installment_time} +{" "}
+                      {locale === "ar" ? "سنوات" : "years"}
                     </div>
                   </div>
                 )}

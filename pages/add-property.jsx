@@ -108,12 +108,12 @@ const AddProperty = () => {
                           </button>
                         </div>
                         <div
-                          className={`ptt-title disabled ${
+                          className={`ptt-title ${
                             activePaymentType === "for-rent" ? "active" : ""
                           }`}
                         >
                           {/*  */}
-                          <button onClick={() => {setActivePaymentType("for-rent")}} className="disabled">
+                          <button onClick={() => {setActivePaymentType("for-rent")}} className="">
                             <FormattedMessage id="page.add-property-tabs-for-rent" />
                           </button>
 
@@ -188,12 +188,12 @@ const AddProperty = () => {
                           </button>
                         </div>
                         <div
-                          className={`ptt-title disabled ${
+                          className={`ptt-title  ${
                             activePaymentType === "for-rent" ? "active" : ""
                           }`}
                         >
                           <button
-                            className="disabled"
+                            className=""
                             // 
                             onClick={() => {setActivePaymentType("for-rent")}}
                           >
@@ -270,12 +270,12 @@ const AddProperty = () => {
                           </button>
                         </div>
                         <div
-                          className={`ptt-title disabled ${
+                          className={`ptt-title  ${
                             activePaymentType === "for-rent" ? "active" : ""
                           }`}
                         >
                           <button
-                            className="disabled"
+                            className=""
                             // 
                             onClick={() => {setActivePaymentType("for-rent")}}
                           >

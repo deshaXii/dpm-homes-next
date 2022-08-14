@@ -151,7 +151,7 @@
   "page.property.details.title": "بيانات الوحدة",
   "page.property.details.licence": "الترخيص",
   "page.property.details.property_type": "نوع العقار",
-  "page.property.details.furniture_type": "نوع التشطيب",
+  "page.property.details.furniture_type": " التشطيب",
   "page.property.details.unit_status": "حالة الوحدة",
   "page.property.details.payment_type": "نوع الدفع",
   "page.property.details.rent_type": "نوع الإيجار",
@@ -224,5 +224,6 @@
   "property.uploaded.message": "تم رفع الوحدة بنجاح تتم الأن عملية المراجعة",
   "property.loading.message": "جاري الأن رفع العقار برجاء الإنتظار",
   "section.related": " مشابهة",
-  "page.add-property-form-title.add-more-view-way": "طرق اخري لعرض الوحدة"
+  "page.add-property-form-title.add-more-view-way": "طرق اخري لعرض الوحدة",
+  "page.property.page-not-found": "يبدو أننا لا نستطيع العثور على الصفحة التي تبحث عنها."
 }

@@ -229,3 +229,7 @@ html[lang="ar"] .feedback-links {
 .rtl .c-info-box.phones a {
     direction: ltr;
 }
+
+.rtl .project-slide-box .project-slide-info {
+    text-align: right;
+}
