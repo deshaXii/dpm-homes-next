@@ -105,15 +105,21 @@ const selectStyle = {
   },
 };
 
-const PropertiesFilter = ({ showFilter }) => {
+const PropertiesFilter = ({ showFilter, query }) => {
   const { locale } = useRouter();
   const { allCountries, allGovernorates } = useSelector(selectCountries);
   const { allProperties } = useSelector(selectProperties);
   const { activeCountry, filteredProperties } = useSelector(selectFilter);
   const [bedNum, setBedNum] = useState();
   const [bathNum, setBathNum] = useState();
-  const [country, setCountry] = useState();
-  const [propertyTypeS, setPropertyTypeS] = useState();
+  const [country, setCountry] = useState(() =>
+    allCountries.find((i) => i.value === Number(query.city))
+  );
+  const [propertyTypeS, setPropertyTypeS] = useState(() =>
+    locale === "en"
+      ? property_type_options_en.find((i) => i.value == query.type)
+      : property_type_options_ar.find((i) => i.value == query.type)
+  );
   const [governorate, setGovernorate] = useState();
   const [areaSize, setAreaSize] = useState();
   const dispatch = useDispatch();
@@ -141,6 +147,24 @@ const PropertiesFilter = ({ showFilter }) => {
       setGovernorate("");
     }
   }, [country]);
+
+  useEffect(() => {
+    if (query.city) {
+      dispatch(setActiveCountry(query.city));
+      const data = { activeCountry: query.city, locale };
+      dispatch(getAllGovernorates(data));
+      setGovernorate("");
+    }
+    if (query.type) {
+      dispatch(setPropertyType(query.type));
+      dispatch(filterByPropertyType({ allProperties, type: "filter" }));
+    }
+    
+  }, [query]);
+
+  useEffect(() => {
+   
+  }, [query.type]);
 
   useEffect(() => {
     if (activeCountry) {
@@ -294,7 +318,7 @@ const PropertiesFilter = ({ showFilter }) => {
         </div>
         <div className="filter-group-content">
           <Select
-          isSearchable={false}
+            isSearchable={false}
             styles={selectStyle}
             placeholder={
               <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />

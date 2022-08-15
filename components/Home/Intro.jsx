@@ -103,6 +103,7 @@ const HomeIntro = () => {
         type: propertyType.value,
       },
     });
+    console.log(country.value, area_size.value, propertyType.value, activeType);
   };
 
   useEffect(() => {

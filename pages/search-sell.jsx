@@ -15,11 +15,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { selectFilter } from "../store/slices/filter";
 import { useRouter } from "next/router";
+import { selectUser } from "../store/slices/auth";
 
 const Search = () => {
-  const { locale } = useRouter();
+  const { locale, query } = useRouter();
   const { allProperties } = useSelector(selectProperties);
   const { filteredProperties } = useSelector(selectFilter);
+  const user = useSelector(selectUser);
   const [layout, setLayout] = useState("grid");
   const [showFilter, setShowFilter] = useState(false);
   useEffect(() => {
@@ -36,7 +38,6 @@ const Search = () => {
       dispatch(getAllCountries(locale));
       dispatch(getPropertiesWithTpye({ type: "sell" }));
     }
-
     if (allProperties.length === 0) {
       fetchNewPosts();
     }
@@ -62,6 +63,7 @@ const Search = () => {
                   {!showFilter ? "Show Filter" : "Hide Filter"}
                 </button>
                 <PropertiesFilter
+                  query={query}
                   allProperties={allProperties}
                   showFilter={showFilter}
                 />
