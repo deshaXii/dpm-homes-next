@@ -467,7 +467,7 @@ ul.auth-dropdown-list li.auth-dropdown-list-item:hover span {
 
 /* Start Home Intro */
 header.home-header {
-  min-height: 80vh;
+  min-height: 600px;
   position: relative;
   display: flex;
   align-items: center;
@@ -481,7 +481,7 @@ header.home-header {
   width: 100%;
   height: 100%;
   background: linear-gradient(45deg, #181818, #242323, #3c3c3c, #100e0e);
-  opacity: 0.5;
+  opacity: 0;
 }
 
 header.home-header:after {
@@ -501,7 +501,6 @@ header.home-header:after {
   width: 100%;
   right: 0;
   background-size: cover;
-  background-attachment: fixed;
 }
 
 header.home-header .row {
@@ -528,7 +527,7 @@ header.home-header .intro-content h1 {
 
 header.home-header .intro-content h1 span {
   color: var(--mainColor);
-  display: block;
+  /* display: block; */
 }
 
 header.home-header .intro-content p {
@@ -536,11 +535,12 @@ header.home-header .intro-content p {
   line-height: 22px;
   max-width: 650px;
   color: #eee;
-  margin: 12px auto 0
+  margin: 12px auto 0;
+  display: none;
 }
 
 .intro-filter {
-  margin-top: 40px;
+  margin-top: 20px;
   max-width: 52%;
   padding: 0;
 }
@@ -570,7 +570,8 @@ header.home-header .intro-content p {
 
 .intro-filter .filter-type .custom-radio-box.active {
   border: 2px solid var(--mainColor);
-  color: var(--mainColor);
+  background-color: var(--mainColor);
+  color: #fff;
 }
 
 .intro-filter .filter-type .custom-radio-box input {
