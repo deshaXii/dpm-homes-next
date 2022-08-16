@@ -97,7 +97,7 @@ const Search = () => {
                   <div className="search-property-layout-content">
                     <div className="row">
                       {filteredProperties.length ? (
-                        filteredProperties.slice(0, 9).map((property) => (
+                        filteredProperties.slice(0, 12).map((property) => (
                           <div
                             className={`col-xl-${
                               layout === "grid" ? 4 : 12

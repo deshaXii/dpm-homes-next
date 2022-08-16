@@ -136,7 +136,7 @@ const HomeIntro = () => {
     >
       <div
         className="home-header-bg"
-        style={{ backgroundImage: "url(/img/background-cover.jpg)" }}
+        style={{ backgroundImage: "url(/img/home-header-bg.jpg)" }}
       >
         &nbsp;
       </div>
