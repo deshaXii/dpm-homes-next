@@ -18,6 +18,15 @@ const PropertyDetails = () => {
     style: "currency",
     currency: "EGP",
   });
+
+  const convertAreaSize = (size, country) => {
+    if (country === "United Arab Emirates") {
+      return `${(size / 3.2808).toFixed(3)} ${locale == "ar" ? "قدم" : "ft"}`;
+    } else {
+      return `${size} ${locale === "ar" ? "متر" : "m"}`;
+    }
+  };
+
   return (
     <section className="property-details p50">
       <div className="container">
@@ -157,7 +166,11 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-                      {property.data.total_area} M
+                      {convertAreaSize(
+                        Number(property.data.total_area),
+                        property.data.country
+                      )}
+                      {/* {property.data.total_area} M */}
                     </div>
                   </div>
                 )}
@@ -168,7 +181,10 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-                      {property.data.building_area} M
+                      {convertAreaSize(
+                        Number(property.data.building_area),
+                        property.data.country
+                      )}
                     </div>
                   </div>
                 )}
@@ -180,7 +196,10 @@ const PropertyDetails = () => {
                         :
                       </div>
                       <div className="pdi-value">
-                        {property.data.garden_area} M
+                        {convertAreaSize(
+                          Number(property.data.garden_area),
+                          property.data.country
+                        )}
                       </div>
                     </div>
                   )}
@@ -272,7 +291,7 @@ const PropertyDetails = () => {
                 )}
               </div>
               <div className="amenities-area property-details-inner">
-                {Number(property.data.private_garden) && (
+                {Number(property.data.private_garden) === 1 && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -282,7 +301,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {Number(property.data.private_parking) && (
+                {Number(property.data.private_parking) === 1 && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -292,7 +311,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {Number(property.data.private_pool) && (
+                {Number(property.data.private_pool) === 1 && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -302,7 +321,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {Number(property.data.security) && (
+                {Number(property.data.security) === 1 && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -313,7 +332,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {Number(property.data.public_pool) && (
+                {Number(property.data.public_pool) === 1 && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -324,7 +343,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {Number(property.data.public_garden) && (
+                {Number(property.data.public_garden) === 1 && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />
@@ -335,7 +354,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {Number(property.data.lift) && (
+                {Number(property.data.lift) === 1 && (
                   <div className="pdi-box">
                     <div className="pdi-icon">
                       <BsCheck />

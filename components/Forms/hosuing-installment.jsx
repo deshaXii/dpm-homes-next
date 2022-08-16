@@ -251,7 +251,13 @@ const HosuingInstallment = () => {
       }
     });
   };
-
+  const convertAreaSize = (size, country) => {
+    if (country.value === 2) {
+      return (size * 3.2808).toFixed(3);
+    } else {
+      return size;
+    }
+  };
   let data = {
     property_type: property_type.value,
     furniture_type: furniture_type.value,
@@ -259,9 +265,9 @@ const HosuingInstallment = () => {
     country: country.value,
     governorate: governorate.value,
     city,
-    total_area,
-    building_area,
-    garden_area,
+    total_area: convertAreaSize(total_area, country),
+    building_area: convertAreaSize(building_area, country),
+    garden_area: convertAreaSize(garden_area, country),
     no_bed_room,
     no_bath_room,
     no_kitchen,
