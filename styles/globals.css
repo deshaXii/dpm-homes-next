@@ -2694,7 +2694,13 @@ aside.properties-filter .filter-group .custom-checkbox input:checked~span {
 }
 
 .search-property-layout-content .property-card-info .property-card-title a h5 {
-  font-size: 19px;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .search-property-layout-content .property-card-info .property-card-location a {

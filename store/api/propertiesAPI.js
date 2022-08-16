@@ -30,7 +30,7 @@ export async function getPropertyById(id) {
 
 export async function getRelatedProperty({ id, lang }) {
   try {
-    const res = await API.get(`/show-property?id=${id}&lang=${lang}`);
+    const res = await API.get(`/get-related?id=${id}`);
     return await res.data.data;
   } catch (err) {
     return err;

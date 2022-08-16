@@ -36,7 +36,7 @@ const SingleProperty = () => {
           <PropertyViewer />
           <PropertyDetails />
           <Related
-            properties={[related]}
+            properties={related}
             sectionTitle={<FormattedMessage id="section.related" />}
             sectionClass="for-sale"
           />
@@ -57,7 +57,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       );
       const { id } = query;
       await store.dispatch(showProperty(id));
-      await store.dispatch(showRelatedProperty({ id, lang: locale }));
+      await store.dispatch(showRelatedProperty({ id: id, lang: locale }));
       return {
         props: {},
       };

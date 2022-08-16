@@ -96,7 +96,6 @@ const PropertyViewer = () => {
   const [nav2, setNav2] = useState();
 
   const [activeView, setActiveView] = useState("images-view");
-  console.log(property.data.youtube);
   return (
     <>
       {typeof window !== "undefined" && (
