@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xhtml="http://www.w3.org/1999/xhtml"
+      xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+      xsi:schemaLocation="
+            http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with PRO Sitemap Service https://pro-sitemaps.com -->
+
+  <url>
+       <loc>https://luxuryaqar.com/en</loc>
+       <lastmod>2022-08-16T14:19:43+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>1.0000</priority>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=%2Fimg%2Flogo2.png&amp;w=96&amp;q=75</image:loc>
+         <image:caption>DPMHOMES LOGO</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=%2Fimg%2Flogo2.png&amp;w=256&amp;q=75</image:loc>
+         <image:caption>DPMHOMES LOGO</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=%2Fimg%2Flogo2.png&amp;w=64&amp;q=75</image:loc>
+         <image:caption>DPMHOMES LOGO</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=%2Fimg%2Flogo2.png&amp;w=128&amp;q=75</image:loc>
+         <image:caption>DPMHOMES LOGO</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/img/home-header-bg.jpg</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F799561556598WhatsApp%20Image%202022-07-30%20at%207.09.23%20PM.jpeg&amp;w=640&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F799561556598WhatsApp%20Image%202022-07-30%20at%207.09.23%20PM.jpeg&amp;w=828&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fuser-images%2F746419213272.jpeg&amp;w=48&amp;q=75</image:loc>
+         <image:caption>property added by DPMHOMES</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fuser-images%2F746419213272.jpeg&amp;w=96&amp;q=75</image:loc>
+         <image:caption>property added by DPMHOMES</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F742550104236WhatsApp%20Image%202022-07-30%20at%207.22.23%20PM.jpeg&amp;w=640&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F742550104236WhatsApp%20Image%202022-07-30%20at%207.22.23%20PM.jpeg&amp;w=828&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F334863192793WhatsApp%20Image%202022-07-31%20at%206.51.53%20PM%20(1).jpeg&amp;w=640&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F334863192793WhatsApp%20Image%202022-07-31%20at%206.51.53%20PM%20(1).jpeg&amp;w=828&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F9409970674725-ATIKA-DUPLEX-INTERIOR-REC05-(2)(1).jpg&amp;w=640&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F9409970674725-ATIKA-DUPLEX-INTERIOR-REC05-(2)(1).jpg&amp;w=828&amp;q=75</image:loc>
+       </image:image>
+  </url>
+  <url>
+       <loc>https://luxuryaqar.com/en/projects</loc>
+       <lastmod>2022-08-16T14:19:43+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproject-images%2F366410354477.jpg&amp;w=640&amp;q=75</image:loc>
+         <image:caption>hyde park project image</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproject-images%2F366410354477.jpg&amp;w=1200&amp;q=75</image:loc>
+         <image:caption>hyde park project image</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproject-images%2F324353725550.jpg&amp;w=640&amp;q=75</image:loc>
+         <image:caption>hyde park project image</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproject-images%2F324353725550.jpg&amp;w=1200&amp;q=75</image:loc>
+         <image:caption>hyde park project image</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/en/projects/14?name=Serrano+compound&amp;description=New+Administrative+Capital&amp;image=project-images%2F366410354477.jpg</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/en/projects/15?name=Atika+Compound&amp;description=Atika+New+Capital+By+New+Plan+developments&amp;image=project-images%2F324353725550.jpg</image:loc>
+       </image:image>
+  </url>
+  <url>
+       <loc>https://luxuryaqar.com/en/contact-us</loc>
+       <lastmod>2022-08-16T14:19:43+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/img/login-bg.jpg</image:loc>
+       </image:image>
+  </url>
+  <url>
+       <loc>https://luxuryaqar.com/en/clients/48</loc>
+       <lastmod>2022-08-16T14:19:43+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.8000</priority>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=%2Fimg%2FdefaultUser.png&amp;w=256&amp;q=75</image:loc>
+         <image:caption>client image</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=%2Fimg%2FdefaultUser.png&amp;w=640&amp;q=75</image:loc>
+         <image:caption>client image</image:caption>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F69798878062TONINO%20LAMBORGHINI%20FULL%20VIEW%202.jpg&amp;w=640&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F69798878062TONINO%20LAMBORGHINI%20FULL%20VIEW%202.jpg&amp;w=828&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F588575235755ATIKA%20COMPOUND%20VIEW.jpg&amp;w=640&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F588575235755ATIKA%20COMPOUND%20VIEW.jpg&amp;w=828&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F331418604098ATIKA%20ALTO%20CASA.jpg&amp;w=640&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F331418604098ATIKA%20ALTO%20CASA.jpg&amp;w=828&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F1740487827881ALTO-CASA%20VIEW.jpg&amp;w=640&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F1740487827881ALTO-CASA%20VIEW.jpg&amp;w=828&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F283763519410ATIKA%20COMPOUND.jpg&amp;w=640&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F283763519410ATIKA%20COMPOUND.jpg&amp;w=828&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F3481011628311ATIKA%20MALL%20FULL%20VIEW.jpg&amp;w=640&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F3481011628311ATIKA%20MALL%20FULL%20VIEW.jpg&amp;w=828&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F585169448383WhatsApp%20Image%202022-07-24%20at%201.23.08%20PM.jpeg&amp;w=640&amp;q=75</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/_next/image?url=https%3A%2F%2Fadmin.dpmhomes.com%2Fproperty-images%2F585169448383WhatsApp%20Image%202022-07-24%20at%201.23.08%20PM.jpeg&amp;w=828&amp;q=75</image:loc>
+       </image:image>
+  </url>
+  <url>
+       <loc>https://luxuryaqar.com/projects</loc>
+       <lastmod>2022-08-16T14:19:43+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.6400</priority>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/projects/14?name=%D9%83%D9%85%D8%A8%D9%88%D9%86%D8%AF+%D8%B3%D9%8A%D8%B1%D8%A7%D9%86%D9%88&amp;description=%D8%A7%D9%84%D8%B9%D8%A7%D8%B5%D9%85%D8%A9+%D8%A7%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF%D8%A9&amp;image=project-images%2F366410354477.jpg</image:loc>
+       </image:image>
+       <image:image>
+         <image:loc>https://luxuryaqar.com/projects/15?name=%D8%A7%D8%AA%D9%8A%D9%83%D8%A7+%D9%83%D9%85%D8%A8%D9%88%D9%86%D8%AF&amp;description=%D8%A7%D8%AA%D9%8A%D9%83%D8%A7+%D8%A7%D9%84%D8%B9%D8%A7%D8%B5%D9%85%D8%A9+%D8%A7%D9%84%D8%A7%D8%AF%D8%A7%D8%B1%D9%8A%D8%A9+%D8%A7%D9%84%D8%AC%D8%AF%D9%8A%D8%AF%D8%A9+%D9%85%D9%86+%D9%86%D9%8A%D9%88+%D8%A8%D9%84%D8%A7%D9%86&amp;image=project-images%2F324353725550.jpg</image:loc>
+       </image:image>
+  </url>
+</urlset>
