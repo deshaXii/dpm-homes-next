@@ -292,6 +292,28 @@ const HomeIntro = () => {
                   }
                 />
               </div>
+              <div className="filter-option">
+                <label htmlFor="property_type">
+                  <FormattedMessage id="page.home.auth.properties.filter.property_type" />
+                </label>
+                <Select
+                  styles={selectStyle}
+                  isSearchable={false}
+                  instanceId="property_type"
+                  placeholder={
+                    <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
+                  }
+                  value={propertyType}
+                  onChange={setPropertyType}
+                  name="type"
+                  id="property_type"
+                  options={
+                    locale === "ar"
+                      ? property_type_options_ar
+                      : property_type_options_en
+                  }
+                />
+              </div>
 
               <div className="filter-option">
                 <label htmlFor="area_size_select">
@@ -307,7 +329,7 @@ const HomeIntro = () => {
                   placeholder={
                     <FormattedMessage id="page.home.auth.properties.filter.select_area_size" />
                   }
-                  options={customAreaSize(locale, country.value)}
+                  options={customAreaSize(locale, country?.value)}
                   instanceId="area_size_select"
                 />
               </div>
