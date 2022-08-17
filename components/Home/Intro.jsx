@@ -18,25 +18,66 @@ const HomeIntro = () => {
   const [propertyType, setPropertyType] = useState();
   const [showFitler, setShowFilter] = useState(false);
 
-  const area_size_options_ar = [
-    { value: "100", label: "أكبر من 100 متر مربع" },
-    { value: "150", label: "أكبر من 150 متر مربع" },
-    { value: "200", label: "أكبر من 200 متر مربع" },
-    { value: "250", label: "أكبر من 250 متر مربع" },
-    { value: "300", label: "أكبر من 300 متر مربع" },
-    { value: "350", label: "أكبر من 350 متر مربع" },
-    { value: "400", label: "أكبر من 400 متر مربع" },
+  const area_size_options_ar_eg = [
+    { value: "50", label: "أكبر من 50 متر " },
+    { value: "100", label: "أكبر من 100 متر " },
+    { value: "150", label: "أكبر من 150 متر " },
+    { value: "200", label: "أكبر من 200 متر " },
+    { value: "250", label: "أكبر من 250 متر " },
+    { value: "300", label: "أكبر من 300 متر " },
+    { value: "350", label: "أكبر من 350 متر " },
+    { value: "400", label: "أكبر من 400 متر " },
   ];
 
-  const area_size_options_en = [
-    { value: "100", label: "above 100 sqm" },
-    { value: "150", label: "above 150 sqm" },
-    { value: "200", label: "above 200 sqm" },
-    { value: "250", label: "above 250 sqm" },
-    { value: "300", label: "above 300 sqm" },
-    { value: "350", label: "above 350 sqm" },
-    { value: "400", label: "above 400 sqm" },
+  const area_size_options_ar_uae = [
+    { value: "50", label: "أكبر من 50 قدم " },
+    { value: "100", label: "أكبر من 100 قدم " },
+    { value: "150", label: "أكبر من 150 قدم " },
+    { value: "200", label: "أكبر من 200 قدم " },
+    { value: "250", label: "أكبر من 250 قدم " },
+    { value: "300", label: "أكبر من 300 قدم " },
+    { value: "350", label: "أكبر من 350 قدم " },
+    { value: "400", label: "أكبر من 400 قدم " },
   ];
+
+  const area_size_options_en_eg = [
+    { value: "50", label: "above 50 m" },
+    { value: "100", label: "above 100 m" },
+    { value: "150", label: "above 150 m" },
+    { value: "200", label: "above 200 m" },
+    { value: "250", label: "above 250 m" },
+    { value: "300", label: "above 300 m" },
+    { value: "350", label: "above 350 m" },
+    { value: "400", label: "above 400 m" },
+  ];
+
+  const area_size_options_en_uae = [
+    { value: "50", label: "above 50 ft" },
+    { value: "100", label: "above 100 ft" },
+    { value: "100", label: "above 100 ft" },
+    { value: "150", label: "above 150 ft" },
+    { value: "200", label: "above 200 ft" },
+    { value: "250", label: "above 250 ft" },
+    { value: "300", label: "above 300 ft" },
+    { value: "350", label: "above 350 ft" },
+    { value: "400", label: "above 400 ft" },
+  ];
+
+  const customAreaSize = (lang, country) => {
+    if (lang === "en") {
+      if (country === 2) {
+        return area_size_options_en_uae;
+      } else {
+        return area_size_options_en_eg;
+      }
+    } else {
+      if (country === 2) {
+        return area_size_options_ar_uae;
+      } else {
+        return area_size_options_ar_eg;
+      }
+    }
+  };
 
   const property_type_options_ar = [
     { value: "palace", label: "قصر" },
@@ -266,11 +307,7 @@ const HomeIntro = () => {
                   placeholder={
                     <FormattedMessage id="page.home.auth.properties.filter.select_area_size" />
                   }
-                  options={
-                    locale === "ar"
-                      ? area_size_options_ar
-                      : area_size_options_en
-                  }
+                  options={customAreaSize(locale, country.value)}
                   instanceId="area_size_select"
                 />
               </div>
