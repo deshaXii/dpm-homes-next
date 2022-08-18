@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FormattedMessage } from "react-intl";
 import ReactPaginate from "react-paginate";
 import PropertyCard from "./PropertyCard";
 
@@ -20,7 +21,7 @@ const Items = ({ currentItems, layout }) => {
       </div>
     ))
   ) : (
-    <div>No Properties Found</div>
+    <div><FormattedMessage id="global.no-property-found" /></div>
   );
 };
 
