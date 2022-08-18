@@ -3970,3 +3970,11 @@ ul.pagination li.selected {
 ul.pagination li:hover {
   background: var(--mainColorWithOpacity);
 }
+
+ul.pagination li.disabled {
+  opacity: 0.2;
+}
+
+ul.pagination li.disabled a {
+  cursor: not-allowed;
+}
