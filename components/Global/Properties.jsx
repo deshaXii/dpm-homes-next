@@ -20,30 +20,6 @@ const Properties = ({ sectionTitle, sectionClass, type }) => {
             title={sectionTitle}
             subTitle={<FormattedMessage id="global.section.sub_title" />}
           />
-          {/* {allProperties.filter(
-            (fProperty) => fProperty.sell_rent_type.toLowerCase() === type
-          ).length && (
-          <div className="section-tabs">
-            <button
-              className={activeTab === "housing" ? "active" : ""}
-              onClick={() => setActiveTab("housing")}
-            >
-              <FormattedMessage id="page.add-property-tabs-housing" />
-            </button>
-            <button
-              className={activeTab === "commercial" ? "active" : ""}
-              onClick={() => setActiveTab("commercial")}
-            >
-              <FormattedMessage id="page.add-property-tabs-commercial" />
-            </button>
-            <button
-              className={activeTab === "administrative" ? "active" : ""}
-              onClick={() => setActiveTab("administrative")}
-            >
-              <FormattedMessage id="page.add-property-tabs-administrative" />
-            </button>
-          </div>
-          )} */}
         </div>
         <div className="row search-property-layout-content">
           {allProperties

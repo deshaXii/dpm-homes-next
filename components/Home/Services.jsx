@@ -6,6 +6,7 @@ import { BsShop } from "react-icons/bs";
 import { GrLinkNext } from "react-icons/gr";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { FormattedMessage } from "react-intl";
 
 const Services = ({ sectionBG, withOverlay }) => {
   const router = useRouter();
@@ -97,7 +98,7 @@ const Services = ({ sectionBG, withOverlay }) => {
                 <p>{item.content}</p>
                 <Link href={item.link}>
                   <a>
-                    <span>Read More</span> <GrLinkNext />
+                    <span><FormattedMessage id="global.read.more" /></span> <GrLinkNext />
                   </a>
                 </Link>
               </div>

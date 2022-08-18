@@ -10,10 +10,13 @@ import { useSelector } from "react-redux";
 import { selectProjects } from "../../store/slices/projects";
 import Link from "next/link";
 SwiperCore.use([Navigation, Pagination]);
+import { useRouter } from "next/router";
+import { FormattedMessage } from "react-intl";
 
 const Projects = () => {
   const { allProjects } = useSelector(selectProjects);
-
+  const router = useRouter();
+  const { locale } = router;
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
   const paginationRef = useRef(null);
@@ -28,7 +31,10 @@ const Projects = () => {
   return (
     <section className="projects-section p80">
       <div className="container">
-        <SectionTitle title="Projects" subTitle="Our" />
+        <SectionTitle
+          title={locale === "ar" ? "المشاريع" : "projects"}
+          subTitle={locale === "ar" ? "أحدث" : "New"}
+        />
         <div className="row">
           <div className="col-12">
             {load ? (
@@ -55,10 +61,10 @@ const Projects = () => {
                     slidesPerView: 1,
                   },
                   768: {
-                    slidesPerView: 2,
+                    slidesPerView: 3,
                   },
                 }}
-                slidesPerView={2}
+                slidesPerView={3}
               >
                 {allProjects.map((project) => (
                   <SwiperSlide className="swiper-slide" key={project.id}>
@@ -100,7 +106,23 @@ const Projects = () => {
                           </a>
                         </Link>
                         <p>
-                         {project.description}
+                          {project.description.substr(0, 70)}{" "}
+                          {project.description.length > 70 ? (
+                            <Link
+                              href={{
+                                pathname: `/projects/${project.id}`,
+                                query: {
+                                  name: project.name,
+                                  description: project.description,
+                                  image: project.image,
+                                },
+                              }}
+                            >
+                              <FormattedMessage id="global.read.more" />
+                            </Link>
+                          ) : (
+                            ""
+                          )}
                         </p>
                       </div>
                     </div>

@@ -225,5 +225,6 @@
   "property.loading.message": "جاري الأن رفع العقار برجاء الإنتظار",
   "section.related": " مشابهة",
   "page.add-property-form-title.add-more-view-way": "طرق اخري لعرض الوحدة",
-  "page.property.page-not-found": "يبدو أننا لا نستطيع العثور على الصفحة التي تبحث عنها."
+  "page.property.page-not-found": "يبدو أننا لا نستطيع العثور على الصفحة التي تبحث عنها.",
+  "global.read.more": "أقرا المزيد..."
 }
