@@ -1,10 +1,12 @@
 import Link from "next/link";
 import React from "react";
 import { FiPhoneCall } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 import { HiLocationMarker, HiOutlineMailOpen } from "react-icons/hi";
 import { FormattedMessage } from "react-intl";
 
 const ContactInfo = ({ settingsData }) => {
+  console.log(settingsData);
   return (
     <div className="contact-info-area">
       <div className="row">
@@ -14,11 +16,34 @@ const ContactInfo = ({ settingsData }) => {
             <h6>
               <FormattedMessage id="section.contact.phone_title" />
             </h6>
-            {settingsData.phone.map((item, index) => (
-              <Link key={index} href={`tel:${item}`}>
-                <a>{item}</a>
-              </Link>
-            ))}
+            <div className="dbl-nums">
+              <div className="df">
+                {settingsData.phone.map((item, index) => (
+                  <div className="bv">
+                    <FiPhoneCall />
+                    <Link key={index} href={`tel:${item.replace("+", "")}`}>
+                      <a>+{item}</a>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+              <div className="dl">
+                {settingsData.whatsapp.map((item, index) => (
+                  <div className="bv">
+                    <FaWhatsapp />
+                    <Link
+                      key={index}
+                      href={`https://api.whatsapp.com/send/?phone=${item.replace(
+                        "+",
+                        ""
+                      )}`}
+                    >
+                      <a>+{item}</a>
+                    </Link>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         <div className="col-md-4">

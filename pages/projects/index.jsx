@@ -8,6 +8,7 @@ import Link from "next/link";
 import SectionTitle from "../../components/Global/SectionTitle";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { FormattedMessage } from "react-intl";
 
 const Projects = () => {
   useEffect(() => {
@@ -81,7 +82,7 @@ const Projects = () => {
                               },
                             }}
                           >
-                            Read More...
+                            <FormattedMessage id="global.read.more" />
                           </Link>
                         ) : (
                           ""

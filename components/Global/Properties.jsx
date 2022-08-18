@@ -23,7 +23,7 @@ const Properties = ({ sectionTitle, sectionClass, type }) => {
         </div>
         <div className="row search-property-layout-content">
           {allProperties
-            .filter(
+            .filter( 
               (fProperty) => fProperty.sell_rent_type.toLowerCase() === type
             )
             .slice(0, 4)

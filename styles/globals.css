@@ -2499,7 +2499,7 @@ aside.properties-filter .filter-group h5.filter-group-title {
 
 .list-view .property-card-info {
   margin: 0 15px;
-  width: 60%;
+  width: 100%;
 }
 
 .list-view .property-card-image>a {
@@ -3977,4 +3977,22 @@ ul.pagination li.disabled {
 
 ul.pagination li.disabled a {
   cursor: not-allowed;
+}
+
+.dbl-nums {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.bv {
+  display: flex;
+  align-items: center;
+}
+
+.dbl-nums .bv svg {
+  margin: 0;
+  margin-right: 6px;
+  font-size: 16px;
 }
