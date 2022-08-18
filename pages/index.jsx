@@ -64,11 +64,13 @@ export const getServerSideProps = wrapper.getServerSideProps(
         const cookies = parseCookies(req);
         const token = cookies.userToken;
         await store.dispatch(
-          getPropertiesWithTpye({ type: "all", userToken: token })
+          getPropertiesWithTpye({ type: "all", userToken: token, lang: locale })
         );
         return {};
       } else {
-        await store.dispatch(getPropertiesWithTpye({ type: "all" }));
+        await store.dispatch(
+          getPropertiesWithTpye({ type: "all", lang: locale })
+        );
         return {
           props: {},
         };

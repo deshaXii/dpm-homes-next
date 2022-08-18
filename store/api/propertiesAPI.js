@@ -1,17 +1,19 @@
 import API from "../api";
 import jsCookies from "js-cookies";
 
-export async function getProperties({ type, userToken }) {
+export async function getProperties({ type, userToken, lang }) {
   try {
     if (userToken) {
-      const res = await API.get(`/get-property?type=${type}`, {
+      const res = await API.get(`/get-property?type=${type}&lang=${lang}`, {
         headers: {
           Authorization: `Bearer ${userToken}`,
         },
       });
       return await res.data;
     } else {
-      const res = await API.get(`/get-property?type=${type}`);
+      const res = await API.get(
+        `/get-property?type=${type}&count=${count}&page=${page}&lang=${lang}`
+      );
       return await res.data;
     }
   } catch (err) {

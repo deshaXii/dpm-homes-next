@@ -13,7 +13,9 @@ import SectionTitle from "../../components/Global/SectionTitle";
 
 const Project = () => {
   const router = useRouter();
-  const query = router.query;
+  const query = router;
+  const { locale } = query;
+  console.log(locale);
   const { project } = useSelector(selectProjects);
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
@@ -21,7 +23,6 @@ const Project = () => {
       document.body.style.backgroundColor = "white";
     };
   }, []);
-  console.log(project);
   return (
     <>
       <Head>
@@ -31,7 +32,10 @@ const Project = () => {
         <div className="project-page" style={{ padding: "60px 0 120px 0" }}>
           <div className="container">
             <div className="row">
-              <SectionTitle title="The Project" subTitle="About" />
+              <SectionTitle
+                title={project.project_info.name}
+                subTitle={locale === "ar" ? "مشروع" : "project"}
+              />
               <div className="col-md-12" key={project.id}>
                 <div
                   className="project-header"
@@ -44,7 +48,7 @@ const Project = () => {
                   <p> {project.project_info.description} </p>
                 </div>
                 <SectionTitle
-                  title="properties"
+                  title={locale === "ar" ? "الوحدات" : "units"}
                   subTitle={project.project_info.name}
                 />
                 <div className="search-property-layout-content">
