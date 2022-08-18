@@ -7,6 +7,7 @@ import { wrapper } from "../../store";
 import Link from "next/link";
 import SectionTitle from "../../components/Global/SectionTitle";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 const Projects = () => {
   useEffect(() => {
@@ -16,6 +17,8 @@ const Projects = () => {
     };
   }, []);
   const { allProjects } = useSelector(selectProjects);
+  const router = useRouter();
+  const { locale } = router;
   return (
     <>
       <Head>
@@ -25,7 +28,7 @@ const Projects = () => {
         <div className="projects-page" style={{ padding: "60px 0 120px 0" }}>
           <div className="container">
             <div className="row">
-              <SectionTitle title="Projects" subTitle="Our" />
+              <SectionTitle title={locale === 'ar' ? 'المشاريع' : 'projects'} subTitle={locale === 'ar' ? 'أحدث' : 'New'} />
               {allProjects.map((project) => (
                 <div className="col-md-4" key={project.id}>
                   <div className="project-slide-box">
