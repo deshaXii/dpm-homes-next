@@ -84,12 +84,14 @@ const Search = () => {
                   </div>
                   <div className="search-property-layout-content">
                     <div className="row">
-                      {filteredProperties.length && (
+                    {filteredProperties.length ? (
                         <PaginatedItems
                           itemsPerPage={9}
                           layout={layout}
                           items={filteredProperties}
                         />
+                      ) : (
+                        <div><FormattedMessage id="global.no-property-found" /></div>
                       )}
                     </div>
                   </div>
