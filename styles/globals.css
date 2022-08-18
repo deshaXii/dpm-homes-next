@@ -3998,6 +3998,13 @@ ul.pagination li.disabled a {
 }
 
 .terms-page p {
-  color: white;
+  color: #ccc;
   white-space: break-spaces;
+}
+
+.terms-page h1 {
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }

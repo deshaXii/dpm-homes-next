@@ -28,6 +28,7 @@ const Terms = () => {
           <div className="container">
             <div className="row">
               <div className="col">
+                <h1> {router.locale === "en" ? " Terms & Conditions" : " الأحكام والشروط "}</h1>
                 <p>{settingsData.terms}</p>
               </div>
             </div>
