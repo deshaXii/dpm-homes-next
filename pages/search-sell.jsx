@@ -22,7 +22,6 @@ const Search = () => {
   const { locale, query } = useRouter();
   const { allProperties } = useSelector(selectProperties);
   const { filteredProperties } = useSelector(selectFilter);
-  const user = useSelector(selectUser);
   const [layout, setLayout] = useState("grid");
   const [showFilter, setShowFilter] = useState(false);
   useEffect(() => {
@@ -30,18 +29,6 @@ const Search = () => {
     return () => {
       document.body.style.backgroundColor = "white";
     };
-  }, []);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    function fetchNewPosts() {
-      dispatch(getAllCountries(locale));
-      dispatch(getPropertiesWithTpye({ type: "sell" }));
-    }
-    if (allProperties.length === 0) {
-      fetchNewPosts();
-    }
   }, []);
 
   return (

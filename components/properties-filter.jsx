@@ -113,12 +113,12 @@ const PropertiesFilter = ({ showFilter, query }) => {
   const [bedNum, setBedNum] = useState();
   const [bathNum, setBathNum] = useState();
   const [country, setCountry] = useState(() =>
-    allCountries.find((i) => i.value === Number(query.city))
+    allCountries.find((i) => i.value === Number(query?.city))
   );
   const [propertyTypeS, setPropertyTypeS] = useState(() =>
     locale === "en"
-      ? property_type_options_en.find((i) => i.value == query.type)
-      : property_type_options_ar.find((i) => i.value == query.type)
+      ? property_type_options_en.find((i) => i.value == query?.type)
+      : property_type_options_ar.find((i) => i.value == query?.type)
   );
   const [governorate, setGovernorate] = useState();
   const [areaSize, setAreaSize] = useState();
@@ -149,14 +149,14 @@ const PropertiesFilter = ({ showFilter, query }) => {
   }, [country]);
 
   useEffect(() => {
-    if (query.city) {
-      dispatch(setActiveCountry(query.city));
-      const data = { activeCountry: query.city, locale };
+    if (query?.city) {
+      dispatch(setActiveCountry(query?.city));
+      const data = { activeCountry: query?.city, locale };
       dispatch(getAllGovernorates(data));
       setGovernorate("");
     }
-    if (query.type) {
-      dispatch(setPropertyType(query.type));
+    if (query?.type) {
+      dispatch(setPropertyType(query?.type));
       dispatch(filterByPropertyType({ allProperties, type: "filter" }));
     }
     
@@ -164,7 +164,7 @@ const PropertiesFilter = ({ showFilter, query }) => {
 
   useEffect(() => {
    
-  }, [query.type]);
+  }, [query?.type]);
 
   useEffect(() => {
     if (activeCountry) {

@@ -295,7 +295,7 @@ const HosuingRent = () => {
     super_market,
     street_view_iframe,
     general_details,
-    // unit_status,
+    unit_status,
     unit_age,
     pdf: pdfImage,
     view3d,

@@ -119,7 +119,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "public, s-maxage=10, stale-while-revalidate=59"
       );
       await store.dispatch(getAllCountries(locale));
-      await store.dispatch(getPropertiesWithTpye({ type: "rent" }));
+      await store.dispatch(getPropertiesWithTpye({ type: "rent", lang: locale }));
       return {
         props: {},
       };
