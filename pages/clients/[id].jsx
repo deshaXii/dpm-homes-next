@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import PropertyCard from "../../components/Global/PropertyCard";
 import Head from "next/head";
 import { FormattedMessage } from "react-intl";
+import PaginatedItems from "../../components/Global/PaginatedItems";
 
 const ClientProfile = () => {
   const { clientData } = useSelector(selectClient);
@@ -118,23 +119,19 @@ const ClientProfile = () => {
                       title="Properties"
                       subTitle={`${clientData.user.name}'s `}
                     />
-                    {clientData.properties.length ? (
-                      <div className="row search-property-layout-content">
-                        {clientData.properties.slice(0, 12).map((property) => (
-                          <div className="col-md-3" key={property.id}>
-                            <PropertyCard
-                              featureCount="2"
-                              image="/img/property_test_3.jpg"
-                              property={property}
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="no-properties">
-                        <FormattedMessage id="global.no-property-found" />
-                      </div>
-                    )}
+                    <div className="row search-property-layout-content">
+                      {clientData.properties.length ? (
+                        <PaginatedItems
+                          itemsPerPage={8}
+                          layout={"grid4"}
+                          items={clientData.properties}
+                        />
+                      ) : (
+                        <div className="no-properties">
+                          <FormattedMessage id="global.no-property-found" />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </section>
               </div>
