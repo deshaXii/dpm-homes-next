@@ -6,7 +6,6 @@ import { HiLocationMarker, HiOutlineMailOpen } from "react-icons/hi";
 import { FormattedMessage } from "react-intl";
 
 const ContactInfo = ({ settingsData }) => {
-  console.log(settingsData);
   return (
     <div className="contact-info-area">
       <div className="row">

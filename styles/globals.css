@@ -3996,3 +3996,8 @@ ul.pagination li.disabled a {
   margin-right: 6px;
   font-size: 16px;
 }
+
+.terms-page p {
+  color: white;
+  white-space: break-spaces;
+}
