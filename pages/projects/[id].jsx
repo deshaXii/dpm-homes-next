@@ -26,7 +26,11 @@ const Project = () => {
   return (
     <>
       <Head>
-        <title>{project.project_info.name}</title>
+        <title>
+          {locale === "ar" ? "مشروع " : ""}
+          {project.project_info.name}
+          {locale === "en" ? " project" : ""}
+        </title>
       </Head>
       <Default>
         <div className="project-page" style={{ padding: "60px 0 120px 0" }}>

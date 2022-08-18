@@ -16,6 +16,7 @@ import { FormattedMessage } from "react-intl";
 import { selectFilter } from "../store/slices/filter";
 import { useRouter } from "next/router";
 import { selectUser } from "../store/slices/auth";
+import PaginatedItems from "../components/Global/PaginatedItems";
 
 const Search = () => {
   const { locale, query } = useRouter();
@@ -96,26 +97,12 @@ const Search = () => {
                   </div>
                   <div className="search-property-layout-content">
                     <div className="row">
-                      {filteredProperties.length ? (
-                        filteredProperties.slice(0, 20).map((property) => (
-                          <div
-                            className={`col-xl-${
-                              layout === "grid" ? 4 : 12
-                            } col-md-${layout === "grid" ? 6 : 12}`}
-                            key={property.id}
-                          >
-                            <PropertyCard
-                              property={property}
-                              featureCount={2}
-                              image={`https://admin.dpmhomes.com/property-images/${property.images[0]}`}
-                              className={
-                                layout === "grid" ? "grid-view" : "list-view"
-                              }
-                            />
-                          </div>
-                        ))
-                      ) : (
-                        <div>No Properties Found</div>
+                      {filteredProperties.length && (
+                        <PaginatedItems
+                          itemsPerPage={9}
+                          layout={layout}
+                          items={filteredProperties}
+                        />
                       )}
                     </div>
                   </div>
@@ -139,7 +126,9 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "public, s-maxage=10, stale-while-revalidate=59"
       );
       await store.dispatch(getAllCountries(locale));
-      await store.dispatch(getPropertiesWithTpye({ type: "sell" }));
+      await store.dispatch(
+        getPropertiesWithTpye({ type: "sell", lang: locale })
+      );
       return {
         props: {},
       };

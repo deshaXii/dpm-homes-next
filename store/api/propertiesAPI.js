@@ -12,7 +12,7 @@ export async function getProperties({ type, userToken, lang }) {
       return await res.data;
     } else {
       const res = await API.get(
-        `/get-property?type=${type}&count=${count}&page=${page}&lang=${lang}`
+        `/get-property?type=${type}&lang=${lang}`
       );
       return await res.data;
     }

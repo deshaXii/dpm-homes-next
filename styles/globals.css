@@ -3937,3 +3937,36 @@ input.video-input {
   background: #fff;
   color: var(--mainColor);
 }
+
+ul.pagination li {
+  color: upo;
+  transition: all .3s linear;
+  background: #011f2a;
+  height: 36px;
+  width: 36px;
+  line-height: 36px;
+  margin: 0 5px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+ul.pagination {
+  justify-content: center;
+}
+
+ul.pagination li a {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul.pagination li.selected {
+  background: var(--mainColor);
+}
+
+ul.pagination li:hover {
+  background: var(--mainColorWithOpacity);
+}
