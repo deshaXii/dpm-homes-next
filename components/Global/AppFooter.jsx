@@ -80,7 +80,7 @@ const AppFooter = () => {
               </h6>
               <ul className="footer-menu-list">
                 <li className="footer-menu-item">
-                  <Link href="/">
+                  <Link href="/terms">
                     <a className="footer-menu-link">
                       <FormattedMessage id="section.footer.terms_link" />
                     </a>
