@@ -34,6 +34,7 @@ const CommercialCash = () => {
     { value: "playground", label: "ملعب" },
     { value: "pharmacy", label: "صيدلية" },
     { value: "mall", label: "مول" },
+    { value: "outlet", label: "مركز تسوق" },
   ];
 
   const property_type_options_en = [
@@ -44,6 +45,7 @@ const CommercialCash = () => {
     { value: "playground", label: "playground" },
     { value: "pharmacy", label: "pharmacy" },
     { value: "mall", label: "mall" },
+    { value: "outlet", label: "outlet" },
   ];
 
   const currency_options_ar = [
@@ -125,6 +127,7 @@ const CommercialCash = () => {
 
   const [property_type, setProperty_type] = useState("");
   const [address, setAddress] = useState("");
+  const [outside_area, setOutside_area] = useState();
   const [country, setCountry] = useState("");
   const [governorate, setGovernorate] = useState("");
   const [city, setCity] = useState("");
@@ -260,6 +263,7 @@ const CommercialCash = () => {
     total_area: convertAreaSize(total_area, country),
     building_area: convertAreaSize(building_area, country),
     garden_area: convertAreaSize(garden_area, country),
+    outside_area: convertAreaSize(outside_area, country),
     no_bed_room,
     no_bath_room,
     no_kitchen,
@@ -404,6 +408,17 @@ const CommercialCash = () => {
                       </div>
                       <div className="form-group">
                         <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.outside_area" />
+                        </label>
+                        <input
+                          type="number"
+                          value={outside_area}
+                          onChange={(e) => setOutside_area(e.target.value)}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
                           <FormattedMessage id="page.add-property-form.details.building_name" />
                         </label>
                         <Select
@@ -466,6 +481,7 @@ const CommercialCash = () => {
                           className="form-control"
                         />
                       </div>
+
                       <div className="form-group">
                         <label htmlFor="">
                           <FormattedMessage id="page.add-property-form.details.city" />

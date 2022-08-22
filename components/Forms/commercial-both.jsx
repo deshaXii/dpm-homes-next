@@ -22,6 +22,7 @@ const CommercialBoth = () => {
   const country_options = allCountries;
 
   const governorate_options = allGovernorates;
+
   const property_type_options_ar = [
     { value: "shop", label: "محل" },
     { value: "factory", label: "مصنع" },
@@ -30,6 +31,7 @@ const CommercialBoth = () => {
     { value: "playground", label: "ملعب" },
     { value: "pharmacy", label: "صيدلية" },
     { value: "mall", label: "مول" },
+    { value: "outlet", label: "مركز تسوق" },
   ];
 
   const property_type_options_en = [
@@ -40,6 +42,7 @@ const CommercialBoth = () => {
     { value: "playground", label: "playground" },
     { value: "pharmacy", label: "pharmacy" },
     { value: "mall", label: "mall" },
+    { value: "outlet", label: "outlet" },
   ];
 
   const currency_options_ar = [
@@ -138,6 +141,8 @@ const CommercialBoth = () => {
   }, [advance_payment]);
 
   const [property_type, setProperty_type] = useState("");
+  const [outside_area, setOutside_area] = useState();
+
   const [address, setAddress] = useState("");
   const [country, setCountry] = useState("");
   const [governorate, setGovernorate] = useState("");
@@ -277,6 +282,7 @@ const CommercialBoth = () => {
     total_area: convertAreaSize(total_area, country),
     building_area: convertAreaSize(building_area, country),
     garden_area: convertAreaSize(garden_area, country),
+    outside_area: convertAreaSize(outside_area, country),
     no_bed_room,
     no_bath_room,
     no_kitchen,
@@ -421,6 +427,17 @@ const CommercialBoth = () => {
                           className="form-control"
                           value={total_area}
                           onChange={(e) => setTotal_area(e.target.value)}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.outside_area" />
+                        </label>
+                        <input
+                          type="number"
+                          value={outside_area}
+                          onChange={(e) => setOutside_area(e.target.value)}
+                          className="form-control"
                         />
                       </div>
                       <div className="form-group">
@@ -619,12 +636,7 @@ const CommercialBoth = () => {
                           />
                         </div>
                       )}
-
-
                     </div>
-
-
-
 
                     <div className="col-md-4">
                       <div className="form-group">

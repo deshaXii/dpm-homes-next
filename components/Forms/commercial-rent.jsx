@@ -31,6 +31,7 @@ const CommercialRent = () => {
     { value: "playground", label: "ملعب" },
     { value: "pharmacy", label: "صيدلية" },
     { value: "mall", label: "مول" },
+    { value: "outlet", label: "مركز تسوق" },
   ];
 
   const property_type_options_en = [
@@ -41,6 +42,7 @@ const CommercialRent = () => {
     { value: "playground", label: "playground" },
     { value: "pharmacy", label: "pharmacy" },
     { value: "mall", label: "mall" },
+    { value: "outlet", label: "outlet" },
   ];
 
   const buildingOptions_ar = [
@@ -139,6 +141,7 @@ const CommercialRent = () => {
   const [country, setCountry] = useState("");
   const [governorate, setGovernorate] = useState("");
   const [city, setCity] = useState("");
+  const [outside_area, setOutside_area] = useState();
   const [total_area, setTotal_area] = useState("");
   const [building_area, setBuilding_area] = useState("");
   const [garden_area, setGarden_area] = useState("");
@@ -264,6 +267,7 @@ const CommercialRent = () => {
     total_area: convertAreaSize(total_area, country),
     building_area: convertAreaSize(building_area, country),
     garden_area: convertAreaSize(garden_area, country),
+    outside_area: convertAreaSize(outside_area, country),
     no_bed_room,
     no_bath_room,
     no_kitchen,
@@ -402,6 +406,17 @@ const CommercialRent = () => {
                           className="form-control"
                           value={total_area}
                           onChange={(e) => setTotal_area(e.target.value)}
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label htmlFor="">
+                          <FormattedMessage id="page.add-property-form.details.outside_area" />
+                        </label>
+                        <input
+                          type="number"
+                          value={outside_area}
+                          onChange={(e) => setOutside_area(e.target.value)}
+                          className="form-control"
                         />
                       </div>
                       <div className="form-group">
