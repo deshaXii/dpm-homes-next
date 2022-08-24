@@ -8,16 +8,16 @@ const initialState = {
 
 export const addPropertyToWishlist = createAsyncThunk(
   "wishlist/update-wishlist",
-  async (id) => {
-    const responseData = await updateWishlist(id);
+  async ({ id, lang }) => {
+    const responseData = await updateWishlist({ id, lang });
     return responseData;
   }
 );
 
 export const getWishlist = createAsyncThunk(
   "wishlist/get-wishlist",
-  async (token) => {
-    const responseData = await getAllWishlist(token);
+  async ({ token, lang }) => {
+    const responseData = await getAllWishlist({ token, lang });
     return responseData;
   }
 );

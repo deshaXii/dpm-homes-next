@@ -767,7 +767,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         const cookies = parseCookies(req);
         const token = cookies.userToken;
         await store.dispatch(getUserProperties(token));
-        await store.dispatch(getWishlist(token));
+        await store.dispatch(getWishlist({ token, locale }));
         await store.dispatch(getAllCountries(locale));
         return {
           props: {},

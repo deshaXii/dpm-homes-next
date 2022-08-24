@@ -3,6 +3,36 @@
         display: none;
     }
 
+    .project-page button.btn.video-view img {
+        width: 40px !important;
+    }
+
+    .project-page button.btn.video-view {
+        position: relative;
+        margin-top: -10px;
+    }
+
+    .play-box p {
+        color: #fff;
+        margin: 0;
+    }
+
+    .play-box {
+        display: flex;
+        align-items: center;
+        column-gap: 15px;
+        margin-bottom: 10px;
+    }
+
+    .project-page .row.align-items-center .col-md-2 {
+        text-align: center;
+    }
+
+    .s-title-box h2 {
+        font-size: 24px;
+        margin-top: 4px;
+    }
+
     .fixed-button {
         margin: 110px 0 0 -59px;
     }

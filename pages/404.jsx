@@ -1,6 +1,9 @@
 import { FormattedMessage } from "react-intl";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Custom404() {
+  const router = useRouter();
   return (
     <div
       className="error-page"
@@ -14,10 +17,14 @@ export default function Custom404() {
               <p>
                 <FormattedMessage id="page.property.page-not-found" />
               </p>
-              <button type="button" className="unq btn">
-                go home
-              </button>
-              <button type="button" className="btn">
+              <Link href="/">
+                <a className="unq btn">go home</a>
+              </Link>
+              <button
+                type="button"
+                onClick={(e) => router.back()}
+                className="btn"
+              >
                 back
               </button>
             </div>

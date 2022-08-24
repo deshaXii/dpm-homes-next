@@ -3938,6 +3938,18 @@ input.video-input {
   color: var(--mainColor);
 }
 
+.play-box p {
+  color: #fff;
+  margin: 0;
+}
+
+.play-box {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+  margin-bottom: 10px;
+}
+
 ul.pagination li {
   color: upo;
   transition: all .3s linear;

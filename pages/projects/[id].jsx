@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Default from "../../layouts/default";
 import { useSelector } from "react-redux";
 import { selectProjects, getCurrentProject } from "../../store/slices/projects";
@@ -10,13 +10,18 @@ import { FormattedMessage } from "react-intl";
 import PropertyCard from "../../components/Global/PropertyCard";
 import Head from "next/head";
 import SectionTitle from "../../components/Global/SectionTitle";
+import ModalVideo from "react-modal-video";
+import "react-modal-video/css/modal-video.css";
+import { AiOutlineVideoCamera } from "react-icons/ai";
 
 const Project = () => {
   const router = useRouter();
   const query = router;
   const { locale } = query;
-  console.log(locale);
+  const [isOpen, setOpen] = useState(false);
+
   const { project } = useSelector(selectProjects);
+  console.log(project);
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     return () => {
@@ -32,14 +37,49 @@ const Project = () => {
           {locale === "en" ? " project" : ""}
         </title>
       </Head>
+      {typeof window !== "undefined" && (
+        <ModalVideo
+          channel="youtube"
+          autoplay={true}
+          isOpen={isOpen}
+          videoId={project.project_info.video}
+          onClose={() => setOpen(false)}
+        />
+      )}
       <Default>
         <div className="project-page" style={{ padding: "60px 0 120px 0" }}>
           <div className="container">
+            <div className="row align-items-center">
+              <div className="col-md-9">
+                <SectionTitle
+                  title={project.project_info.name}
+                  subTitle={locale === "ar" ? "مشروع" : "project"}
+                />
+              </div>
+              <div className="col-md-3">
+                {project.project_info.video && (
+                  <button
+                    onClick={() => {
+                      setOpen(true);
+                    }}
+                    className={`btn video-view cursor-pointer`}
+                  >
+                    <div className="play-box">
+                      <Image
+                        src="/img/play.png"
+                        width={80}
+                        height={50}
+                        alt="play project video"
+                      />
+                      <p>
+                        <FormattedMessage id="project-watch-video" />
+                      </p>
+                    </div>
+                  </button>
+                )}
+              </div>
+            </div>
             <div className="row">
-              <SectionTitle
-                title={project.project_info.name}
-                subTitle={locale === "ar" ? "مشروع" : "project"}
-              />
               <div className="col-md-12" key={project.id}>
                 <div
                   className="project-header"
