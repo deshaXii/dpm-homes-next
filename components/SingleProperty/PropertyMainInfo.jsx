@@ -113,7 +113,7 @@ const PropertyMainInfo = () => {
                     )}
                   </div>
                   <Link
-                    href={`https://api.whatsapp.com/send/?phone=%${97144547816}&text=اأريد الإستفسار حول هذا العقار: https://dpmhomes.com${router.asPath}`}
+                    href={`https://api.whatsapp.com/send/?phone=%${97144547816}&text=اأريد الإستفسار حول هذا العقار: https://luxuryaqar.com${router.asPath}`}
                   >
                     <a className="btn" target="_blank">
                       <FaWhatsapp />
