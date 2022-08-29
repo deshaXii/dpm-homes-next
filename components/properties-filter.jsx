@@ -19,12 +19,14 @@ import {
   setBedCount,
   filterByCountry,
   setPropertyType,
+  setUUType,
   filterByGovernorate,
   setFilteredProperties,
   filterByBedNum,
   filterByBathNum,
   filterByAreaSize,
   filterByPropertyType,
+  filterByUType,
 } from "../store/slices/filter";
 import { selectProperties } from "../store/slices/properties";
 
@@ -50,32 +52,33 @@ const area_size_options_en = [
   { value: "400", label: "above 400 sqm" },
 ];
 
-const property_type_options_ar = [
-  { value: "palace", label: "قصر" },
-  { value: "villa", label: "فيلا" },
-  { value: "twin_house", label: "تون هاوس" },
-  { value: "pent_house", label: "بنت هاوس" },
-  { value: "flat", label: "منزل" },
-  { value: "studio", label: "ستوديو" },
-  { value: "chalet", label: "شاليه" },
+const uritType_en = [
+  { value: "administative", label: "Administative" },
+  { value: "commercial", label: "Commercial" },
+  { value: "housing", label: "Housing" },
+];
+const uritType_ar = [
+  { value: "administative", label: "أداري" },
+  { value: "commercial", label: "تجاري" },
+  { value: "housing", label: "سكني" },
+];
+
+const administative_type_options_ar = [{ value: "offices", label: "مكاتب" }];
+
+const administative_type_options_en = [{ value: "offices", label: "offices" }];
+
+const commercial_type_options_ar = [
   { value: "shop", label: "محل" },
   { value: "factory", label: "مصنع" },
   { value: "land", label: "قطعة ارض" },
-  { value: "warehouse", label: "مستودع" },
+  { value: "warehouse", label: "مخزن" },
   { value: "playground", label: "ملعب" },
   { value: "pharmacy", label: "صيدلية" },
   { value: "mall", label: "مول" },
-  { value: "offices", label: "مصنع" },
+  { value: "outlet", label: "مركز تسوق" },
 ];
 
-const property_type_options_en = [
-  { value: "palace", label: "palace" },
-  { value: "villa", label: "villa" },
-  { value: "twin_house", label: "twin house" },
-  { value: "pent_house", label: "pent house" },
-  { value: "flat", label: "flat" },
-  { value: "studio", label: "studio" },
-  { value: "chalet", label: "chalet" },
+const commercial_type_options_en = [
   { value: "shop", label: "shop" },
   { value: "factory", label: "factory" },
   { value: "land", label: "land" },
@@ -83,7 +86,27 @@ const property_type_options_en = [
   { value: "playground", label: "playground" },
   { value: "pharmacy", label: "pharmacy" },
   { value: "mall", label: "mall" },
-  { value: "offices", label: "offices" },
+  { value: "outlet", label: "outlet" },
+];
+
+const hosuing_type_options_ar = [
+  { value: "palace", label: "قصر" },
+  { value: "villa", label: "فيلا" },
+  { value: "twin_house", label: "تون هاوس" },
+  { value: "pent_house", label: "بنت هاوس" },
+  { value: "flat", label: "منزل" },
+  { value: "studio", label: "ستوديو" },
+  { value: "chalet", label: "شاليه" },
+];
+
+const hosuing_type_options_en = [
+  { value: "palace", label: "palace" },
+  { value: "villa", label: "villa" },
+  { value: "twin_house", label: "twin house" },
+  { value: "pent_house", label: "pent house" },
+  { value: "flat", label: "flat" },
+  { value: "studio", label: "studio" },
+  { value: "chalet", label: "chalet" },
 ];
 
 const selectStyle = {
@@ -110,16 +133,13 @@ const PropertiesFilter = ({ showFilter, query }) => {
   const { allCountries, allGovernorates } = useSelector(selectCountries);
   const { allProperties } = useSelector(selectProperties);
   const { activeCountry, filteredProperties } = useSelector(selectFilter);
+  const [uType, setUType] = useState();
   const [bedNum, setBedNum] = useState();
   const [bathNum, setBathNum] = useState();
   const [country, setCountry] = useState(() =>
     allCountries.find((i) => i.value === Number(query?.city))
   );
-  const [propertyTypeS, setPropertyTypeS] = useState(() =>
-    locale === "en"
-      ? property_type_options_en.find((i) => i.value == query?.type)
-      : property_type_options_ar.find((i) => i.value == query?.type)
-  );
+  const [propertyTypeS, setPropertyTypeS] = useState();
   const [governorate, setGovernorate] = useState();
   const [areaSize, setAreaSize] = useState();
   const dispatch = useDispatch();
@@ -129,6 +149,7 @@ const PropertiesFilter = ({ showFilter, query }) => {
     setCountry("");
     setGovernorate("");
     setPropertyTypeS("");
+    setUType("");
     setBedNum("");
     setBathNum("");
     setAreaSize("");
@@ -159,12 +180,9 @@ const PropertiesFilter = ({ showFilter, query }) => {
       dispatch(setPropertyType(query?.type));
       dispatch(filterByPropertyType({ allProperties, type: "filter" }));
     }
-    
   }, [query]);
 
-  useEffect(() => {
-   
-  }, [query?.type]);
+  useEffect(() => {}, [query?.type]);
 
   useEffect(() => {
     if (activeCountry) {
@@ -187,6 +205,13 @@ const PropertiesFilter = ({ showFilter, query }) => {
       dispatch(filterByPropertyType({ allProperties, type: "filter" }));
     }
   }, [propertyTypeS]);
+
+  useEffect(() => {
+    dispatch(setUUType(uType?.value));
+    if (uType) {
+      dispatch(filterByUType({ allProperties, type: "filter" }));
+    }
+  }, [uType]);
 
   useEffect(() => {
     dispatch(setActiveSize(areaSize?.value));
@@ -298,17 +323,15 @@ const PropertiesFilter = ({ showFilter, query }) => {
         <div className="fg-top">
           <h5 className="filter-group-title">
             <RiHomeSmileLine />
-            <span>
-              <FormattedMessage id="page.home.auth.properties.filter.property_type" />
-            </span>
+            <span>{locale === "ar" ? "النوع" : "Type"}</span>
           </h5>
-          {propertyTypeS && (
+          {uType && (
             <div
               className="reset-input-box cursor-pointer"
               onClick={() =>
                 resetInput(
-                  setPropertyTypeS,
-                  filterByPropertyType({ allProperties, type: "reset" })
+                  setUType,
+                  filterByUType({ allProperties, type: "reset" })
                 )
               }
             >
@@ -323,19 +346,69 @@ const PropertiesFilter = ({ showFilter, query }) => {
             placeholder={
               <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
             }
-            name="city"
-            id="city_select"
-            options={
-              locale === "ar"
-                ? property_type_options_ar
-                : property_type_options_en
-            }
-            value={propertyTypeS}
-            onChange={setPropertyTypeS}
-            instanceId="city_select"
+            name="unit_type"
+            id="unit_type_select"
+            options={locale === "ar" ? uritType_ar : uritType_en}
+            value={uType}
+            onChange={setUType}
+            instanceId="unit_type_select"
           />
         </div>
       </div>
+      {uType && (
+        <div className="filter-group">
+          <div className="fg-top">
+            <h5 className="filter-group-title">
+              <RiHomeSmileLine />
+              <span>
+                <FormattedMessage id="page.home.auth.properties.filter.property_type" />
+              </span>
+            </h5>
+            {propertyTypeS && (
+              <div
+                className="reset-input-box cursor-pointer"
+                onClick={() =>
+                  resetInput(
+                    setPropertyTypeS,
+                    filterByPropertyType({ allProperties, type: "reset" })
+                  )
+                }
+              >
+                <MdClear />
+              </div>
+            )}
+          </div>
+          <div className="filter-group-content">
+            <Select
+              isSearchable={false}
+              styles={selectStyle}
+              placeholder={
+                <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
+              }
+              name="city"
+              id="city_select"
+              options={
+                uType.value === "housing"
+                  ? locale === "ar"
+                    ? hosuing_type_options_ar
+                    : hosuing_type_options_en
+                  : uType.value === "commercial"
+                  ? locale === "ar"
+                    ? commercial_type_options_ar
+                    : commercial_type_options_en
+                  : uType.value === "administative"
+                  ? locale === "ar"
+                    ? administative_type_options_ar
+                    : administative_type_options_en
+                  : ""
+              }
+              value={propertyTypeS}
+              onChange={setPropertyTypeS}
+              instanceId="city_select"
+            />
+          </div>
+        </div>
+      )}
 
       <div className="filter-group">
         <div className="fg-top">

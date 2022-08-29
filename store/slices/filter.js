@@ -7,6 +7,7 @@ const initialState = {
   activeSize: null,
   bedCount: null,
   propertyType: null,
+  UType: null,
   bathCount: null,
   filteredProperties: [],
 };
@@ -32,6 +33,9 @@ export const filterSlice = createSlice({
     },
     setPropertyType: (state, action) => {
       state.propertyType = action.payload;
+    },
+    setUUType: (state, action) => {
+      state.UType = action.payload;
     },
     filterByCountry: (state, action) => {
       let allProperties = action.payload.allProperties,
@@ -71,6 +75,21 @@ export const filterSlice = createSlice({
             property.property_type.toLowerCase() ===
             state.propertyType.toLowerCase()
           );
+        });
+      }
+    },
+    filterByUType: (state, action) => {
+      let allProperties = action.payload.allProperties,
+        type = action.payload.type;
+      if (type === "reset") {
+        state.filteredProperties = allProperties;
+        return;
+      } else {
+        state.filteredProperties = allProperties.filter((property) => {
+          if (property.licence.toLowerCase() === state.UType.toLowerCase()) {
+            console.log(property.licence.toLowerCase(), state.UType.toLowerCase());
+            return property;
+          }
         });
       }
     },
@@ -137,10 +156,12 @@ export const {
   setActiveGovernorate,
   filterByGovernorate,
   setActiveSize,
+  setUUType,
   filterByAreaSize,
   filterByCountry,
   setPropertyType,
   filterByPropertyType,
+  filterByUType,
   filterByBedNum,
   filterByBathNum,
   setFilteredProperties,
