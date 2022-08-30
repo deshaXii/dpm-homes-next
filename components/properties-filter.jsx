@@ -133,13 +133,35 @@ const PropertiesFilter = ({ showFilter, query }) => {
   const { allCountries, allGovernorates } = useSelector(selectCountries);
   const { allProperties } = useSelector(selectProperties);
   const { activeCountry, filteredProperties } = useSelector(selectFilter);
-  const [uType, setUType] = useState();
+  const [uType, setUType] = useState(() =>
+    locale === "ar"
+      ? uritType_ar.find(
+          (i) => i.value.toLowerCase() === query?.uType?.toLowerCase()
+        )
+      : uritType_en.find(
+          (i) => i.value.toLowerCase() === query?.uType?.toLowerCase()
+        )
+  );
   const [bedNum, setBedNum] = useState();
   const [bathNum, setBathNum] = useState();
   const [country, setCountry] = useState(() =>
     allCountries.find((i) => i.value === Number(query?.city))
   );
-  const [propertyTypeS, setPropertyTypeS] = useState();
+  const [propertyTypeS, setPropertyTypeS] = useState(() =>
+    uType?.value === "housing"
+      ? locale === "ar"
+        ? hosuing_type_options_ar.find((i) => i.value === query?.type)
+        : hosuing_type_options_en.find((i) => i.value === query?.type)
+      : uType?.value === "commercial"
+      ? locale === "ar"
+        ? commercial_type_options_ar.find((i) => i.value === query?.type)
+        : commercial_type_options_en.find((i) => i.value === query?.type)
+      : uType?.value === "administative"
+      ? locale === "ar"
+        ? administative_type_options_ar.find((i) => i.value === query?.type)
+        : administative_type_options_en.find((i) => i.value === query?.type)
+      : ""
+  );
   const [governorate, setGovernorate] = useState();
   const [areaSize, setAreaSize] = useState();
   const dispatch = useDispatch();
@@ -165,30 +187,23 @@ const PropertiesFilter = ({ showFilter, query }) => {
     if (activeCountry) {
       const data = { activeCountry, locale };
       dispatch(getAllGovernorates(data));
-      setGovernorate("");
+      dispatch(filterByCountry({ allProperties, type: "filter" }));
     }
-  }, [country]);
+  }, [country?.value]);
 
   useEffect(() => {
     if (query?.city) {
-      dispatch(setActiveCountry(query?.city));
-      const data = { activeCountry: query?.city, locale };
-      dispatch(getAllGovernorates(data));
-      setGovernorate("");
+      // dispatch(setActiveCountry(query?.city));
+      // const data = { activeCountry: query?.city, locale };
+      // dispatch(getAllGovernorates(data));
+      // setGovernorate("");
     }
+  
     if (query?.type) {
       dispatch(setPropertyType(query?.type));
-      dispatch(filterByPropertyType({ allProperties, type: "filter" }));
+      // dispatch(filterByPropertyType({ allProperties, type: "filter" }));
     }
   }, [query]);
-
-  useEffect(() => {
-    if (activeCountry) {
-      const data = { activeCountry, locale };
-      dispatch(getAllGovernorates(data));
-      dispatch(filterByCountry({ allProperties, type: "filter" }));
-    }
-  }, [activeCountry]);
 
   useEffect(() => {
     dispatch(setActiveGovernorate(governorate?.value));
@@ -196,20 +211,23 @@ const PropertiesFilter = ({ showFilter, query }) => {
       dispatch(filterByGovernorate({ allProperties, type: "filter" }));
     }
   }, [governorate]);
-
-  useEffect(() => {
-    dispatch(setPropertyType(propertyTypeS?.value));
-    if (propertyTypeS) {
-      dispatch(filterByPropertyType({ allProperties, type: "filter" }));
-    }
-  }, [propertyTypeS]);
-
   useEffect(() => {
     dispatch(setUUType(uType?.value));
     if (uType) {
       dispatch(filterByUType({ allProperties, type: "filter" }));
     }
-  }, [uType]);
+    if (query?.uType) {
+      dispatch(setUUType(query?.uType));
+    }
+  }, [uType?.value, query?.uType]);
+  useEffect(() => {
+    dispatch(setPropertyType(propertyTypeS?.value));
+    if (propertyTypeS) {
+      dispatch(filterByPropertyType({ allProperties, type: "filter" }));
+    }
+  }, [propertyTypeS?.value]);
+
+
 
   useEffect(() => {
     dispatch(setActiveSize(areaSize?.value));

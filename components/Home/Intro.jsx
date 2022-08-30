@@ -134,6 +134,8 @@ const HomeIntro = () => {
     },
   };
 
+  const [uType, setUType] = useState();
+
   const handleSearch = (e) => {
     e.preventDefault();
     router.push({
@@ -142,6 +144,7 @@ const HomeIntro = () => {
         city: country.value,
         size: area_size.value,
         type: propertyType.value,
+        uType: uType.value,
       },
     });
   };
@@ -166,8 +169,6 @@ const HomeIntro = () => {
     setAreaSize("");
     setPropertyType("");
   }, [locale]);
-
-  const [uType, setUType] = useState();
 
   const uritType_en = [
     { value: "administative", label: "Administative" },
@@ -332,7 +333,7 @@ const HomeIntro = () => {
 
               <div className="filter-option">
                 <label htmlFor="property_type">
-                <span>{locale === "ar" ? "النوع" : "Type"}</span>
+                  <span>{locale === "ar" ? "النوع" : "Type"}</span>
                 </label>
                 <Select
                   styles={selectStyle}
