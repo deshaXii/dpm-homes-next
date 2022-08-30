@@ -144,7 +144,6 @@ const HomeIntro = () => {
         type: propertyType.value,
       },
     });
-    console.log(country.value, area_size.value, propertyType.value, activeType);
   };
 
   useEffect(() => {
@@ -167,6 +166,67 @@ const HomeIntro = () => {
     setAreaSize("");
     setPropertyType("");
   }, [locale]);
+
+  const [uType, setUType] = useState();
+
+  const uritType_en = [
+    { value: "administative", label: "Administative" },
+    { value: "commercial", label: "Commercial" },
+    { value: "housing", label: "Housing" },
+  ];
+  const uritType_ar = [
+    { value: "housing", label: "سكني" },
+    { value: "commercial", label: "تجاري" },
+    { value: "administative", label: "أداري" },
+  ];
+
+  const administative_type_options_ar = [{ value: "offices", label: "مكاتب" }];
+
+  const administative_type_options_en = [
+    { value: "offices", label: "offices" },
+  ];
+
+  const commercial_type_options_ar = [
+    { value: "shop", label: "محل" },
+    { value: "factory", label: "مصنع" },
+    { value: "land", label: "قطعة ارض" },
+    { value: "warehouse", label: "مخزن" },
+    { value: "playground", label: "ملعب" },
+    { value: "pharmacy", label: "صيدلية" },
+    { value: "mall", label: "مول" },
+    { value: "outlet", label: "مركز تسوق" },
+  ];
+
+  const commercial_type_options_en = [
+    { value: "shop", label: "shop" },
+    { value: "factory", label: "factory" },
+    { value: "land", label: "land" },
+    { value: "warehouse", label: "warehouse" },
+    { value: "playground", label: "playground" },
+    { value: "pharmacy", label: "pharmacy" },
+    { value: "mall", label: "mall" },
+    { value: "outlet", label: "outlet" },
+  ];
+
+  const hosuing_type_options_ar = [
+    { value: "palace", label: "قصر" },
+    { value: "villa", label: "فيلا" },
+    { value: "twin_house", label: "تون هاوس" },
+    { value: "pent_house", label: "بنت هاوس" },
+    { value: "flat", label: "منزل" },
+    { value: "studio", label: "ستوديو" },
+    { value: "chalet", label: "شاليه" },
+  ];
+
+  const hosuing_type_options_en = [
+    { value: "palace", label: "palace" },
+    { value: "villa", label: "villa" },
+    { value: "twin_house", label: "twin house" },
+    { value: "pent_house", label: "pent house" },
+    { value: "flat", label: "flat" },
+    { value: "studio", label: "studio" },
+    { value: "chalet", label: "chalet" },
+  ];
 
   return (
     <header
@@ -272,48 +332,56 @@ const HomeIntro = () => {
 
               <div className="filter-option">
                 <label htmlFor="property_type">
-                  <FormattedMessage id="page.home.auth.properties.filter.property_type" />
+                <span>{locale === "ar" ? "النوع" : "Type"}</span>
                 </label>
                 <Select
                   styles={selectStyle}
                   isSearchable={false}
-                  instanceId="property_type"
                   placeholder={
                     <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
                   }
-                  value={propertyType}
-                  onChange={setPropertyType}
-                  name="type"
-                  id="property_type"
-                  options={
-                    locale === "ar"
-                      ? property_type_options_ar
-                      : property_type_options_en
-                  }
+                  name="unit_type"
+                  id="unit_type_select"
+                  options={locale === "ar" ? uritType_ar : uritType_en}
+                  value={uType}
+                  onChange={setUType}
+                  instanceId="unit_type_select"
                 />
               </div>
-              {/* <div className="filter-option">
-                <label htmlFor="property_type">
-                  <FormattedMessage id="page.home.auth.properties.filter.property_type" />
-                </label>
-                <Select
-                  styles={selectStyle}
-                  isSearchable={false}
-                  instanceId="property_type"
-                  placeholder={
-                    <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
-                  }
-                  value={propertyType}
-                  onChange={setPropertyType}
-                  name="type"
-                  id="property_type"
-                  options={
-                    locale === "ar"
-                      ? property_type_options_ar
-                      : property_type_options_en
-                  }
-                />
-              </div> */}
+              {uType?.value && (
+                <div className="filter-option">
+                  <label htmlFor="property_type">
+                    <FormattedMessage id="page.home.auth.properties.filter.property_type" />
+                  </label>
+                  <Select
+                    styles={selectStyle}
+                    isSearchable={false}
+                    instanceId="property_type"
+                    placeholder={
+                      <FormattedMessage id="page.home.auth.properties.filter.select_property_type" />
+                    }
+                    value={propertyType}
+                    onChange={setPropertyType}
+                    name="type"
+                    id="property_type"
+                    options={
+                      uType.value === "housing"
+                        ? locale === "ar"
+                          ? hosuing_type_options_ar
+                          : hosuing_type_options_en
+                        : uType.value === "commercial"
+                        ? locale === "ar"
+                          ? commercial_type_options_ar
+                          : commercial_type_options_en
+                        : uType.value === "administative"
+                        ? locale === "ar"
+                          ? administative_type_options_ar
+                          : administative_type_options_en
+                        : ""
+                    }
+                  />
+                </div>
+              )}
 
               <div className="filter-option">
                 <label htmlFor="area_size_select">

@@ -14,7 +14,6 @@ const Terms = () => {
     };
   }, []);
   const { settingsData } = useSelector(selectSettings);
-  console.log(settingsData);
   return (
     <>
       <Head>

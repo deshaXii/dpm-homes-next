@@ -58,9 +58,9 @@ const uritType_en = [
   { value: "housing", label: "Housing" },
 ];
 const uritType_ar = [
-  { value: "administative", label: "أداري" },
-  { value: "commercial", label: "تجاري" },
   { value: "housing", label: "سكني" },
+  { value: "commercial", label: "تجاري" },
+  { value: "administative", label: "أداري" },
 ];
 
 const administative_type_options_ar = [{ value: "offices", label: "مكاتب" }];
@@ -181,8 +181,6 @@ const PropertiesFilter = ({ showFilter, query }) => {
       dispatch(filterByPropertyType({ allProperties, type: "filter" }));
     }
   }, [query]);
-
-  useEffect(() => {}, [query?.type]);
 
   useEffect(() => {
     if (activeCountry) {
@@ -450,128 +448,136 @@ const PropertiesFilter = ({ showFilter, query }) => {
           />
         </div>
       </div>
-      <div className="filter-group">
-        <div className="fg-top">
-          <h5 className="filter-group-title">
-            <RiHotelBedLine />
-            <span>
-              <FormattedMessage id="section.property_card.bedrooms" />
-            </span>
-          </h5>
-          {bedNum && (
-            <div
-              className="reset-input-box cursor-pointer"
-              onClick={() =>
-                resetInput(
-                  setBedNum,
-                  filterByBedNum({ allProperties, type: "reset" })
-                )
-              }
-            >
-              <MdClear />
+
+      {uType?.value === "commercial" || uType?.value === "administrative" ? (
+        ""
+      ) : (
+        <>
+          <div className="filter-group">
+            <div className="fg-top">
+              <h5 className="filter-group-title">
+                <RiHotelBedLine />
+                <span>
+                  <FormattedMessage id="section.property_card.bedrooms" />
+                </span>
+              </h5>
+              {bedNum && (
+                <div
+                  className="reset-input-box cursor-pointer"
+                  onClick={() =>
+                    resetInput(
+                      setBedNum,
+                      filterByBedNum({ allProperties, type: "reset" })
+                    )
+                  }
+                >
+                  <MdClear />
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        <div className="filter-group-content d-f">
-          <div className="custom-checkbox  cursor-pointer">
-            <input
-              type="checkbox"
-              value="1"
-              onChange={(e) => setBedNum(e.target.value)}
-              checked={bedNum === "1" && true}
-            />
-            <span>1</span>
-          </div>
-          <div className="custom-checkbox  cursor-pointer">
-            <input
-              type="checkbox"
-              value="2"
-              onChange={(e) => setBedNum(e.target.value)}
-              checked={bedNum === "2" && true}
-            />
-            <span>2</span>
-          </div>
-          <div className="custom-checkbox  cursor-pointer">
-            <input
-              type="checkbox"
-              value="3"
-              onChange={(e) => setBedNum(e.target.value)}
-              checked={bedNum === "3" && true}
-            />
-            <span>3</span>
-          </div>
-          <div className="custom-checkbox  cursor-pointer">
-            <input
-              type="checkbox"
-              value="10"
-              onChange={(e) => setBedNum(e.target.value)}
-              checked={bedNum === "10" && true}
-            />
-            <span>+4</span>
-          </div>
-        </div>
-      </div>
-      <div className="filter-group">
-        <div className="fg-top">
-          <h5 className="filter-group-title">
-            <MdOutlineBathtub />
-            <span>
-              <FormattedMessage id="section.property_card.bathrooms" />
-            </span>
-          </h5>
-          {bathNum && (
-            <div
-              className="reset-input-box cursor-pointer"
-              onClick={() =>
-                resetInput(
-                  setBathNum,
-                  filterByBathNum({ allProperties, type: "reset" })
-                )
-              }
-            >
-              <MdClear />
+            <div className="filter-group-content d-f">
+              <div className="custom-checkbox  cursor-pointer">
+                <input
+                  type="checkbox"
+                  value="1"
+                  onChange={(e) => setBedNum(e.target.value)}
+                  checked={bedNum === "1" && true}
+                />
+                <span>1</span>
+              </div>
+              <div className="custom-checkbox  cursor-pointer">
+                <input
+                  type="checkbox"
+                  value="2"
+                  onChange={(e) => setBedNum(e.target.value)}
+                  checked={bedNum === "2" && true}
+                />
+                <span>2</span>
+              </div>
+              <div className="custom-checkbox  cursor-pointer">
+                <input
+                  type="checkbox"
+                  value="3"
+                  onChange={(e) => setBedNum(e.target.value)}
+                  checked={bedNum === "3" && true}
+                />
+                <span>3</span>
+              </div>
+              <div className="custom-checkbox  cursor-pointer">
+                <input
+                  type="checkbox"
+                  value="10"
+                  onChange={(e) => setBedNum(e.target.value)}
+                  checked={bedNum === "10" && true}
+                />
+                <span>+4</span>
+              </div>
             </div>
-          )}
-        </div>
-        <div className="filter-group-content d-f">
-          <div className="custom-checkbox  cursor-pointer">
-            <input
-              type="checkbox"
-              value="1"
-              onChange={(e) => setBathNum(e.target.value)}
-              checked={bathNum === "1" && true}
-            />
-            <span>1</span>
           </div>
-          <div className="custom-checkbox  cursor-pointer">
-            <input
-              type="checkbox"
-              value="2"
-              onChange={(e) => setBathNum(e.target.value)}
-              checked={bathNum === "2" && true}
-            />
-            <span>2</span>
+          <div className="filter-group">
+            <div className="fg-top">
+              <h5 className="filter-group-title">
+                <MdOutlineBathtub />
+                <span>
+                  <FormattedMessage id="section.property_card.bathrooms" />
+                </span>
+              </h5>
+              {bathNum && (
+                <div
+                  className="reset-input-box cursor-pointer"
+                  onClick={() =>
+                    resetInput(
+                      setBathNum,
+                      filterByBathNum({ allProperties, type: "reset" })
+                    )
+                  }
+                >
+                  <MdClear />
+                </div>
+              )}
+            </div>
+            <div className="filter-group-content d-f">
+              <div className="custom-checkbox  cursor-pointer">
+                <input
+                  type="checkbox"
+                  value="1"
+                  onChange={(e) => setBathNum(e.target.value)}
+                  checked={bathNum === "1" && true}
+                />
+                <span>1</span>
+              </div>
+              <div className="custom-checkbox  cursor-pointer">
+                <input
+                  type="checkbox"
+                  value="2"
+                  onChange={(e) => setBathNum(e.target.value)}
+                  checked={bathNum === "2" && true}
+                />
+                <span>2</span>
+              </div>
+              <div className="custom-checkbox  cursor-pointer">
+                <input
+                  type="checkbox"
+                  value="3"
+                  onChange={(e) => setBathNum(e.target.value)}
+                  checked={bathNum === "3" && true}
+                />
+                <span>3</span>
+              </div>
+              <div className="custom-checkbox  cursor-pointer">
+                <input
+                  type="checkbox"
+                  value="10"
+                  onChange={(e) => setBathNum(e.target.value)}
+                  checked={bathNum === "10" && true}
+                />
+                <span>+4</span>
+              </div>
+            </div>
           </div>
-          <div className="custom-checkbox  cursor-pointer">
-            <input
-              type="checkbox"
-              value="3"
-              onChange={(e) => setBathNum(e.target.value)}
-              checked={bathNum === "3" && true}
-            />
-            <span>3</span>
-          </div>
-          <div className="custom-checkbox  cursor-pointer">
-            <input
-              type="checkbox"
-              value="10"
-              onChange={(e) => setBathNum(e.target.value)}
-              checked={bathNum === "10" && true}
-            />
-            <span>+4</span>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
+
       {/* <div className="filter-group">
         <h5 className="filter-group-title">
           <FaRegMoneyBillAlt />

@@ -1034,4 +1034,8 @@
 
 }
 
-@media (min-width: 1199px) and (max-width: 1399px) {}
+@media (min-width: 1199px) and (max-width: 1399px) {
+    .intro-filter {
+        max-width: 82%;
+    }
+}

@@ -21,7 +21,6 @@ const Project = () => {
   const [isOpen, setOpen] = useState(false);
 
   const { project } = useSelector(selectProjects);
-  console.log(project);
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     return () => {
@@ -133,7 +132,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
       );
-      console.log(query);
       await store.dispatch(
         getCurrentProject({ id: Number(query.id), lang: locale })
       );

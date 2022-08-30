@@ -219,7 +219,6 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
                 url: "https://luxuryaqar.com/",
                 title: "Flamingos",
               }}
-              onClick={() => console.log("shared successfully!")}
             >
               <button type="button" className="btn share-btn">
                 <AiOutlineShareAlt />

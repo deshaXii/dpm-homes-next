@@ -274,7 +274,6 @@ const PropertyViewer = () => {
                     url: "https://luxuryaqar.com/",
                     title: "luxuryaqar",
                   }}
-                  onClick={() => console.log("shared successfully!")}
                 >
                   <button className="btn cursor-pointer share-icon">
                     <FiShare2 />

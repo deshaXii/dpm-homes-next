@@ -70,6 +70,16 @@ export const filterSlice = createSlice({
         state.filteredProperties = allProperties;
         return;
       } else {
+        if (state.filteredProperties && !state.propertyType) {
+          state.filteredProperties = state.filteredProperties.filter(
+            (property) => {
+              return (
+                property.property_type.toLowerCase() ===
+                state.propertyType.toLowerCase()
+              );
+            }
+          );
+        }
         state.filteredProperties = allProperties.filter((property) => {
           return (
             property.property_type.toLowerCase() ===
@@ -87,7 +97,6 @@ export const filterSlice = createSlice({
       } else {
         state.filteredProperties = allProperties.filter((property) => {
           if (property.licence.toLowerCase() === state.UType.toLowerCase()) {
-            console.log(property.licence.toLowerCase(), state.UType.toLowerCase());
             return property;
           }
         });
@@ -111,7 +120,9 @@ export const filterSlice = createSlice({
         state.filteredProperties = allProperties;
       } else {
         state.filteredProperties = allProperties.filter((property) => {
-          return Number(state.bedCount) >= Number(property.no_bed_room);
+          if (Number(state.bedCount) >= Number(property.no_bed_room)) {
+            return property;
+          }
         });
       }
     },
