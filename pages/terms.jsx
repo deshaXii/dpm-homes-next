@@ -17,10 +17,7 @@ const Terms = () => {
   return (
     <>
       <Head>
-        <title>
-          Luxury Aqar |
-          {router.locale === "en" ? " Terms & Conditions" : " الأحكام والشروط "}
-        </title>
+      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div className="terms-page" style={{ padding: "60px 0 120px 0" }}>

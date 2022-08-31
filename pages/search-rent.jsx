@@ -33,7 +33,7 @@ const Search = () => {
   return (
     <>
       <Head>
-        <title>Luxury Aqar | {locale === 'en' ? 'Properties For Rent' : 'عقارات للإيجار'}</title>
+      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div className="search-page" style={{ padding: "60px 0 120px 0" }}>

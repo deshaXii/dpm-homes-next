@@ -16,9 +16,7 @@ const login = () => {
   return (
     <Default>
       <Head>
-        <title>
-          Luxury Aqar |{locale === "en" ? " Login" : " تسجيل الدخول"}
-        </title>
+      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <div
         className="login-page"

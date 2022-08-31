@@ -28,7 +28,7 @@ const SingleProperty = () => {
   return (
     <>
       <Head>
-        <title>Luxury Aqar - Property</title>
+        <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div className="property-page">

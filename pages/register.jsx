@@ -16,9 +16,7 @@ const Register = () => {
   return (
     <Default>
       <Head>
-        <title>
-          Luxury Aqar | {locale === "en" ? " Create Account" : " إنشاء حساب "}
-        </title>
+      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <div
         className="login-page"

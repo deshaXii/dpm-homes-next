@@ -24,7 +24,7 @@ const ClientProfile = () => {
   return (
     <>
       <Head>
-        <title>Dpm Homes - {clientData.user.name}'s Profile</title>
+      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div className="client-page" style={{ padding: "60px 0 120px 0" }}>

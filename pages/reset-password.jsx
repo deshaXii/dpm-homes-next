@@ -41,10 +41,7 @@ const login = () => {
   return (
     <>
       <Head>
-        <title>
-          Luxury Aqar |
-          {router.locale === "en" ? " Reset My Password" : " إسترجاع كلمة المرور"}
-        </title>
+      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <div
         className="login-page login-area login-page-content"

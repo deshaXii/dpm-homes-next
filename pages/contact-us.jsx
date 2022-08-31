@@ -51,9 +51,7 @@ const ContactUs = () => {
   return (
     <>
       <Head>
-        <title>
-          Luxury Aqar | {locale === "en" ? " Contact Us" : " تواصل معنا"}
-        </title>
+      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div className="contact-us-page" style={{ padding: "60px 0 120px 0" }}>

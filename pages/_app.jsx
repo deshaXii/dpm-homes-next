@@ -47,22 +47,13 @@ function MyApp({ Component, pageProps, user }) {
   return (
     <>
       <Head>
+        <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
         <meta
           name="description"
-          content={
-            locale === "en"
-              ? "Luxury Aqar is the largest real estate search engine in Egypt, through which you can search for properties for sale or properties for rent, including apartments and villas."
-              : "لاكشري عقار اكبر محرك بحث في عقارات مصر يمكنك من خلاله البحث عن عقارات للبيع او عقارات للايجار من شقق وفيلات"
-          }
+          content="لاكشري عقار اكبر محرك بحث في عقارات مصر يمكنك من خلاله البحث عن عقارات للبيع او عقارات للايجار من شقق وفيلات Real Estate Agent, Listing your Property in Luxury Aqar to get the best result investor"
         />
-        <meta
-          name="facebook-domain-verification"
-          content="jj0ja1p8vmgbdfeba6781qnpi92m46"
-        />
-        <meta
-          name="google-site-verification"
-          content="NBG0d3Vu3lHnoN_-ubKegWHSONu0p-Cxj98F__vThbo"
-        />
+        name="google-site-verification"
+        content="NBG0d3Vu3lHnoN_-ubKegWHSONu0p-Cxj98F__vThbo" />
         <script
           id="ss"
           strategy="afterInteractive"

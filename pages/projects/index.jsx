@@ -23,7 +23,7 @@ const Projects = () => {
   return (
     <>
       <Head>
-        <title>Luxury Aqar - Projects</title>
+      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div className="projects-page" style={{ padding: "60px 0 120px 0" }}>

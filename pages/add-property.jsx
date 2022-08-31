@@ -37,9 +37,7 @@ const AddProperty = () => {
   return (
     <>
       <Head>
-        <title>
-          Luxury Aqar |{locale === "en" ? " Add Your Property" : " إضافة عقار "}
-        </title>
+      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div

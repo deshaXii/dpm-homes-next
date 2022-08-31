@@ -192,16 +192,8 @@ const PropertiesFilter = ({ showFilter, query }) => {
   }, [country?.value]);
 
   useEffect(() => {
-    if (query?.city) {
-      // dispatch(setActiveCountry(query?.city));
-      // const data = { activeCountry: query?.city, locale };
-      // dispatch(getAllGovernorates(data));
-      // setGovernorate("");
-    }
-  
     if (query?.type) {
       dispatch(setPropertyType(query?.type));
-      // dispatch(filterByPropertyType({ allProperties, type: "filter" }));
     }
   }, [query]);
 

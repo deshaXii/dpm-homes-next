@@ -43,7 +43,7 @@ const login = () => {
   return (
     <>
       <Head>
-        <title>
+        
           Luxury Aqar |
           {router.locale === "en" ? " Forget My Password" : " نسيت كلمة المرور"}
         </title>

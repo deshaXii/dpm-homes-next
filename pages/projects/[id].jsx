@@ -30,11 +30,7 @@ const Project = () => {
   return (
     <>
       <Head>
-        <title>
-          {locale === "ar" ? "مشروع " : ""}
-          {project.project_info.name}
-          {locale === "en" ? " project" : ""}
-        </title>
+      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       {typeof window !== "undefined" && (
         <ModalVideo

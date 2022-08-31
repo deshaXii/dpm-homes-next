@@ -153,10 +153,7 @@ const MyProfile = () => {
   return (
     <>
       <Head>
-        <title>
-          Luxury Aqar |{" "}
-          {router.locale === "en" ? "Account Settings" : "إعدادات الحساب"}
-        </title>
+      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div
