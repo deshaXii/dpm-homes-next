@@ -8,59 +8,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { FormattedMessage } from "react-intl";
 
-const Services = ({ sectionBG, withOverlay }) => {
+const Services = ({ sectionBG, withOverlay, data }) => {
   const router = useRouter();
   const { locale } = router;
-  const services = [
-    {
-      id: 1,
-      title: "Houses",
-      content:
-        "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
-      icon: <BiHomeSmile />,
-      link: "#",
-    },
-    {
-      id: 2,
-      title: "Apartments",
-      content:
-        "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
-      icon: <MdOutlineApartment />,
-      link: "#",
-    },
-    {
-      id: 3,
-      title: "Commercial",
-      content:
-        "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
-      icon: <BsShop />,
-      link: "#",
-    },
-    // {
-    //   id: 4,
-    //   title: "Houses",
-    //   content:
-    //     "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
-    //   icon: <BsShop />,
-    //   link: "#",
-    // },
-    // {
-    //   id: 5,
-    //   title: "Houses",
-    //   content:
-    //     "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
-    //   icon: <BsShop />,
-    //   link: "#",
-    // },
-    // {
-    //   id: 6,
-    //   title: "Houses",
-    //   content:
-    //     "tortor consequat id porta nibh venenatis cras sed felis eget velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum",
-    //   icon: <BsShop />,
-    //   link: "#",
-    // },
-  ];
+  const services = data;
 
   return (
     <section
@@ -93,12 +44,17 @@ const Services = ({ sectionBG, withOverlay }) => {
               }}
             >
               <div className="service-box">
-                <div className="icon-box">{item.icon}</div>
+                <div className="icon-box">
+                  <i className={item.icon}></i>
+                </div>
                 <h5>{item.title}</h5>
-                <p>{item.content}</p>
-                <Link href={item.link}>
+                <p>{item.description}</p>
+                <Link href={"#"}>
                   <a>
-                    <span><FormattedMessage id="global.read.more" /></span> <GrLinkNext />
+                    <span>
+                      <FormattedMessage id="global.read.more" />
+                    </span>{" "}
+                    <GrLinkNext />
                   </a>
                 </Link>
               </div>

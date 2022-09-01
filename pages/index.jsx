@@ -18,9 +18,11 @@ import { getAllCountries } from "../store/slices/countries";
 const Properties = dynamic(() => import("../components/Global/Properties"));
 const Projects = dynamic(() => import("../components/Home/Projects"));
 import { useSelector } from "react-redux";
+import { getServices, selectServices } from "../store/slices/services";
 
 const Home = ({ dir }) => {
   const { homeSell, homeRent } = useSelector(selectProperties);
+  const { servicesData } = useSelector(selectServices);
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     return () => {
@@ -45,7 +47,11 @@ const Home = ({ dir }) => {
           sectionTitle={<FormattedMessage id="global.section.title.sell" />}
           sectionClass="for-sall"
         />
-        <Services sectionBG="/img/services-section-bg.jpg" withOverlay />
+        <Services
+          data={servicesData.data}
+          sectionBG="/img/services-section-bg.jpg"
+          withOverlay
+        />
         {homeRent.data ? (
           <Properties
             items={homeRent.data}
@@ -74,6 +80,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       );
       await store.dispatch(getAllProjects(locale));
       await store.dispatch(getAllCountries(locale));
+      await store.dispatch(getServices(locale));
       await store.dispatch(getHomepageSellUnits(locale));
       await store.dispatch(getHomepageRentUnits(locale));
       return {};

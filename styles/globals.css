@@ -804,6 +804,9 @@ section.services-section:after {
   position: absolute;
   top: -23px;
   right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 56px;
   height: 56px;
   background: var(--mainColor);

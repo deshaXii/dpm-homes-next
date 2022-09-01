@@ -10,6 +10,7 @@ import clientReducer from "./slices/client";
 import wishlistSlice from "./slices/wishlist";
 import feedbackSlice from "./slices/feedback";
 import settingsSlice from "./slices/settings";
+import servicesSlice from "./slices/services";
 
 const makeStore = () =>
   configureStore({
@@ -24,6 +25,7 @@ const makeStore = () =>
       wishlist: wishlistSlice,
       feedback: feedbackSlice,
       settings: settingsSlice,
+      services: servicesSlice
     },
     devTools: true,
   });
