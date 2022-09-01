@@ -81,7 +81,7 @@ const RegisterContent = ({ from }) => {
           pauseOnHover: true,
           draggable: true,
         });
-        router.push("/");
+        router.push("/my-profile");
       } else {
         for (let error in res.payload.messages) {
           if (typeof res.payload.messages[error] === "object") {

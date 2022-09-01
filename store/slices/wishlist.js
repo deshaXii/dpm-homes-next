@@ -30,7 +30,7 @@ export const wishlistSlice = createSlice({
     builder
       .addCase(addPropertyToWishlist.fulfilled, (state, action) => {})
       .addCase(getWishlist.fulfilled, (state, action) => {
-        state.wishlist = action.payload.data;
+        // state.wishlist = action.payload.data;
       })
       .addCase(HYDRATE, (state, action) => {
         const nextState = {

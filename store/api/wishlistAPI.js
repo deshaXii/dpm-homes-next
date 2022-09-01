@@ -14,7 +14,7 @@ export async function updateWishlist(id) {
   }
 }
 
-export async function getAllWishlist(token) {
+export async function getAllWishlist({token}) {
   try {
     const res = await API.get(`/my-wishlist`, {
       headers: {

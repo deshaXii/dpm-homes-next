@@ -46,7 +46,7 @@ const LoginContent = ({ from }) => {
     }
     dispatch(login({ user, lang: "ar" })).then((res) => {
       if (res.payload.success) {
-        router.push("/");
+        router.push("/my-profile");
         toast.success(res.payload.message, {
           position: "top-right",
           autoClose: 5000,

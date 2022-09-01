@@ -18,7 +18,7 @@ import {
   selectUserProperties,
 } from "../store/slices/auth";
 import { useDispatch } from "react-redux";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { toast } from "react-toastify";
 import jsCookies from "js-cookies";
 import { useSelector } from "react-redux";
@@ -49,6 +49,7 @@ import Head from "next/head";
 import { getAllCountries, selectCountries } from "../store/slices/countries";
 import Select from "react-select";
 import { getWishlist, selectWishlist } from "../store/slices/wishlist";
+import { RiAddLine } from "react-icons/ri";
 
 const MyProfile = () => {
   const user = useSelector(selectUser);
