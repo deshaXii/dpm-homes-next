@@ -11,11 +11,27 @@ export async function getProperties({ type, userToken, lang }) {
       });
       return await res.data;
     } else {
-      const res = await API.get(
-        `/get-property?type=${type}&lang=${lang}`
-      );
+      const res = await API.get(`/get-property?type=${type}&lang=${lang}`);
       return await res.data;
     }
+  } catch (err) {
+    return err;
+  }
+}
+
+export async function getFeaturesSellUnits(locale) {
+  try {
+    const res = await API.get(`/get-homepage-sell?lang=${locale}`);
+    return await res.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+export async function getFeaturesRentUnits(locale) {
+  try {
+    const res = await API.get(`/get-homepage-rent?lang=${locale}`);
+    return await res
   } catch (err) {
     return err;
   }

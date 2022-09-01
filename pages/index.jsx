@@ -5,15 +5,22 @@ import HomeIntro from "../components/Home/Intro";
 import Services from "../components/Home/Services";
 import { FormattedMessage } from "react-intl";
 import { wrapper } from "../store";
-import { getPropertiesWithTpye } from "../store/slices/properties";
+import {
+  getHomepageRentUnits,
+  getHomepageSellUnits,
+  getPropertiesWithTpye,
+  selectProperties,
+} from "../store/slices/properties";
 import { getAllProjects } from "../store/slices/projects";
 import dynamic from "next/dynamic";
 import { parseCookies } from "../common/parseCookies";
 import { getAllCountries } from "../store/slices/countries";
 const Properties = dynamic(() => import("../components/Global/Properties"));
 const Projects = dynamic(() => import("../components/Home/Projects"));
+import { useSelector } from "react-redux";
 
 const Home = ({ dir }) => {
+  const { homeSell, homeRent } = useSelector(selectProperties);
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     return () => {
@@ -33,16 +40,23 @@ const Home = ({ dir }) => {
       <Default>
         <HomeIntro />
         <Properties
-          type={"sell"}
+          items={homeSell}
+          itemsType="sell"
           sectionTitle={<FormattedMessage id="global.section.title.sell" />}
           sectionClass="for-sall"
         />
         <Services sectionBG="/img/services-section-bg.jpg" withOverlay />
-        <Properties
-          type={"rent"}
-          sectionTitle={<FormattedMessage id="global.section.title.rent" />}
-          sectionClass="for-rent"
-        />
+        {homeRent.data ? (
+          <Properties
+            items={homeRent.data}
+            itemstype="rent"
+            sectionTitle={<FormattedMessage id="global.section.title.rent" />}
+            sectionClass="for-rent"
+          />
+        ) : (
+          ""
+        )}
+
         <Projects />
       </Default>
     </>
@@ -60,20 +74,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
       );
       await store.dispatch(getAllProjects(locale));
       await store.dispatch(getAllCountries(locale));
-      if (req.cookies.hasOwnProperty("userToken")) {
-        const cookies = parseCookies(req);
-        const token = cookies.userToken;
-        await store.dispatch(
-          getPropertiesWithTpye({ type: "all", userToken: token, lang: locale })
-        );
-        return {};
-      } else {
-        await store.dispatch(
-          getPropertiesWithTpye({ type: "all", lang: locale })
-        );
-        return {
-          props: {},
-        };
-      }
+      await store.dispatch(getHomepageSellUnits(locale));
+      await store.dispatch(getHomepageRentUnits(locale));
+      return {};
     }
 );

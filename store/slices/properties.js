@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 import {
   getProperties,
+  getFeaturesSellUnits,
+  getFeaturesRentUnits,
   addResidentialCashProperty,
   addResidentialInstallmentProperty,
   getPropertyById,
@@ -15,19 +17,35 @@ import {
   addAdministrativeInstallmentProperty,
   addAdministrativeBothProperty,
   addAdministrativeRentProperty,
-  getRelatedProperty
+  getRelatedProperty,
 } from "../api/propertiesAPI";
 
 const initialState = {
   allProperties: [],
   property: {},
-  related: []
+  related: [],
+  homeSell: [],
+  homeRent: [],
 };
 
 export const getPropertiesWithTpye = createAsyncThunk(
   "properties/getProperty",
   async ({ type, userToken, lang }) => {
     const responseData = await getProperties({ type, userToken, lang });
+    return responseData;
+  }
+);
+export const getHomepageSellUnits = createAsyncThunk(
+  "properties/getFeaturesSellUnits",
+  async (locale) => {
+    const responseData = await getFeaturesSellUnits(locale);
+    return responseData;
+  }
+);
+export const getHomepageRentUnits = createAsyncThunk(
+  "properties/getFeaturesRentUnits",
+  async (locale) => {
+    const responseData = await getFeaturesRentUnits(locale);
     return responseData;
   }
 );
@@ -42,8 +60,8 @@ export const showProperty = createAsyncThunk(
 
 export const showRelatedProperty = createAsyncThunk(
   "properties/showRelatedProperty",
-  async ({id, lang}) => {
-    const responseData = await getRelatedProperty({id, lang});
+  async ({ id, lang }) => {
+    const responseData = await getRelatedProperty({ id, lang });
     return responseData;
   }
 );
@@ -152,6 +170,12 @@ export const propertiesSlice = createSlice({
     builder
       .addCase(getPropertiesWithTpye.fulfilled, (state, action) => {
         state.allProperties = action.payload.data;
+      })
+      .addCase(getHomepageSellUnits.fulfilled, (state, action) => {
+        state.homeSell = action.payload.data;
+      })
+      .addCase(getHomepageRentUnits.fulfilled, (state, action) => {
+        state.homeRent = action.payload.data;
       })
       .addCase(showProperty.fulfilled, (state, action) => {
         state.property = action.payload;
