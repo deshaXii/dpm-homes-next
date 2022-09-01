@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import jsCookies from "js-cookies";
 import SiteMenu from "./SiteMenu";
 import MobileMenu from "./MobileMenu";
+import { AiOutlineUserAdd } from "react-icons/ai";
 
 const AppNavbar = ({ user }) => {
   const { locales, locale, asPath } = useRouter();
@@ -145,16 +146,34 @@ const AppNavbar = ({ user }) => {
             </a>
           </Link>
         </div>
-        <Link href="/add-property">
-          <a className="mobile-menu-link">
-            <div className="mml-icon">
-              <RiAddLine />
+        {user ? (
+          <>
+            <div className="navbar-auth-area-inner">
+              <div className="mml-icon">
+                <div className="navbar-auth-user-data">
+                  <Link href="/my-profile">
+                    <a className="mobile-menu-link">
+                      <Image
+                        src={`https://admin.dpmhomes.com/user-images/${user.data.image}`}
+                        width={40}
+                        height={40}
+                        alt={`${user.data.name} image`}
+                      />
+                    </a>
+                  </Link>
+                </div>
+              </div>
             </div>
-            {/* <span>
-                <FormattedMessage id="page.home.head.advertise" />
-              </span> */}
-          </a>
-        </Link>
+          </>
+        ) : (
+          <Link href="/login">
+            <a className="navbar-login-link mobile-menu-link">
+              <div className="mml-icon">
+                <AiOutlineUserAdd />
+              </div>
+            </a>
+          </Link>
+        )}
       </nav>
       <MobileMenu setIsOpen={setIsOpen} isOpen={isOpen} />
     </>

@@ -679,8 +679,8 @@
 
     .mobile.navbar a.mobile-menu-link {
         border: 2px solid var(--mainColor);
-        border-radius: 6px;
-        padding: 4px;
+        border-radius: 60px;
+        padding: 1px;
         display: flex;
         width: 36px;
         height: 36px;
