@@ -67,6 +67,7 @@ function MyApp({ Component, pageProps, user }) {
           name="google-site-verification"
           content="NBG0d3Vu3lHnoN_-ubKegWHSONu0p-Cxj98F__vThbo"
         />
+        <meta name="google-site-verification" content="gptiH-d68AHHUPj5Y_GIr5GinsuQz6hpltFg2yU_HQg" />
         <script
           id="ss"
           strategy="afterInteractive"
