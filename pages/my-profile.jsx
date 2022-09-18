@@ -154,7 +154,7 @@ const MyProfile = () => {
   return (
     <>
       <Head>
-      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
+        <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div
@@ -214,7 +214,6 @@ const MyProfile = () => {
                     onClick={() => {
                       dispatch(logout(jsCookies.getItem("userToken"))).then(
                         () => {
-                          router.push("/");
                           toast.success("Logout Successfully");
                         }
                       );

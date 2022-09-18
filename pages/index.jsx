@@ -34,7 +34,7 @@ const Home = ({ dir }) => {
     <>
       <Head>
         <title>Luxury Aqar - Find yours dream</title>
-        <link rel="alternate" href="/" hrefLang="x-default" />e
+        <link rel="alternate" href="/" hrefLang="x-default" />
         <link rel="alternate" href="/" hrefLang="en" />
         <link rel="alternate" href="/ar" hrefLang="ar" />
       </Head>
