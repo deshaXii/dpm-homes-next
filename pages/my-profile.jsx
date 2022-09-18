@@ -212,19 +212,15 @@ const MyProfile = () => {
                   </button>
                   <button
                     onClick={() => {
-                      dispatch(logout(jsCookies.getItem("userToken"))).then(
-                        () => {
-                          toast.success("Logout Successfully");
-                        }
-                      );
+                      router.push("/add-property");
                     }}
                     className={`btn units-view cursor-pointer`}
                   >
                     <div className="view-btn-icon">
-                      <FiLogOut />
+                    <RiAddLine />
                     </div>
                     <span>
-                      <FormattedMessage id="page.home.auth.logout" />
+                    <FormattedMessage id="page.home.head.advertise" />
                     </span>
                   </button>
                 </div>
