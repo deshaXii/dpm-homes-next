@@ -195,7 +195,12 @@ const PropertiesFilter = ({ showFilter, query }) => {
     if (query?.type) {
       dispatch(setPropertyType(query?.type));
     }
-  }, [query]);
+  }, [query?.type]);
+  useEffect(() => {
+    if (query?.city) {
+      dispatch(filterByCountry({ allProperties, type: "filter" }));
+    }
+  }, [query?.city]);
 
   useEffect(() => {
     dispatch(setActiveGovernorate(governorate?.value));
@@ -218,8 +223,6 @@ const PropertiesFilter = ({ showFilter, query }) => {
       dispatch(filterByPropertyType({ allProperties, type: "filter" }));
     }
   }, [propertyTypeS?.value]);
-
-
 
   useEffect(() => {
     dispatch(setActiveSize(areaSize?.value));

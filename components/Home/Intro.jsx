@@ -138,14 +138,29 @@ const HomeIntro = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
+
+    let queryObj = {
+      city: null,
+      size: null,
+      type: null,
+      uType: null,
+    };
+
+    if (country.value) {
+      queryObj.city = country.value;
+    }
+    if (area_size.value) {
+      queryObj.size = area_size.value;
+    }
+    if (propertyType.value) {
+      queryObj.type = propertyType.value;
+    }
+    if (uType?.value) {
+      queryObj.uType = uType.value;
+    }
     router.push({
       pathname: `/search-${activeType.toLowerCase()}`,
-      query: {
-        city: country.value,
-        size: area_size.value,
-        type: propertyType.value,
-        uType: uType.value,
-      },
+      query: queryObj,
     });
   };
 
