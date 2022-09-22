@@ -4117,7 +4117,7 @@ ul.pagination li.disabled a {
 
 #button-18 .knobs:before,
 #button-18 .knobs span {
-  content: "YES";
+  content: "✓";
   position: absolute;
   top: 4px;
   left: 4px;
@@ -4174,7 +4174,7 @@ ul.pagination li.disabled a {
 }
 
 #button-18 .checkbox:checked+.knobs:before {
-  content: "NO";
+  content: "✕";
   left: 47px;
 }
 
