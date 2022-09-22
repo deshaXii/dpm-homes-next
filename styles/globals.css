@@ -4196,4 +4196,10 @@ ul.pagination li.disabled a {
 
 .toggle-button-cover label a {
   color: #03a9f4;
+  margin-left: 4px;
+}
+
+.toggle-button-cover label {
+  text-align: left;
+  line-height: 1.5;
 }
