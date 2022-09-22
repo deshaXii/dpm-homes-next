@@ -218,7 +218,8 @@ const LeadRegister = ({ data }) => {
                     </div>
                   </div>
                   <label htmlFor="agree">
-                    Agree with <Link href="/terms">Terms & Conditions</Link>
+                    i have read and agree to the
+                    <Link href="/terms">terms of service</Link>
                   </label>
                 </div>
               </div>
