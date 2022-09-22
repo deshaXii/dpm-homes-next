@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-const LeadRegister = () => {
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { wrapper } from "../../store";
+import API from "../../store/api";
+const LeadRegister = ({ data }) => {
   useEffect(() => {
     document.querySelector(".feedback-wrap").style.display = "none";
     document.querySelector(".notification-wrap").style.display = "none";
   });
+  const [name, setName] = useState();
   const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
   return (
     <>
       <style jsx>{`
@@ -105,38 +112,80 @@ const LeadRegister = () => {
           background: #76b852;
         }
         .lead-register-title {
-            min-width: 500px;
-            margin: 0 auto;
-            margin-bottom: 30px;
-            font-size: 25px;
-            font-weight: bold;
-            text-align: center;
-            line-height: 1.8;
+          position: relative;
+          z-index: 10;
+          color: #fff;
+          min-width: 500px;
+          margin: 0 auto;
+          margin-bottom: 30px;
+          font-size: 25px;
+          font-weight: bold;
+          text-align: center;
+          line-height: 1.8;
         }
-        
+
         @media (max-width: 760px) {
-            .lead-register-title {
-              min-width: 40%;
-            }
+          .lead-register-title {
+            min-width: 40%;
           }
+        }
       `}</style>
-      <div className="divx">
+      <div
+        className="divx"
+        style={{
+          backgroundImage: "url(/img/lead-bg.jfif)",
+          backgroundSize: "cover",
+        }}
+      >
         <div className="login-page">
-          <h1 className="lead-register-title">
-            استوديو استلام فوري ٣٢٥٠٠٠ درهم دبي ورسان واستلم ايجار ٢٥٠٠٠ سنوي
-          </h1>
+          <h1 className="lead-register-title">{data.title}</h1>
           <div className="form">
-            <form className="register-form">
-              <input type="text" placeholder="name" />
+            <form
+              className="register-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                if ((phone && name) || (name && email)) {
+                  API.post("/submit-form", {
+                    name,
+                    phone,
+                    email,
+                    title_id: data.id,
+                  }).then((res) => {
+                    toast.success(res.data.message, {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                    });
+                  });
+                }
+              }}
+            >
+              <input
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="name"
+              />
               <PhoneInput
                 country={"ae"}
+                required={true}
                 placeholder="Phone Number"
                 onlyCountries={["ae", "eg", "sa", "kw", "bh", "om", "qa", "jo"]}
                 value={phone}
                 preferredCountries={["ae", "eg", "sa"]}
                 onChange={(value) => setPhone(value)}
               />
-              <input type="text" placeholder="email address" />
+              <input
+                type="text"
+                required
+                placeholder="email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
               <button>sign in</button>
             </form>
           </div>
@@ -147,3 +196,20 @@ const LeadRegister = () => {
 };
 
 export default LeadRegister;
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ res, query }) => {
+      res.setHeader(
+        "Cache-Control",
+        "public, s-maxage=10, stale-while-revalidate=59"
+      );
+      let id = query.id;
+
+      const ress = await API.get(`/get-title?id=${id}`);
+      const data = await ress.data;
+      return {
+        props: { data },
+      };
+    }
+);
