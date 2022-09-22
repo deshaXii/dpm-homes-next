@@ -4028,3 +4028,25 @@ ul.pagination li.disabled a {
   font-weight: bold;
   margin-bottom: 20px;
 }
+
+.divx .react-tel-input {
+  margin-bottom: 15px;
+}
+
+.divx .react-tel-input .form-control {
+  background: #f2f2f2;
+  height: 56px;
+  border: none;
+  width: 100%;
+}
+
+.divx .react-tel-input .selected-flag {
+  width: 42px;
+  padding-left: 11px;
+}
+
+.divx .react-tel-input .flag-dropdown {
+  border: none;
+  background: #d1d1d1;
+}
+
