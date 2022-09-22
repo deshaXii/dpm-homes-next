@@ -115,18 +115,25 @@ const LeadRegister = ({ data }) => {
           background: #76b852;
         }
         .lead-register-title {
+          background: #fff;
           position: relative;
           z-index: 10;
-          color: #fff;
+          color: #333;
           min-width: 500px;
           margin: 0 auto;
-          margin-bottom: 30px;
+          margin-bottom: 20px;
           font-size: 25px;
           font-weight: bold;
           text-align: center;
-          line-height: 1.8;
+          line-height: 1.3;
+          margin-right: 15px;
+          margin-left: 15px;
+          padding: 16px 0;
         }
 
+        .toggle-button-cover input {
+          width: auto !important;
+        }
         @media (max-width: 760px) {
           .lead-register-title {
             min-width: 40%;
@@ -221,21 +228,12 @@ const LeadRegister = ({ data }) => {
               />
               <div className="agree-box">
                 <div className="toggle-button-cover">
-                  <div className="button-cover">
-                    <div className="button b2" id="button-18">
-                      <input
-                        id="agree"
-                        type="checkbox"
-                        value={agree}
-                        onChange={(e) => setAgree(e.target.checked)}
-                        className="checkbox"
-                      />
-                      <div className="knobs">
-                        <span></span>
-                      </div>
-                      <div className="layer"></div>
-                    </div>
-                  </div>
+                  <input
+                    id="agree"
+                    type="checkbox"
+                    value={agree}
+                    onChange={(e) => setAgree(e.target.checked)}
+                  />
                   <label htmlFor="agree">
                     i have read and agree to the
                     <Link href="/terms">terms of service</Link>
