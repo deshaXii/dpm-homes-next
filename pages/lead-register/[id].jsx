@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
@@ -140,6 +141,24 @@ const LeadRegister = ({ data }) => {
         }}
       >
         <div className="login-page">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "10px",
+            }}
+          >
+            <Link href="/">
+              <a className="brand-logo">
+                <Image
+                  width={100}
+                  height={100}
+                  alt="DPMHOMES LOGO"
+                  src="/img/logo2.png"
+                />
+              </a>
+            </Link>
+          </div>
           <h1 className="lead-register-title">{data.title}</h1>
           <div className="form">
             <form
