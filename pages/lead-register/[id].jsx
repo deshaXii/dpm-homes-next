@@ -180,7 +180,7 @@ const LeadRegister = ({ data }) => {
                 onChange={(value) => setPhone(value)}
               />
               <input
-                type="text"
+                type="email"
                 required
                 placeholder="email address"
                 value={email}
