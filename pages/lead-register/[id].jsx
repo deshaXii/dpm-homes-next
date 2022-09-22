@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -14,6 +15,7 @@ const LeadRegister = ({ data }) => {
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
+  const [agree, setAgree] = useState(false);
   return (
     <>
       <style jsx>{`
@@ -29,7 +31,7 @@ const LeadRegister = ({ data }) => {
           background: #ffffff;
           max-width: 360px;
           margin: 0 auto 100px;
-          padding: 45px;
+          padding: 15px;
           text-align: center;
           box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
             0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -144,7 +146,7 @@ const LeadRegister = ({ data }) => {
               className="register-form"
               onSubmit={(e) => {
                 e.preventDefault();
-                if ((phone && name) || (name && email)) {
+                if (agree) {
                   API.post("/submit-form", {
                     name,
                     phone,
@@ -160,6 +162,18 @@ const LeadRegister = ({ data }) => {
                       draggable: true,
                     });
                   });
+                } else {
+                  toast.error(
+                    "please read and agree our terms and conditions",
+                    {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                    }
+                  );
                 }
               }}
             >
@@ -168,7 +182,7 @@ const LeadRegister = ({ data }) => {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="name"
+                placeholder="Full Name"
               />
               <PhoneInput
                 country={"ae"}
@@ -186,6 +200,28 @@ const LeadRegister = ({ data }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              <div className="agree-box">
+                <div className="toggle-button-cover">
+                  <div className="button-cover">
+                    <div className="button b2" id="button-18">
+                      <input
+                        id="agree"
+                        type="checkbox"
+                        value={agree}
+                        onChange={(e) => setAgree(e.target.checked)}
+                        className="checkbox"
+                      />
+                      <div className="knobs">
+                        <span></span>
+                      </div>
+                      <div className="layer"></div>
+                    </div>
+                  </div>
+                  <label htmlFor="agree">
+                    Agree with <Link href="/terms">Terms & Conditions</Link>
+                  </label>
+                </div>
+              </div>
               <button>sign in</button>
             </form>
           </div>
