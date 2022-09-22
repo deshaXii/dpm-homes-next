@@ -143,8 +143,8 @@ const LeadRegister = ({ data }) => {
       <div
         className="divx"
         style={{
-          backgroundImage: "url(/img/lead-bg.jfif)",
-          backgroundSize: "cover",
+          // backgroundImage: "url(/img/lead-bg.jfif)",
+          // backgroundSize: "cover",
         }}
       >
         <div className="login-page">
@@ -240,7 +240,7 @@ const LeadRegister = ({ data }) => {
                   </label>
                 </div>
               </div>
-              <button>sign in</button>
+              <button>Submit</button>
             </form>
           </div>
         </div>
