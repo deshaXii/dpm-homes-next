@@ -182,8 +182,8 @@ const LeadRegister = ({ data }) => {
             </Link>
           </div>
           <h1 className="lead-register-title">{data.title}</h1>
-          {data.location && (
-            <h3 className="lead-register-location">{data.location}</h3>
+          {data.address && (
+            <h3 className="lead-register-location">{data.address}</h3>
           )}
 
           <p className="lead-register-description">{data.description}</p>
