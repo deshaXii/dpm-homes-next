@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import {
+  FaFacebook,
   FaInstagram,
   FaSnapchatGhost,
   FaTiktok,
@@ -226,6 +227,11 @@ const LeadRegister = ({ data }) => {
                     <li className="Snapchat">
                       <a href="https://www.snapchat.com/add/luxuryaqar">
                         <FaSnapchatGhost />
+                      </a>
+                    </li>
+                    <li className="Facebook">
+                      <a href="https://www.facebook.com/Luxury-Aqar-102543029270999">
+                        <FaFacebook />
                       </a>
                     </li>
                     <li className="Tiktok">
