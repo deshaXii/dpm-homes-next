@@ -17,6 +17,7 @@ import API from "../../store/api";
 const LeadRegister = ({ data }) => {
   console.log(data);
   useEffect(() => {
+    document.body.style.backgroundColor = "#011f2a";
     document.querySelector(".feedback-wrap").style.display = "none";
     document.querySelector(".notification-wrap").style.display = "none";
   });
@@ -261,12 +262,11 @@ const LeadRegister = ({ data }) => {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Full Name"
+                placeholder="Full Name - الأسم بالكامل"
               />
               <PhoneInput
                 country={"ae"}
                 required={true}
-                placeholder="Phone Number"
                 onlyCountries={["ae", "eg", "sa", "kw", "bh", "om", "qa", "jo"]}
                 value={phone}
                 preferredCountries={["ae", "eg", "sa"]}
@@ -275,14 +275,14 @@ const LeadRegister = ({ data }) => {
               <input
                 type="email"
                 required
-                placeholder="email address"
+                placeholder="email address - البريد الإلكتروني"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input
                 type="text"
                 required
-                placeholder="Nationality"
+                placeholder="Nationality - الجنسية"
                 value={nationality}
                 onChange={(e) => setNationality(e.target.value)}
               />
