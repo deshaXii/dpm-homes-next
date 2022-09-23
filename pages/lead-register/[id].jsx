@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import {
+  FaInstagram,
+  FaSnapchatGhost,
+  FaTiktok,
+  FaYoutube,
+} from "react-icons/fa";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { toast } from "react-toastify";
@@ -9,6 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { wrapper } from "../../store";
 import API from "../../store/api";
 const LeadRegister = ({ data }) => {
+  console.log(data);
   useEffect(() => {
     document.querySelector(".feedback-wrap").style.display = "none";
     document.querySelector(".notification-wrap").style.display = "none";
@@ -16,7 +23,9 @@ const LeadRegister = ({ data }) => {
   const [name, setName] = useState();
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
+  const [nationality, setNationality] = useState();
   const [agree, setAgree] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   return (
     <>
       <style jsx>{`
@@ -24,6 +33,7 @@ const LeadRegister = ({ data }) => {
         .login-page {
           padding: 12% 0 0;
           height: 100vh;
+          padding-top: 4%;
           margin: auto;
         }
         .form {
@@ -36,6 +46,8 @@ const LeadRegister = ({ data }) => {
           text-align: center;
           box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
             0 5px 5px 0 rgba(0, 0, 0, 0.24);
+          border-radius: 12px;
+          border: 2px solid var(--mainColor);
         }
         .form input {
           font-family: "Roboto", sans-serif;
@@ -61,6 +73,7 @@ const LeadRegister = ({ data }) => {
           font-size: 14px;
           -webkit-transition: all 0.3 ease;
           transition: all 0.3 ease;
+          border-radius: 8px;
           cursor: pointer;
         }
         .form button:hover,
@@ -115,20 +128,22 @@ const LeadRegister = ({ data }) => {
           background: #76b852;
         }
         .lead-register-title {
-          background: #fff;
+          background: var(--mainColor);
           position: relative;
           z-index: 10;
-          color: #333;
+          color: #fff;
           min-width: 500px;
           margin: 0 auto;
           margin-bottom: 20px;
-          font-size: 25px;
+          font-size: 16px;
           font-weight: bold;
           text-align: center;
           line-height: 1.3;
           margin-right: 15px;
           margin-left: 15px;
-          padding: 16px 0;
+          padding: 8px 0;
+          margin-top: 30px;
+          border-radius: 12px;
         }
 
         .toggle-button-cover input {
@@ -140,26 +155,24 @@ const LeadRegister = ({ data }) => {
           }
         }
       `}</style>
-      <div
-        className="divx"
-        style={{
-          // backgroundImage: "url(/img/lead-bg.jfif)",
-          // backgroundSize: "cover",
-        }}
-      >
+      <div className="divx">
         <div className="login-page">
           <div
+            className="asdawe"
             style={{
+              backgroundImage: "url(/img/lead-bg.jpg)",
+              backgroundSize: "cover",
               display: "flex",
               justifyContent: "center",
               marginBottom: "10px",
             }}
           >
+            
             <Link href="/">
               <a className="brand-logo">
                 <Image
-                  width={100}
-                  height={100}
+                  width={50}
+                  height={50}
                   alt="DPMHOMES LOGO"
                   src="/img/logo2.png"
                 />
@@ -167,6 +180,64 @@ const LeadRegister = ({ data }) => {
             </Link>
           </div>
           <h1 className="lead-register-title">{data.title}</h1>
+          {data.location && (
+            <h3 className="lead-register-location">{data.location}</h3>
+          )}
+
+          <p className="lead-register-description">{data.description}</p>
+
+          {showAlert && (
+            <div className="alert-box">
+              <div className="vba-bx">
+                <h4>Thanks</h4>
+                <p>we will shortly contact you for more info.</p>
+                <div className="vba-btns">
+                  <Link href="/">
+                    <a>
+                      <button className="btn home">Luxury Aqar</button>
+                    </a>
+                  </Link>
+                  
+                  <Link href="tel:97144547816">
+                    <a>
+                      <button className="btn call">Call Now</button>
+                    </a>
+                  </Link>
+                  <Link href="https://api.whatsapp.com/send/?phone=97144547816">
+                    <a>
+                      <button className="btn whatsapp">Whats App</button>
+                    </a>
+                  </Link>
+                </div>
+                <div className="follow-links">
+                  <span>Follow Us:</span>
+                  <ul>
+                    <li className="Youtube">
+                      <a href="https://www.youtube.com/channel/UCWQf9gzbIp99r_oSXVuHVsg">
+                        <FaYoutube />
+                      </a>
+                    </li>
+                    <li className="Instagram">
+                      <a href="https://www.instagram.com/luxuryaqar/">
+                        <FaInstagram />
+                      </a>
+                    </li>
+                    <li className="Snapchat">
+                      <a href="https://www.snapchat.com/add/luxuryaqar">
+                        <FaSnapchatGhost />
+                      </a>
+                    </li>
+                    <li className="Tiktok">
+                      <a href="https://www.tiktok.com/@luxuryaqar">
+                        <FaTiktok />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="form">
             <form
               className="register-form"
@@ -177,29 +248,11 @@ const LeadRegister = ({ data }) => {
                     name,
                     phone,
                     email,
+                    nationality,
                     title_id: data.id,
                   }).then((res) => {
-                    toast.success(res.data.message, {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                    });
+                    setShowAlert(true);
                   });
-                } else {
-                  toast.error(
-                    "please read and agree our terms and conditions",
-                    {
-                      position: "top-right",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                    }
-                  );
                 }
               }}
             >
@@ -225,6 +278,13 @@ const LeadRegister = ({ data }) => {
                 placeholder="email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="text"
+                required
+                placeholder="Nationality"
+                value={nationality}
+                onChange={(e) => setNationality(e.target.value)}
               />
               <div className="agree-box">
                 <div className="toggle-button-cover">
