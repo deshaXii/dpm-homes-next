@@ -4333,3 +4333,22 @@ ul.pagination li.disabled a {
   width: 80%;
   margin: 0 auto;
 }
+
+.lead-register-location {
+  background: #fff;
+  position: relative;
+  z-index: 10;
+  color: #333;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.3;
+  margin-right: 15px;
+  margin-left: 15px;
+  padding: 8px 0;
+  margin-top: -5px;
+  border-radius: 12px;
+  border: 2px solid var(--mainColor);
+}
