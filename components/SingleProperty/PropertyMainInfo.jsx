@@ -25,10 +25,17 @@ const PropertyMainInfo = () => {
 
   const { locale } = router;
 
-  var formatter = new Intl.NumberFormat(`${locale}-eg`, {
-    style: "currency",
-    currency: "EGP",
-  });
+  if (property.data.country === "United Arab Emirates") {
+    var formatterAED = new Intl.NumberFormat(`${locale}-eg`, {
+      style: "currency",
+      currency: "AED",
+    });
+  } else if (property.data.country === "Egypt") {
+    var formatterEGP = new Intl.NumberFormat(`${locale}-eg`, {
+      style: "currency",
+      currency: "EGP",
+    });
+  }
 
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdown = useRef(null);
@@ -106,14 +113,41 @@ const PropertyMainInfo = () => {
 
                 <div className="property-main-info-buttons">
                   <div className="property-main-info-price">
-                    {property.data.total_price ? (
-                      <span>{formatter.format(property.data.total_price)}</span>
+                    {formatterEGP && property.data.total_price ? (
+                      <span>
+                        {formatterEGP?.format(property.data.total_price)}
+                      </span>
+                    ) : property.data.total_price_installment ? (
+                      <span>
+                        {formatterEGP?.format(
+                          property.data.total_price_installment
+                        )}
+                      </span>
                     ) : (
-                      <span>{formatter.format(property.data.total_price_installment)}</span>
+                      <span>
+                        {formatterEGP?.format(property.data.rent_price)}
+                      </span>
+                    )}
+                    {formatterAED && property.data.total_price ? (
+                      <span>
+                        {formatterAED?.format(property.data.total_price)}
+                      </span>
+                    ) : property.data.total_price_installment ? (
+                      <span>
+                        {formatterAED?.format(
+                          property.data.total_price_installment
+                        )}
+                      </span>
+                    ) : (
+                      <span>
+                        {formatterAED?.format(property.data.rent_price)}
+                      </span>
                     )}
                   </div>
                   <Link
-                    href={`https://api.whatsapp.com/send/?phone=%${97144547816}&text=اأريد الإستفسار حول هذا العقار: https://luxuryaqar.com${router.asPath}`}
+                    href={`https://api.whatsapp.com/send/?phone=%${97144547816}&text=اأريد الإستفسار حول هذا العقار: https://luxuryaqar.com${
+                      router.asPath
+                    }`}
                   >
                     <a className="btn" target="_blank">
                       <FaWhatsapp />

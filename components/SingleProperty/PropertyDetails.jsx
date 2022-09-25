@@ -14,10 +14,18 @@ const PropertyDetails = () => {
   const { property } = useSelector(selectProperties);
   const router = useRouter();
   const { locale } = router;
-  var formatter = new Intl.NumberFormat(`${locale}-eg`, {
-    style: "currency",
-    currency: "EGP",
-  });
+
+  if (property.data.country === "United Arab Emirates") {
+    var formatterAED = new Intl.NumberFormat(`${locale}-eg`, {
+      style: "currency",
+      currency: "AED",
+    });
+  } else if (property.data.country === "Egypt") {
+    var formatterEGP = new Intl.NumberFormat(`${locale}-eg`, {
+      style: "currency",
+      currency: "EGP",
+    });
+  }
 
   const convertAreaSize = (size, country) => {
     if (country === "United Arab Emirates") {
@@ -392,7 +400,16 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-                      {formatter.format(property.data.total_price)}
+                      {formatterEGP && (
+                        <span>
+                          {formatterEGP?.format(property.data.total_price)}
+                        </span>
+                      )}
+                      {formatterAED && (
+                        <span>
+                          {formatterAED?.format(property.data.total_price)}
+                        </span>
+                      )}
                     </div>
                   </div>
                 )}
@@ -403,7 +420,18 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-                      {formatter.format(property.data.total_price_installment)}
+
+                    {formatterEGP && (
+                        <span>
+                          {formatterEGP?.format(property.data.total_price_installment)}
+                        </span>
+                      )}
+                      {formatterAED && (
+                        <span>
+                          {formatterAED?.format(property.data.total_price_installment)}
+                        </span>
+                      )}
+
                     </div>
                   </div>
                 )}
@@ -425,7 +453,16 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-                      {formatter.format(property.data.installment)}
+                    {formatterEGP && (
+                        <span>
+                          {formatterEGP?.format(property.data.installment)}
+                        </span>
+                      )}
+                      {formatterAED && (
+                        <span>
+                          {formatterAED?.format(property.data.installment)}
+                        </span>
+                      )}
                     </div>
                   </div>
                 )}
@@ -436,7 +473,18 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-                      {formatter.format(property.data.maintenance_fees)}
+
+                    {formatterEGP && (
+                        <span>
+                          {formatterEGP?.format(property.data.maintenance_fees)}
+                        </span>
+                      )}
+                      {formatterAED && (
+                        <span>
+                          {formatterAED?.format(property.data.maintenance_fees)}
+                        </span>
+                      )}
+
                     </div>
                   </div>
                 )}
@@ -450,6 +498,11 @@ const PropertyDetails = () => {
                         ? locale === "ar"
                           ? "جنية مصري"
                           : "EGP"
+                        : ""}
+                           {property.data.currency == "AED"
+                        ? locale === "ar"
+                          ? "درهم إمراتي"
+                          : "AED"
                         : ""}
                     </div>
                   </div>

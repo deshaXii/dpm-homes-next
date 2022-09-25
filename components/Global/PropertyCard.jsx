@@ -22,10 +22,17 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
   const router = useRouter();
   const { locale } = router;
 
-  var formatter = new Intl.NumberFormat(`${locale}-eg`, {
-    style: "currency",
-    currency: "EGP",
-  });
+  if (property.country === "United Arab Emirates") {
+    var formatterAED = new Intl.NumberFormat(`${locale}-eg`, {
+      style: "currency",
+      currency: "AED",
+    });
+  } else if (property.country === "Egypt") {
+    var formatterEGP = new Intl.NumberFormat(`${locale}-eg`, {
+      style: "currency",
+      currency: "EGP",
+    });
+  }
 
   const dispatch = useDispatch();
   const handleAddToWishlist = (id) => {
@@ -125,14 +132,26 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
           </Link>
         </div>
         <div className="property-card-price">
-          {property.total_price ? (
-            <span>{formatter.format(property.total_price)}</span>
+          {formatterEGP && property.total_price ? (
+            <span>{formatterEGP?.format(property.total_price)}</span>
           ) : property.total_price_installment ? (
-            <span>{formatter.format(property.total_price_installment)}</span>
+            <span>
+              {formatterEGP?.format(property.total_price_installment)}
+            </span>
           ) : (
-            <span>{formatter.format(property.rent_price)}</span>
+            <span>{formatterEGP?.format(property.rent_price)}</span>
+          )}
+          {formatterAED && property.total_price ? (
+            <span>{formatterAED?.format(property.total_price)}</span>
+          ) : property.total_price_installment ? (
+            <span>
+              {formatterAED?.format(property.total_price_installment)}
+            </span>
+          ) : (
+            <span>{formatterAED?.format(property.rent_price)}</span>
           )}
         </div>
+
         <div className="property-card-title">
           <Link
             href={
