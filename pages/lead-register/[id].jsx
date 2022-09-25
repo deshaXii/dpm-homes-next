@@ -302,7 +302,7 @@ const LeadRegister = ({ data }) => {
                   />
                   <label htmlFor="agree">
                     i have read and agree to the
-                    <Link href="/terms">terms of service</Link>
+                    <Link href="/terms">terms of condition</Link>
                   </label>
                 </div>
               </div>
