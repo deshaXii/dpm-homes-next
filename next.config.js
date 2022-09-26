@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
-module.exports = withBundleAnalyzer({
+module.exports = {
   reactStrictMode: true,
   devIndicators: {
     buildActivity: false,
@@ -17,6 +14,6 @@ module.exports = withBundleAnalyzer({
   i18n: {
     locales: ["ar", "en"],
     defaultLocale: "ar",
-    defaultFormats: "ar",
+    defaultFormats: 'ar'
   },
-});
+};
