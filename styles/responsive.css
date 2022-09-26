@@ -43,7 +43,7 @@
 
     .feedback-wrap.hide {
         right: -351px;
-
+        display: none;
     }
 
     .feedback-content {
