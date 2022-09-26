@@ -52,13 +52,7 @@ function MyApp({ Component, pageProps, user }) {
           name="description"
           content="لاكشري عقار اكبر محرك بحث في عقارات مصر يمكنك من خلاله البحث عن عقارات للبيع او عقارات للايجار من شقق وفيلات Real Estate Agent, Listing your Property in Luxury Aqar to get the best result investor"
         />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer"
-        />
+       
         <meta
           name="facebook-domain-verification"
           content="jj0ja1p8vmgbdfeba6781qnpi92m46"
@@ -70,27 +64,6 @@ function MyApp({ Component, pageProps, user }) {
         <meta
           name="google-site-verification"
           content="gptiH-d68AHHUPj5Y_GIr5GinsuQz6hpltFg2yU_HQg"
-        />
-        <script
-          id="ss"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-    (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
-      {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
-      a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
-      r.src=n;var u=t.getElementsByTagName(s)[0];
-      u.parentNode.insertBefore(r,u);})(window,document,
-      'https://sc-static.net/scevent.min.js');
-      
-      snaptr('init', '58e4d400-2499-468c-8a33-7606696e60d2', {
-      'user_email': ${user ? '"' + user?.data?.email + '"' : "null"},
-      'user_phone_number': ${user ? '"' + user?.data?.phone + '"' : "null"},
-      });
-      
-      snaptr('track', 'PAGE_VIEW');
-  `,
-          }}
         />
       </Head>
       <IntlProvider
@@ -505,6 +478,21 @@ function MyApp({ Component, pageProps, user }) {
         </div>
       </IntlProvider>
       <ToastContainer />
+      <Script strategy="beforeInteractive">
+        {`(function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
+      {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
+      a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
+      r.src=n;var u=t.getElementsByTagName(s)[0];
+      u.parentNode.insertBefore(r,u);})(window,document,
+      'https://sc-static.net/scevent.min.js');
+      
+      snaptr('init', '58e4d400-2499-468c-8a33-7606696e60d2', {
+      'user_email': ${user ? '"' + user?.data?.email + '"' : "null"},
+      'user_phone_number': ${user ? '"' + user?.data?.phone + '"' : "null"},
+      });
+      
+      snaptr('track', 'PAGE_VIEW');`}
+      </Script>
     </>
   );
 }

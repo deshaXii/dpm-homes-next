@@ -4352,3 +4352,8 @@ ul.pagination li.disabled a {
   border-radius: 12px;
   border: 2px solid var(--mainColor);
 }
+
+.slider-options i.fas {
+  display: none !important;
+}
+
