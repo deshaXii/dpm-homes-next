@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps, user }) {
           name="description"
           content="لاكشري عقار اكبر محرك بحث في عقارات مصر يمكنك من خلاله البحث عن عقارات للبيع او عقارات للايجار من شقق وفيلات Real Estate Agent, Listing your Property in Luxury Aqar to get the best result investor"
         />
-       
+
         <meta
           name="facebook-domain-verification"
           content="jj0ja1p8vmgbdfeba6781qnpi92m46"
@@ -478,6 +478,7 @@ function MyApp({ Component, pageProps, user }) {
         </div>
       </IntlProvider>
       <ToastContainer />
+      
       <Script strategy="beforeInteractive">
         {`(function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
       {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
