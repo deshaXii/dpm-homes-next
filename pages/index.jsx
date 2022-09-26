@@ -49,7 +49,7 @@ const Home = ({ dir }) => {
         />
         <Services
           data={servicesData.data}
-          sectionBG="/img/services-section-bg.jpg"
+          sectionBG="/img/services-section-bg.webp"
           withOverlay
         />
         {homeRent.data ? (
