@@ -51,7 +51,7 @@ const AdministrativeBoth = () => {
 
   const installment_type_ar = [
     { value: "monthly", label: "شهريا" },
-    { value: "quarterly", label: "كل اربع شهور" },
+    { value: "quarterly", label: "كل ثلاث أشهر" },
     { value: "semi-annual", label: "كل 6 شهور" },
     { value: "annual", label: "سنويا" },
   ];

@@ -25,7 +25,7 @@ const makeStore = () =>
       wishlist: wishlistSlice,
       feedback: feedbackSlice,
       settings: settingsSlice,
-      services: servicesSlice,
+      services: servicesSlice
     },
     devTools: true,
   });
