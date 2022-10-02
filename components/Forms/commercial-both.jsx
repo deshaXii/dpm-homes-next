@@ -30,6 +30,7 @@ const CommercialBoth = () => {
     { value: "warehouse", label: "مخزن" },
     { value: "playground", label: "ملعب" },
     { value: "pharmacy", label: "صيدلية" },
+    { value: "farm", label: "مزرعه" },
     { value: "mall", label: "مول" },
     { value: "outlet", label: "مركز تسوق" },
   ];
@@ -39,6 +40,7 @@ const CommercialBoth = () => {
     { value: "factory", label: "factory" },
     { value: "land", label: "land" },
     { value: "warehouse", label: "warehouse" },
+    { value: "farm", label: "farm" },
     { value: "playground", label: "playground" },
     { value: "pharmacy", label: "pharmacy" },
     { value: "mall", label: "mall" },

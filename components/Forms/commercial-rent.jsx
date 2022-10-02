@@ -23,6 +23,7 @@ const CommercialRent = () => {
 
   const governorate_options = allGovernorates;
 
+
   const property_type_options_ar = [
     { value: "shop", label: "محل" },
     { value: "factory", label: "مصنع" },
@@ -30,6 +31,7 @@ const CommercialRent = () => {
     { value: "warehouse", label: "مخزن" },
     { value: "playground", label: "ملعب" },
     { value: "pharmacy", label: "صيدلية" },
+    { value: "farm", label: "مزرعه" },
     { value: "mall", label: "مول" },
     { value: "outlet", label: "مركز تسوق" },
   ];
@@ -39,6 +41,7 @@ const CommercialRent = () => {
     { value: "factory", label: "factory" },
     { value: "land", label: "land" },
     { value: "warehouse", label: "warehouse" },
+    { value: "farm", label: "farm" },
     { value: "playground", label: "playground" },
     { value: "pharmacy", label: "pharmacy" },
     { value: "mall", label: "mall" },
