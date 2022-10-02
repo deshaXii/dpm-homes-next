@@ -44,15 +44,15 @@ const Projects = () => {
                   prevEl: navigationPrevRef.current,
                   nextEl: navigationNextRef.current,
                 }}
-                pagination={{
-                  type: "bullets",
-                  clickable: true,
-                  el: paginationRef.current,
-                }}
                 onBeforeInit={(swiper) => {
                   swiper.params.navigation.prevEl = navigationPrevRef.current;
                   swiper.params.navigation.nextEl = navigationNextRef.current;
                   swiper.params.pagination.el = paginationRef.current;
+                }}
+                pagination={{
+                  type: "bullets",
+                  clickable: true,
+                  el: paginationRef.current,
                 }}
                 className="swiper-wrapper"
                 spaceBetween={15}

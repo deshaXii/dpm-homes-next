@@ -28,7 +28,7 @@ const ContactInfo = ({ settingsData }) => {
               </div>
               <div className="dl">
                 {settingsData.whatsapp.map((item, index) => (
-                  <div className="bv">
+                  <div className="bv" key={index}>
                     <FaWhatsapp />
                     <Link
                       key={index}
