@@ -73,7 +73,7 @@ const AppNavbar = ({ user }) => {
                       height={40}
                       alt={`${user.data.name} image`}
                     />
-                    <span className="userName">{user.data.name}</span>
+                    <span className="userName">{user?.data?.name}</span>
                     <MdArrowDropDown className="d-arrow" />
                   </div>
                   <div className="auth-dropdown popup" ref={dropdownRef}>
