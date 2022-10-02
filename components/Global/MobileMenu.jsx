@@ -148,10 +148,10 @@ const MobileMenu = ({ setIsOpen, isOpen }) => {
                   <div className="mml-icon">
                     <div className="navbar-auth-user-data">
                       <Image
-                        src={`https://admin.dpmhomes.com/user-images/${user.data.image}`}
+                        src={`https://admin.dpmhomes.com/user-images/${user?.data?.image}`}
                         width={40}
                         height={40}
-                        alt={`${user.data.name} image`}
+                        alt={`${user?.data?.name} image`}
                       />
                     </div>
                   </div>

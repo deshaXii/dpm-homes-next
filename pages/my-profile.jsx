@@ -104,7 +104,7 @@ const MyProfile = () => {
 
   const onChange = (imageList) => {
     if (!imageList.length) {
-      setImage(user.data.image);
+      setImage(user?.data?.image);
       setImages([]);
     } else {
       setImage(imageList[0].file);
