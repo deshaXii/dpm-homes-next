@@ -15,6 +15,7 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 
 const AppNavbar = ({ user }) => {
   const { locales, locale, asPath } = useRouter();
+  const router = useRouter();
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef();
@@ -91,7 +92,11 @@ const AppNavbar = ({ user }) => {
                         <button
                           type="button"
                           onClick={() => {
-                            dispatch(logout(jsCookies.getItem("userToken")));
+                            dispatch(
+                              logout(jsCookies.getItem("userToken"))
+                            ).then((res) => {
+                              router.push("/");
+                            });
                           }}
                         >
                           <FiLogOut />

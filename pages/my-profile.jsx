@@ -71,20 +71,20 @@ const MyProfile = () => {
   const [images, setImages] = useState([]);
   const maxNumber = 1;
 
-  const [name, setName] = useState(user.data.name);
-  const [email, setEmail] = useState(user.data.email);
-  const [phone, setPhone] = useState(user.data.phone);
-  const [address, setAddress] = useState(user.data.address);
-  const [country, setCountry] = useState(user.data.country);
-  const [city, setCity] = useState(user.data.city);
-  const [about, setAbout] = useState(user.data.about);
-  const [image, setImage] = useState(user.data.image);
+  const [name, setName] = useState(user?.data?.name);
+  const [email, setEmail] = useState(user?.data?.email);
+  const [phone, setPhone] = useState(user?.data?.phone);
+  const [address, setAddress] = useState(user?.data?.address);
+  const [country, setCountry] = useState(user?.data?.country);
+  const [city, setCity] = useState(user?.data?.city);
+  const [about, setAbout] = useState(user?.data?.about);
+  const [image, setImage] = useState(user?.data?.image);
 
-  const [whatsapp, setWhatsapp] = useState(user.data.whatsapp);
-  const [facebook, setFacebook] = useState(user.data.facebook);
-  const [google, setGoolge] = useState(user.data.google);
-  const [linkedin, setLinkedin] = useState(user.data.linkedin);
-  const [twitter, setTwitter] = useState(user.data.twitter);
+  const [whatsapp, setWhatsapp] = useState(user?.data?.whatsapp);
+  const [facebook, setFacebook] = useState(user?.data?.facebook);
+  const [google, setGoolge] = useState(user?.data?.google);
+  const [linkedin, setLinkedin] = useState(user?.data?.linkedin);
+  const [twitter, setTwitter] = useState(user?.data?.twitter);
 
   const data = {
     name,
