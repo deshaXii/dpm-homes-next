@@ -159,10 +159,10 @@ const AppNavbar = ({ user }) => {
                   <Link href="/my-profile">
                     <a className="mobile-menu-link">
                       <Image
-                        src={`https://admin.dpmhomes.com/user-images/${user.data.image}`}
+                        src={`https://admin.dpmhomes.com/user-images/${user?.data?.image}`}
                         width={40}
                         height={40}
-                        alt={`${user.data.name} image`}
+                        alt={`${user?.data?.name} image`}
                       />
                     </a>
                   </Link>
