@@ -23,7 +23,6 @@ const CommercialRent = () => {
 
   const governorate_options = allGovernorates;
 
-
   const property_type_options_ar = [
     { value: "shop", label: "محل" },
     { value: "factory", label: "مصنع" },

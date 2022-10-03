@@ -52,8 +52,8 @@ export const getHomepageRentUnits = createAsyncThunk(
 
 export const showProperty = createAsyncThunk(
   "properties/showProperty",
-  async (id) => {
-    const responseData = await getPropertyById(id);
+  async ({id, lang}) => {
+    const responseData = await getPropertyById({id, lang});
     return responseData;
   }
 );
@@ -61,6 +61,7 @@ export const showProperty = createAsyncThunk(
 export const showRelatedProperty = createAsyncThunk(
   "properties/showRelatedProperty",
   async ({ id, lang }) => {
+    console.log(lang);
     const responseData = await getRelatedProperty({ id, lang });
     return responseData;
   }

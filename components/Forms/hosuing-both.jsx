@@ -26,12 +26,14 @@ const HosuingBoth = () => {
   const property_type_options_ar = [
     { value: "palace", label: "قصر" },
     { value: "villa", label: "فيلا" },
+    { value: "duplex", label: "دوبلكس" },
     { value: "twin_house", label: "تون هاوس" },
     { value: "apartment", label: "شقه" },
     { value: "pent_house", label: "بنت هاوس" },
     { value: "flat", label: "منزل" },
     { value: "studio", label: "ستوديو" },
     { value: "chalet", label: "شاليه" },
+    
   ];
 
   const property_type_options_en = [
@@ -39,6 +41,7 @@ const HosuingBoth = () => {
     { value: "villa", label: "villa" },
     { value: "twin_house", label: "twin house" },
     { value: "pent_house", label: "pent house" },
+    { value: "duplex", label: "duplex" },
     { value: "apartment", label: "apartment" },
     { value: "flat", label: "flat" },
     { value: "studio", label: "studio" },

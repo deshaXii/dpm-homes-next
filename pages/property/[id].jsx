@@ -56,7 +56,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "public, s-maxage=10, stale-while-revalidate=59"
       );
       const { id } = query;
-      await store.dispatch(showProperty(id));
+      await store.dispatch(showProperty({ id, lang: locale }));
       await store.dispatch(showRelatedProperty({ id: id, lang: locale }));
       return {
         props: {},

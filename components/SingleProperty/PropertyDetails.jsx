@@ -15,6 +15,49 @@ const PropertyDetails = () => {
   const router = useRouter();
   const { locale } = router;
 
+  const property_type_options_ar = [
+    { value: "palace", label: "قصر" },
+    { value: "villa", label: "فيلا" },
+    { value: "twin_house", label: "تون هاوس" },
+    { value: "apartment", label: "شقه" },
+    { value: "pent_house", label: "بنت هاوس" },
+    { value: "flat", label: "منزل" },
+    { value: "studio", label: "ستوديو" },
+    { value: "duplex", label: "دوبلكس" },
+    { value: "chalet", label: "شاليه" },
+    { value: "shop", label: "محل" },
+    { value: "factory", label: "مصنع" },
+    { value: "land", label: "قطعة ارض" },
+    { value: "warehouse", label: "مخزن" },
+    { value: "playground", label: "ملعب" },
+    { value: "pharmacy", label: "صيدلية" },
+    { value: "farm", label: "مزرعه" },
+    { value: "mall", label: "مول" },
+    { value: "outlet", label: "مركز تسوق" },
+  ];
+
+  const property_type_options_en = [
+    { value: "palace", label: "palace" },
+    { value: "villa", label: "villa" },
+    { value: "twin_house", label: "twin house" },
+    { value: "pent_house", label: "pent house" },
+    { value: "apartment", label: "apartment" },
+    { value: "flat", label: "flat" },
+    { value: "studio", label: "studio" },
+    { value: "duplex", label: "duplex" },
+    { value: "chalet", label: "chalet" },
+    { value: "shop", label: "shop" },
+    { value: "factory", label: "factory" },
+    { value: "land", label: "land" },
+    { value: "warehouse", label: "warehouse" },
+    { value: "farm", label: "farm" },
+    { value: "playground", label: "playground" },
+    { value: "pharmacy", label: "pharmacy" },
+    { value: "mall", label: "mall" },
+    { value: "outlet", label: "outlet" },
+    { value: "offices", label: "offices" },
+  ];
+
   if (property.data.country === "United Arab Emirates") {
     var formatterAED = new Intl.NumberFormat(`${locale}-eg`, {
       style: "currency",
@@ -34,6 +77,8 @@ const PropertyDetails = () => {
       return `${size} ${locale === "ar" ? "متر" : "m"}`;
     }
   };
+
+  console.log(property.data.country);
 
   return (
     <section className="property-details p50">
@@ -420,32 +465,35 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-
-                    {formatterEGP && (
+                      {formatterEGP && (
                         <span>
-                          {formatterEGP?.format(property.data.total_price_installment)}
+                          {formatterEGP?.format(
+                            property.data.total_price_installment
+                          )}
                         </span>
                       )}
                       {formatterAED && (
                         <span>
-                          {formatterAED?.format(property.data.total_price_installment)}
+                          {formatterAED?.format(
+                            property.data.total_price_installment
+                          )}
                         </span>
                       )}
-
                     </div>
                   </div>
                 )}
-                {property.data.advance_payment && property.data.advance_payment !== '%' && (
-                  <div className="pdi-box">
-                    <div className="pdi-name">
-                      <FormattedMessage id="page.property.details.advance_payment" />
-                      :
+                {property.data.advance_payment &&
+                  property.data.advance_payment !== "%" && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.advance_payment" />
+                        :
+                      </div>
+                      <div className="pdi-value">
+                        {property.data.advance_payment}
+                      </div>
                     </div>
-                    <div className="pdi-value">
-                      {property.data.advance_payment}
-                    </div>
-                  </div>
-                )}
+                  )}
                 {property.data.installment && (
                   <div className="pdi-box">
                     <div className="pdi-name">
@@ -453,7 +501,7 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-                    {formatterEGP && (
+                      {formatterEGP && (
                         <span>
                           {formatterEGP?.format(property.data.installment)}
                         </span>
@@ -473,8 +521,7 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
-
-                    {formatterEGP && (
+                      {formatterEGP && (
                         <span>
                           {formatterEGP?.format(property.data.maintenance_fees)}
                         </span>
@@ -484,7 +531,6 @@ const PropertyDetails = () => {
                           {formatterAED?.format(property.data.maintenance_fees)}
                         </span>
                       )}
-
                     </div>
                   </div>
                 )}
@@ -499,7 +545,7 @@ const PropertyDetails = () => {
                           ? "جنية مصري"
                           : "EGP"
                         : ""}
-                           {property.data.currency == "AED"
+                      {property.data.currency == "AED"
                         ? locale === "ar"
                           ? "درهم إمراتي"
                           : "AED"

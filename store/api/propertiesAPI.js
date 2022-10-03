@@ -31,15 +31,15 @@ export async function getFeaturesSellUnits(locale) {
 export async function getFeaturesRentUnits(locale) {
   try {
     const res = await API.get(`/get-homepage-rent?lang=${locale}`);
-    return await res
+    return await res;
   } catch (err) {
     return err;
   }
 }
 
-export async function getPropertyById(id) {
+export async function getPropertyById({ id, lang }) {
   try {
-    const res = await API.get(`/show-property?id=${id}`);
+    const res = await API.get(`/show-property?id=${id}&lang=${lang}`);
     return await res.data;
   } catch (err) {
     return err;
@@ -48,7 +48,7 @@ export async function getPropertyById(id) {
 
 export async function getRelatedProperty({ id, lang }) {
   try {
-    const res = await API.get(`/get-related?id=${id}`);
+    const res = await API.get(`/get-related?id=${id}&lang=${lang}`);
     return await res.data.data;
   } catch (err) {
     return err;
