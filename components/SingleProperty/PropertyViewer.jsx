@@ -25,10 +25,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { addPropertyToWishlist } from "../../store/slices/wishlist";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/css/modal-video.css";
+import { useRouter } from "next/router";
 const PropertyViewer = () => {
   const [isOpen, setOpen] = useState(false);
 
   const { property } = useSelector(selectProperties);
+
+  const router = useRouter();
+  const { locale } = router;
+
   const dispatch = useDispatch();
 
   const handleAddToWishlist = (id) => {
@@ -57,6 +62,7 @@ const PropertyViewer = () => {
     swipe: true,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
+    rtl: locale === "ar" ? true : false,
     infinite: false,
   };
   const slider2Settings = {
@@ -125,8 +131,9 @@ const PropertyViewer = () => {
                       {...slider1Settings}
                     >
                       {property.data.images.map((imageLink, index) => (
-                        <div className="slider__item" key={index}>
+                        <div className="slider__item" key={imageLink}>
                           <img
+                            onClick={() => imageOnClick(imageLink)}
                             src={`https://admin.dpmhomes.com/property-images/${imageLink}`}
                             alt="Product image"
                           />
@@ -140,8 +147,9 @@ const PropertyViewer = () => {
                       {...slider2Settings}
                     >
                       {property.data.images.map((imageLink, index) => (
-                        <div className="slider__item" key={index}>
+                        <div className="slider__item" key={imageLink}>
                           <img
+                            onClick={() => imageOnClick(imageLink)}
                             src={`https://admin.dpmhomes.com/property-images/${imageLink}`}
                             alt="Product image"
                           />

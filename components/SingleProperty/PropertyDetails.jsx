@@ -435,7 +435,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {property.data.advance_payment && (
+                {property.data.advance_payment && property.data.advance_payment !== '%' && (
                   <div className="pdi-box">
                     <div className="pdi-name">
                       <FormattedMessage id="page.property.details.advance_payment" />
