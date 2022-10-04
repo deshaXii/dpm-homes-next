@@ -58,12 +58,12 @@ const PropertyDetails = () => {
     { value: "offices", label: "offices" },
   ];
 
-  if (property.data.country === "United Arab Emirates") {
+  if (property.data.country === "United Arab Emirates" || property.data.country === 'الإمارات العربية المتحدة') {
     var formatterAED = new Intl.NumberFormat(`${locale}-eg`, {
       style: "currency",
       currency: "AED",
     });
-  } else if (property.data.country === "Egypt") {
+  } else if (property.data.country === "Egypt" || property.data.country === "مصر") {
     var formatterEGP = new Intl.NumberFormat(`${locale}-eg`, {
       style: "currency",
       currency: "EGP",
@@ -78,7 +78,7 @@ const PropertyDetails = () => {
     }
   };
 
-  console.log(property.data.country);
+  console.log(property.data.total_price_installment);
 
   return (
     <section className="property-details p50">
@@ -482,8 +482,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {property.data.advance_payment &&
-                  property.data.advance_payment !== "%" && (
+                {property.data.advance_payment && (
                     <div className="pdi-box">
                       <div className="pdi-name">
                         <FormattedMessage id="page.property.details.advance_payment" />
