@@ -234,9 +234,9 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
           <div className="propert-card-buttons">
             <RWebShare
               data={{
-                text: "Like humans, luxury aqar make friends for life",
-                url: "https://luxuryaqar.com/",
-                title: "Flamingos",
+                text: property.general_details,
+                url: `https://luxuryaqar.com/property/${property.id}`,
+                title: property.title,
               }}
             >
               <button type="button" className="btn share-btn">
