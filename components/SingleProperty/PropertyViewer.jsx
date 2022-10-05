@@ -113,6 +113,7 @@ const PropertyViewer = () => {
           onClose={() => setOpen(false)}
         />
       )}
+      
       <section className="property-viewer p50">
         <div className="container">
           {/* <SectionTitle
