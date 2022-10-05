@@ -32,7 +32,7 @@ const Projects = () => {
               <SectionTitle title={locale === 'ar' ? 'المشاريع' : 'projects'} subTitle={locale === 'ar' ? 'أحدث' : 'New'} />
               {allProjects.map((project) => (
                 <div className="col-md-4" key={project.id}>
-                  <div className="project-slide-box">
+                  <div className="project-slide-box" style={{marginBottom: '15px'}}>
                     <div className="project-slide-image-box">
                       <Link
                         href={{
