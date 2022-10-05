@@ -4365,3 +4365,8 @@ ul.pagination li.disabled a {
   justify-content: center;
   border-radius: 50%;
 }
+
+.select-box .css-1jqqwy7-control, .select-box .css-ckdblj-control {
+  min-height: 56px;
+  margin-bottom: 15px;
+}

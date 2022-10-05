@@ -12,7 +12,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Select from "react-select";
 import { wrapper } from "../../store";
 import API from "../../store/api";
 const LeadRegister = ({ data }) => {
@@ -28,6 +28,49 @@ const LeadRegister = ({ data }) => {
   const [nationality, setNationality] = useState();
   const [agree, setAgree] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [type, setType] = useState("");
+  const [payment, setPayment] = useState("");
+  const [location, setLocation] = useState([]);
+
+  const property_type_en = [
+    { value: "Residential", label: "Residential" },
+    { value: "Commercial", label: "Commercial" },
+    { value: "Administrative", label: "Administrative" },
+  ];
+  const payment_type = [
+    { value: "Cash", label: "Cash" },
+    {
+      value: "Installment",
+      label: "Installment",
+    },
+  ];
+  var locations = [];
+  if (data.locations) {
+    for (let MM in data.locations) {
+      locations.push({ value: data.locations[MM], label: data.locations[MM] });
+      console.log(locations);
+    }
+  }
+
+  const selectStyle = {
+    control: (base, { isFocused }) => ({
+      ...base,
+      border: "1px solid var(--mainColor)",
+      boxShadow: "none",
+      color: "red",
+      "&:hover": {
+        border: "1px solid var(--mainColor)",
+      },
+    }),
+    option: (styles, { isFocused, isSelected }) => {
+      return {
+        ...styles,
+        backgroundColor: isFocused ? "var(--mainColor)" : null,
+        color: "#000",
+      };
+    },
+  };
+
   return (
     <>
       <style jsx>{`
@@ -169,7 +212,6 @@ const LeadRegister = ({ data }) => {
               marginBottom: "10px",
             }}
           >
-            
             <Link href="/">
               <a className="brand-logo">
                 <Image
@@ -199,7 +241,7 @@ const LeadRegister = ({ data }) => {
                       <button className="btn home">Luxury Aqar</button>
                     </a>
                   </Link>
-                  
+
                   <Link href="tel:97144547816">
                     <a>
                       <button className="btn call">Call Now</button>
@@ -250,12 +292,25 @@ const LeadRegister = ({ data }) => {
               className="register-form"
               onSubmit={(e) => {
                 e.preventDefault();
+                console.log({
+                  name,
+                  phone,
+                  email,
+                  nationality,
+                  licence: type.value,
+                  payment_type: payment.value,
+                  locations: location.value,
+                  title_id: data.id,
+                });
                 if (agree) {
                   API.post("/submit-form", {
                     name,
                     phone,
                     email,
                     nationality,
+                    licence: type.value,
+                    payment_type: payment.value,
+                    locations: location,
                     title_id: data.id,
                   }).then((res) => {
                     setShowAlert(true);
@@ -291,7 +346,43 @@ const LeadRegister = ({ data }) => {
                 placeholder="Nationality - الجنسية"
                 value={nationality}
                 onChange={(e) => setNationality(e.target.value)}
-              />
+              />{" "}
+              <div className="select-box">
+                <Select
+                  styles={selectStyle}
+                  name="area_size"
+                  isSearichable={false}
+                  id="unt_type"
+                  value={type}
+                  onChange={setType}
+                  placeholder="Select Unit Type"
+                  options={property_type_en}
+                  instanceId="area_size_select"
+                />
+                <Select
+                  styles={selectStyle}
+                  name="area_size"
+                  isSearchable={false}
+                  id="payment_type"
+                  value={payment}
+                  onChange={setPayment}
+                  placeholder="Select Payment Type"
+                  options={payment_type}
+                  instanceId="area_size_select"
+                />
+                <Select
+                  styles={selectStyle}
+                  name="location_id"
+                  isSearchable={false}
+                  id="location_id"
+                  value={location}
+                  onChange={setLocation}
+                  placeholder="Select Location"
+                  isMulti
+                  options={locations ? locations : null}
+                  instanceId="location_id"
+                />
+              </div>
               <div className="agree-box">
                 <div className="toggle-button-cover">
                   <input
