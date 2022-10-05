@@ -4357,3 +4357,12 @@ ul.pagination li.disabled a {
   display: none !important;
 }
 
+.client-header-left {
+  height: 200px;
+  width: 200px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}

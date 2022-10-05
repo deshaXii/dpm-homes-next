@@ -115,10 +115,10 @@ const PropertyViewer = () => {
       )}
       <section className="property-viewer p50">
         <div className="container">
-          <SectionTitle
+          {/* <SectionTitle
             title={<FormattedMessage id="page.property.view-Property" />}
             subTitle={<FormattedMessage id="page.property.view-show" />}
-          />
+          /> */}
           <div className="row">
             <div className="col-md-11">
               <div className="property-view-area">

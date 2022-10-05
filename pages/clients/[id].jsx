@@ -24,7 +24,7 @@ const ClientProfile = () => {
   return (
     <>
       <Head>
-      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
+        <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div className="client-page" style={{ padding: "60px 0 120px 0" }}>
@@ -34,10 +34,10 @@ const ClientProfile = () => {
                 <div className="client-header-left">
                   <div className="client-header-image">
                     <Image
-                      src="/img/defaultUser.png"
+                      src={`https://admin.dpmhomes.com/user-images/${clientData.user.image}`}
                       alt="client image"
-                      width={200}
-                      height={200}
+                      width={100}
+                      height={100}
                     />
                   </div>
                 </div>
