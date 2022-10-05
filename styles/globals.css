@@ -1344,16 +1344,16 @@ footer .container:after {
 }
 
 .property-main-info.fixed-at-top {
-  position: sticky;
-  top: 97px;
-  left: 0;
-  width: 100%;
-  z-index: 99;
   border-top: 1px solid var(--mainColorWithOpacity);
   border-bottom: 1px solid var(--mainColorWithOpacity);
+  position: relative;
   background: var(--gray);
   background-position: 41% 0px;
   background-image: url('/img/property_test_7.jpg');
+}
+
+section.property-viewer.p50 {
+  background: #011f2a;
 }
 
 .property-main-info.fixed-at-top:before {
@@ -1365,7 +1365,6 @@ footer .container:after {
   height: 100%;
   background: var(--gray);
   opacity: 0.9;
-  z-index: -1;
 }
 
 .pmii-box {

@@ -81,7 +81,12 @@ const PropertyMainInfo = () => {
 
   return (
     <>
-      <div className="property-main-info fixed-at-top">
+      <div
+        className="property-main-info fixed-at-top"
+        style={{
+          backgroundImage: `url('https://admin.dpmhomes.com/property-images/${property.data.images[0]}')`,
+        }}
+      >
         <div className="container">
           <div className="row">
             <div className="col-12">
