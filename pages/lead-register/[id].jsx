@@ -187,7 +187,7 @@ const LeadRegister = ({ data }) => {
           margin-right: 15px;
           margin-left: 15px;
           padding: 8px 0;
-          margin-top: 30px;
+          margin-top: 40px;
           border-radius: 12px;
         }
 
@@ -205,7 +205,7 @@ const LeadRegister = ({ data }) => {
           <div
             className="asdawe"
             style={{
-              backgroundImage: "url(/img/lead-bg.jpg)",
+            backgroundImage: "url(/img/lead-bg.webp)",
               backgroundSize: "cover",
               display: "flex",
               justifyContent: "center",
