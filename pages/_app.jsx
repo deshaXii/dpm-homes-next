@@ -7,7 +7,7 @@ import { parseCookies } from "../common/parseCookies";
 import { AiOutlineClose, AiOutlineComment } from "react-icons/ai";
 import { getUserInfo } from "../store/slices/auth";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Script from "next/script";
 
 import { FormattedMessage, IntlProvider } from "react-intl";
@@ -22,7 +22,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { sendFeedback } from "../store/slices/feedback";
 import "react-toastify/dist/ReactToastify.css";
-import { getSettingsData } from "../store/slices/settings";
+import { getSettingsData, selectSettings } from "../store/slices/settings";
 import { getUserLocationIP } from "../store/slices/currency";
 
 const messages = {
@@ -45,6 +45,9 @@ function MyApp({ Component, pageProps, user }) {
 
   const [score, setScore] = useState(0);
   const [review, setReview] = useState("");
+
+  const {settingsData} = useSelector(selectSettings)
+  console.log(settingsData);
   return (
     <>
       <Head>
