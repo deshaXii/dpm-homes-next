@@ -88,39 +88,7 @@ const Project = () => {
                 ></div>
                 <div className="project-content">
                   <h1>{project.project_info.name}</h1>
-                  {showMore ? (
-                    <p>
-                      <>
-                        {project.project_info.description}
-                        <a
-                          href="#"
-                          className="show-more-btn"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setShowMore(!showMore);
-                          }}
-                        >   
-                          <FormattedMessage id="global.read.more" />    
-                        </a>
-                      </>
-                    </p>
-                  ) : (
-                    <>
-                      <p>
-                        {project.project_info.description.substr(0, 198)}...
-                        <a
-                          className="show-more-btn"
-                          href="#"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setShowMore(!showMore);
-                          }}
-                        >
-                          <FormattedMessage id="global.read.more" />
-                        </a>
-                      </p>
-                    </>
-                  )}
+      
                 </div>
 
                 <div
@@ -270,6 +238,42 @@ const Project = () => {
                       </div>
                     )}
                   </div>
+                </div>
+
+                <div className="project-content">
+                {showMore ? (
+                    <p>
+                      <>
+                        {project.project_info.description}
+                        <a
+                          href="#"
+                          className="show-more-btn"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setShowMore(!showMore);
+                          }}
+                        >   
+                          <FormattedMessage id="global.read.more" />    
+                        </a>
+                      </>
+                    </p>
+                  ) : (
+                    <>
+                      <p>
+                        {project.project_info.description.substr(0, 198)}...
+                        <a
+                          className="show-more-btn"
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setShowMore(!showMore);
+                          }}
+                        >
+                          <FormattedMessage id="global.read.more" />
+                        </a>
+                      </p>
+                    </>
+                  )}
                 </div>
 
                 <SectionTitle
