@@ -228,5 +228,18 @@
   "page.add-property-form-title.add-more-view-way": "طرق اخري لعرض الوحدة",
   "page.property.page-not-found": "يبدو أننا لا نستطيع العثور على الصفحة التي تبحث عنها.",
   "global.read.more": "أقرا المزيد...",
-  "project-watch-video": "مشاهدة فيديو المشروع"
+  "project-watch-video": "مشاهدة فيديو المشروع",
+  "page.project.title": "بيانات المشروع",
+  "page.project.details.starting_date" : "تاريخ الإنشاء", 
+  "page.project.details.delivery_date" : "تاريخ الإستلام", 
+  "page.project.details.total_area" : "إجمالي المساحه", 
+  "page.project.details.building_area" : "مساحة المباني", 
+  "page.project.details.landscape_area" : "مساحة الحدائق",
+  "page.project.details.total_units": "إجمالي عدد الوحدات", 
+  "page.project.details.sold_out_units": "الوحدات المباعة", 
+  "page.project.details.sold_out_percentage": "نسبة الوحدات المباعة", 
+  "page.project.details.compilation": "compilation", 
+  "page.project.details.pool": "حمام سباحة", 
+  "page.project.details.club": "نادي", 
+  "page.project.details.gym": "صالة جيم"
 }

@@ -13,8 +13,11 @@ import SectionTitle from "../../components/Global/SectionTitle";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/css/modal-video.css";
 import { AiOutlineVideoCamera } from "react-icons/ai";
+import { MdOutlineArrowDropUp } from "react-icons/md";
+import { BsCheck } from "react-icons/bs";
 
 const Project = () => {
+  const [detailsCollapsed, setDetailsCollapsed] = useState(false);
   const router = useRouter();
   const query = router;
   const { locale } = query;
@@ -30,7 +33,7 @@ const Project = () => {
   return (
     <>
       <Head>
-      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
+        <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       {typeof window !== "undefined" && (
         <ModalVideo
@@ -86,6 +89,156 @@ const Project = () => {
                   <h1>{project.project_info.name}</h1>
                   <p> {project.project_info.description} </p>
                 </div>
+
+                <div
+                  className={`details-inner-box ${
+                    detailsCollapsed ? "collapsed" : ""
+                  }`}
+                >
+                  <div
+                    className="section-inner-title"
+                    onClick={() => setDetailsCollapsed(!detailsCollapsed)}
+                  >
+                    <MdOutlineArrowDropUp />
+                    <h4>
+                      <FormattedMessage id="page.project.title" />{" "}
+                    </h4>
+                  </div>
+                  <div className="property-details-inner">
+                    {project.project_info.starting_date && (
+                      <div className="pdi-box">
+                        <div className="pdi-name">
+                          <FormattedMessage id="page.project.details.starting_date" />
+                          :
+                        </div>
+                        <div className="pdi-value">
+                          {project.project_info.starting_date}
+                        </div>
+                      </div>
+                    )}
+                    {project.project_info.delivery_date && (
+                      <div className="pdi-box">
+                        <div className="pdi-name">
+                          <FormattedMessage id="page.project.details.delivery_date" />
+                          :
+                        </div>
+                        <div className="pdi-value">
+                          {project.project_info.delivery_date}
+                        </div>
+                      </div>
+                    )}
+                    {project.project_info.total_area && (
+                      <div className="pdi-box">
+                        <div className="pdi-name">
+                          <FormattedMessage id="page.project.details.total_area" />
+                          :
+                        </div>
+                        <div className="pdi-value">
+                          {project.project_info.total_area}
+                        </div>
+                      </div>
+                    )}
+                    {project.project_info.building_area && (
+                      <div className="pdi-box">
+                        <div className="pdi-name">
+                          <FormattedMessage id="page.project.details.building_area" />
+                          :
+                        </div>
+                        <div className="pdi-value">
+                          {project.project_info.building_area}
+                        </div>
+                      </div>
+                    )}
+                    {project.project_info.landscape_area && (
+                      <div className="pdi-box">
+                        <div className="pdi-name">
+                          <FormattedMessage id="page.project.details.landscape_area" />
+                          :
+                        </div>
+                        <div className="pdi-value">
+                          {project.project_info.landscape_area}
+                        </div>
+                      </div>
+                    )}
+                    {project.project_info.total_units && (
+                      <div className="pdi-box">
+                        <div className="pdi-name">
+                          <FormattedMessage id="page.project.details.total_units" />
+                          :
+                        </div>
+                        <div className="pdi-value">
+                          {project.project_info.total_units}
+                        </div>
+                      </div>
+                    )}
+                    {project.project_info.sold_out_units && (
+                      <div className="pdi-box">
+                        <div className="pdi-name">
+                          <FormattedMessage id="page.project.details.sold_out_units" />
+                          :
+                        </div>
+                        <div className="pdi-value">
+                          {project.project_info.sold_out_units}
+                        </div>
+                      </div>
+                    )}
+                    {project.project_info.sold_out_percentage && (
+                      <div className="pdi-box">
+                        <div className="pdi-name">
+                          <FormattedMessage id="page.project.details.sold_out_percentage" />
+                          :
+                        </div>
+                        <div className="pdi-value">
+                          {project.project_info.sold_out_percentage}
+                        </div>
+                      </div>
+                    )}
+                    {project.project_info.compilation && (
+                      <div className="pdi-box">
+                        <div className="pdi-name">
+                          <FormattedMessage id="page.project.details.compilation" />
+                          :
+                        </div>
+                        <div className="pdi-value">
+                          {project.project_info.compilation} %
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="amenities-area property-details-inner">
+                    {Number(project.project_info.pool) === 1 && (
+                      <div className="pdi-box">
+                        <div className="pdi-icon">
+                          <BsCheck />
+                        </div>
+                        <div className="pdi-value">
+                          <FormattedMessage id="page.project.details.pool" />
+                        </div>
+                      </div>
+                    )}
+                    {Number(project.project_info.club) === 1 && (
+                      <div className="pdi-box">
+                        <div className="pdi-icon">
+                          <BsCheck />
+                        </div>
+                        <div className="pdi-value">
+                          <FormattedMessage id="page.project.details.club" />
+                        </div>
+                      </div>
+                    )}
+                    {Number(project.project_info.gym) === 1 && (
+                      <div className="pdi-box">
+                        <div className="pdi-icon">
+                          <BsCheck />
+                        </div>
+                        <div className="pdi-value">
+                          <FormattedMessage id="page.project.details.gym" />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
                 <SectionTitle
                   title={locale === "ar" ? "الوحدات" : "units"}
                   subTitle={project.project_info.name}

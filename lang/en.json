@@ -229,5 +229,18 @@
   "page.add-property-form-title.add-more-view-way": " Other ways to display the unit",
   "page.property.page-not-found": "We can’t seem to find a page you are looking for.",
   "global.read.more": "Read More...",
-  "project-watch-video": "watch project video"
+  "project-watch-video": "watch project video",
+  "page.project.title": "Project Details",
+  "page.project.details.starting_date" : "starting date", 
+  "page.project.details.delivery_date" : "delivery date", 
+  "page.project.details.total_area" : "total area", 
+  "page.project.details.building_area" : "building area", 
+  "page.project.details.landscape_area" : "landscape area",
+  "page.project.details.total_units": "total units", 
+  "page.project.details.sold_out_units": "sold out units", 
+  "page.project.details.sold_out_percentage": "sold out percentage", 
+  "page.project.details.compilation": "compilation", 
+  "page.project.details.pool": "pool", 
+  "page.project.details.club": "club", 
+  "page.project.details.gym": "gym"
 }
