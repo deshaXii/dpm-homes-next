@@ -23,10 +23,15 @@ const AdministrativeRent = () => {
 
   const governorate_options = allGovernorates;
 
-  const property_type_options_ar = [{ value: "offices", label: "مكاتب" }];
+  const property_type_options_ar = [
+    { value: "offices", label: "مكاتب" },
+    { value: "clinics", label: "عيادات" },
+  ];
 
-  const property_type_options_en = [{ value: "offices", label: "offices" }];
-
+  const property_type_options_en = [
+    { value: "offices", label: "offices" },
+    { value: "clinics", label: "clinics" },
+  ];
   const buildingOptions_ar = [
     { value: "inside_administrative_building", label: "داخل مبني إداري" },
     { value: "inside_commercial_building", label: "داخل مبني تجاري" },

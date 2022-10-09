@@ -23,10 +23,16 @@ const AdministrativeCash = () => {
 
   const governorate_options = allGovernorates;
 
-  const property_type_options_ar = [{ value: "offices", label: "مكاتب" }];
+ 
+  const property_type_options_ar = [
+    { value: "offices", label: "مكاتب" },
+    { value: "clinics", label: "عيادات" },
+  ];
 
-  const property_type_options_en = [{ value: "offices", label: "offices" }];
-
+  const property_type_options_en = [
+    { value: "offices", label: "offices" },
+    { value: "clinics", label: "clinics" },
+  ];
   const currency_options_ar = [
     { value: "USD", label: "دولار أمريكي" },
     { value: "AED", label: "درهم إماراتي" },

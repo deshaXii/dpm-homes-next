@@ -23,6 +23,7 @@ import Link from "next/link";
 import { sendFeedback } from "../store/slices/feedback";
 import "react-toastify/dist/ReactToastify.css";
 import { getSettingsData } from "../store/slices/settings";
+import { getUserLocationIP } from "../store/slices/currency";
 
 const messages = {
   ar,

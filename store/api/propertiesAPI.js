@@ -1,17 +1,20 @@
 import API from "../api";
 import jsCookies from "js-cookies";
 
-export async function getProperties({ type, userToken, lang }) {
+export async function getProperties({ type, userToken, lang, currency }) {
   try {
     if (userToken) {
-      const res = await API.get(`/get-property?type=${type}&lang=${lang}`, {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-        },
-      });
+      const res = await API.get(
+        `/get-property?type=${type}&lang=${lang}&currency=${currency}`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
       return await res.data;
     } else {
-      const res = await API.get(`/get-property?type=${type}&lang=${lang}`);
+      const res = await API.get(`/get-property?type=${type}&lang=${lang}&currency=${currency}`);
       return await res.data;
     }
   } catch (err) {
@@ -19,36 +22,39 @@ export async function getProperties({ type, userToken, lang }) {
   }
 }
 
-export async function getFeaturesSellUnits(locale) {
+export async function getFeaturesSellUnits({locale, currency}) {
   try {
-    const res = await API.get(`/get-homepage-sell?lang=${locale}`);
+    const res = await API.get(`/get-homepage-sell?lang=${locale}&currency=${currency}`);
     return await res.data;
   } catch (err) {
     return err;
   }
 }
 
-export async function getFeaturesRentUnits(locale) {
+export async function getFeaturesRentUnits({locale, currency}) {
   try {
-    const res = await API.get(`/get-homepage-rent?lang=${locale}`);
+    const res = await API.get(`/get-homepage-rent?lang=${locale}&currency=${currency}`);
     return await res;
   } catch (err) {
     return err;
   }
 }
 
-export async function getPropertyById({ id, lang }) {
+export async function getPropertyById({ id, lang, currency }) {
   try {
-    const res = await API.get(`/show-property?id=${id}&lang=${lang}`);
+    console.log(currency);
+    const res = await API.get(
+      `/show-property?id=${id}&lang=${lang}&currency=${currency}`
+    );
     return await res.data;
   } catch (err) {
     return err;
   }
 }
 
-export async function getRelatedProperty({ id, lang }) {
+export async function getRelatedProperty({ id, lang, currency }) {
   try {
-    const res = await API.get(`/get-related?id=${id}&lang=${lang}`);
+    const res = await API.get(`/get-related?id=${id}&lang=${lang}&currency=${currency}`);
     return await res.data.data;
   } catch (err) {
     return err;

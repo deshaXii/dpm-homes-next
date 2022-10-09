@@ -58,13 +58,13 @@ const PropertyDetails = () => {
     { value: "offices", label: "offices" },
   ];
 
-  if (property.data.country === "United Arab Emirates" || property.data.country === 'الإمارات العربية المتحدة') {
-    var formatterAED = new Intl.NumberFormat(`${locale}-eg`, {
+  if (property.data.currency === "AED" ) {
+    var formatterAED = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "AED",
     });
-  } else if (property.data.country === "Egypt" || property.data.country === "مصر") {
-    var formatterEGP = new Intl.NumberFormat(`${locale}-eg`, {
+  } else if (property.data.currency === "EGP") {
+    var formatterEGP = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "EGP",
     });
@@ -78,7 +78,6 @@ const PropertyDetails = () => {
     }
   };
 
-  console.log(property.data.total_price_installment);
 
   return (
     <section className="property-details p50">
@@ -445,6 +444,7 @@ const PropertyDetails = () => {
                       :
                     </div>
                     <div className="pdi-value">
+                      {/* <span>{property.data.total_price}</span> */}
                       {formatterEGP && (
                         <span>
                           {formatterEGP?.format(property.data.total_price)}
@@ -479,20 +479,21 @@ const PropertyDetails = () => {
                           )}
                         </span>
                       )}
+                      {/* <span>{property.data.total_price_installment}</span> */}
                     </div>
                   </div>
                 )}
                 {property.data.advance_payment && (
-                    <div className="pdi-box">
-                      <div className="pdi-name">
-                        <FormattedMessage id="page.property.details.advance_payment" />
-                        :
-                      </div>
-                      <div className="pdi-value">
-                        {property.data.advance_payment}
-                      </div>
+                  <div className="pdi-box">
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.advance_payment" />
+                      :
                     </div>
-                  )}
+                    <div className="pdi-value">
+                      {property.data.advance_payment}
+                    </div>
+                  </div>
+                )}
                 {property.data.installment && (
                   <div className="pdi-box">
                     <div className="pdi-name">
@@ -510,6 +511,7 @@ const PropertyDetails = () => {
                           {formatterAED?.format(property.data.installment)}
                         </span>
                       )}
+                      {/* <span>{property.data.installment}</span> */}
                     </div>
                   </div>
                 )}
@@ -530,6 +532,7 @@ const PropertyDetails = () => {
                           {formatterAED?.format(property.data.maintenance_fees)}
                         </span>
                       )}
+                      {/* <span>{property.data.maintenance_fees}</span> */}
                     </div>
                   </div>
                 )}
@@ -539,16 +542,7 @@ const PropertyDetails = () => {
                       <FormattedMessage id="page.property.details.Currency" />:
                     </div>
                     <div className="pdi-value">
-                      {property.data.currency == "EGP"
-                        ? locale === "ar"
-                          ? "جنية مصري"
-                          : "EGP"
-                        : ""}
-                      {property.data.currency == "AED"
-                        ? locale === "ar"
-                          ? "درهم إمراتي"
-                          : "AED"
-                        : ""}
+                      {property.data.currency}
                     </div>
                   </div>
                 )}

@@ -51,13 +51,23 @@ export default SingleProperty;
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ res, query, locale }) => {
-      res.setHeader(
-        "Cache-Control",
-        "public, s-maxage=10, stale-while-revalidate=59"
-      );
+      const currency = await store.getState().settings.settingsData.currency;
+
       const { id } = query;
-      await store.dispatch(showProperty({ id, lang: locale }));
-      await store.dispatch(showRelatedProperty({ id: id, lang: locale }));
+      await store.dispatch(
+        showProperty({
+          id,
+          lang: locale,
+          currency: currency,
+        })
+      );
+      await store.dispatch(
+        showRelatedProperty({
+          id: id,
+          lang: locale,
+          currency: currency,
+        })
+      );
       return {
         props: {},
       };

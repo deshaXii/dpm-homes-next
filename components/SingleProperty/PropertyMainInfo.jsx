@@ -25,13 +25,13 @@ const PropertyMainInfo = () => {
 
   const { locale } = router;
 
-  if (property.data.country === "United Arab Emirates") {
-    var formatterAED = new Intl.NumberFormat(`${locale}-eg`, {
+  if (property.data.currency === "AED") {
+    var formatterAED = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "AED",
     });
-  } else if (property.data.country === "Egypt") {
-    var formatterEGP = new Intl.NumberFormat(`${locale}-eg`, {
+  } else if (property.data.currency === "EGP") {
+    var formatterEGP = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "EGP",
     });
@@ -148,6 +148,14 @@ const PropertyMainInfo = () => {
                         {formatterAED?.format(property.data.rent_price)}
                       </span>
                     )}
+
+                    {/* {property.data.total_price ? (
+                      <span>{property.data.total_price}</span>
+                    ) : property.data.total_price_installment ? (
+                      <span>{property.data.total_price_installment}</span>
+                    ) : (
+                      <span>{property.data.rent_price}</span>
+                    )} */}
                   </div>
                   <Link
                     href={`https://api.whatsapp.com/send/?phone=%${97144547816}&text=اأريد الإستفسار حول هذا العقار: https://luxuryaqar.com${

@@ -16,7 +16,6 @@ import Select from "react-select";
 import { wrapper } from "../../store";
 import API from "../../store/api";
 const LeadRegister = ({ data }) => {
-  console.log(data);
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     document.querySelector(".feedback-wrap").style.display = "none";
@@ -48,7 +47,6 @@ const LeadRegister = ({ data }) => {
   if (data.locations) {
     for (let MM in data.locations) {
       locations.push({ value: data.locations[MM], label: data.locations[MM] });
-      console.log(locations);
     }
   }
 
@@ -292,16 +290,7 @@ const LeadRegister = ({ data }) => {
               className="register-form"
               onSubmit={(e) => {
                 e.preventDefault();
-                console.log({
-                  name,
-                  phone,
-                  email,
-                  nationality,
-                  licence: type.value,
-                  payment_type: payment.value,
-                  locations: location.value,
-                  title_id: data.id,
-                });
+          
                 if (agree) {
                   API.post("/submit-form", {
                     name,

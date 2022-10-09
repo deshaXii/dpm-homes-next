@@ -12,6 +12,7 @@ import jsCookies from "js-cookies";
 import SiteMenu from "./SiteMenu";
 import MobileMenu from "./MobileMenu";
 import { AiOutlineUserAdd } from "react-icons/ai";
+import { getCurrency } from "../../store/slices/currency";
 
 const AppNavbar = ({ user }) => {
   const { locales, locale, asPath } = useRouter();
@@ -118,6 +119,119 @@ const AppNavbar = ({ user }) => {
                   </a>
                 </Link>
               )}
+            </div>
+            <div className="header__right-area-item header__right-area-item--style1 global-switch__country">
+              <div className="global-switch__current">
+                <span className="global-switch__flag global-switch__flag--ae"></span>
+                <span className="global-switch__current-name">UAE</span>
+                <svg viewBox="0 0 13 8" className="global-switch__arrow">
+                  <use xlinkHref="#svg-chevron-down"></use>
+                </svg>
+              </div>
+              <div className="global-switch__dropdown-area">
+                <div className="global-switch__dropdown">
+                  <div className="global-switch__dropdown-content">
+                    <div className="global-switch__dropdown-list">
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          dispatch(getCurrency("uae"));
+                        }}
+                        className="global-switch__dropdown-link"
+                        rel="nofollow"
+                      >
+                        <span className="global-switch__flag global-switch__flag--ae"></span>
+                        <span className="global-switch__name">AED</span>
+                      </a>
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          dispatch(getCurrency("egp"));
+                        }}
+                        className="global-switch__dropdown-link"
+                        rel="nofollow"
+                      >
+                        <span className="global-switch__flag global-switch__flag--eg"></span>
+                        <span className="global-switch__name">EGP</span>
+                      </a>
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          dispatch(getCurrency("sa"));
+                        }}
+                        className="global-switch__dropdown-link"
+                        rel="nofollow"
+                      >
+                        <span className="global-switch__flag global-switch__flag--sa"></span>
+                        <span className="global-switch__name">SAR</span>
+                      </a>
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          dispatch(getCurrency("sa"));
+                        }}
+                        className="global-switch__dropdown-link"
+                        rel="nofollow"
+                      >
+                        <span className="global-switch__flag global-switch__flag--sa"></span>
+                        <span className="global-switch__name"> KWD</span>
+                      </a>
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          dispatch(getCurrency("usd"));
+                        }}
+                        className="global-switch__dropdown-link"
+                        rel="nofollow"
+                      >
+                        <span className="global-switch__flag global-switch__flag--usa"></span>
+                        <span className="global-switch__name">USD</span>
+                      </a>
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          dispatch(getCurrency("usd"));
+                        }}
+                        className="global-switch__dropdown-link"
+                        rel="nofollow"
+                      >
+                        <span className="global-switch__flag global-switch__flag--usa"></span>
+                        <span className="global-switch__name">QAR</span>
+                      </a>
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          dispatch(getCurrency("usd"));
+                        }}
+                        className="global-switch__dropdown-link"
+                        rel="nofollow"
+                      >
+                        <span className="global-switch__flag global-switch__flag--usa"></span>
+                        <span className="global-switch__name">EURO</span>
+                      </a>
+                      <a
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          dispatch(getCurrency("usd"));
+                        }}
+                        className="global-switch__dropdown-link"
+                        rel="nofollow"
+                      >
+                        <span className="global-switch__flag global-switch__flag--usa"></span>
+                        <span className="global-switch__name">GBP </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="navbar-lang-switcher">
               {[...locales]

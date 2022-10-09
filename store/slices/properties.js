@@ -37,32 +37,31 @@ export const getPropertiesWithTpye = createAsyncThunk(
 );
 export const getHomepageSellUnits = createAsyncThunk(
   "properties/getFeaturesSellUnits",
-  async (locale) => {
-    const responseData = await getFeaturesSellUnits(locale);
+  async ({locale, currency}) => {
+    const responseData = await getFeaturesSellUnits({locale, currency});
     return responseData;
   }
 );
 export const getHomepageRentUnits = createAsyncThunk(
   "properties/getFeaturesRentUnits",
-  async (locale) => {
-    const responseData = await getFeaturesRentUnits(locale);
+  async ({locale, currency}) => {
+    const responseData = await getFeaturesRentUnits({locale, currency});
     return responseData;
   }
 );
 
 export const showProperty = createAsyncThunk(
   "properties/showProperty",
-  async ({id, lang}) => {
-    const responseData = await getPropertyById({id, lang});
+  async ({id, lang, currency}) => {
+    const responseData = await getPropertyById({id, lang, currency});
     return responseData;
   }
 );
 
 export const showRelatedProperty = createAsyncThunk(
   "properties/showRelatedProperty",
-  async ({ id, lang }) => {
-    console.log(lang);
-    const responseData = await getRelatedProperty({ id, lang });
+  async ({ id, lang, currency }) => {
+    const responseData = await getRelatedProperty({ id, lang, currency });
     return responseData;
   }
 );

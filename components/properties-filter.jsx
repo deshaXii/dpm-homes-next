@@ -63,9 +63,15 @@ const uritType_ar = [
   { value: "administative", label: "أداري" },
 ];
 
-const administative_type_options_ar = [{ value: "offices", label: "مكاتب" }];
+const property_type_options_ar = [
+  { value: "offices", label: "مكاتب" },
+  { value: "clinics", label: "عيادات" },
+];
 
-const administative_type_options_en = [{ value: "offices", label: "offices" }];
+const property_type_options_en = [
+  { value: "offices", label: "offices" },
+  { value: "clinics", label: "clinics" },
+];
 
 const commercial_type_options_ar = [
   { value: "shop", label: "محل" },

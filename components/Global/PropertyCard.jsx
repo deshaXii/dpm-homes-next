@@ -22,13 +22,13 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
   const router = useRouter();
   const { locale } = router;
 
-  if (property.country === "United Arab Emirates") {
-    var formatterAED = new Intl.NumberFormat(`${locale}-eg`, {
+  if (property.currency === "AED") {
+    var formatterAED = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "AED",
     });
-  } else if (property.country === "Egypt") {
-    var formatterEGP = new Intl.NumberFormat(`${locale}-eg`, {
+  } else if (property.currency === "EGP") {
+    var formatterEGP = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "EGP",
     });
@@ -150,6 +150,13 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
           ) : (
             <span>{formatterAED?.format(property.rent_price)}</span>
           )}
+          {/* {property.total_price ? (
+            <span>{property.total_price}</span>
+          ) : property.total_price_installment ? (
+            <span>{property.total_price_installment}</span>
+          ) : (
+            <span>{property.rent_price}</span>
+          )} */}
         </div>
 
         <div className="property-card-title">
