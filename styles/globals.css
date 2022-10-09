@@ -4703,3 +4703,25 @@ ul.pagination li.disabled a {
   padding: 22px;
   margin-bottom: 20px;
 }
+.project-page .details-inner-box {
+  background-color: var(--gray);
+  border-top: 3px solid var(--mainColor);
+  border-bottom: 3px solid var(--mainColor);
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.project-content p a.show-more-btn {
+  background: var(--mainColor);
+  padding: 0px 10px;
+  border-radius: 5px;
+  margin: 0 10px;
+  color: #fff;
+  display: inline-block;
+  height: 35px;
+  line-height: 35px;
+}
+
+.project-content p {
+  line-height: 2.3;
+}

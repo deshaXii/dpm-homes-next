@@ -18,6 +18,7 @@ import { BsCheck } from "react-icons/bs";
 
 const Project = () => {
   const [detailsCollapsed, setDetailsCollapsed] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   const router = useRouter();
   const query = router;
   const { locale } = query;
@@ -87,7 +88,39 @@ const Project = () => {
                 ></div>
                 <div className="project-content">
                   <h1>{project.project_info.name}</h1>
-                  <p> {project.project_info.description} </p>
+                  {showMore ? (
+                    <p>
+                      <>
+                        {project.project_info.description}
+                        <a
+                          href="#"
+                          className="show-more-btn"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setShowMore(!showMore);
+                          }}
+                        >
+                          Show More
+                        </a>
+                      </>
+                    </p>
+                  ) : (
+                    <>
+                      <p>
+                        {project.project_info.description.substr(0, 198)}...
+                        <a
+                          className="show-more-btn"
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setShowMore(!showMore);
+                          }}
+                        >
+                          Show More
+                        </a>
+                      </p>
+                    </>
+                  )}
                 </div>
 
                 <div
