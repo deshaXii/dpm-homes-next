@@ -99,8 +99,8 @@ const Project = () => {
                             e.preventDefault();
                             setShowMore(!showMore);
                           }}
-                        >
-                          Show More
+                        >   
+                          <FormattedMessage id="global.read.more" />    
                         </a>
                       </>
                     </p>
@@ -116,7 +116,7 @@ const Project = () => {
                             setShowMore(!showMore);
                           }}
                         >
-                          Show More
+                          <FormattedMessage id="global.read.more" />
                         </a>
                       </p>
                     </>
