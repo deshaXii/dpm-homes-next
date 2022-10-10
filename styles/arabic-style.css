@@ -233,3 +233,9 @@ html[lang="ar"] .feedback-links {
 .rtl .project-slide-box .project-slide-info {
     text-align: right;
 }
+
+
+.rtl .locationNearby ul li:not(:nth-of-type(2n+2)) {
+    margin-left: 1.6rem;
+    margin-right: 0
+}
