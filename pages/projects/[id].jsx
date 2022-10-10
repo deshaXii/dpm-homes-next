@@ -111,61 +111,71 @@ const Project = () => {
               <div className="col-md-3">
                 <div className="project-by-comapny-card">
                   <div className="company-image">
-                    <img
-                      src={`https://admin.dpmhomes.com/user-images/${user_info.image}`}
-                      alt={`${user_info.name + " image"}`}
-                    />
+                    <Link href={`/clients/${user_info.id}`}>
+                      <a>
+                        <img
+                          src={`https://admin.dpmhomes.com/user-images/${user_info.image}`}
+                          alt={`${user_info.name + " image"}`}
+                        />
+                      </a>
+                    </Link>
                   </div>
                   <div className="company-card-content">
                     <div className="ccc-title">
-                      <h5>{user_info.name}</h5>
-                      <p>
-                        {showMoreU ? (
-                          <p>
-                            <>
-                              {user_info.about}
-                              <a
-                                href="#"
-                                className="show-more-btn"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setShowMoreU(!showMoreU);
-                                }}
-                              >
-                                <FormattedMessage id="global.read.more" />
-                              </a>
-                            </>
-                          </p>
-                        ) : (
-                          <>
+                      <Link href={`/clients/${user_info.id}`}>
+                        <a>
+                          <h5>{user_info.name}</h5>
+                        </a>
+                      </Link>
+                      {user_info.about && (
+                        <p>
+                          {showMoreU ? (
                             <p>
-                              {user_info.about.substr(0, 400)}
-                              ...
-                              <a
-                                className="show-more-btn"
-                                href="#"
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setShowMoreU(!showMoreU);
-                                }}
-                              >
-                                <FormattedMessage id="global.read.more" />
-                              </a>
+                              <>
+                                {user_info.about}
+                                <a
+                                  href="#"
+                                  className="show-more-btn"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setShowMoreU(!showMoreU);
+                                  }}
+                                >
+                                  <FormattedMessage id="global.read.more" />
+                                </a>
+                              </>
                             </p>
-                          </>
-                        )}
-                      </p>
+                          ) : (
+                            <>
+                              <p>
+                                {user_info.about?.substr(0, 400)}
+                                ...
+                                <a
+                                  className="show-more-btn"
+                                  href="#"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    setShowMoreU(!showMoreU);
+                                  }}
+                                >
+                                  <FormattedMessage id="global.read.more" />
+                                </a>
+                              </p>
+                            </>
+                          )}
+                        </p>
+                      )}
                     </div>
                   </div>
                   <div className="company-card-buttons">
-                    <button className="btn call-btn">
+                    <a className="btn call-btn" href={`tel=${user_info.phone}`}>
                       <MdOutlineCall />
                       <span>Call</span>
-                    </button>
-                    <button className="btn email-btn">
+                    </a>
+                    <a className="btn email-btn">
                       <HiOutlineMail />
                       <span>Email</span>
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>

@@ -95,42 +95,49 @@ const ClientProfile = () => {
                 </div>
               </div>
             </div>
-            <div className="clinet-more-details">
-              <SectionTitle title={clientData.user.name} subTitle="About" />
-              <div className="cmd-content project-content">
-                {showMore ? (
-                  <p>
-                      {clientData.user.about}
-                      <a
-                        href="#"
-                        className="show-more-btn"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setShowMore(!showMore);
-                        }}
-                      >
-                        <FormattedMessage id="global.read.more" />
-                      </a>
-                  </p>
-                ) : (
-                  <>
-                    <p>
-                      {clientData.user.about}...
-                      <a
-                        className="show-more-btn"
-                        href="#"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setShowMore(!showMore);
-                        }}
-                      >
-                        <FormattedMessage id="global.read.more" />
-                      </a>
-                    </p>
-                  </>
-                )}
+            {clientData.user?.about && (
+              <div className="clinet-more-details">
+                <SectionTitle title={clientData.user.name} subTitle="About" />
+                <div className="cmd-content project-content">
+                  {clientData.user?.about && (
+                    <div>
+                      {showMore ? (
+                        <p>
+                          {clientData.user?.about}
+                          <a
+                            href="#"
+                            className="show-more-btn"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setShowMore(!showMore);
+                            }}
+                          >
+                            <FormattedMessage id="global.read.more" />
+                          </a>
+                        </p>
+                      ) : (
+                        <>
+                          <p>
+                            {clientData.user?.about?.substr(0, 198)}...
+                            <a
+                              className="show-more-btn"
+                              href="#"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setShowMore(!showMore);
+                              }}
+                            >
+                              <FormattedMessage id="global.read.more" />
+                            </a>
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
+
             <div className="clinet-more-details xcsa">
               <div className="cmd-content">
                 <section className={`properties-section`}>

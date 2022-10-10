@@ -4892,6 +4892,7 @@ ul.pagination li.disabled a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 15px;
 }
 
 .company-card-buttons .btn {
@@ -4918,5 +4919,5 @@ ul.pagination li.disabled a {
 }
 
 .company-card-content p {
-  margin: 15px 0;
+  margin-top: 15px;
 }
