@@ -18,7 +18,7 @@ const ContactInfo = ({ settingsData }) => {
             <div className="dbl-nums">
               <div className="df">
                 {settingsData.phone.map((item, index) => (
-                  <div className="bv">
+                  <div className="bv" key={index}>
                     <FiPhoneCall />
                     <Link key={index} href={`tel:${item.replace("+", "")}`}>
                       <a>+{item}</a>

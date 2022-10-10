@@ -241,5 +241,15 @@
   "page.project.details.compilation": "compilation", 
   "page.project.details.pool": "حمام سباحة", 
   "page.project.details.club": "نادي", 
-  "page.project.details.gym": "صالة جيم"
+  "page.project.details.gym": "صالة جيم",
+  "page.project.nearby.title": "الموقع والأماكن القريبة",
+  "page.project.nearby.subtitle": "عرض المدارس والمستشفيات والمطاعم القريبة.",
+  "page.project.nearby.schools.title": "المدارس",
+  "page.project.nearby.schools.description": "عرض المدارس والكليات والجامعات القريبة.",
+  "page.project.nearby.restaurants.title": "المطاعم",
+  "page.project.nearby.restaurants.description": "عرض المطاعم والمقاهي القريبة.",
+  "page.project.nearby.hospitals.title": "المستشفيات",
+  "page.project.nearby.hospitals.description": "عرض المستشفيات والعيادات والمراكز الصحية القريبة.",
+  "page.project.nearby.Parks.title": "الحدائق",
+  "page.project.nearby.Parks.description": "عرض الحدائق ومراكز اللياقة البدنية في مكان قريب."
 }

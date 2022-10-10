@@ -33,6 +33,25 @@
         margin-top: 4px;
     }
 
+    .locationNearby ul {
+        display: block;
+    }
+
+    .locationNearby ul .nearbyTab {
+        box-shadow: 2px 2px 0px 1px #878787;
+        width: 100%;
+        margin: 0;
+        margin-bottom: 12px;
+    }
+
+    .locationNearby ul .nearbyTab:hover {
+        box-shadow: -2px -2px 0px 1px #878787;
+    }
+
+    .mapbox-page {
+        min-height: 600px;
+      }
+
     .fixed-button {
         margin: 110px 0 0 -59px;
     }

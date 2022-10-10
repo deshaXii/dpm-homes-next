@@ -3019,9 +3019,9 @@ aside.properties-filter .filter-group .custom-checkbox input:checked~span {
 }
 
 .clinet-more-details {
-  margin-top: 40px;
+  margin-top: 25px;
   background: #e8eced;
-  padding: 38px;
+  padding: 18px;
   border-radius: 10px;
 }
 
@@ -4367,7 +4367,8 @@ ul.pagination li.disabled a {
   border-radius: 50%;
 }
 
-.select-box .css-1jqqwy7-control, .select-box .css-ckdblj-control {
+.select-box .css-1jqqwy7-control,
+.select-box .css-ckdblj-control {
   min-height: 56px;
   margin-bottom: 15px;
 }
@@ -4387,7 +4388,8 @@ ul.pagination li.disabled a {
   white-space: nowrap
 }
 
-.menu__link,.menu__more-button {
+.menu__link,
+.menu__more-button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4398,23 +4400,20 @@ ul.pagination li.disabled a {
   cursor: pointer
 }
 
-.menu--style1 .menu__link,.menu--style1 .menu__more-button {
-}
+.menu--style1 .menu__link,
+.menu--style1 .menu__more-button {}
 
 .menu__more-button {
   position: relative;
   cursor: pointer
 }
 
-.menu__link:hover,.menu__more-button:hover {
-}
+.menu__link:hover,
+.menu__more-button:hover {}
 
-.menu__link--active {
-  
-}
+.menu__link--active {}
 
-.menu__link--active:hover {
-}
+.menu__link--active:hover {}
 
 .menu__more-button--arrow-down {
   height: 1.2rem;
@@ -4438,10 +4437,10 @@ ul.pagination li.disabled a {
   display: block
 }
 
-.menu__more-button:hover .menu__more-button--arrow-down {
-}
+.menu__more-button:hover .menu__more-button--arrow-down {}
 
-.menu__dropdown:after,.menu__dropdown:before {
+.menu__dropdown:after,
+.menu__dropdown:before {
   bottom: 100%;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -4481,35 +4480,35 @@ ul.pagination li.disabled a {
   text-transform: capitalize
 }
 
-.menu__dropdown-list-item:hover {
-}
+.menu__dropdown-list-item:hover {}
 
 @media (min-width: 568px) {
   .menu {
-      display:-webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-ordinal-group: 4;
-      -ms-flex-order: 3;
-      order: 3;
-      width: 100%;
-      padding: 0 5%
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-ordinal-group: 4;
+    -ms-flex-order: 3;
+    order: 3;
+    width: 100%;
+    padding: 0 5%
   }
 }
 
 @media (min-width: 1150px) {
   .menu {
-      -webkit-box-flex:1;
-      -ms-flex: 1;
-      flex: 1;
-      -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-      order: 2;
-      padding: 0
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-ordinal-group: 3;
+    -ms-flex-order: 2;
+    order: 2;
+    padding: 0
   }
 
-  .menu__link,.menu__more-button {
-      height: 7.7rem
+  .menu__link,
+  .menu__more-button {
+    height: 7.7rem
   }
 }
 
@@ -4520,7 +4519,9 @@ ul.pagination li.disabled a {
   height: 2.8rem
 }
 
-.global-switch,.global-switch__country,.global-switch__language {
+.global-switch,
+.global-switch__country,
+.global-switch__language {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4529,7 +4530,8 @@ ul.pagination li.disabled a {
   align-items: center
 }
 
-.global-switch__country,.global-switch__language {
+.global-switch__country,
+.global-switch__language {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -4619,7 +4621,8 @@ ul.pagination li.disabled a {
   display: flex
 }
 
-.global-switch__dropdown:after,.global-switch__dropdown:before {
+.global-switch__dropdown:after,
+.global-switch__dropdown:before {
   bottom: 100%;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -4643,8 +4646,7 @@ ul.pagination li.disabled a {
   border-bottom-color: var(--mainColor);
 }
 
-.global-switch__dropdown-content {
-}
+.global-switch__dropdown-content {}
 
 .global-switch__dropdown-link {
   display: -webkit-box;
@@ -4661,8 +4663,7 @@ ul.pagination li.disabled a {
   column-gap: 10px;
 }
 
-.global-switch__dropdown-link:hover {
-}
+.global-switch__dropdown-link:hover {}
 
 .global-switch__lang-link {
   display: -webkit-box;
@@ -4683,9 +4684,9 @@ ul.pagination li.disabled a {
 
 @media (min-width: 568px) {
   .global-switch__country {
-      display:-webkit-box;
-      display: -ms-flexbox;
-      display: flex
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
   }
 }
 
@@ -4696,6 +4697,7 @@ ul.pagination li.disabled a {
 .header__right-area-item.header__right-area-item--style1.global-switch__country {
   display: none;
 }
+
 .project-page .details-inner-box {
   background-color: var(--gray);
   border-top: 3px solid var(--mainColor);
@@ -4703,6 +4705,7 @@ ul.pagination li.disabled a {
   padding: 22px;
   margin-bottom: 20px;
 }
+
 .project-page .details-inner-box {
   background-color: var(--gray);
   border-top: 3px solid var(--mainColor);
@@ -4726,9 +4729,84 @@ ul.pagination li.disabled a {
   line-height: 2.3;
 }
 
+.cmd-content.project-content p {
+  color: #000;
+}
 
-@media (max-width: 768px) {
-  .mapbox-page {
-    height: 100vh !important;
-  }
+.cmd-content.project-content {
+  margin: 0;
+}
+
+
+
+.locationNearby {
+  border-bottom: 1px solid #dedede36;
+  margin-top: 40px;
+  padding-bottom: 3rem;
+  border-top: 1px solid #dedede36;
+  margin-bottom: 50px;
+  padding-top: 3rem;
+}
+
+.locationNearby .tagLine {
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 16px
+}
+
+.locationNearby ul {
+  display: flex;
+  flex-wrap: wrap
+}
+
+.locationNearby ul li:not(:nth-of-type(2n+2)) {
+  margin-left: 1.6rem
+}
+
+.locationNearby ul .nearbyTab {
+  align-items: center;
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  height: 7rem;
+  margin-bottom: 22px;
+  padding: 0 10px;
+  width: calc(50% - .8rem);
+  background: var(--gray);
+  transition: all .3s linear;
+  box-shadow: 3px 3px 2px 3px #606060;
+  cursor: pointer;
+}
+
+.locationNearby ul .nearbyTab svg {
+  height: 50px;
+  width: 50px;
+}
+
+.locationNearby ul .nearbyTab .detail {
+  cursor: pointer;
+  margin-right: 16px
+}
+
+.locationNearby ul .nearbyTab .detail .label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 20px;
+  color: var(--mainColor);
+}
+
+.locationNearby ul .nearbyTab .detail .locName {
+  font-size: 14px;
+  color: #fff
+}
+
+.locationNearby .mapBox {
+  margin-top: 25px
+}
+
+
+
+.locationNearby ul .nearbyTab:hover {
+  box-shadow: -3px -3px 2px 3px #606060;
 }

@@ -88,7 +88,6 @@ const Project = () => {
                 ></div>
                 <div className="project-content">
                   <h1>{project.project_info.name}</h1>
-      
                 </div>
 
                 <div
@@ -241,7 +240,7 @@ const Project = () => {
                 </div>
 
                 <div className="project-content">
-                {showMore ? (
+                  {showMore ? (
                     <p>
                       <>
                         {project.project_info.description}
@@ -252,8 +251,8 @@ const Project = () => {
                             e.preventDefault();
                             setShowMore(!showMore);
                           }}
-                        >   
-                          <FormattedMessage id="global.read.more" />    
+                        >
+                          <FormattedMessage id="global.read.more" />
                         </a>
                       </>
                     </p>
@@ -275,6 +274,128 @@ const Project = () => {
                     </>
                   )}
                 </div>
+                <section id="locationNearby" className="locationNearby">
+                  <SectionTitle title={<FormattedMessage id="page.project.nearby.title" />} subTitle={<FormattedMessage id="page.project.nearby.subtitle" />} />
+                  <ul>
+                    <li
+                      className="nearbyTab"
+                      data-place="education"
+                      data-role="popup"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                        version="1.1"
+                        id="school"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 32 32"
+                        xmlSpace="preserve"
+                        className="svg-icon-sprite"
+                      >
+                        <path
+                          id="Path_957"
+                          fill="#F47D3F"
+                          d="M5.8,17.7v5.8L16,29l10.2-5.5v-5.8L16,23.2L5.8,17.7z M16,3L0,11.7l16,8.7l13.1-7.1v10H32V11.7 L16,3z"
+                        ></path>
+                      </svg>
+                      <div className="detail">
+                        <div className="label"><FormattedMessage id="page.project.nearby.schools.title" /></div>
+                        <div className="locName">
+                        <FormattedMessage id="page.project.nearby.schools.description" />
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      className="nearbyTab"
+                      data-place="catering"
+                      data-role="popup"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                        version="1.1"
+                        id="restaurant"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 32 32"
+                        xmlSpace="preserve"
+                        className="svg-icon-sprite"
+                      >
+                        <path
+                          id="Path_971"
+                          fill="#8F3293"
+                          d="M14.5,11.3h-3.2V0.2H8v11.1H4.7V0.2H1.5v11.1c0,3.4,2.7,6.2,6.1,6.3V32h4.1V17.6 c3.4-0.2,6-2.9,6.1-6.3V0.2h-3.2V11.3z M22.6,6.5v12.7h4.1V32h4.1V0.2C26.2,0.2,22.6,3.7,22.6,6.5z"
+                        ></path>
+                      </svg>
+                      <div className="detail">
+                        <div className="label"><FormattedMessage id="page.project.nearby.restaurants.title" /></div>
+                        <div className="locName">
+                        <FormattedMessage id="page.project.nearby.restaurants.description" />
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      className="nearbyTab"
+                      data-place="healthcare"
+                      data-role="popup"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                        version="1.1"
+                        id="hospital"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 32 32"
+                        xmlSpace="preserve"
+                        className="svg-icon-sprite"
+                      >
+                        <path
+                          id="np_add_672484_000000"
+                          fill="#EF3835"
+                          d="M10.9,0v10.9H0v10.1h10.9V32h10.1V21.1H32V10.9H21.1V0H10.9z"
+                        ></path>
+                      </svg>
+                      <div className="detail">
+                        <div className="label"><FormattedMessage id="page.project.nearby.hospitals.title" /></div>
+                        <div className="locName">
+                        <FormattedMessage id="page.project.nearby.hospitals.description" />
+                        </div>
+                      </div>
+                    </li>
+                    <li
+                      className="nearbyTab"
+                      data-place="leisure"
+                      data-role="popup"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                        version="1.1"
+                        id="park"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 32 32"
+                        xmlSpace="preserve"
+                        className="svg-icon-sprite"
+                      >
+                        <path
+                          id="np_parks_781456_000000"
+                          fill="#4E60AC"
+                          d="M30,27.4h-3.9v-4c0.4,0.1,0.7,0.2,1.1,0.1c2.6,0,4.6-2.1,4.6-4.7c0,0,0,0,0,0 c0-1.7-0.9-3.4-2.5-4.2c-0.5-2.1-2.4-3.7-4.5-3.7c-1,0-1.9,0.3-2.7,0.9c0.1,0.6,0.2,1.2,0.2,1.7c0,2.9-1.5,5.6-3.9,7.2 c0.7,1.7,2.4,2.8,4.2,2.8c0.4,0,0.8-0.1,1.2-0.2v4H12.4c0-0.1,0-0.2,0-0.3v-6.5c0.6,0.1,1.1,0.2,1.7,0.2c4-0.1,7.1-3.4,7-7.4 c-0.1-2.6-1.5-4.9-3.8-6.1C16.7,3.4,13,1,9.2,1.7C6.4,2.2,4.2,4.5,3.7,7.4c-3.4,2-4.6,6.4-2.6,9.9c1.3,2.2,3.5,3.5,6,3.6 c0.6,0,1.2-0.1,1.8-0.3v6.6c0,0.1,0,0.2,0,0.3H2c-0.8,0.1-1.5,0.8-1.4,1.6c0.1,0.7,0.7,1.3,1.4,1.4h28c0.8-0.1,1.5-0.8,1.4-1.6 C31.4,28.1,30.8,27.5,30,27.4L30,27.4z"
+                        ></path>
+                      </svg>
+                      <div className="detail">
+                        <div className="label"><FormattedMessage id="page.project.nearby.Parks.title" /></div>
+                        <div className="locName">
+                        <FormattedMessage id="page.project.nearby.Parks.description" />
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <div className="mapBox" id="nearbyInlineMap"></div>
+                </section>
 
                 <SectionTitle
                   title={locale === "ar" ? "الوحدات" : "units"}

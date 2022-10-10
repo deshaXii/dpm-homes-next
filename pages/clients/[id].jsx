@@ -1,13 +1,11 @@
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Default from "../../layouts/default";
 import { FiPhoneCall, FiShare2, FiMessageCircle } from "react-icons/fi";
 import SectionTitle from "../../components/Global/SectionTitle";
-import Properties from "../../components/Global/Properties";
 import { wrapper } from "../../store";
 import { getClientInfo, selectClient } from "../../store/slices/client";
 import { useSelector } from "react-redux";
-import PropertyCard from "../../components/Global/PropertyCard";
 import Head from "next/head";
 import { FormattedMessage } from "react-intl";
 import PaginatedItems from "../../components/Global/PaginatedItems";
@@ -15,6 +13,7 @@ import PaginatedItems from "../../components/Global/PaginatedItems";
 const ClientProfile = () => {
   const { clientData } = useSelector(selectClient);
 
+  const [showMore, setShowMore] = useState();
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     return () => {
@@ -97,18 +96,41 @@ const ClientProfile = () => {
               </div>
             </div>
             <div className="clinet-more-details">
-              <SectionTitle title="Dpm Real Estate" subTitle="About" />
-              <div className="cmd-content">
-                <p>
-                  I have always loved the saying "home is where the heart is". I
-                  moved to Middle Tennessee as a young child and my heart has
-                  remained here since. It gives me so much joy to help clients
-                  find their home in the place I hold so dear. Regardless of
-                  your experience level, as your Dpm agent, I will be your
-                  advocate and guide from the beginning of touring homes, to the
-                  final steps of closing. Let me help you find your right home,
-                  at the right price. It's the Dpm way.
-                </p>
+              <SectionTitle title={clientData.user.name} subTitle="About" />
+              <div className="cmd-content project-content">
+                {showMore ? (
+                  <p>
+                    <>
+                      {clientData.user.about}
+                      <a
+                        href="#"
+                        className="show-more-btn"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setShowMore(!showMore);
+                        }}
+                      >
+                        <FormattedMessage id="global.read.more" />
+                      </a>
+                    </>
+                  </p>
+                ) : (
+                  <>
+                    <p>
+                      {clientData.user.about.substr(0, 198)}...
+                      <a
+                        className="show-more-btn"
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setShowMore(!showMore);
+                        }}
+                      >
+                        <FormattedMessage id="global.read.more" />
+                      </a>
+                    </p>
+                  </>
+                )}
               </div>
             </div>
             <div className="clinet-more-details xcsa">
