@@ -3853,7 +3853,6 @@ input.video-input {
   height: 560px;
   background-size: cover;
   background-position: 100% 74%;
-  margin-bottom: 30px;
   border-radius: 24px;
   border: 1px solid var(--mainColorWithOpacity);
   position: relative;
@@ -3871,7 +3870,7 @@ input.video-input {
 }
 
 .project-content {
-  margin: 20px 0;
+  margin: 40px 0 20px 0;
 }
 
 .c-info-box a {
@@ -4786,7 +4785,7 @@ ul.pagination li.disabled a {
 
 .locationNearby ul .nearbyTab .detail {
   cursor: pointer;
-  margin-right: 16px
+  margin-left: 16px
 }
 
 .locationNearby ul .nearbyTab .detail .label {
@@ -4809,4 +4808,115 @@ ul.pagination li.disabled a {
 
 .locationNearby ul .nearbyTab:hover {
   box-shadow: -3px -3px 2px 3px #606060;
+}
+
+
+
+
+
+.project-image-slider-area {
+  position: relative;
+}
+
+.project-image-slider-area .show-all-images {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: #fff;
+  width: 55px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid
+  var(--mainColor);
+  cursor: pointer;
+}
+
+.project-image-slider-area .show-all-images svg {
+  font-size: 20px;
+  color: var(--mainColor);
+}
+
+.project-image-slider-area .show-video {
+  position: absolute;
+  bottom: 20px;
+  left: 80px;
+  background: rgb(245 0 0 / 74%);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.project-image-slider-area .show-video svg {
+  font-size: 16px;
+  color: white;
+}
+
+.project-image-slider-area .show-all-images span {
+  margin-right: 5px;
+  color: var(--mainColor);
+}
+
+
+.company-image img {
+  width: 100px;
+  height: 100px;
+  background: #ddd;
+  border-radius: 100px;
+  border: 1px solid #fff;
+}
+
+.project-by-comapny-card {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--mainColor);
+  text-align: center;
+  margin-top: 60px;
+  position: sticky;
+  top: 160px;
+}
+
+.project-by-comapny-card .company-image {
+  margin-top: -60px;
+  margin-bottom: 10px;
+}
+
+.company-card-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.company-card-buttons .btn {
+  background: #333;
+  width: calc(50% - 5px);
+  min-height: 48px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  column-gap: 5px;
+  font-size: 16px;
+  text-transform: capitalize;
+  background: var(--mainColor);
+}
+
+.company-card-buttons button.btn.call-btn {
+  background: var(--lightGreen);
+}
+
+.company-card-buttons .btn svg {
+  font-size: 19px;
+}
+
+.company-card-content p {
+  margin: 15px 0;
 }

@@ -239,3 +239,7 @@ html[lang="ar"] .feedback-links {
     margin-left: 1.6rem;
     margin-right: 0
 }
+.rtl .locationNearby ul .nearbyTab .detail {
+    margin-right: 16px;
+    margin-left: 16px;
+}

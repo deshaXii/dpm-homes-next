@@ -100,7 +100,6 @@ const ClientProfile = () => {
               <div className="cmd-content project-content">
                 {showMore ? (
                   <p>
-                    <>
                       {clientData.user.about}
                       <a
                         href="#"
@@ -112,12 +111,11 @@ const ClientProfile = () => {
                       >
                         <FormattedMessage id="global.read.more" />
                       </a>
-                    </>
                   </p>
                 ) : (
                   <>
                     <p>
-                      {clientData.user.about.substr(0, 198)}...
+                      {clientData.user.about}...
                       <a
                         className="show-more-btn"
                         href="#"

@@ -12,19 +12,25 @@ import Head from "next/head";
 import SectionTitle from "../../components/Global/SectionTitle";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/css/modal-video.css";
-import { AiOutlineVideoCamera } from "react-icons/ai";
-import { MdOutlineArrowDropUp } from "react-icons/md";
-import { BsCheck } from "react-icons/bs";
+import { BsCamera, BsCheck } from "react-icons/bs";
+import { FaPlay } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+import { MdOutlineArrowDropUp, MdOutlineCall } from "react-icons/md";
 
 const Project = () => {
   const [detailsCollapsed, setDetailsCollapsed] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const [showMoreU, setShowMoreU] = useState(false);
   const router = useRouter();
   const query = router;
   const { locale } = query;
   const [isOpen, setOpen] = useState(false);
 
   const { project } = useSelector(selectProjects);
+
+  const { project_info } = project;
+  const { user_info } = project_info;
+  console.log(user_info);
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     return () => {
@@ -48,7 +54,7 @@ const Project = () => {
       <Default>
         <div className="project-page" style={{ padding: "60px 0 120px 0" }}>
           <div className="container">
-            <div className="row align-items-center">
+            {/* <div className="row align-items-center">
               <div className="col-md-9">
                 <SectionTitle
                   title={project.project_info.name}
@@ -77,15 +83,95 @@ const Project = () => {
                   </button>
                 )}
               </div>
+            </div> */}
+            <div className="row">
+              <div className="col-md-9">
+                <div className="project-image-slider-area">
+                  <div
+                    className="project-header"
+                    style={{
+                      backgroundImage: `url(https://admin.dpmhomes.com/${project.project_info.image})`,
+                    }}
+                  ></div>
+                  <div className="show-all-images">
+                    <BsCamera />
+                  </div>
+                  {project.project_info.video && (
+                    <div
+                      className="show-video"
+                      onClick={() => {
+                        setOpen(true);
+                      }}
+                    >
+                      <FaPlay />
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="col-md-3">
+                <div className="project-by-comapny-card">
+                  <div className="company-image">
+                    <img
+                      src={`https://admin.dpmhomes.com/user-images/${user_info.image}`}
+                      alt={`${user_info.name + " image"}`}
+                    />
+                  </div>
+                  <div className="company-card-content">
+                    <div className="ccc-title">
+                      <h5>{user_info.name}</h5>
+                      <p>
+                        {showMoreU ? (
+                          <p>
+                            <>
+                              {user_info.about}
+                              <a
+                                href="#"
+                                className="show-more-btn"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setShowMoreU(!showMoreU);
+                                }}
+                              >
+                                <FormattedMessage id="global.read.more" />
+                              </a>
+                            </>
+                          </p>
+                        ) : (
+                          <>
+                            <p>
+                              {user_info.about.substr(0, 400)}
+                              ...
+                              <a
+                                className="show-more-btn"
+                                href="#"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setShowMoreU(!showMoreU);
+                                }}
+                              >
+                                <FormattedMessage id="global.read.more" />
+                              </a>
+                            </p>
+                          </>
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="company-card-buttons">
+                    <button className="btn call-btn">
+                      <MdOutlineCall />
+                      <span>Call</span>
+                    </button>
+                    <button className="btn email-btn">
+                      <HiOutlineMail />
+                      <span>Email</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="row">
               <div className="col-md-12" key={project.id}>
-                <div
-                  className="project-header"
-                  style={{
-                    backgroundImage: `url(https://admin.dpmhomes.com/${project.project_info.image})`,
-                  }}
-                ></div>
                 <div className="project-content">
                   <h1>{project.project_info.name}</h1>
                 </div>
@@ -275,7 +361,12 @@ const Project = () => {
                   )}
                 </div>
                 <section id="locationNearby" className="locationNearby">
-                  <SectionTitle title={<FormattedMessage id="page.project.nearby.title" />} subTitle={<FormattedMessage id="page.project.nearby.subtitle" />} />
+                  <SectionTitle
+                    title={<FormattedMessage id="page.project.nearby.title" />}
+                    subTitle={
+                      <FormattedMessage id="page.project.nearby.subtitle" />
+                    }
+                  />
                   <ul>
                     <li
                       className="nearbyTab"
@@ -300,9 +391,11 @@ const Project = () => {
                         ></path>
                       </svg>
                       <div className="detail">
-                        <div className="label"><FormattedMessage id="page.project.nearby.schools.title" /></div>
+                        <div className="label">
+                          <FormattedMessage id="page.project.nearby.schools.title" />
+                        </div>
                         <div className="locName">
-                        <FormattedMessage id="page.project.nearby.schools.description" />
+                          <FormattedMessage id="page.project.nearby.schools.description" />
                         </div>
                       </div>
                     </li>
@@ -329,9 +422,11 @@ const Project = () => {
                         ></path>
                       </svg>
                       <div className="detail">
-                        <div className="label"><FormattedMessage id="page.project.nearby.restaurants.title" /></div>
+                        <div className="label">
+                          <FormattedMessage id="page.project.nearby.restaurants.title" />
+                        </div>
                         <div className="locName">
-                        <FormattedMessage id="page.project.nearby.restaurants.description" />
+                          <FormattedMessage id="page.project.nearby.restaurants.description" />
                         </div>
                       </div>
                     </li>
@@ -358,9 +453,11 @@ const Project = () => {
                         ></path>
                       </svg>
                       <div className="detail">
-                        <div className="label"><FormattedMessage id="page.project.nearby.hospitals.title" /></div>
+                        <div className="label">
+                          <FormattedMessage id="page.project.nearby.hospitals.title" />
+                        </div>
                         <div className="locName">
-                        <FormattedMessage id="page.project.nearby.hospitals.description" />
+                          <FormattedMessage id="page.project.nearby.hospitals.description" />
                         </div>
                       </div>
                     </li>
@@ -387,9 +484,11 @@ const Project = () => {
                         ></path>
                       </svg>
                       <div className="detail">
-                        <div className="label"><FormattedMessage id="page.project.nearby.Parks.title" /></div>
+                        <div className="label">
+                          <FormattedMessage id="page.project.nearby.Parks.title" />
+                        </div>
                         <div className="locName">
-                        <FormattedMessage id="page.project.nearby.Parks.description" />
+                          <FormattedMessage id="page.project.nearby.Parks.description" />
                         </div>
                       </div>
                     </li>
