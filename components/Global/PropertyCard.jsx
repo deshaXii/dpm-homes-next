@@ -22,17 +22,19 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
   const router = useRouter();
   const { locale } = router;
 
-  if (property.currency === "AED") {
+  if (property.currency == "AED") {
     var formatterAED = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "AED",
     });
-  } else if (property.currency === "EGP") {
+  } else if (property.currency == "EGP") {
     var formatterEGP = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "EGP",
     });
   }
+
+  console.log(property.currency);
 
   const dispatch = useDispatch();
   const handleAddToWishlist = (id) => {
@@ -68,7 +70,7 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
             <Image
               width={400}
               height={300}
-              src={`https://admin.dpmhomes.com/property-images/${property.images[0]}`}
+              src={`https://admin.luxuryaqar.com/property-images/${property.images[0]}`}
             />
           </a>
         </Link>
@@ -110,7 +112,7 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
             <a>
               {property.user_info.image ? (
                 <Image
-                  src={`https://admin.dpmhomes.com/user-images/${property.user_info.image}`}
+                  src={`https://admin.luxuryaqar.com/user-images/${property.user_info.image}`}
                   alt="property added by DPMHOMES"
                   width={42}
                   height={42}
