@@ -72,7 +72,7 @@
   "page.contact-us.form.send": "Send Message",
   "section.image-upload.errors.file_size": " The file you are trying to upload is larger than 2MB",
   "section.image-upload.errors.file_type": " The file should be jpg or png",
-  "page.add-property-tabs-housing": "housing",
+  "page.add-property-tabs-housing": "residential",
   "page.add-property-tabs-commercial": "commercial",
   "page.add-property-tabs-administrative": "administrative",
   "page.add-property-tabs-for-sell": "for sell",

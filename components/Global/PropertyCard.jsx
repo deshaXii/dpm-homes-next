@@ -91,17 +91,17 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
         <div className="property-lc">
           {property.licence === "housing" && (
             <span>
-              <FormattedMessage id="page.add-property-tabs-housing" />{" "}
+              <FormattedMessage id="page.add-property-tabs-housing" />
             </span>
           )}
           {property.licence === "commercial" && (
             <span>
-              <FormattedMessage id="page.add-property-tabs-commercial" />{" "}
+              <FormattedMessage id="page.add-property-tabs-commercial" />
             </span>
           )}
           {property.licence === "administrative" && (
             <span>
-              <FormattedMessage id="page.add-property-tabs-administrative" />{" "}
+              <FormattedMessage id="page.add-property-tabs-administrative" />
             </span>
           )}
         </div>

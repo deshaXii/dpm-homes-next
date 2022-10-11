@@ -53,22 +53,22 @@ const area_size_options_en = [
 ];
 
 const uritType_en = [
-  { value: "administative", label: "Administative" },
+  { value: "Administrative", label: "Administrative" },
   { value: "commercial", label: "Commercial" },
-  { value: "housing", label: "Housing" },
+  { value: "housing", label: "Residential" },
 ];
 const uritType_ar = [
   { value: "housing", label: "سكني" },
   { value: "commercial", label: "تجاري" },
-  { value: "administative", label: "أداري" },
+  { value: "Administrative", label: "أداري" },
 ];
 
-const property_type_options_ar = [
+const Administrative_type_options_ar = [
   { value: "offices", label: "مكاتب" },
   { value: "clinic", label: "عيادات" },
 ];
 
-const property_type_options_en = [
+const Administrative_type_options_en = [
   { value: "offices", label: "offices" },
   { value: "clinic", label: "clinic" },
 ];
@@ -162,10 +162,10 @@ const PropertiesFilter = ({ showFilter, query }) => {
       ? locale === "ar"
         ? commercial_type_options_ar.find((i) => i.value === query?.type)
         : commercial_type_options_en.find((i) => i.value === query?.type)
-      : uType?.value === "administative"
+      : uType?.value === "Administrative"
       ? locale === "ar"
-        ? administative_type_options_ar.find((i) => i.value === query?.type)
-        : administative_type_options_en.find((i) => i.value === query?.type)
+        ? Administrative_type_options_ar.find((i) => i.value === query?.type)
+        : Administrative_type_options_en.find((i) => i.value === query?.type)
       : ""
   );
   const [governorate, setGovernorate] = useState();
@@ -413,10 +413,10 @@ const PropertiesFilter = ({ showFilter, query }) => {
                   ? locale === "ar"
                     ? commercial_type_options_ar
                     : commercial_type_options_en
-                  : uType.value === "administative"
+                  : uType.value === "Administrative"
                   ? locale === "ar"
-                    ? administative_type_options_ar
-                    : administative_type_options_en
+                    ? Administrative_type_options_ar
+                    : Administrative_type_options_en
                   : ""
               }
               value={propertyTypeS}

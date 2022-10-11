@@ -186,19 +186,19 @@ const HomeIntro = () => {
   }, [locale]);
 
   const uritType_en = [
-    { value: "administative", label: "Administative" },
+    { value: "Administrative", label: "Administrative" },
     { value: "commercial", label: "Commercial" },
-    { value: "housing", label: "Housing" },
+    { value: "housing", label: "Residential" },
   ];
   const uritType_ar = [
     { value: "housing", label: "سكني" },
     { value: "commercial", label: "تجاري" },
-    { value: "administative", label: "أداري" },
+    { value: "Administrative", label: "أداري" },
   ];
 
-  const administative_type_options_ar = [{ value: "offices", label: "مكاتب" }];
+  const Administrative_type_options_ar = [{ value: "offices", label: "مكاتب" }];
 
-  const administative_type_options_en = [
+  const Administrative_type_options_en = [
     { value: "offices", label: "offices" },
   ];
 
@@ -389,10 +389,10 @@ const HomeIntro = () => {
                         ? locale === "ar"
                           ? commercial_type_options_ar
                           : commercial_type_options_en
-                        : uType.value === "administative"
+                        : uType.value === "Administrative"
                         ? locale === "ar"
-                          ? administative_type_options_ar
-                          : administative_type_options_en
+                          ? Administrative_type_options_ar
+                          : Administrative_type_options_en
                         : ""
                     }
                   />
