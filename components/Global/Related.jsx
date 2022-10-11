@@ -3,10 +3,13 @@ import { FormattedMessage } from "react-intl";
 import SectionTitle from "../Global/SectionTitle";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { selectProperties } from "../../store/slices/properties";
 
 const PropertyCard = dynamic(() => import("../Global/PropertyCard"));
-
-const Related = ({ properties, sectionTitle, sectionClass, type }) => {
+const Related = ({ properties, sectionTitle, sectionClass }) => {
+  const {property} = useSelector(selectProperties);
+ 
   return (
     <section className={`properties-section ${sectionClass} p80`}>
       {sectionClass === "for-rent" ? <span className="s-layer1"></span> : ""}
@@ -16,7 +19,6 @@ const Related = ({ properties, sectionTitle, sectionClass, type }) => {
             title={sectionTitle}
             subTitle={<FormattedMessage id="global.section.sub_title" />}
           />
-        
         </div>
         <div className="row search-property-layout-content">
           {properties
@@ -33,12 +35,11 @@ const Related = ({ properties, sectionTitle, sectionClass, type }) => {
                 />
               </div>
             ))}
-
           {properties.length ? (
             <div className="col-12">
               {properties.length > 4 ? (
                 <div className="all-properties-box text-center">
-                  <Link href={`/search-${type}`}>
+                  <Link href={`/search-${property.data.sell_rent_type}`}>
                     <a className="dpm-btn btn">See More</a>
                   </Link>
                 </div>

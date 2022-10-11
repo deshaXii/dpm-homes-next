@@ -16,6 +16,7 @@ import { BsCamera, BsCheck } from "react-icons/bs";
 import { FaPlay } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { MdOutlineArrowDropUp, MdOutlineCall } from "react-icons/md";
+import PaginatedItems from "../../components/Global/PaginatedItems";
 
 const Project = () => {
   const [detailsCollapsed, setDetailsCollapsed] = useState(false);
@@ -512,6 +513,21 @@ const Project = () => {
                 />
                 <div className="search-property-layout-content">
                   <div className="row">
+
+
+                  {project.properties.length ? (
+                        <PaginatedItems
+                          itemsPerPage={8}
+                          layout={"grid4"}
+                          items={project.properties}
+                        />
+                      ) : (
+                        <div className="no-properties">
+                          <FormattedMessage id="global.no-property-found" />
+                        </div>
+                      )}
+
+{/* 
                     {project.properties.length ? (
                       project.properties.map((property) => (
                         <div className={`col-lg-3 col-md-6`} key={property.id}>
@@ -527,7 +543,7 @@ const Project = () => {
                       <div>
                         <FormattedMessage id="global.no-property-found" />
                       </div>
-                    )}
+                    )} */}
                   </div>
                 </div>
               </div>

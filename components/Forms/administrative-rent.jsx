@@ -25,12 +25,12 @@ const AdministrativeRent = () => {
 
   const property_type_options_ar = [
     { value: "offices", label: "مكاتب" },
-    { value: "clinics", label: "عيادات" },
+    { value: "clinic", label: "عيادات" },
   ];
 
   const property_type_options_en = [
     { value: "offices", label: "offices" },
-    { value: "clinics", label: "clinics" },
+    { value: "clinic", label: "clinic" },
   ];
   const buildingOptions_ar = [
     { value: "inside_administrative_building", label: "داخل مبني إداري" },
