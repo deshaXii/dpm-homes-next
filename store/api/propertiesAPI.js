@@ -42,7 +42,6 @@ export async function getFeaturesRentUnits({locale, currency}) {
 
 export async function getPropertyById({ id, lang, currency }) {
   try {
-    console.log(currency);
     const res = await API.get(
       `/show-property?id=${id}&lang=${lang}&currency=${currency}`
     );

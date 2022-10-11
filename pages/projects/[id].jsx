@@ -31,7 +31,6 @@ const Project = () => {
 
   const { project_info } = project;
   const { user_info } = project_info;
-  console.log(user_info);
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     return () => {

@@ -47,7 +47,6 @@ function MyApp({ Component, pageProps, user }) {
   const [review, setReview] = useState("");
 
   const {settingsData} = useSelector(selectSettings)
-  console.log(settingsData);
   return (
     <>
       <Head>

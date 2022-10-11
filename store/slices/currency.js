@@ -27,8 +27,6 @@ export const currencySlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getUserLocationIP.fulfilled, (state, action) => {
-        // console.log(action.payload);
-        // state.userIP = action.payload;
       })
       .addCase(HYDRATE, (state, action) => {
         const nextState = {

@@ -34,8 +34,6 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
     });
   }
 
-  console.log(property.currency);
-
   const dispatch = useDispatch();
   const handleAddToWishlist = (id) => {
     let token = jsCookies.getItem("userToken");
