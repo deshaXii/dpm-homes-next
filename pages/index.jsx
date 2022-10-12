@@ -74,6 +74,10 @@ export default Home;
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ res, req, locale }) => {
+      res.setHeader(
+        "Cache-Control",
+        "public, s-maxage=10, stale-while-revalidate=59"
+      );
       await store.dispatch(getAllProjects(locale));
       await store.dispatch(getAllCountries(locale));
       await store.dispatch(getServices(locale));

@@ -745,6 +745,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, res, locale }) => {
       let user = store.getState().auth.user;
+      res.setHeader(
+        "Cache-Control",
+        "public, s-maxage=10, stale-while-revalidate=59"
+      );
       if (!user) {
         return {
           redirect: {

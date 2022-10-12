@@ -350,6 +350,7 @@ export default AddProperty;
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ res, locale }) => {
+      
       let user = store.getState().auth.user;
       if (!user) {
         return {
