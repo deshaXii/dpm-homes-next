@@ -2934,6 +2934,10 @@ aside.properties-filter .filter-group .custom-checkbox input:checked~span {
   margin: 0;
 }
 
+.mapbox-page iframe {
+  height: 100%;
+}
+
 .client-badge {
   display: flex;
   align-items: center;
