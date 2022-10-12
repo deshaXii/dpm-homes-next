@@ -50,6 +50,7 @@ export const logout = createAsyncThunk("auth/logout", async (token) => {
   return responseData;
 });
 
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,

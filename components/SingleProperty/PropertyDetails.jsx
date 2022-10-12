@@ -58,7 +58,7 @@ const PropertyDetails = () => {
     { value: "offices", label: "offices" },
   ];
 
-  if (property.data.currency === "AED" ) {
+  if (property.data.currency === "AED") {
     var formatterAED = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "AED",
@@ -68,7 +68,7 @@ const PropertyDetails = () => {
       style: "currency",
       currency: "EGP",
     });
-  }  else if (property.data.currency === "USD") {
+  } else if (property.data.currency === "USD") {
     var formatterUSD = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "USD",
@@ -82,7 +82,6 @@ const PropertyDetails = () => {
       return `${size} ${locale === "ar" ? "متر" : "m"}`;
     }
   };
-
 
   return (
     <section className="property-details p50">
@@ -500,7 +499,7 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {property.data.advance_payment && (
+                {property.data?.advance_payment?.length > 1 && (
                   <div className="pdi-box">
                     <div className="pdi-name">
                       <FormattedMessage id="page.property.details.advance_payment" />
@@ -568,9 +567,7 @@ const PropertyDetails = () => {
                     <div className="pdi-name">
                       <FormattedMessage id="page.property.details.Currency" />:
                     </div>
-                    <div className="pdi-value">
-                      {property.data.currency}
-                    </div>
+                    <div className="pdi-value">{property.data.currency}</div>
                   </div>
                 )}
                 {property.data.installment_time && (

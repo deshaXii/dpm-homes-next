@@ -23,6 +23,12 @@
         margin-left: 6px;
     }
 
+
+    .rtl .company_onwer_box {
+        left: auto;
+        right: 185px;
+    }
+
     .rtl .mobile-menu.active {
         left: auto;
         right: 0;
@@ -42,27 +48,27 @@
         margin-right: 10px;
         color: #9f9f9f;
     }
-    
+
 
     html[lang="ar"] .fixed-button {
         margin: 110px 0 0 -36px;
     }
 
-    .rtl  .add-property-page .property-viwer-btns {
+    .rtl .add-property-page .property-viwer-btns {
         justify-content: space-around;
     }
-    
+
     .rtl .add-property-page .property-viwer-btns .btn.active:before {
         border-right-color: transparent;
         right: auto;
         left: 50%;
     }
-    
+
     .rtl .arrow-to-right.property-viwer-btns .btn.active:before {
         left: 50%;
         border-right-color: transparent;
     }
 
-    
+
 
 }

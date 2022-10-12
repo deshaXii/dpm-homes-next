@@ -15,7 +15,7 @@ import jsCookies from "js-cookies";
 
 const MobileMenu = ({ setIsOpen, isOpen }) => {
   const user = useSelector(selectUser);
-  const { locales, locale, asPath } = useRouter();
+  const { locales, locale, asPath, router } = useRouter();
   const dispatch = useDispatch();
   useEffect(() => {
     setIsOpen(false);
@@ -188,7 +188,9 @@ const MobileMenu = ({ setIsOpen, isOpen }) => {
               <button
                 type="button"
                 onClick={() => {
-                  dispatch(logout(jsCookies.getItem("userToken")));
+                  dispatch(logout(jsCookies.getItem("userToken"))).then(() => {
+                    router.push('/')
+                  });
                 }}
               >
                 <span>

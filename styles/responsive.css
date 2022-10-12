@@ -50,7 +50,80 @@
 
     .mapbox-page {
         min-height: 600px;
-      }
+    }
+
+    .client-header {
+        padding: 10px;
+    }
+
+    .client-header .sbf {
+        align-items: unset;
+    }
+
+    .company_onwer_box {
+        bottom: 40px;
+        border-radius: 50%;
+        left: 185px;
+    }
+
+    .client-header-left {
+        width: 100%;
+        background: transparent;
+        margin-left: 5px;
+        margin-bottom: 10px;
+        justify-content: unset;
+    }
+
+    .client-header-middle .clinet-main-info h3 {
+        font-size: 20px;
+    }
+
+    .client-header-left .client-header-image {
+        width: 200px;
+        background: #fff;
+        border-radius: 50%;
+        height: 200px;
+    }
+
+    .company_onwer_name {
+        top: auto;
+        transform: translateX(-50%);
+        bottom: -30px;
+        left: 50%;
+    }
+
+
+    .client-header-right {
+        margin-top: 15px;
+        padding: 0 20px;
+    }
+
+    .client-badge {
+        justify-content: center;
+        margin-top: 15px;
+    }
+
+    .client-badge p {
+        padding: 3px 12px;
+    }
+
+    .client-header-right .chr-item {
+        margin-bottom: 7px;
+    }
+
+    .clinet-contact-btns {
+        background: var(--darkGreen);
+        border-radius: 15px;
+        padding: 3px 10px 10px 10px;
+    }
+
+    .clinet-contact-btns .client-contact-btn .btn {
+        font-size: 16px;
+    }
+
+    .clinet-contact-btns .client-contact-btn .btn span:after {
+        background: #fff;
+    }
 
     .fixed-button {
         margin: 110px 0 0 -59px;
