@@ -68,7 +68,7 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
             <Image
               width={400}
               height={300}
-              src={`https://admin.luxuryaqar.com/property-images/${property.images[0]}`}
+              src={`https://admin.dpmhomes.com/property-images/${property.images[0]}`}
             />
           </a>
         </Link>
@@ -110,7 +110,7 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
             <a>
               {property.user_info.image ? (
                 <Image
-                  src={`https://admin.luxuryaqar.com/user-images/${property.user_info.image}`}
+                  src={`https://admin.dpmhomes.com/user-images/${property.user_info.image}`}
                   alt="property added by DPMHOMES"
                   width={42}
                   height={42}

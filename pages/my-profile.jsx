@@ -451,7 +451,7 @@ const MyProfile = () => {
                                           src={
                                             images[0]?.data_url
                                               ? images[0].data_url
-                                              : `https://admin.luxuryaqar.com/user-images/${image}`
+                                              : `https://admin.dpmhomes.com/user-images/${image}`
                                           }
                                           width={180}
                                           height={180}

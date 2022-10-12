@@ -49,7 +49,7 @@ const Projects = () => {
                             width={600}
                             height={400}
                             alt="hyde park project image"
-                            src={`https://admin.luxuryaqar.com/${project.image}`}
+                            src={`https://admin.dpmhomes.com/${project.image}`}
                           />
                         </a>
                       </Link>

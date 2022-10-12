@@ -15,7 +15,7 @@ const Items = ({ currentItems, layout }) => {
         <PropertyCard
           property={property}
           featureCount={2}
-          image={`https://admin.luxuryaqar.com/property-images/${property.images[0]}`}
+          image={`https://admin.dpmhomes.com/property-images/${property.images[0]}`}
           className={
             layout === "grid"
               ? "grid-view"

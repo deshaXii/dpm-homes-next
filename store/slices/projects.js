@@ -5,6 +5,7 @@ import { getProjects, getProject } from "../api/projectsAPI";
 const initialState = {
   allProjects: [],
   project: {},
+  projectsMap: null,
 };
 
 export const getAllProjects = createAsyncThunk("projects/getProjects", async (lang) => {
@@ -25,6 +26,7 @@ export const projectsSlice = createSlice({
     builder
       .addCase(getAllProjects.fulfilled, (state, action) => {
         state.allProjects = action.payload.data;
+        state.projectsMap = action.payload.projects_iframe;
       })
       .addCase(getCurrentProject.fulfilled, (state, action) => {
         state.project = action.payload;

@@ -90,7 +90,7 @@ const Project = () => {
                   <div
                     className="project-header"
                     style={{
-                      backgroundImage: `url(https://admin.luxuryaqar.com/${project.project_info.image})`,
+                      backgroundImage: `url(https://admin.dpmhomes.com/${project.project_info.image})`,
                     }}
                   ></div>
                   <div className="show-all-images">
@@ -114,7 +114,7 @@ const Project = () => {
                     <Link href={`/clients/${user_info.id}`}>
                       <a>
                         <img
-                          src={`https://admin.luxuryaqar.com/user-images/${user_info.image}`}
+                          src={`https://admin.dpmhomes.com/user-images/${user_info.image}`}
                           alt={`${user_info.name + " image"}`}
                         />
                       </a>
@@ -533,7 +533,7 @@ const Project = () => {
                           <PropertyCard
                             property={property}
                             featureCount={2}
-                            image={`https://admin.luxuryaqar.com/property-images/${property.images[0]}`}
+                            image={`https://admin.dpmhomes.com/property-images/${property.images[0]}`}
                             className="grid-view"
                           />
                         </div>

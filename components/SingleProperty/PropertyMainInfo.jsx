@@ -84,7 +84,7 @@ const PropertyMainInfo = () => {
       <div
         className="property-main-info fixed-at-top"
         style={{
-          backgroundImage: `url('https://admin.luxuryaqar.com/property-images/${property.data.images[0]}')`,
+          backgroundImage: `url('https://admin.dpmhomes.com/property-images/${property.data.images[0]}')`,
         }}
       >
         <div className="container">
@@ -93,7 +93,7 @@ const PropertyMainInfo = () => {
               <div className="property-main-info-inner">
                 <div className="pmii-box">
                   <img
-                    src={`https://admin.luxuryaqar.com/user-images/${property.data.user_info.image}`}
+                    src={`https://admin.dpmhomes.com/user-images/${property.data.user_info.image}`}
                     alt=""
                   />
                   <div>

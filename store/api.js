@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://admin.luxuryaqar.com/api/"
+  baseURL: "https://admin.dpmhomes.com/api/"
 });
 
 export default API;

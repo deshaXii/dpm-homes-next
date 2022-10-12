@@ -69,7 +69,7 @@ const AppNavbar = ({ user }) => {
                     onClick={() => dropdownRef.current.classList.toggle("show")}
                   >
                     <Image
-                      src={`https://admin.luxuryaqar.com/user-images/${user?.data?.image}`}
+                      src={`https://admin.dpmhomes.com/user-images/${user?.data?.image}`}
                       width={40}
                       height={40}
                       alt={`${user?.data?.name} image`}
@@ -273,7 +273,7 @@ const AppNavbar = ({ user }) => {
                   <Link href="/my-profile">
                     <a className="mobile-menu-link">
                       <Image
-                        src={`https://admin.luxuryaqar.com/user-images/${user?.data?.image}`}
+                        src={`https://admin.dpmhomes.com/user-images/${user?.data?.image}`}
                         width={40}
                         height={40}
                         alt={`${user?.data?.name} image`}
