@@ -105,7 +105,10 @@ export default Search;
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ res, locale }) => {
- 
+      res.setHeader(
+        "Cache-Control",
+        "public, s-maxage=10, stale-while-revalidate=59"
+      );
       await store.dispatch(getAllCountries(locale));
       await store.dispatch(getPropertiesWithTpye({ type: "rent", lang: locale }));
       return {

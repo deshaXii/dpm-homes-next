@@ -4,7 +4,6 @@ import PropertyMainInfo from "../../components/SingleProperty/PropertyMainInfo";
 import Head from "next/head";
 import PropertyViewer from "../../components/SingleProperty/PropertyViewer";
 import PropertyDetails from "../../components/SingleProperty/PropertyDetails";
-import Properties from "../../components/Global/Properties";
 import { wrapper } from "../../store";
 import {
   selectProperties,
@@ -51,8 +50,11 @@ export default SingleProperty;
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ res, query, locale }) => {
+      res.setHeader(
+        "Cache-Control",
+        "public, s-maxage=10, stale-while-revalidate=59"
+      );
       const currency = await store.getState().settings.settingsData.currency;
-
       const { id } = query;
       await store.dispatch(
         showProperty({
