@@ -244,46 +244,39 @@ const PropertyDetails = () => {
                     </div>
                   </div>
                 )}
-                {property.data.garden_area &&
-                  property.data.garden_area !== "0" && (
-                    <div className="pdi-box">
-                      <div className="pdi-name">
-                        <FormattedMessage id="page.property.details.garden_area" />
-                        :
-                      </div>
-                      <div className="pdi-value">
-                        {convertAreaSize(
-                          Number(property.data.garden_area),
-                          property.data.country
-                        )}
-                      </div>
+                {Number(property.data.garden_area) !== 0 && (
+                  <div className="pdi-box">
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.garden_area" />
+                      :
                     </div>
-                  )}
-                {property.data.no_bed_room &&
-                  property.data.no_bed_room !== "0" && (
-                    <div className="pdi-box">
-                      <div className="pdi-name">
-                        <FormattedMessage id="page.property.details.bed_room" />
-                        :
-                      </div>
-                      <div className="pdi-value">
-                        {property.data.no_bed_room}
-                      </div>
+                    <div className="pdi-value">
+                      {convertAreaSize(
+                        Number(property.data.garden_area),
+                        property.data.country
+                      )}
                     </div>
-                  )}
-                {property.data.no_bath_room &&
-                  property.data.no_bath_room !== "0" && (
-                    <div className="pdi-box">
-                      <div className="pdi-name">
-                        <FormattedMessage id="page.property.details.bath_room" />
-                        :
-                      </div>
-                      <div className="pdi-value">
-                        {property.data.no_bath_room}
-                      </div>
+                  </div>
+                )}
+                {Number(property.data.no_bed_room) != 0 && (
+                  <div className="pdi-box">
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.bed_room" />:
                     </div>
-                  )}
-                {property.data.no_kitchen && property.data.no_kitchen !== "0" && (
+                    <div className="pdi-value">{property.data.no_bed_room}</div>
+                  </div>
+                )}
+                {Number(property.data.no_bath_room) !== 0 && (
+                  <div className="pdi-box">
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.bath_room" />:
+                    </div>
+                    <div className="pdi-value">
+                      {property.data.no_bath_room}
+                    </div>
+                  </div>
+                )}
+                {Number(property.data.no_kitchen) !== 0 && (
                   <div className="pdi-box">
                     <div className="pdi-name">
                       <FormattedMessage id="page.property.details.kitchen" />:
@@ -291,31 +284,25 @@ const PropertyDetails = () => {
                     <div className="pdi-value">{property.data.no_kitchen}</div>
                   </div>
                 )}
-                {property.data.no_reception &&
-                  property.data.no_reception !== "0" && (
-                    <div className="pdi-box">
-                      <div className="pdi-name">
-                        <FormattedMessage id="page.property.details.reception" />
-                        :
-                      </div>
-                      <div className="pdi-value">
-                        {property.data.no_reception}
-                      </div>
+                {Number(property.data.no_reception) !== 0 && (
+                  <div className="pdi-box">
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.reception" />:
                     </div>
-                  )}
-                {property.data.no_dressing &&
-                  property.data.no_dressing !== "0" && (
-                    <div className="pdi-box">
-                      <div className="pdi-name">
-                        <FormattedMessage id="page.property.details.dressing" />
-                        :
-                      </div>
-                      <div className="pdi-value">
-                        {property.data.no_dressing}
-                      </div>
+                    <div className="pdi-value">
+                      {property.data.no_reception}
                     </div>
-                  )}
-                {property.data.no_roof && property.data.no_roof !== "0" && (
+                  </div>
+                )}
+                {Number(property.data.no_dressing) !== 0 && (
+                  <div className="pdi-box">
+                    <div className="pdi-name">
+                      <FormattedMessage id="page.property.details.dressing" />:
+                    </div>
+                    <div className="pdi-value">{property.data.no_dressing}</div>
+                  </div>
+                )}
+                {Number(property.data.no_roof) !== 0 && (
                   <div className="pdi-box">
                     <div className="pdi-name">
                       <FormattedMessage id="page.property.details.roof" />:
