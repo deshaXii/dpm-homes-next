@@ -135,7 +135,7 @@ const PropertyViewer = () => {
                         <div className="slider__item" key={imageLink}>
                           <img
                             onClick={() => imageOnClick(imageLink)}
-                            src={`https://admin.dpmhomes.com/property-images/${imageLink}`}
+                            src={`https://admin.luxuryaqar.com/property-images/${imageLink}`}
                             alt="Product image"
                           />
                         </div>
@@ -151,7 +151,7 @@ const PropertyViewer = () => {
                         <div className="slider__item" key={imageLink}>
                           <img
                             onClick={() => imageOnClick(imageLink)}
-                            src={`https://admin.dpmhomes.com/property-images/${imageLink}`}
+                            src={`https://admin.luxuryaqar.com/property-images/${imageLink}`}
                             alt="Product image"
                           />
                         </div>
@@ -164,7 +164,7 @@ const PropertyViewer = () => {
                   <div className="property-view-box property-view-pdf">
                     <div className="pdf-as-images">
                       <img
-                        src={`https://admin.dpmhomes.com/pdf-images/${property.data.pdf}`}
+                        src={`https://admin.luxuryaqar.com/pdf-images/${property.data.pdf}`}
                         alt="pdf"
                       />
                     </div>

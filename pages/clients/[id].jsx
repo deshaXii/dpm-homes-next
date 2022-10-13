@@ -34,7 +34,7 @@ const ClientProfile = () => {
                 <div className="client-header-left">
                   <div className="client-header-image">
                     <Image
-                      src={`https://admin.dpmhomes.com/user-images/${clientData.user.image}`}
+                      src={`https://admin.luxuryaqar.com/user-images/${clientData.user.image}`}
                       alt="client image"
                       width={180}
                       height={180}
@@ -44,7 +44,7 @@ const ClientProfile = () => {
                         <div className="company_owner_img">
                           <Image
                             src={`/img/defaultUser.png`}
-                            // src={`https://admin.dpmhomes.com/user-images/${clientData.user.owner_image}`}
+                            // src={`https://admin.luxuryaqar.com/user-images/${clientData.user.owner_image}`}
                             alt="company owner image"
                             width={100}
                             height={100}
