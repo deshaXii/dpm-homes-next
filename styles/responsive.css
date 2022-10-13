@@ -3,6 +3,14 @@
         display: none;
     }
 
+    .map-box-popup {
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        left: 10px;
+        top: 10px;
+        transform: unset;
+    }
+
     .project-page button.btn.video-view img {
         width: 40px !important;
     }

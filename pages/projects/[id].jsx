@@ -20,6 +20,7 @@ import PaginatedItems from "../../components/Global/PaginatedItems";
 
 const Project = () => {
   const [detailsCollapsed, setDetailsCollapsed] = useState(false);
+  const [openMap, setOpenMap] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const [showMoreU, setShowMoreU] = useState(false);
   const router = useRouter();
@@ -380,6 +381,10 @@ const Project = () => {
                   <ul>
                     <li
                       className="nearbyTab"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenMap(true);
+                      }}
                       data-place="education"
                       data-role="popup"
                     >
@@ -411,6 +416,10 @@ const Project = () => {
                     </li>
                     <li
                       className="nearbyTab"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenMap(true);
+                      }}
                       data-place="catering"
                       data-role="popup"
                     >
@@ -442,6 +451,10 @@ const Project = () => {
                     </li>
                     <li
                       className="nearbyTab"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenMap(true);
+                      }}
                       data-place="healthcare"
                       data-role="popup"
                     >
@@ -473,6 +486,10 @@ const Project = () => {
                     </li>
                     <li
                       className="nearbyTab"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpenMap(true);
+                      }}
                       data-place="leisure"
                       data-role="popup"
                     >
@@ -512,21 +529,19 @@ const Project = () => {
                 />
                 <div className="search-property-layout-content">
                   <div className="row">
+                    {project.properties.length ? (
+                      <PaginatedItems
+                        itemsPerPage={8}
+                        layout={"grid4"}
+                        items={project.properties}
+                      />
+                    ) : (
+                      <div className="no-properties">
+                        <FormattedMessage id="global.no-property-found" />
+                      </div>
+                    )}
 
-
-                  {project.properties.length ? (
-                        <PaginatedItems
-                          itemsPerPage={8}
-                          layout={"grid4"}
-                          items={project.properties}
-                        />
-                      ) : (
-                        <div className="no-properties">
-                          <FormattedMessage id="global.no-property-found" />
-                        </div>
-                      )}
-
-{/* 
+                    {/* 
                     {project.properties.length ? (
                       project.properties.map((property) => (
                         <div className={`col-lg-3 col-md-6`} key={property.id}>
@@ -550,6 +565,31 @@ const Project = () => {
           </div>
         </div>
       </Default>
+      {openMap && (
+        <div className="map-box-popup">
+          <div className="container-popup">
+            <div className="popup-header">
+              <span>Project Map</span>
+              <span
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenMap(false);
+                }}
+              >
+                X
+              </span>
+            </div>
+            <div className="popup-content">
+              <iframe
+                width="100%"
+                height="400px"
+                src="https://api.mapbox.com/styles/v1/luxuryaqar/cl95k87ne001614n2f83q70bk.html?title=false&access_token=pk.eyJ1IjoibHV4dXJ5YXFhciIsImEiOiJjbDh3ZXRoNTMwZzRwM25xbnhkNGg4NDE3In0.2DCr351qKjKJmVT4PUkR6Q&zoomwheel=false#15.4/30.225224/31.462442"
+                title="Streets"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

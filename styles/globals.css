@@ -4970,3 +4970,39 @@ ul.pagination li.disabled a {
   text-align: center;
   border: 1px solid var(--mainColor);
 }
+
+.map-box-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 80vh;
+  background: #fff;
+  z-index: 999999;
+}
+
+.map-box-popup .container-popup {
+  height: 100%;
+  position: relative;
+}
+
+.map-box-popup .container-popup .popup-content {
+  height: 100%;
+}
+
+.map-box-popup .container-popup .popup-content iframe {
+  height: 100%;
+}
+
+.popup-header {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popup-header span {
+  margin: 0;
+  font-weight: bold;
+}
