@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps, user }) {
   const [score, setScore] = useState(0);
   const [review, setReview] = useState("");
 
-  const {settingsData} = useSelector(selectSettings)
+  const { settingsData } = useSelector(selectSettings);
   return (
     <>
       <Head>
@@ -54,6 +54,11 @@ function MyApp({ Component, pageProps, user }) {
         <meta
           name="description"
           content="لاكشري عقار اكبر محرك بحث في عقارات مصر يمكنك من خلاله البحث عن عقارات للبيع او عقارات للايجار من شقق وفيلات Real Estate Agent, Listing your Property in Luxury Aqar to get the best result investor"
+        />
+
+        <meta
+          name="keywords"
+          content="عقارات للايجار, عقارات للبيع, شقق, فيلات, فلل, عقارات مصر, عقارات دبي, لاكشري, عقار, real estate, Aqar, investor"
         />
 
         <meta
@@ -481,9 +486,20 @@ function MyApp({ Component, pageProps, user }) {
         </div>
       </IntlProvider>
       <ToastContainer />
-      
+
+      <Script
+        async
+        strategy="beforeInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-X2FCKX1GC7"
+      ></Script>
+
       <Script strategy="beforeInteractive">
-        {`(function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-X2FCKX1GC7');
+      (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
       {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
       a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
       r.src=n;var u=t.getElementsByTagName(s)[0];
