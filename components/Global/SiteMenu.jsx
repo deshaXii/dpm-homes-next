@@ -32,27 +32,24 @@ const SiteMenu = () => {
         </li>
         {/* disabled in beta  href="/search-rent" */}
         <li className="navbar-menu-list-item ">
-          <Link href="/search-rent" query>
+          <Link href="/search-rent">
             <a
               className={`navbar-menu-list-item-link ${
                 router.pathname === "/search-rent" ? "active-link" : ""
               }`}
             >
-                <FormattedMessage id="page.home.menu.rent" />
-              {/* <span>
-                <FormattedMessage id="feat-in-beta" />
-              </span> */}
+              <FormattedMessage id="page.home.menu.rent" />
             </a>
           </Link>
         </li>
         <li className="navbar-menu-list-item ">
-          <Link href="/projects" query>
+          <Link href="/projects">
             <a
               className={`navbar-menu-list-item-link ${
                 router.pathname === "/projects" ? "active-link" : ""
               }`}
             >
-                <FormattedMessage id="page.home.menu.projects" />
+              <FormattedMessage id="page.home.menu.projects" />
             </a>
           </Link>
         </li>

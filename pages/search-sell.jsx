@@ -15,7 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { selectFilter } from "../store/slices/filter";
 import { useRouter } from "next/router";
-import { selectUser } from "../store/slices/auth";
+import { login, selectUser } from "../store/slices/auth";
 import PaginatedItems from "../components/Global/PaginatedItems";
 
 const Search = () => {
@@ -30,7 +30,9 @@ const Search = () => {
       document.body.style.backgroundColor = "white";
     };
   }, []);
-
+  useEffect(() => {
+    console.log(filteredProperties);
+  }, [filteredProperties])
   return (
     <>
       <Head>

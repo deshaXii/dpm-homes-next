@@ -186,7 +186,7 @@ const PropertiesFilter = ({ showFilter, query }) => {
 
   useEffect(() => {
     dispatch(setFilteredProperties(allProperties));
-  }, []);
+  }, [allProperties]);
 
   useEffect(() => {
     dispatch(setActiveCountry(country?.value));
