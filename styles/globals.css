@@ -5107,3 +5107,18 @@ section.event-image-box img {
   position: relative;
   margin-right: 6px;
 }
+
+.locationNearby ul .nearbyTab .detail .locName {
+  display: none;
+}
+
+.locationNearby ul li:last-of-type {
+  margin-right: 0;
+}
+
+.locationNearby ul .nearbyTab {
+  margin-right: 20px;
+  width: calc(25% - 25px);
+  height: auto;
+  padding: 12px;
+}
