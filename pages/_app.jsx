@@ -35,14 +35,11 @@ function MyApp({ Component, pageProps, user }) {
   const dispatch = useDispatch();
   useEffect(async () => {
     const res = await axios.get(
-      "https://api.ipify.org?format=jsonp&callback=?"
+      "https://api.ipify.org?format=json&callback=?"
     );
     const resData = await res.data
-      .replace("?", "")
-      .replace("(", "")
-      .replace(")", "")
-      .replace(";", "");
-    const ip = JSON.parse(resData).ip;
+     
+    const ip = resData.ip;
     dispatch(getSettingsData({ userIp: ip }));
   }, []);
 
@@ -532,18 +529,7 @@ function MyApp({ Component, pageProps, user }) {
 MyApp.getInitialProps = wrapper.getInitialPageProps(
   (store) =>
     async ({ ctx }) => {
-      // fetch('http://ip-api.com/json/154.239.243.250').then(res => console.log(res))
-      const res = await axios.get(
-        "https://api.ipify.org?format=jsonp&callback=?"
-      );
-      const resData = res.data
-        .replace("?", "")
-        .replace("(", "")
-        .replace(")", "")
-        .replace(";", "");
-      const ip = JSON.parse(resData).ip;
       await store.dispatch(getSettingsData({ lang: ctx.locale }));
-
       if (ctx.req) {
         if (ctx.req.cookies.hasOwnProperty("userToken")) {
           const cookies = parseCookies(ctx.req);
