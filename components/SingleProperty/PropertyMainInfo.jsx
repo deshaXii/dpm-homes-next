@@ -40,10 +40,10 @@ const PropertyMainInfo = () => {
       style: "currency",
       currency: "USD",
     });
-  } else if (property.data.currency === "EURO") {
+  } else if (property.data.currency === "EUR") {
     var formatterEURO = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
-      currency: "EURO",
+      currency: "EUR",
     });
   }
 

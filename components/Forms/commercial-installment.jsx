@@ -55,7 +55,7 @@ const CommercialInstallment = () => {
     { value: "GBP", label: "جنيه إسترليني" },
     { value: "QAR", label: "ريال قطري" },
     { value: "SAR", label: "ريال سعودي" },
-    { value: "EURO", label: "يورو " },
+    { value: "EUR", label: "يورو " },
     { value: "KWD", label: "دينار كويتي" },
   ];
 
@@ -66,7 +66,7 @@ const CommercialInstallment = () => {
     { value: "GBP", label: "GBP" },
     { value: "QAR", label: "QAR" },
     { value: "SAR", label: "SAR" },
-    { value: "EURO", label: "EURO" },
+    { value: "EUR", label: "EUR" },
     { value: "KWD", label: "KWD" },
   ];
 

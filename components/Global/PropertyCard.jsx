@@ -37,10 +37,10 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
       style: "currency",
       currency: "USD",
     });
-  } else if (property.currency === "EURO") {
+  } else if (property.currency === "EUR") {
     var formatterEURO = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
-      currency: "EURO",
+      currency: "EUR",
     });
   }
 
