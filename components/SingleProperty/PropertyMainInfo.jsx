@@ -40,6 +40,11 @@ const PropertyMainInfo = () => {
       style: "currency",
       currency: "USD",
     });
+  } else if (property.data.currency === "EURO") {
+    var formatterEURO = new Intl.NumberFormat(`en-eg`, {
+      style: "currency",
+      currency: "EURO",
+    });
   }
 
   const [showDropdown, setShowDropdown] = useState(false);
@@ -166,6 +171,21 @@ const PropertyMainInfo = () => {
                     ) : (
                       <span>
                         {formatterUSD?.format(property.data.rent_price)}
+                      </span>
+                    )}
+                    {formatterEURO && property.data.total_price ? (
+                      <span>
+                        {formatterEURO?.format(property.data.total_price)}
+                      </span>
+                    ) : property.data.total_price_installment ? (
+                      <span>
+                        {formatterEURO?.format(
+                          property.data.total_price_installment
+                        )}
+                      </span>
+                    ) : (
+                      <span>
+                        {formatterEURO?.format(property.data.rent_price)}
                       </span>
                     )}
                   </div>

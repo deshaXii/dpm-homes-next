@@ -32,10 +32,15 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
       style: "currency",
       currency: "EGP",
     });
-  }  else if (property.currency === "USD") {
+  } else if (property.currency === "USD") {
     var formatterUSD = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "USD",
+    });
+  } else if (property.currency === "EURO") {
+    var formatterEURO = new Intl.NumberFormat(`en-eg`, {
+      style: "currency",
+      currency: "EURO",
     });
   }
 
@@ -163,6 +168,15 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
             </span>
           ) : (
             <span>{formatterUSD?.format(property.rent_price)}</span>
+          )}
+          {formatterEURO && property.total_price ? (
+            <span>{formatterEURO?.format(property.total_price)}</span>
+          ) : property.total_price_installment ? (
+            <span>
+              {formatterEURO?.format(property.total_price_installment)}
+            </span>
+          ) : (
+            <span>{formatterEURO?.format(property.rent_price)}</span>
           )}
         </div>
 

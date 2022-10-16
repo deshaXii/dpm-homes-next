@@ -73,6 +73,11 @@ const PropertyDetails = () => {
       style: "currency",
       currency: "USD",
     });
+  } else if (property.currency === "EURO") {
+    var formatterEURO = new Intl.NumberFormat(`en-eg`, {
+      style: "currency",
+      currency: "EURO",
+    });
   }
 
   const convertAreaSize = (size, country) => {
@@ -451,6 +456,11 @@ const PropertyDetails = () => {
                           {formatterUSD?.format(property.data.total_price)}
                         </span>
                       )}
+                      {formatterEURO && (
+                        <span>
+                          {formatterEURO?.format(property.data.total_price)}
+                        </span>
+                      )}
                     </div>
                   </div>
                 )}
@@ -478,6 +488,13 @@ const PropertyDetails = () => {
                       {formatterUSD && (
                         <span>
                           {formatterUSD?.format(
+                            property.data.total_price_installment
+                          )}
+                        </span>
+                      )}
+                      {formatterEURO && (
+                        <span>
+                          {formatterEURO?.format(
                             property.data.total_price_installment
                           )}
                         </span>
@@ -519,6 +536,11 @@ const PropertyDetails = () => {
                           {formatterUSD?.format(property.data.installment)}
                         </span>
                       )}
+                      {formatterEURO && (
+                        <span>
+                          {formatterEURO?.format(property.data.installment)}
+                        </span>
+                      )}
                       {/* <span>{property.data.installment}</span> */}
                     </div>
                   </div>
@@ -543,6 +565,11 @@ const PropertyDetails = () => {
                       {formatterUSD && (
                         <span>
                           {formatterUSD?.format(property.data.maintenance_fees)}
+                        </span>
+                      )}
+                      {formatterEURO && (
+                        <span>
+                          {formatterEURO?.format(property.data.maintenance_fees)}
                         </span>
                       )}
                       {/* <span>{property.data.maintenance_fees}</span> */}
