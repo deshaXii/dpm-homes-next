@@ -30,9 +30,6 @@ const Search = () => {
       document.body.style.backgroundColor = "white";
     };
   }, []);
-  useEffect(() => {
-    console.log(filteredProperties);
-  }, [filteredProperties])
   return (
     <>
       <Head>
