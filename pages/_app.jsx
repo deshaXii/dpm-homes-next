@@ -31,7 +31,21 @@ const messages = {
 };
 
 function MyApp({ Component, pageProps, user }) {
+  // fetch('http://ip-api.com/json/154.239.243.250').then(res => console.log(res))
   const dispatch = useDispatch();
+  useEffect(async () => {
+    const res = await axios.get(
+      "https://api.ipify.org?format=jsonp&callback=?"
+    );
+    const resData = res.data
+      .replace("?", "")
+      .replace("(", "")
+      .replace(")", "")
+      .replace(";", "");
+    const ip = JSON.parse(resData).ip;
+    dispatch(getSettingsData({ userIp: ip }));
+  }, []);
+
   const { locale, defaultLocale } = useRouter();
   useEffect(() => {
     let progressBar = document.querySelector(".progress-wrap");
@@ -528,7 +542,7 @@ MyApp.getInitialProps = wrapper.getInitialPageProps(
         .replace(")", "")
         .replace(";", "");
       const ip = JSON.parse(resData).ip;
-      await store.dispatch(getSettingsData({ lang: ctx.locale, userIp: ip }));
+      await store.dispatch(getSettingsData({ lang: ctx.locale }));
 
       if (ctx.req) {
         if (ctx.req.cookies.hasOwnProperty("userToken")) {
