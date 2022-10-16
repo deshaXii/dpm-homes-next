@@ -169,11 +169,14 @@ const Project = () => {
                     </div>
                   </div>
                   <div className="company-card-buttons">
-                    <a className="btn call-btn" href={`tel=${user_info.phone}`}>
+                    <a className="btn call-btn" href={`tel:${user_info.phone}`}>
                       <MdOutlineCall />
                       <span>Call</span>
                     </a>
-                    <a className="btn email-btn">
+                    <a
+                      className="btn email-btn"
+                      href={`mailto:${user_info.email}`}
+                    >
                       <HiOutlineMail />
                       <span>Email</span>
                     </a>

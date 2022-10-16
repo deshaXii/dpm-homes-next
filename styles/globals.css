@@ -5006,3 +5006,98 @@ ul.pagination li.disabled a {
   margin: 0;
   font-weight: bold;
 }
+
+section.event-image-box img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.event-page {
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+
+.eib-content {
+  background: var(--darkGreen);
+  border-radius: 14px;
+  padding: 15px;
+  text-align: center;
+}
+
+.event-project-logo img {
+  width: 150px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+}
+
+.top-section {
+  margin-bottom: 20px;
+}
+
+.event-project-name h5 {
+  color: #fff;
+  margin: 0;
+}
+
+.event-project-logo {
+  margin-bottom: 10px;
+}
+
+.event-project-name {
+  margin-bottom: 20px;
+}
+
+.event-status-box {
+  padding: 7px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-status-box.online {
+  background: #21b17c;
+}
+
+.event-status-box.offline {
+  background: #d73232;
+}
+
+.event-status-box span {
+  color: #fff;
+}
+
+.event-company-btns .btn {
+  background: #333;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.event-company-btns .btn:last-of-type {
+  margin-bottom: 0;
+}
+
+.event-company-btns {
+  margin-top: 10px;
+}
+
+.event-company-btns .btn.appoiment {
+  background: var(--mainColor);
+}
+
+.event-company-btns.call {
+  background: #333;
+}
+
+.event-company-btns .btn.call {
+  background: var(--lightGreen);
+}
+
+.event-status-box p {
+  margin: 0;
+  color: #fff;
+  position: relative;
+  margin-right: 6px;
+}

@@ -63,7 +63,7 @@ const AdministrativeRent = () => {
     { value: "GBP", label: "جنيه إسترليني" },
     { value: "QAR", label: "ريال قطري" },
     { value: "SAR", label: "ريال سعودي" },
-    { value: "EUR", label: "يورو " },
+    { value: "EURO", label: "يورو " },
     { value: "KWD", label: "دينار كويتي" },
   ];
 
@@ -74,7 +74,7 @@ const AdministrativeRent = () => {
     { value: "GBP", label: "GBP" },
     { value: "QAR", label: "QAR" },
     { value: "SAR", label: "SAR" },
-    { value: "EUR", label: "EUR" },
+    { value: "EURO", label: "EUR" },
     { value: "KWD", label: "KWD" },
   ];
 

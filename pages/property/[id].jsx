@@ -55,6 +55,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "public, s-maxage=10, stale-while-revalidate=59"
       );
       const currency = await store.getState().settings.settingsData.currency;
+      console.log(currency);
       const { id } = query;
       await store.dispatch(
         showProperty({

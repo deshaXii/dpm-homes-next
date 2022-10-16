@@ -3,7 +3,7 @@ import { HYDRATE } from "next-redux-wrapper";
 import {getUserIP, getUserLocationByIP} from "../api/currencyAPI";
 
 const initialState = {
-  currency: "aed",
+  currency: "",
   userIP: null
 };
 

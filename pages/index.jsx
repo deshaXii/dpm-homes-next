@@ -82,6 +82,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
       await store.dispatch(getAllCountries(locale));
       await store.dispatch(getServices(locale));
       const currency = await store.getState().settings.settingsData.currency;
+      console.log(currency);
       await store.dispatch(getHomepageSellUnits({ locale, currency }));
       await store.dispatch(getHomepageRentUnits({ locale, currency }));
       return {};

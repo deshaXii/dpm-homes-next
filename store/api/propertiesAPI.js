@@ -3,6 +3,7 @@ import jsCookies from "js-cookies";
 
 export async function getProperties({ type, userToken, lang, currency }) {
   try {
+    console.log(currency);
     if (userToken) {
       const res = await API.get(
         `/get-property?type=${type}&lang=${lang}&currency=${currency}`,

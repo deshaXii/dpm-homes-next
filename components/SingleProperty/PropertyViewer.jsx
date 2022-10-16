@@ -134,7 +134,6 @@ const PropertyViewer = () => {
                       {property.data.images.map((imageLink, index) => (
                         <div className="slider__item" key={imageLink}>
                           <img
-                            onClick={() => imageOnClick(imageLink)}
                             src={`https://admin.luxuryaqar.com/property-images/${imageLink}`}
                             alt="Product image"
                           />
@@ -150,7 +149,6 @@ const PropertyViewer = () => {
                       {property.data.images.map((imageLink, index) => (
                         <div className="slider__item" key={imageLink}>
                           <img
-                            onClick={() => imageOnClick(imageLink)}
                             src={`https://admin.luxuryaqar.com/property-images/${imageLink}`}
                             alt="Product image"
                           />
