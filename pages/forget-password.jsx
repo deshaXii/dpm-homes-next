@@ -7,6 +7,7 @@ import { sendForgetPasswordCode } from "../store/slices/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+import Default from "../layouts/default";
 
 const login = () => {
   const dispatch = useDispatch();
@@ -48,42 +49,44 @@ const login = () => {
           {router.locale === "en" ? " Forget My Password" : " نسيت كلمة المرور"}
         </title>
       </Head>
-      <div
-        className="login-page login-area login-page-content"
-        style={{ backgroundImage: "url(/img/login-bg.jpg)" }}
-      >
-        <div className="d-table">
-          <div className="d-cell">
-            <div className="container">
-              <div className="row justify-content-center">
-                <div className="col-md-5">
-                  <section className="forget-password">
-                    <form onSubmit={(e) => handleForgetPassword(e)}>
-                      <div className="form-group">
-                        <div className="input-icon">
-                          <MdEmail />
+      <Default>
+        <div
+          className="forget-password-page login-page login-area login-page-content"
+          style={{ backgroundImage: "url(/img/login-bg.jpg)" }}
+        >
+          <div className="d-table">
+            <div className="d-cell">
+              <div className="container">
+                <div className="row justify-content-center">
+                  <div className="col-md-5">
+                    <section className="forget-password">
+                      <form onSubmit={(e) => handleForgetPassword(e)}>
+                        <div className="form-group">
+                          <div className="input-icon">
+                            <MdEmail />
+                          </div>
+                          <input
+                            type="email"
+                            value={email}
+                            required
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="ُEnter your email address"
+                          />
                         </div>
-                        <input
-                          type="email"
-                          value={email}
-                          required
-                          onChange={(e) => setEmail(e.target.value)}
-                          placeholder="ُEnter your email address"
-                        />
-                      </div>
-                      <div className="form-submit-button">
-                        <button type="submit" className="btn">
-                          Send Verification Code to Email
-                        </button>
-                      </div>
-                    </form>
-                  </section>
+                        <div className="form-submit-button">
+                          <button type="submit" className="btn">
+                            Send Verification Code to Email
+                          </button>
+                        </div>
+                      </form>
+                    </section>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Default>
     </>
   );
 };

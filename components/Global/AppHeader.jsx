@@ -12,7 +12,6 @@ import jsCookies from "js-cookies";
 import SiteMenu from "./SiteMenu";
 import MobileMenu from "./MobileMenu";
 import { AiOutlineUserAdd } from "react-icons/ai";
-import { getCurrency } from "../../store/slices/currency";
 
 const AppNavbar = ({ user }) => {
   const { locales, locale, asPath } = useRouter();
@@ -136,7 +135,6 @@ const AppNavbar = ({ user }) => {
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
-                          dispatch(getCurrency("uae"));
                         }}
                         className="global-switch__dropdown-link"
                         rel="nofollow"
@@ -148,7 +146,6 @@ const AppNavbar = ({ user }) => {
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
-                          dispatch(getCurrency("egp"));
                         }}
                         className="global-switch__dropdown-link"
                         rel="nofollow"
@@ -160,7 +157,6 @@ const AppNavbar = ({ user }) => {
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
-                          dispatch(getCurrency("sa"));
                         }}
                         className="global-switch__dropdown-link"
                         rel="nofollow"
@@ -172,7 +168,6 @@ const AppNavbar = ({ user }) => {
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
-                          dispatch(getCurrency("sa"));
                         }}
                         className="global-switch__dropdown-link"
                         rel="nofollow"
@@ -184,7 +179,6 @@ const AppNavbar = ({ user }) => {
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
-                          dispatch(getCurrency("usd"));
                         }}
                         className="global-switch__dropdown-link"
                         rel="nofollow"
@@ -196,7 +190,6 @@ const AppNavbar = ({ user }) => {
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
-                          dispatch(getCurrency("usd"));
                         }}
                         className="global-switch__dropdown-link"
                         rel="nofollow"
@@ -208,7 +201,6 @@ const AppNavbar = ({ user }) => {
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
-                          dispatch(getCurrency("usd"));
                         }}
                         className="global-switch__dropdown-link"
                         rel="nofollow"
@@ -220,7 +212,6 @@ const AppNavbar = ({ user }) => {
                         href="#"
                         onClick={(e) => {
                           e.preventDefault();
-                          dispatch(getCurrency("usd"));
                         }}
                         className="global-switch__dropdown-link"
                         rel="nofollow"

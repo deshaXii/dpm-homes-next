@@ -5029,6 +5029,12 @@ section.event-image-box img {
   background: #fff;
   border-radius: 50%;
   padding: 6px;
+  max-height: 150px;
+  object-fit: cover;
+}
+
+.forget-password-page {
+  z-index: 0 !important;
 }
 
 .top-section {

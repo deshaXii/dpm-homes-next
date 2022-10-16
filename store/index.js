@@ -11,7 +11,7 @@ import wishlistSlice from "./slices/wishlist";
 import feedbackSlice from "./slices/feedback";
 import settingsSlice from "./slices/settings";
 import servicesSlice from "./slices/services";
-import currencySlice from "./slices/currency";
+import eventsSlice from "./slices/events";
 
 const makeStore = () =>
   configureStore({
@@ -27,7 +27,7 @@ const makeStore = () =>
       feedback: feedbackSlice,
       settings: settingsSlice,
       services: servicesSlice,
-      currency: currencySlice
+      events: eventsSlice
     },
     devTools: true,
   });
