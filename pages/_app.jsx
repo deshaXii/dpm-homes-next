@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps, user }) {
     const res = await axios.get(
       "https://api.ipify.org?format=jsonp&callback=?"
     );
-    const resData = res.data
+    const resData = await res.data
       .replace("?", "")
       .replace("(", "")
       .replace(")", "")
