@@ -519,12 +519,16 @@ MyApp.getInitialProps = wrapper.getInitialPageProps(
   (store) =>
     async ({ ctx }) => {
       // fetch('http://ip-api.com/json/154.239.243.250').then(res => console.log(res))
-      const data = await axios.get(
+      const res = await axios.get(
         "https://api.ipify.org?format=jsonp&callback=?"
       );
-      await store.dispatch(
-        getSettingsData({ lang: ctx.locale, userIp: data.data.ip })
-      );
+      const resData = res.data
+        .replace("?", "")
+        .replace("(", "")
+        .replace(")", "")
+        .replace(";", "");
+      const ip = JSON.parse(resData).ip;
+      await store.dispatch(getSettingsData({ lang: ctx.locale, userIp: ip }));
 
       if (ctx.req) {
         if (ctx.req.cookies.hasOwnProperty("userToken")) {
