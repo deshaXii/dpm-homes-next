@@ -8,8 +8,8 @@ const initialState = {
 
 export const getSettingsData = createAsyncThunk(
   "settings/getSettings",
-  async (lang) => {
-    const responseData = await getAppSettings(lang);
+  async ({lang, userIp}) => {
+    const responseData = await getAppSettings({lang, userIp});
     return responseData;
   }
 );

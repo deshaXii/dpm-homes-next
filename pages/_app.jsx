@@ -22,8 +22,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { sendFeedback } from "../store/slices/feedback";
 import "react-toastify/dist/ReactToastify.css";
-import { getSettingsData, selectSettings } from "../store/slices/settings";
-import { getUserLocationIP } from "../store/slices/currency";
+import { getSettingsData } from "../store/slices/settings";
+import axios from "axios";
 
 const messages = {
   ar,
@@ -45,8 +45,6 @@ function MyApp({ Component, pageProps, user }) {
 
   const [score, setScore] = useState(0);
   const [review, setReview] = useState("");
-
-  const { settingsData } = useSelector(selectSettings);
   return (
     <>
       <Head>
@@ -520,7 +518,14 @@ function MyApp({ Component, pageProps, user }) {
 MyApp.getInitialProps = wrapper.getInitialPageProps(
   (store) =>
     async ({ ctx }) => {
-      await store.dispatch(getSettingsData(ctx.locale));
+      // fetch('http://ip-api.com/json/154.239.243.250').then(res => console.log(res))
+      const data = await axios.get(
+        "https://api.ipify.org?format=jsonp&callback=?"
+      );
+      await store.dispatch(
+        getSettingsData({ lang: ctx.locale, userIp: data.data.ip })
+      );
+
       if (ctx.req) {
         if (ctx.req.cookies.hasOwnProperty("userToken")) {
           const cookies = parseCookies(ctx.req);
