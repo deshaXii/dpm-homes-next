@@ -40,6 +40,26 @@ function MyApp({ Component, pageProps, user }) {
     const resData = await res.data
      
     const ip = resData.ip;
+    
+    
+    import axios from "axios";
+
+const options = {
+  method: 'GET',
+  url: 'https://telize-v1.p.rapidapi.com/ip',
+  headers: {
+    'X-RapidAPI-Key': 'c7cf0f4ca5msh525de62d61cc7d2p1b256ajsnbc8938bf66eb',
+    'X-RapidAPI-Host': 'telize-v1.p.rapidapi.com'
+  }
+};
+
+axios.request(options).then(function (response) {
+	console.log(response.data);
+}).catch(function (error) {
+	console.error(error);
+});
+    
+    
     dispatch(getSettingsData({ userIp: ip }));
   }, []);
 

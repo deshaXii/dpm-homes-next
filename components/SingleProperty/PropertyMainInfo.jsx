@@ -35,6 +35,11 @@ const PropertyMainInfo = () => {
       style: "currency",
       currency: "EGP",
     });
+  } else if (property.data.currency === "USD") {
+    var formatterUSD = new Intl.NumberFormat(`en-eg`, {
+      style: "currency",
+      currency: "USD",
+    });
   }
 
   const [showDropdown, setShowDropdown] = useState(false);
@@ -148,14 +153,21 @@ const PropertyMainInfo = () => {
                         {formatterAED?.format(property.data.rent_price)}
                       </span>
                     )}
-
-                    {/* {property.data.total_price ? (
-                      <span>{property.data.total_price}</span>
+                    {formatterUSD && property.data.total_price ? (
+                      <span>
+                        {formatterUSD?.format(property.data.total_price)}
+                      </span>
                     ) : property.data.total_price_installment ? (
-                      <span>{property.data.total_price_installment}</span>
+                      <span>
+                        {formatterUSD?.format(
+                          property.data.total_price_installment
+                        )}
+                      </span>
                     ) : (
-                      <span>{property.data.rent_price}</span>
-                    )} */}
+                      <span>
+                        {formatterUSD?.format(property.data.rent_price)}
+                      </span>
+                    )}
                   </div>
                   <Link
                     href={`https://api.whatsapp.com/send/?phone=%${97144547816}&text=اأريد الإستفسار حول هذا العقار: https://luxuryaqar.com${
