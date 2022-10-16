@@ -32,7 +32,7 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
       style: "currency",
       currency: "EGP",
     });
-  }  else if (property.data.currency === "USD") {
+  }  else if (property.currency === "USD") {
     var formatterUSD = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
       currency: "USD",
