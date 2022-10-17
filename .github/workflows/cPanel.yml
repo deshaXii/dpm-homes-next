@@ -20,7 +20,6 @@ jobs:
           protocol: ftp
           port: 21
           dangerous-clean-slate: true
-          local-dir: './.next/'
       - run: npm ci
       - run: npm run build
       
