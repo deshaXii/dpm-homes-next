@@ -16,6 +16,5 @@ module.exports = {
     defaultLocale: "ar",
     defaultFormats: 'ar'
   },
-  distDir: 'build',
 
 };
