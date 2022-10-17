@@ -2,7 +2,6 @@ import { useRef, useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { counterStart } from "../common/counterDown";
 
-
 const EventCountDown = ({ id, end }) => {
   const countdownRef = useRef(null);
   useEffect(() => {
