@@ -3,7 +3,7 @@ import API from "../api";
 export async function get_all_events() {
   try {
     const res = await API.get("/get-events");
-    return await res.data;
+    return await res.data.data;
   } catch (err) {
     return err;
   }

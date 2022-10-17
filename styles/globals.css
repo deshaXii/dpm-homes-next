@@ -5324,3 +5324,16 @@ div#countdown-display>span {
   display: block;
   color: var(--darkGreen);
 }
+
+.events-page .client-img img {
+  width: 100%;
+  height: auto;
+  min-height: 150px;
+  object-fit: cover;
+}
+
+img {}
+
+.events-page .client-content .client-name {
+  font-size: 20px;
+}

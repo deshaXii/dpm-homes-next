@@ -1,4 +1,0 @@
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/dpmuae/public_html/luxuryaqar.com
-    - /bin/cp -R * $DEPLOYPATH
