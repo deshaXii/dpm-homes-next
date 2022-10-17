@@ -255,5 +255,13 @@
   "components.countdown.days": "أيام",
   "components.countdown.hours": "ساعات",
   "components.countdown.minutes": "دقائق",
-  "components.countdown.seconds": "ثانية"
+  "components.countdown.seconds": "ثانية",
+  "components.countdown.title": "سيبدأ الحدث بعد ذلك",
+  "components.countdown.event.status": "الحدث سيكون",
+  "components.countdown.event.online": "اونلاين",
+  "components.countdown.event.offline": "اوفلاين",
+  "components.countdown.event.appoiment": "حجز",
+  "components.countdown.event.call": "اتصل بنا",
+  "components.countdown.event.from": "من",
+  "components.countdown.event.to": "الي"
 }

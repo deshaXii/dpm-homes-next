@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { MdLocationPin } from "react-icons/md";
 import { HiClock } from "react-icons/hi";
 import EventCountDown from "../../components/eventCountDown";
+import { FormattedMessage } from "react-intl";
 
 const EventPage = () => {
   const { event } = useSelector(selectEvents);
@@ -30,13 +31,21 @@ const EventPage = () => {
                 <div className="event-main-information">
                   <div className="emi-location-and-day">
                     <div className="emi-location">
-                      <MdLocationPin />
+                      <div className="emi-icon">
+                        <MdLocationPin />
+                      </div>
                       <span>Egypt - 6th of October</span>
                     </div>
                     <div className="emi-day">
-                      <HiClock />
+                      <div className="emi-icon">
+                        <HiClock />
+                      </div>
                       <span>
-                        from {event.start_date} - to {event.end_date}
+                        <FormattedMessage id="components.countdown.event.from" />
+                        <div>{event.start_date}</div> 
+                        <div>-</div>
+                        <FormattedMessage id="components.countdown.event.to" />
+                        <div>{event.end_date}</div>
                       </span>
                     </div>
                   </div>
@@ -56,15 +65,24 @@ const EventPage = () => {
                     <h5>{event.company}</h5>
                   </div>
                   <div className={`event-status-box ${event.type}`}>
-                    <p>Event Will be:</p>
-                    <span>{event.type}</span>
+                    <p>
+                      <FormattedMessage id="components.countdown.event.status" />
+                      :
+                    </p>
+                    <span>
+                      {event.type === "online" ? (
+                        <FormattedMessage id="components.countdown.event.online" />
+                      ) : (
+                        <FormattedMessage id="components.countdown.event.offline" />
+                      )}
+                    </span>
                   </div>
                   <div className="event-company-btns">
                     <button className="btn appoiment" type="button">
-                      حجز
+                      <FormattedMessage id="components.countdown.event.appoiment" />
                     </button>
                     <button className="btn call" type="button">
-                      اتصل بنا
+                      <FormattedMessage id="components.countdown.event.call" />
                     </button>
                   </div>
                 </div>

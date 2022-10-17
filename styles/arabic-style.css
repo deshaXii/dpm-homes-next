@@ -285,3 +285,7 @@ html[lang="ar"] .feedback-links {
     border-bottom-right-radius: 10px;
     border-right: 0;
 }
+
+.rtl .event-status-box span {
+    margin-right: 5px;
+}
