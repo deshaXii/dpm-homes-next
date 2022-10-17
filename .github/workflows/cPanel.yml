@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           port: 21
-          server-dir: 'public_html/luxury/build/server'
+          server-dir: 'public_html/luxury/build/server/'
       - run: npm ci
       - run: npm run build
       
