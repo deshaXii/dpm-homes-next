@@ -27,6 +27,7 @@ const EventPage = () => {
                     src={`https://admin.luxuryaqar.com/project-images/${event.project_image}`}
                     alt="event project page"
                   />
+                  {/* s */}
                 </section>
                 <div className="event-main-information">
                   <div className="emi-location-and-day">

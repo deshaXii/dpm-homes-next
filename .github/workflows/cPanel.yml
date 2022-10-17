@@ -20,4 +20,5 @@ jobs:
           protocol: ftp
           port: 21
       - run: npm ci
+      # - run: export PATH=/opt/cpanel/ea-nodejs16/bin/:$PATH
       - run: npm run build
