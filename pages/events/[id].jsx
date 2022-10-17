@@ -35,7 +35,7 @@ const EventPage = () => {
                       <div className="emi-icon">
                         <MdLocationPin />
                       </div>
-                      <span>Egypt - 6th of October</span>
+                      <span>Egypt - 6 of October</span>
                     </div>
                     <div className="emi-day">
                       <div className="emi-icon">
