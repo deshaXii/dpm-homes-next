@@ -84,6 +84,12 @@ const EventPage = () => {
                     <button className="btn call" type="button">
                       <FormattedMessage id="components.countdown.event.call" />
                     </button>
+
+                    {/* href={`https://api.whatsapp.com/send/?phone=%${97144547816}&text=اأريد الإستفسار حول هذا العقار: https://luxuryaqar.com${
+                      router.asPath
+                    }`} */}
+
+
                   </div>
                 </div>
                 <EventCountDown end={event.start_date} />
