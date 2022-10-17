@@ -42,7 +42,9 @@ const Properties = ({ sectionTitle, sectionClass, type, items, itemsType }) => {
                   {items.length > 4 ? (
                     <div className="all-properties-box text-center">
                       <Link href={`/search-${itemsType}`}>
-                        <a className="dpm-btn btn">See More</a>
+                        <a className="dpm-btn btn">
+                          <FormattedMessage id="btns.show-more" />
+                        </a>
                       </Link>
                     </div>
                   ) : (
@@ -85,7 +87,9 @@ const Properties = ({ sectionTitle, sectionClass, type, items, itemsType }) => {
                   ).length > 4 ? (
                     <div className="all-properties-box text-center">
                       <Link href={`/search-${type}`}>
-                        <a className="dpm-btn btn">See More</a>
+                        <a className="dpm-btn btn">
+                          <FormattedMessage id="btns.show-more" />
+                        </a>
                       </Link>
                     </div>
                   ) : (
