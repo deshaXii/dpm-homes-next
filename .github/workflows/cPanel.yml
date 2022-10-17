@@ -21,3 +21,4 @@ jobs:
           port: 21
       - run: npm ci
       - run: npm run build
+      - run: npm run start
