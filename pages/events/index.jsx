@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import SectionTitle from "../../components/Global/SectionTitle";
 import Default from "../../layouts/default";
 
-const Clients = () => {
+const Events = () => {
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
     return () => {
@@ -15,13 +15,13 @@ const Clients = () => {
   const { locale } = router;
   return (
     <Default>
-      <div className="clients-page" style={{ padding: "60px 0 120px 0" }}>
+      <div className="events-page" style={{ padding: "60px 0 120px 0" }}>
         <div className="container">
           <div className="row">
             <div className="col-12">
               <SectionTitle
-                title={locale === "ar" ? "المستخدمين" : "Clients"}
-                subTitle={locale === "ar" ? "أحدث" : "New"}
+                title={locale === "ar" ? "الأحداث" : "Events"}
+                subTitle={locale === "ar" ? "أجدد" : "New"}
               />
             </div>
           </div>
@@ -153,4 +153,4 @@ const Clients = () => {
   );
 };
 
-export default Clients;
+export default Events;

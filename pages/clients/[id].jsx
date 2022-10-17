@@ -31,32 +31,35 @@ const ClientProfile = () => {
             <div className="client-header">
               <div className="sbf">
                 <div className="ascsw">
-                <div className="client-header-left">
-                  <div className="client-header-image">
-                    <Image
-                      src={`https://admin.luxuryaqar.com/user-images/${clientData.user.image}`}
-                      alt="client image"
-                      width={180}
-                      height={180}
-                    />
-                    {clientData.user.type && (
-                      <div className="company_onwer_box">
-                        <div className="company_owner_img">
-                          <Image
-                            src={`/img/defaultUser.png`}
-                            // src={`https://admin.luxuryaqar.com/user-images/${clientData.user.owner_image}`}
-                            alt="company owner image"
-                            width={100}
-                            height={100}
-                          />
+                  <div className="client-header-left">
+                    <div className="client-header-image">
+                      <Image
+                        src={`https://admin.luxuryaqar.com/user-images/${clientData.user.image}`}
+                        alt="client image"
+                        width={180}
+                        height={180}
+                      />
+                      {clientData.user.type === 'Company' && (
+                        <div className="company_onwer_box">
+                          {clientData.user.owner_image && (
+                            <div className="company_owner_img">
+                              <Image
+                                src={`https://admin.luxuryaqar.com/user-images/${clientData.user.owner_image}`}
+                                alt="company owner image"
+                                width={100}
+                                height={100}
+                              />
+                            </div>
+                          )}
+                          {clientData.user.owner_name && (
+                            <div className="company_onwer_name">
+                              <span>Mr Mohamed Sadka</span>
+                            </div>
+                          )}
                         </div>
-                        <div className="company_onwer_name">
-                          <span>Mr Mohamed Sadka</span>
-                        </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
-                </div>
                 </div>
                 <div className="client-header-middle">
                   <div className="clinet-main-info">

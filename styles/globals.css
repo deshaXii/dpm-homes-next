@@ -4942,6 +4942,7 @@ ul.pagination li.disabled a {
 
 .client-header-left .client-header-image img {
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .client-header-left .client-header-image {
@@ -5267,3 +5268,59 @@ div#countdown-display>span {
   margin-top: 15px;
 }
 
+.client-img img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+}
+
+.client-img {
+  margin-bottom: 10px;
+}
+
+.client-box {
+  background: #fff;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 12px;
+  text-align: center;
+}
+
+.client-content .btn {
+  background: var(--darkGreen);
+  color: #fff;
+  width: 50%;
+  padding: 0;
+  height: 46px;
+  transition: all .3s linear;
+}
+
+.client-content .client-btns-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 10px;
+  border-top: 1px solid rgb(135 135 135 / 24%);
+  padding-top: 11px;
+}
+
+.client-content .btn.call:hover {
+  background: var(--lightGreen);
+}
+
+.client-content .btn.whatsapp:hover {
+  background: var(--mainColor);
+}
+
+.client-content .client-name {
+  color: var(--mainColor);
+  margin-bottom: 3px;
+}
+
+.client-content span {
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 7px;
+  display: block;
+  color: var(--darkGreen);
+}
