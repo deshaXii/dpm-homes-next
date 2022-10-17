@@ -5229,7 +5229,6 @@ div#countdown-display>span {
   font-size: 16px;
 }
 
-.emi-location-and-day svg {}
 
 .emi-day,
 .emi-location {
@@ -5262,10 +5261,6 @@ div#countdown-display>span {
 .emi-day span div {
   margin: 0 5px;
   direction: ltr;
-}
-
-.emi-day {
-  direction: rtl;
 }
 
 .event-main-information h1 {

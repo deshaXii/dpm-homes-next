@@ -289,3 +289,7 @@ html[lang="ar"] .feedback-links {
 .rtl .event-status-box span {
     margin-right: 5px;
 }
+
+.rtl .emi-day {
+    direction: rtl;
+}
