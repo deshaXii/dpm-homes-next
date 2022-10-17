@@ -62,7 +62,7 @@ const MobileMenu = ({ setIsOpen, isOpen }) => {
           <Link href="/search-sell">
             <a className="mobile-menu-link">
               <div className="mml-icon">
-                <p className="asSVG">{locale === "en" ? "R" : "ب"}</p>
+                <p className="asSVG">{locale === "en" ? "R" : "بـ"}</p>
               </div>
               <span>
                 <FormattedMessage id="page.home.menu.sell" />
@@ -90,6 +90,18 @@ const MobileMenu = ({ setIsOpen, isOpen }) => {
               </div>
               <span>
                 <FormattedMessage id="page.home.menu.projects" />
+              </span>
+            </a>
+          </Link>
+        </div>
+        <div className="mobile-menu-list-item">
+          <Link href="/events">
+            <a className="mobile-menu-link">
+              <div className="mml-icon">
+                <p className="asSVG">{locale === "en" ? "E" : "حـ"}</p>
+              </div>
+              <span>
+                <FormattedMessage id="page.home.menu.events" />
               </span>
             </a>
           </Link>

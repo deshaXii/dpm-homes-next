@@ -53,6 +53,17 @@ const SiteMenu = () => {
             </a>
           </Link>
         </li>
+        <li className="navbar-menu-list-item ">
+          <Link href="/events">
+            <a
+              className={`navbar-menu-list-item-link ${
+                router.pathname === "/events" ? "active-link" : ""
+              }`}
+            >
+              <FormattedMessage id="page.home.menu.events" />
+            </a>
+          </Link>
+        </li>
         <li className="navbar-menu-list-item">
           <Link href="/contact-us">
             <a
