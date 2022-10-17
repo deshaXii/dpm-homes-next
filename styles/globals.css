@@ -5051,7 +5051,7 @@ section.event-image-box img {
 }
 
 .event-project-name {
-  margin-bottom: 20px;
+  margin-bottom: 6px;
 }
 
 .event-status-box {
@@ -5122,3 +5122,101 @@ section.event-image-box img {
   height: auto;
   padding: 12px;
 }
+
+ul.event-tags-list {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+ul.event-tags-list li.event-tag-item {
+  background: var(--darkGreen);
+  padding: 10px 20px;
+  border-radius: 9px;
+  transition: all .3s linear;
+}
+
+ul.event-tags-list li.event-tag-item h6 {
+  margin: 0;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+ul.event-tags-list li.event-tag-item:hover {
+  background: var(--darkGreenWithOpacity);
+}
+
+.emi-location-and-day {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+}
+
+
+
+.countdown-timer .counterdown-content {
+  display: table;
+  position: relative;
+  min-width: 280px;
+  background-color: var(--darkGreen);
+  border-radius: 13px;
+}
+
+div#countdown-display {
+  margin-top: 15px;
+}
+
+.event-main-information {
+  margin-top: 20px;
+}
+
+.countdown-timer .time-col {
+  display: table-cell;
+  width: 25%;
+  border-left: 1px #5D6368 solid;
+}
+
+.countdown-timer .time-col:first-child {
+  border-left: none;
+}
+
+.countdown-timer .counting,
+.countdown-timer .subject {
+  display: block;
+  padding: 8px 0;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 1em;
+}
+
+.countdown-timer .counting {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.countdown-timer .subject {
+  position: relative;
+  font-size: 14px;
+}
+
+.countdown-timer .subject span {
+  position: absolute;
+  left: 40%;
+  top: 0;
+  width: 20%;
+  border-top: 1px #5D6368 solid;
+}
+
+div#countdown-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-timer .time-col.days {
+  background: var(--mainColor);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+

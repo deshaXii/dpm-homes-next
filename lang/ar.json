@@ -251,5 +251,9 @@
   "page.project.nearby.hospitals.title": "المستشفيات",
   "page.project.nearby.hospitals.description": "عرض المستشفيات والعيادات والمراكز الصحية القريبة.",
   "page.project.nearby.Parks.title": "الحدائق",
-  "page.project.nearby.Parks.description": "عرض الحدائق ومراكز اللياقة البدنية في مكان قريب."
+  "page.project.nearby.Parks.description": "عرض الحدائق ومراكز اللياقة البدنية في مكان قريب.",
+  "components.countdown.days": "أيام",
+  "components.countdown.hours": "ساعات",
+  "components.countdown.minutes": "دقائق",
+  "components.countdown.seconds": "ثانية"
 }

@@ -272,3 +272,16 @@ html[lang="ar"] .feedback-links {
     margin-left: 30px;
     margin-right: 0;
 }
+
+
+.rtl .countdown-timer .time-col {
+    border-left: 0;
+    border-right: 1px solid #5d6368;
+}
+
+.rtl .countdown-timer .time-col.days {
+    border-radius: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-right: 0;
+}
