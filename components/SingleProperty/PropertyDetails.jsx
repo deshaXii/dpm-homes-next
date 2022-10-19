@@ -785,10 +785,10 @@ const PropertyDetails = () => {
               </div>
             )}
             
-              {property.data.general_details ? (
+              {property.data.general_details && (
               <div
                 className={`details-inner-box ${
-                  finishingCollapsed ? "collapsed" : ""
+                  moreDetailsCollapsed ? "collapsed" : ""
                 }`}
               >
                 <div
