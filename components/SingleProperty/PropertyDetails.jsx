@@ -8,7 +8,6 @@ import { FormattedMessage } from "react-intl";
 
 const PropertyDetails = () => {
 
-  console.log(property.data.general_details)
   
   const [detailsCollapsed, setDetailsCollapsed] = useState(false);
   const [amenitiesCollapsed, setAmenitiesCollapsed] = useState(true);
@@ -18,6 +17,8 @@ const PropertyDetails = () => {
   const { property } = useSelector(selectProperties);
   const router = useRouter();
   const { locale } = router;
+  
+    console.log(property.data.general_details)
 
   const property_type_options_ar = [
     { value: "palace", label: "قصر" },
