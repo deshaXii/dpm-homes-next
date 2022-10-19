@@ -806,9 +806,6 @@ const PropertyDetails = () => {
                 </div>
                 <div className="property-details-inner">
                     <div className="pdi-box">
-                      <div className="pdi-name">
-                        <FormattedMessage id="page.property.details.general_details" />:
-                      </div>
                       <div className="pdi-value">{property.data.general_details}</div>
                     </div>
                 </div>
