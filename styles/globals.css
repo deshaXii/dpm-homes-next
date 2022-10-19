@@ -5083,7 +5083,7 @@ section.event-image-box img {
   margin-bottom: 10px;
 }
 
-.event-company-btns .btn:last-of-type {
+.event-company-btns a.btn {
   margin-bottom: 0;
 }
 

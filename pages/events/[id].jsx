@@ -24,6 +24,7 @@ import "react-phone-input-2/lib/style.css";
 import { AiOutlineClose } from "react-icons/ai";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 const EventPage = () => {
   const { event } = useSelector(selectEvents);
@@ -152,13 +153,17 @@ const EventPage = () => {
                     >
                       <FormattedMessage id="components.countdown.event.appoiment" />
                     </button>
-                    <button className="btn call" type="button">
-                      <FormattedMessage id="components.countdown.event.call" />
-                    </button>
+                    <Link
+                      href={`https://api.whatsapp.com/send/?phone=${97144547816}&text=اأريد الإستفسار حول هذا الحدث: https://luxuryaqar.com${
+                        router.asPath
+                      }`}
+                    >
+                      <a className="btn call">
+                        <FormattedMessage id="components.countdown.event.call" />
+                      </a>
+                    </Link>
 
-                    {/* href={`https://api.whatsapp.com/send/?phone=%${97144547816}&text=اأريد الإستفسار حول هذا العقار: https://luxuryaqar.com${
-                      router.asPath
-                    }`} */}
+                    {/*  */}
                   </div>
                 </div>
                 {event.type === "online" && (
@@ -260,7 +265,7 @@ const EventPage = () => {
                 </div>
                 <div className="form-group form-btn">
                   <button className="btn event-register-btn" type="submit">
-                    {locale === "en" ? "Register" : " تسجيل"}
+                    {locale === "en" ? "Register at the event" : "التسجيل في الحدث"}
                   </button>
                 </div>
               </form>
