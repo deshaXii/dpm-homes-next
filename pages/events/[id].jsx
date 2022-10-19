@@ -28,7 +28,6 @@ import Link from "next/link";
 
 const EventPage = () => {
   const { event } = useSelector(selectEvents);
-  const eventTags = ["tag1", "tag2", "tag3", "tag4", "tag5", "tag6", "tag7"];
   const router = useRouter();
   const { query, locale } = router;
   const dispatch = useDispatch();
@@ -174,13 +173,13 @@ const EventPage = () => {
           </div>
         </div>
 
-        {eventTags.length && (
+        {event.tags.length && (
           <div className="event-tags-section">
             <div className="container">
               <div className="row">
                 <div className="col-12">
                   <ul className="event-tags-list">
-                    {eventTags.map((item, index) => (
+                    {event.tags.map((item, index) => (
                       <li className="event-tag-item" key={index}>
                         <h6>{item}</h6>
                       </li>
