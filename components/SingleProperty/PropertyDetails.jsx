@@ -7,6 +7,9 @@ import { useRouter } from "next/router";
 import { FormattedMessage } from "react-intl";
 
 const PropertyDetails = () => {
+
+  console.log(property.data.general_details)
+  
   const [detailsCollapsed, setDetailsCollapsed] = useState(false);
   const [amenitiesCollapsed, setAmenitiesCollapsed] = useState(true);
   const [paymentCollapsed, setPaymentCollapsed] = useState(true);
