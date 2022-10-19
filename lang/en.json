@@ -263,7 +263,7 @@
   "components.countdown.event.status": "Event Will be",
   "components.countdown.event.online": "online",
   "components.countdown.event.offline": "offline",
-  "components.countdown.event.appoiment": "book an appointment ",
+  "components.countdown.event.appoiment": "Event Register ",
   "components.countdown.event.call": "Call Us",
   "components.countdown.event.from": "from",
   "components.countdown.event.to": "to"

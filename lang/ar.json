@@ -262,7 +262,7 @@
   "components.countdown.event.status": "الحدث سيكون",
   "components.countdown.event.online": "اونلاين",
   "components.countdown.event.offline": "اوفلاين",
-  "components.countdown.event.appoiment": "حجز موعد",
+  "components.countdown.event.appoiment": "التسجيل في الحدث",
   "components.countdown.event.call": "اتصل بنا",
   "components.countdown.event.from": "من",
   "components.countdown.event.to": "الي"

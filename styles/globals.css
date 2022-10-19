@@ -5332,8 +5332,126 @@ div#countdown-display>span {
   object-fit: cover;
 }
 
-img {}
-
 .events-page .client-content .client-name {
   font-size: 20px;
+}
+
+.register-event-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #161616a1;
+  z-index: 999999;
+  padding: 20px;
+}
+
+.register-event-popup {
+  width: 400px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.rep-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 23px;
+  position: relative;
+}
+
+.rep-header:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--mainColorWithOpacity);
+}
+
+.rep-popup-close-box {
+  width: 28px;
+  height: 28px;
+  background: var(--darkGreen);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all .3s linear;
+}
+
+.rep-title h5 {
+  margin-bottom: 5px;
+}
+
+.rep-popup-close-box:hover {
+  background: var(--mainColor);
+  color: var(--darkGreen);
+}
+
+.rep-content .rep-form .form-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.rep-content .rep-form .form-group input {
+  width: 100%;
+  height: 50px;
+  background: #ccc;
+  border: none;
+  border-radius: 7px;
+  padding: 0 10px;
+  text-indent: 35px;
+  transition: all .3s linear;
+  outline: 1px solid transparent;
+}
+
+.rep-content .rep-form .form-group .input-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  background: #333;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 32px;
+  color: #fff;
+}
+
+.rep-form .react-tel-input .flag-dropdown {
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  padding-left: 1px;
+}
+
+.rep-content .rep-form .form-group.form-btn .event-register-btn {
+  background: var(--mainColor);
+  color: #fff;
+  height: 50px;
+  padding: 0 20px;
+  transition: all .3s linear;
+}
+
+.rep-content .rep-form .form-group.form-btn {
+  margin-bottom: 0;
+}
+
+.rep-content .rep-form .form-group input:focus {
+  outline: 1px solid var(--mainColor);
+}
+
+.rep-content .rep-form .form-group.form-btn .event-register-btn:hover {
+  background: var(--darkGreen);
 }

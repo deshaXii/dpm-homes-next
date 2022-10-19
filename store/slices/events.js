@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-import { get_all_events, get_event } from "../api/eventsAPI";
+import { get_all_events, get_event, register_event } from "../api/eventsAPI";
 
 const initialState = {
   events: [],
@@ -18,6 +18,14 @@ export const getEvent = createAsyncThunk(
   "events/getEvent",
   async ({id, lang}) => {
     const responseData = await get_event({id, lang});
+    return responseData;
+  }
+);
+
+export const eventRegister = createAsyncThunk(
+  "events/registerEvent",
+  async (data) => {
+    const responseData = await register_event(data);
     return responseData;
   }
 );
