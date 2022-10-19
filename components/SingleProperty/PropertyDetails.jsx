@@ -11,6 +11,7 @@ const PropertyDetails = () => {
   const [amenitiesCollapsed, setAmenitiesCollapsed] = useState(true);
   const [paymentCollapsed, setPaymentCollapsed] = useState(true);
   const [finishingCollapsed, setFinishingCollapsed] = useState(true);
+  const [moreDetailsCollapsed, setMoreDetailsCollapsed] = useState(true);
   const { property } = useSelector(selectProperties);
   const router = useRouter();
   const { locale } = router;
@@ -778,6 +779,34 @@ const PropertyDetails = () => {
                         :
                       </div>
                       <div className="pdi-value">{property.data.internet}</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+            
+              {property.data.general_details ? (
+              <div
+                className={`details-inner-box ${
+                  finishingCollapsed ? "collapsed" : ""
+                }`}
+              >
+                <div
+                  className="section-inner-title"
+                  onClick={() => setMoreDetailsCollapsed(!moreDetailsCollapsed)}
+                >
+                  <MdOutlineArrowDropUp />
+                  <h4>
+                    <FormattedMessage id="page.property.details.general_details" />
+                  </h4>
+                </div>
+                <div className="property-details-inner">
+                  {property.data.general_details && (
+                    <div className="pdi-box">
+                      <div className="pdi-name">
+                        <FormattedMessage id="page.property.details.general_details" />:
+                      </div>
+                      <div className="pdi-value">{property.data.general_details}</div>
                     </div>
                   )}
                 </div>
