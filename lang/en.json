@@ -266,5 +266,6 @@
   "components.countdown.event.appoiment": "Event Register ",
   "components.countdown.event.call": "Call Us",
   "components.countdown.event.from": "from",
-  "components.countdown.event.to": "to"
+  "components.countdown.event.to": "to",
+  "page.property.details.general_details" : "More Details"
 }
