@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           port: 21
-      - run: npm cli
+      - run: npm ci
       - run: npm run build
         
       
