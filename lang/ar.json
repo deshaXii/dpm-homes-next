@@ -265,5 +265,6 @@
   "components.countdown.event.appoiment": "التسجيل في الحدث",
   "components.countdown.event.call": "اتصل بنا",
   "components.countdown.event.from": "من",
-  "components.countdown.event.to": "الي"
+  "components.countdown.event.to": "الي",
+  "page.property.details.general_details" : "معلومات إضافية"
 }
