@@ -5455,3 +5455,12 @@ div#countdown-display>span {
 .rep-content .rep-form .form-group.form-btn .event-register-btn:hover {
   background: var(--darkGreen);
 }
+
+ul.event-tags-list {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  max-height: 95px;
+  overflow: hidden;
+}
+
+.event-tags-section {margin-bottom: 120px;}
