@@ -82,7 +82,16 @@
     }
 
     .locationNearby ul {
-        display: block;
+        flex-wrap: nowrap;
+        column-gap: 15px;
+    }
+
+    .locationNearby ul .nearbyTab .detail {
+        display: none;
+    }
+    
+    .locationNearby ul .nearbyTab svg {
+        width: 36px;
     }
 
     .locationNearby ul .nearbyTab {
@@ -90,6 +99,11 @@
         width: 100%;
         margin: 0;
         margin-bottom: 12px;
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .locationNearby ul .nearbyTab:hover {
