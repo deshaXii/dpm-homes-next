@@ -13,6 +13,11 @@
         padding: 0 10px;
     }
 
+    .popup-header span:last-of-type {
+        background: var(--mainColor);
+        color: #fff;
+    }
+
     .unit-views span {
         margin: 0;
     }
@@ -237,30 +242,31 @@
     .project-content {
         margin-top: 20px;
     }
-    
+
     section#locationNearby {
         padding-bottom: 0;
         margin-top: 20px;
         margin-bottom: 20px;
         padding-top: 20px;
     }
-    
+
     .project-page .search-property-layout-content {
         margin-bottom: 25px;
     }
 
-    .df, .dl {
+    .df,
+    .dl {
         display: flex;
         flex-direction: column;
         row-gap: 7px;
     }
-    
-    .contact-info-area  .df svg, .contact-info-area 
-     .dl svg {
+
+    .contact-info-area .df svg,
+    .contact-info-area .dl svg {
         width: 15px;
         margin: 0 10px;
     }
-    
+
     .dbl-nums {
         margin-top: 11px;
     }
