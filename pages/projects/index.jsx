@@ -17,7 +17,7 @@ const Projects = () => {
       document.body.style.backgroundColor = "white";
     };
   }, []);
-  const { allProjects } = useSelector(selectProjects);
+  const { allProjects, projectsMap } = useSelector(selectProjects);
   const router = useRouter();
   const { locale } = router;
   return (
@@ -32,6 +32,8 @@ const Projects = () => {
               <SectionTitle
                 title={locale === "ar" ? "المشاريع" : "projects"}
                 subTitle={locale === "ar" ? "أحدث" : "New"}
+                haveBtn={projectsMap ? true : false}
+                btnLink={projectsMap ? projectsMap : null}
               />
               {allProjects.map((project) => (
                 <div className="col-md-4" key={project.id}>

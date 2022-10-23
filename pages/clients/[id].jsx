@@ -9,10 +9,13 @@ import { useSelector } from "react-redux";
 import Head from "next/head";
 import { FormattedMessage } from "react-intl";
 import PaginatedItems from "../../components/Global/PaginatedItems";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { RWebShare } from "react-web-share";
 
 const ClientProfile = () => {
   const { clientData } = useSelector(selectClient);
-
+  const router = useRouter();
   const [showMore, setShowMore] = useState();
   useEffect(() => {
     document.body.style.backgroundColor = "#011f2a";
@@ -39,7 +42,7 @@ const ClientProfile = () => {
                         width={180}
                         height={180}
                       />
-                      {clientData.user.type === 'Company' && (
+                      {clientData.user.type === "Company" && (
                         <div className="company_onwer_box">
                           {clientData.user.owner_image && (
                             <div className="company_owner_img">
@@ -100,19 +103,34 @@ const ClientProfile = () => {
               </div>
               <div className="clinet-contact-btns">
                 <div className="client-contact-btn">
-                  <button className="btn">
-                    <FiPhoneCall /> <span>Call</span>
-                  </button>
+                  <Link href={`tel:${clientData.user.phone}`}>
+                    <a className="btn">
+                      <FiPhoneCall /> <span>Call</span>
+                    </a>
+                  </Link>
                 </div>
                 <div className="client-contact-btn">
-                  <button className="btn">
-                    <FiMessageCircle /> <span>Message</span>
-                  </button>
+                  <Link
+                    href={`https://api.whatsapp.com/send/?phone=${97144547816}&text= أريد الإستفسار بشأن هذا الحساب \n 
+                    https://luxuryaqar.com${router.asPath}`}
+                  >
+                    <a className="btn">
+                      <FiMessageCircle /> <span>Message </span>
+                    </a>
+                  </Link>
                 </div>
                 <div className="client-contact-btn">
-                  <button className="btn">
-                    <FiShare2 /> <span>Share</span>
-                  </button>
+                  <RWebShare
+                    data={{
+                      text: `${clientData.user.name} on luxury aqar`,
+                      url: `https://luxuryaqar.com/client/${clientData.user.id}`,
+                      title: `${clientData.user.name} on luxury aqar`,
+                    }}
+                  >
+                    <button className="btn">
+                      <FiShare2 /> <span>Share</span>
+                    </button>
+                  </RWebShare>
                 </div>
               </div>
             </div>
