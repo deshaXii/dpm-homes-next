@@ -18,7 +18,7 @@ import { useRouter } from "next/router";
 import PaginatedItems from "../components/Global/PaginatedItems";
 
 const Search = () => {
-  const {locale} = useRouter();
+  const { locale } = useRouter();
   const { allProperties } = useSelector(selectProperties);
   const { filteredProperties } = useSelector(selectFilter);
   const [layout, setLayout] = useState("grid");
@@ -33,7 +33,7 @@ const Search = () => {
   return (
     <>
       <Head>
-      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
+        <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div className="search-page" style={{ padding: "60px 0 120px 0" }}>
@@ -79,14 +79,16 @@ const Search = () => {
                   </div>
                   <div className="search-property-layout-content">
                     <div className="row">
-                    {filteredProperties.length ? (
+                      {filteredProperties.length ? (
                         <PaginatedItems
                           itemsPerPage={9}
                           layout={layout}
                           items={filteredProperties}
                         />
                       ) : (
-                        <div><FormattedMessage id="global.no-property-found" /></div>
+                        <div>
+                          <FormattedMessage id="global.no-property-found" />
+                        </div>
                       )}
                     </div>
                   </div>
@@ -111,7 +113,13 @@ export const getServerSideProps = wrapper.getServerSideProps(
       );
       const currency = await store.getState().settings.settingsData.currency;
       await store.dispatch(getAllCountries(locale));
-      await store.dispatch(getPropertiesWithTpye({ type: "rent", lang: locale, currency }));
+      await store.dispatch(
+        getPropertiesWithTpye({
+          type: "rent",
+          lang: locale,
+          currency: currency,
+        })
+      );
       return {
         props: {},
       };
