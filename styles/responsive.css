@@ -3,6 +3,20 @@
         display: none;
     }
 
+    .unit-views {
+        flex-direction: row;
+        height: 40px;
+        border-radius: 8px;
+        margin: 0;
+        width: auto;
+        column-gap: 5px;
+        padding: 0 10px;
+    }
+
+    .unit-views span {
+        margin: 0;
+    }
+
     .events-page {
         margin-bottom: 60px;
         padding-top: 20px !important;
@@ -89,7 +103,7 @@
     .locationNearby ul .nearbyTab .detail {
         display: none;
     }
-    
+
     .locationNearby ul .nearbyTab svg {
         width: 36px;
     }
@@ -207,7 +221,47 @@
     }
 
     .project-header {
-        height: 170px;
+        height: 230px;
+    }
+
+    .project-by-comapny-card {
+        margin-top: 15px;
+        border-radius: 20px;
+    }
+
+    .company-card-buttons .btn {
+        border-radius: 20px;
+    }
+
+    .project-content {
+        margin-top: 20px;
+    }
+    
+    section#locationNearby {
+        padding-bottom: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-top: 20px;
+    }
+    
+    .project-page .search-property-layout-content {
+        margin-bottom: 25px;
+    }
+
+    .df, .dl {
+        display: flex;
+        flex-direction: column;
+        row-gap: 7px;
+    }
+    
+    .contact-info-area  .df svg, .contact-info-area 
+     .dl svg {
+        width: 15px;
+        margin: 0 10px;
+    }
+    
+    .dbl-nums {
+        margin-top: 11px;
     }
 
     .search-property-layout-content .property-card-image .property-tags .t-rent {

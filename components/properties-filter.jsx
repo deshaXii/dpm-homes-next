@@ -53,9 +53,9 @@ const area_size_options_en = [
 ];
 
 const uritType_en = [
-  { value: "Administrative", label: "Administrative" },
-  { value: "commercial", label: "Commercial" },
   { value: "housing", label: "Residential" },
+  { value: "commercial", label: "Commercial" },
+  { value: "Administrative", label: "Administrative" },
 ];
 const uritType_ar = [
   { value: "housing", label: "سكني" },
@@ -138,36 +138,47 @@ const PropertiesFilter = ({ showFilter, query }) => {
   const { locale } = useRouter();
   const { allCountries, allGovernorates } = useSelector(selectCountries);
   const { allProperties } = useSelector(selectProperties);
-  const { activeCountry, filteredProperties } = useSelector(selectFilter);
-  const [uType, setUType] = useState(() =>
-    locale === "ar"
-      ? uritType_ar.find(
-          (i) => i.value.toLowerCase() === query?.uType?.toLowerCase()
-        )
-      : uritType_en.find(
-          (i) => i.value.toLowerCase() === query?.uType?.toLowerCase()
-        )
-  );
+  const [uType, setUType] = useState(() => {
+    if (query?.uType) {
+      locale === "ar"
+        ? uritType_ar.find(
+            (i) => i.value.toLowerCase() === query?.uType?.toLowerCase()
+          )
+        : uritType_en.find(
+            (i) => i.value.toLowerCase() === query?.uType?.toLowerCase()
+          );
+    } else {
+      return "";
+    }
+  });
   const [bedNum, setBedNum] = useState();
   const [bathNum, setBathNum] = useState();
-  const [country, setCountry] = useState(() =>
-    allCountries.find((i) => i.value === Number(query?.city))
-  );
-  const [propertyTypeS, setPropertyTypeS] = useState(() =>
-    uType?.value === "housing"
-      ? locale === "ar"
-        ? hosuing_type_options_ar.find((i) => i.value === query?.type)
-        : hosuing_type_options_en.find((i) => i.value === query?.type)
-      : uType?.value === "commercial"
-      ? locale === "ar"
-        ? commercial_type_options_ar.find((i) => i.value === query?.type)
-        : commercial_type_options_en.find((i) => i.value === query?.type)
-      : uType?.value === "Administrative"
-      ? locale === "ar"
-        ? Administrative_type_options_ar.find((i) => i.value === query?.type)
-        : Administrative_type_options_en.find((i) => i.value === query?.type)
-      : ""
-  );
+  const [country, setCountry] = useState(() => {
+    if (query?.city) {
+      return allCountries.find((i) => i.value === Number(query?.city));
+    } else {
+      return "";
+    }
+  });
+  const [propertyTypeS, setPropertyTypeS] = useState(() => {
+    if (query?.uType) {
+      uType?.value === "housing"
+        ? locale === "ar"
+          ? hosuing_type_options_ar.find((i) => i.value === query?.type)
+          : hosuing_type_options_en.find((i) => i.value === query?.type)
+        : uType?.value === "commercial"
+        ? locale === "ar"
+          ? commercial_type_options_ar.find((i) => i.value === query?.type)
+          : commercial_type_options_en.find((i) => i.value === query?.type)
+        : uType?.value === "Administrative"
+        ? locale === "ar"
+          ? Administrative_type_options_ar.find((i) => i.value === query?.type)
+          : Administrative_type_options_en.find((i) => i.value === query?.type)
+        : "housing";
+    } else {
+      return ''
+    }
+  });
   const [governorate, setGovernorate] = useState();
   const [areaSize, setAreaSize] = useState();
   const dispatch = useDispatch();
@@ -190,8 +201,8 @@ const PropertiesFilter = ({ showFilter, query }) => {
 
   useEffect(() => {
     dispatch(setActiveCountry(country?.value));
-    if (activeCountry) {
-      const data = { activeCountry, locale };
+    if (country.value) {
+      const data = { activeCountry: country.value, locale };
       dispatch(getAllGovernorates(data));
       dispatch(filterByCountry({ allProperties, type: "filter" }));
     }
