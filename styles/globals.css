@@ -5495,3 +5495,29 @@ ul.event-tags-list {
 .popup-content iframe {
   width: 100%;
 }
+
+.property-details-area section#locationNearby {
+  margin-top: 0;
+  border-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.section-title.flex-d {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-title.flex-d .s-btn-box .btn {
+  background: var(--mainColor);
+  text-transform: lowercase;
+  border-radius: 10px;
+  height: 50px;
+  padding: 0 10px;
+  color: #fff;
+}
+
+.section-title.flex-d .s-btn-box .btn:first-letter {
+  text-transform: capitalize;
+}

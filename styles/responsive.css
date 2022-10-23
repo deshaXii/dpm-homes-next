@@ -23,11 +23,12 @@
     }
 
     .map-box-popup {
-        width: calc(100% - 20px);
-        height: calc(100% - 20px);
-        left: 10px;
-        top: 10px;
+        width: calc(90% - 20px);
+        height: calc(90% - 20px);
+        left: calc(10px + 5%);
+        top: calc(10px + 5%);
         transform: unset;
+        overflow: hidden;
     }
 
     .project-page button.btn.video-view img {
