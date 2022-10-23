@@ -30,8 +30,8 @@ const initialState = {
 
 export const getPropertiesWithTpye = createAsyncThunk(
   "properties/getProperty",
-  async ({ type, userToken, lang }) => {
-    const responseData = await getProperties({ type, userToken, lang });
+  async ({ type, userToken, lang, currency }) => {
+    const responseData = await getProperties({ type, userToken, lang, currency });
     return responseData;
   }
 );

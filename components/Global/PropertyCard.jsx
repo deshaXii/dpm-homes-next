@@ -21,7 +21,7 @@ import jsCookies from "js-cookies";
 const PropertyCard = ({ image, featureCount, className, property }) => {
   const router = useRouter();
   const { locale } = router;
-
+  
   if (property.currency == "AED") {
     var formatterAED = new Intl.NumberFormat(`en-eg`, {
       style: "currency",
@@ -43,6 +43,8 @@ const PropertyCard = ({ image, featureCount, className, property }) => {
       currency: "EUR",
     });
   }
+
+  console.log(property.currency);
 
   const dispatch = useDispatch();
   const handleAddToWishlist = (id) => {

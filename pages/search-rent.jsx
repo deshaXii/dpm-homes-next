@@ -109,8 +109,9 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "Cache-Control",
         "public, s-maxage=10, stale-while-revalidate=59"
       );
+      const currency = await store.getState().settings.settingsData.currency;
       await store.dispatch(getAllCountries(locale));
-      await store.dispatch(getPropertiesWithTpye({ type: "rent", lang: locale }));
+      await store.dispatch(getPropertiesWithTpye({ type: "rent", lang: locale, currency }));
       return {
         props: {},
       };

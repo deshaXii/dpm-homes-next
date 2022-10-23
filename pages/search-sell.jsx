@@ -111,8 +111,9 @@ export const getServerSideProps = wrapper.getServerSideProps(
         "public, s-maxage=10, stale-while-revalidate=59"
       );
       await store.dispatch(getAllCountries(locale));
+      const currency = await store.getState().settings.settingsData.currency;
       await store.dispatch(
-        getPropertiesWithTpye({ type: "sell", lang: locale })
+        getPropertiesWithTpye({ type: "sell", lang: locale, currency })
       );
       return {
         props: {},
