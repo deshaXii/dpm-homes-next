@@ -116,6 +116,11 @@ const PropertyViewer = () => {
 
       <section className="property-viewer p50">
         <div className="container">
+          {property.data.sold && (
+            <span className="unit-sold">
+              {locale === "en" ? "This unit is sold" : "تم بيع هذه الوحدة"}
+            </span>
+          )}
           {/* <SectionTitle
             title={<FormattedMessage id="page.property.view-Property" />}
             subTitle={<FormattedMessage id="page.property.view-show" />}
@@ -303,7 +308,7 @@ const PropertyViewer = () => {
                 </button>
                 <div className="unit-views">
                   <span>{property.data.views}</span>
-                  <p>{locale === 'ar' ? 'مشاهدة' : 'Views'}</p>
+                  <p>{locale === "ar" ? "مشاهدة" : "Views"}</p>
                 </div>
               </div>
             </div>

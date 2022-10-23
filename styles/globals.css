@@ -5537,3 +5537,25 @@ ul.event-tags-list {
 .section-title.flex-d .s-btn-box .btn:first-letter {
   text-transform: capitalize;
 }
+
+
+span.unit-sold {
+  position: absolute;
+  width: 100%;
+  background: var(--darkGreen);
+  z-index: 9;
+  opacity: 0.9;
+  left: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: #fff;
+  text-transform: capitalize;
+}
+
+section.property-viewer.p50 .container {
+  position: relative;
+}
