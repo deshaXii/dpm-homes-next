@@ -4989,7 +4989,23 @@ ul.pagination li.disabled a {
 }
 
 .map-box-popup .container-popup .popup-content {
-  height: 100%;
+  height: calc(100% - 50px);
+}
+
+.popup-header span:last-of-type {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all .3s linear;
+}
+
+.popup-header span:last-of-type:hover {
+  background: var(--darkGreen);
+  color: #fff;
 }
 
 .map-box-popup .container-popup .popup-content iframe {
