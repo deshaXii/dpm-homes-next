@@ -23,27 +23,24 @@ const Projects = () => {
   return (
     <>
       <Head>
-      <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
+        <title>Property in Egypt, Dubai Real Estate - Luxury Aqar</title>
       </Head>
       <Default>
         <div className="projects-page" style={{ padding: "60px 0 120px 0" }}>
           <div className="container">
             <div className="row">
-              <SectionTitle title={locale === 'ar' ? 'المشاريع' : 'projects'} subTitle={locale === 'ar' ? 'أحدث' : 'New'} />
+              <SectionTitle
+                title={locale === "ar" ? "المشاريع" : "projects"}
+                subTitle={locale === "ar" ? "أحدث" : "New"}
+              />
               {allProjects.map((project) => (
                 <div className="col-md-4" key={project.id}>
-                  <div className="project-slide-box" style={{marginBottom: '15px'}}>
+                  <div
+                    className="project-slide-box"
+                    style={{ marginBottom: "15px" }}
+                  >
                     <div className="project-slide-image-box">
-                      <Link
-                        href={{
-                          pathname: `/projects/${project.id}`,
-                          query: {
-                            name: project.name,
-                            description: project.description,
-                            image: project.image,
-                          },
-                        }}
-                      >
+                      <Link href={`/projects/${project.id}`}>
                         <a>
                           <Image
                             width={600}
@@ -55,33 +52,18 @@ const Projects = () => {
                       </Link>
                     </div>
                     <div className="project-slide-info">
-                      <Link
-                        href={{
-                          pathname: `/projects/${project.id}`,
-                          query: {
-                            name: project.name,
-                            description: project.description,
-                            image: project.image,
-                          },
-                        }}
-                      >
+                      <Link href={`/projects/${project.id}`}>
                         <a>
-                          <h5>{project.name}</h5>
+                          <h5>
+                            {project.name.substr(0, 25)}{" "}
+                            {project.name.length > 25 ? "..." : ""}
+                          </h5>
                         </a>
                       </Link>
                       <p>
-                        {project.description.substr(0, 70)}{" "}
-                        {project.description.length > 70 ? (
-                          <Link
-                            href={{
-                              pathname: `/projects/${project.id}`,
-                              query: {
-                                name: project.name,
-                                description: project.description,
-                                image: project.image,
-                              },
-                            }}
-                          >
+                        {project.description.substr(0, 45)}{" "}
+                        {project.description.length > 45 ? (
+                          <Link href={`/projects/${project.id}`}>
                             <FormattedMessage id="global.read.more" />
                           </Link>
                         ) : (

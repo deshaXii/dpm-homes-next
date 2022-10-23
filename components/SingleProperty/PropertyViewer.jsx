@@ -113,7 +113,7 @@ const PropertyViewer = () => {
           onClose={() => setOpen(false)}
         />
       )}
-      
+
       <section className="property-viewer p50">
         <div className="container">
           {/* <SectionTitle
@@ -278,7 +278,7 @@ const PropertyViewer = () => {
                 <RWebShare
                   data={{
                     text: "luxury aqar property ",
-                    url: "https://luxuryaqar.com/",
+                    url: `https://luxuryaqar.com/property/${property.data.id}`,
                     title: "luxuryaqar",
                   }}
                 >
@@ -301,6 +301,10 @@ const PropertyViewer = () => {
                     <BsHeart />
                   )}
                 </button>
+                <div className="unit-views">
+                  <span>{property.data.views}</span>
+                  <p>{locale === 'ar' ? 'مشاهدة' : 'Views'}</p>
+                </div>
               </div>
             </div>
           </div>
