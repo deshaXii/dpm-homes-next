@@ -10,7 +10,6 @@ import { FiShare2, FiHeart } from "react-icons/fi";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { RWebShare } from "react-web-share";
-
 import PrevArrow from "../Global/PrevArrow";
 import NextArrow from "../Global/NextArrow";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,12 +27,9 @@ import "react-modal-video/css/modal-video.css";
 import { useRouter } from "next/router";
 const PropertyViewer = () => {
   const [isOpen, setOpen] = useState(false);
-
   const { property } = useSelector(selectProperties);
-
   const router = useRouter();
   const { locale } = router;
-
   const dispatch = useDispatch();
 
   const handleAddToWishlist = (id) => {
@@ -121,10 +117,6 @@ const PropertyViewer = () => {
               {locale === "en" ? "This unit is sold" : "تم بيع هذه الوحدة"}
             </span>
           )}
-          {/* <SectionTitle
-            title={<FormattedMessage id="page.property.view-Property" />}
-            subTitle={<FormattedMessage id="page.property.view-show" />}
-          /> */}
           <div className="row">
             <div className="col-md-11">
               <div className="property-view-area">
