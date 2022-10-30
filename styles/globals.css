@@ -2937,6 +2937,8 @@ aside.properties-filter .filter-group .custom-checkbox input:checked~span {
 .mapbox-page iframe {
   height: 100%;
   width: 100%;
+  padding-bottom: 80px;
+  background: #091c23;
 }
 
 .client-badge {
