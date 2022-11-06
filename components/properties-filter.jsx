@@ -140,15 +140,19 @@ const PropertiesFilter = ({ showFilter, query }) => {
   const { allProperties } = useSelector(selectProperties);
   const [uType, setUType] = useState(() => {
     if (query?.uType) {
-      locale === "ar"
-        ? uritType_ar.find(
-            (i) => i.value.toLowerCase() === query?.uType?.toLowerCase()
-          )
-        : uritType_en.find(
-            (i) => i.value.toLowerCase() === query?.uType?.toLowerCase()
-          );
-    } else {
-      return "";
+      if (locale === "ar") {
+        return uritType_ar.find((i) => {
+          if (i.value.toLowerCase() === query?.uType?.toLowerCase()) {
+            return i;
+          }
+        });
+      } else {
+        return uritType_en.find((i) => {
+          if (i.value.toLowerCase() === query?.uType?.toLowerCase()) {
+            return i;
+          }
+        });
+      }
     }
   });
   const [bedNum, setBedNum] = useState();
@@ -162,21 +166,51 @@ const PropertiesFilter = ({ showFilter, query }) => {
   });
   const [propertyTypeS, setPropertyTypeS] = useState(() => {
     if (query?.uType) {
-      uType?.value === "housing"
-        ? locale === "ar"
-          ? hosuing_type_options_ar.find((i) => i.value === query?.type)
-          : hosuing_type_options_en.find((i) => i.value === query?.type)
-        : uType?.value === "commercial"
-        ? locale === "ar"
-          ? commercial_type_options_ar.find((i) => i.value === query?.type)
-          : commercial_type_options_en.find((i) => i.value === query?.type)
-        : uType?.value === "Administrative"
-        ? locale === "ar"
-          ? Administrative_type_options_ar.find((i) => i.value === query?.type)
-          : Administrative_type_options_en.find((i) => i.value === query?.type)
-        : "housing";
+      if (uType?.value === "housing") {
+        if (locale === "ar") {
+          hosuing_type_options_ar.find((i) => {
+            if (i.value === query?.type) {
+              return i;
+            }
+          });
+        } else {
+          hosuing_type_options_en.find((i) => {
+            if (i.value === query?.type) {
+              return i;
+            }
+          });
+        }
+      } else if (uType?.value === "commercial") {
+        if (locale === "ar") {
+          commercial_type_options_ar.find((i) => {
+            if (i.value === query?.type) {
+              return i;
+            }
+          });
+        } else {
+          commercial_type_options_en.find((i) => {
+            if (i.value === query?.type) {
+              return i;
+            }
+          });
+        }
+      } else if (uType?.value === "Administrative") {
+        if (locale === "ar") {
+          Administrative_type_options_ar.find((i) => {
+            if (i.value === query?.type) {
+              return i;
+            }
+          });
+        } else {
+          Administrative_type_options_en.find((i) => {
+            if (i.value === query?.type) {
+              return i;
+            }
+          });
+        }
+      }
     } else {
-      return ''
+      return "";
     }
   });
   const [governorate, setGovernorate] = useState();
@@ -234,6 +268,12 @@ const PropertiesFilter = ({ showFilter, query }) => {
       dispatch(setUUType(query?.uType));
     }
   }, [uType?.value, query?.uType]);
+  useEffect(() => {
+    if (uType?.value) {
+      dispatch(setUUType(uType?.value));
+      dispatch(filterByUType({ allProperties, type: "filter" }));
+    }
+  }, [uType]);
   useEffect(() => {
     dispatch(setPropertyType(propertyTypeS?.value));
     if (propertyTypeS) {
