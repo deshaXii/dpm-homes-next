@@ -268,12 +268,7 @@ const PropertiesFilter = ({ showFilter, query }) => {
       dispatch(setUUType(query?.uType));
     }
   }, [uType?.value, query?.uType]);
-  useEffect(() => {
-    if (uType?.value) {
-      dispatch(setUUType(uType?.value));
-      dispatch(filterByUType({ allProperties, type: "filter" }));
-    }
-  }, [uType]);
+ 
   useEffect(() => {
     dispatch(setPropertyType(propertyTypeS?.value));
     if (propertyTypeS) {
