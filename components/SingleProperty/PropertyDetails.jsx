@@ -593,12 +593,13 @@ const PropertyDetails = () => {
                             {locale === "ar"
                               ? installment_type_ar.map((item) =>
                                   item.value === property.data.installment_type
-                                    ? item.value
+                                    ? item.label
                                     : ""
                                 )
                               : installment_type_en.map((item) =>
-                                  item.value.toLowerCase() === property.data.installment_type.toLowerCase()
-                                    ? item.value
+                                  item.value.toLowerCase() ===
+                                  property.data.installment_type.toLowerCase()
+                                    ? item.label
                                     : ""
                                 )}
                           </span>
