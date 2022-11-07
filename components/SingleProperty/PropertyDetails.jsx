@@ -17,6 +17,22 @@ const PropertyDetails = () => {
   const router = useRouter();
   const { locale } = router;
 
+  
+  const installment_type_ar = [
+    { value: "monthly", label: "شهريا" },
+    { value: "quarterly", label: "كل ثلاث أشهر" },
+    { value: "semi-annual", label: "كل 6 شهور" },
+    { value: "annual", label: "سنويا" },
+  ];
+
+  const installment_type_en = [
+    { value: "monthly", label: "monthly" },
+    { value: "quarterly", label: "quarterly" },
+    { value: "semi-annual", label: "semi-annual" },
+    { value: "annual", label: "annual" },
+  ];
+
+
   const property_type_options_ar = [
     { value: "palace", label: "قصر" },
     { value: "villa", label: "فيلا" },
