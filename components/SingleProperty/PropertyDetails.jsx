@@ -17,7 +17,6 @@ const PropertyDetails = () => {
   const router = useRouter();
   const { locale } = router;
 
-  
   const installment_type_ar = [
     { value: "monthly", label: "شهريا" },
     { value: "quarterly", label: "كل ثلاث أشهر" },
@@ -31,7 +30,6 @@ const PropertyDetails = () => {
     { value: "semi-annual", label: "semi-annual" },
     { value: "annual", label: "annual" },
   ];
-
 
   const property_type_options_ar = [
     { value: "palace", label: "قصر" },
@@ -593,15 +591,15 @@ const PropertyDetails = () => {
                         <div className="pdi-value">
                           <span>
                             {locale === "ar"
-                              ? installment_type_ar.map(
-                                  (item) =>
-                                    item.value ===
-                                    property.data.installment_type
+                              ? installment_type_ar.map((item) =>
+                                  item.value === property.data.installment_type
+                                    ? item
+                                    : ""
                                 )
-                              : installment_type_en.map(
-                                  (item) =>
-                                    item.value ===
-                                    property.data.installment_type
+                              : installment_type_en.map((item) =>
+                                  item.value === property.data.installment_type
+                                    ? item
+                                    : ""
                                 )}
                           </span>
                         </div>
