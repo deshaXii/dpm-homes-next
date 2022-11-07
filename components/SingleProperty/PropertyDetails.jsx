@@ -575,7 +575,19 @@ const PropertyDetails = () => {
                           :
                         </div>
                         <div className="pdi-value">
-                          <span>{property.data.installment_type}</span>
+                          <span>
+                            {locale === "ar"
+                              ? installment_type_ar.map(
+                                  (item) =>
+                                    item.value ===
+                                    property.data.installment_type
+                                )
+                              : installment_type_en.map(
+                                  (item) =>
+                                    item.value ===
+                                    property.data.installment_type
+                                )}
+                          </span>
                         </div>
                       </div>
                     )}
