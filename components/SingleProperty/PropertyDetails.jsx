@@ -597,7 +597,7 @@ const PropertyDetails = () => {
                                     : ""
                                 )
                               : installment_type_en.map((item) =>
-                                  item.value === property.data.installment_type
+                                  item.value.toLowerCase() === property.data.installment_type.toLowerCase()
                                     ? item.value
                                     : ""
                                 )}
