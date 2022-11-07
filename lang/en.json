@@ -15,6 +15,7 @@
   "page.home.auth.properties.filter.location": "Location",
   "page.home.auth.properties.filter.area_size": "Area Size",
   "page.home.auth.properties.filter.property_type": "Property Type",
+  "page.property.details.installment_type_price": "Installment Type",
   "search": "Search",
   "page.home.auth.properties.filter.select_location": "Select Location",
   "page.home.auth.properties.filter.location_governorate": "Select governorate",

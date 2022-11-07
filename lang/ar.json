@@ -16,6 +16,7 @@
   "page.home.auth.properties.filter.location_governorate": "أختر المحافظة",
   "page.home.auth.properties.filter.location_country": "أختر الدولة",
   "page.home.auth.properties.filter.area_size": "المساحة",
+  "page.property.details.installment_type_price": "نوع القسط",
   "page.home.auth.properties.filter.property_type": "نوع العقار",
   "search": "بحث",
   "page.home.auth.properties.filter.select_location": "إختر الموقع",
