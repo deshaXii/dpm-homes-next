@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+Sitemap: https://luxuryaqar.com/sitemap_26-1.xml
+Sitemap: https://www.luxuryaqar.com/sitemap_26-1.xml
